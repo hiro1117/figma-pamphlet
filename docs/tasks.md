@@ -14,8 +14,8 @@
 - [ ] H(a) 技術MVP(くらぶちモック1件をモードDで通す)
 
 ## 要確認
-- [x] 本文サイズ: 第1層は現行値に合わせる(決定)
-- [?] 折り構成は「3つ折り」で進める(決定)。二つ折り3系統(あいとま/那智勝浦/登別)を初版に含めるかは確認中
+- [x] 本文サイズ: k訂正後は現行値(24〜26px)≈12ptで計画基準と一致。P2は12pt=24pxで実装。MITTの15pxのみ要判断
+- [x] 折り構成: A3を横半分折り+巻き三つ折り(6面)。逆さ面あり/なしの両方式をテンプレ属性で対応(決定)
 - [~] 欠落フォントはHiroがインストールして解消(Source Han Sans JP Medium/Bold, Hiragino Kaku Gothic Pro W6, ADS-piccolo)。許可外3種(Baloo Paaji / Yusei Magic / Titan One)は許可リストに追加予定
 - [?] `M PLUS Rounded 1c`はFigma上に無く`Rounded Mplus 1c`(+`Rounded Mplus 1c Bold`) → 許可リストの表記を修正
 - [x] 完成見本は空。実案件の完成品は`参照`ページ → 較正セット(a)は参照ページから(決定)
