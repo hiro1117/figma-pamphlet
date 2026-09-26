@@ -1,0 +1,6 @@
+.DS_Store
+/dist/figma-pamphlet.skill
+/tmp/
+node_modules/
+*.log
+.env
