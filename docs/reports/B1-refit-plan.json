@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "task": "B.1 表紙フレーム改修 (1) 設計",
+    "date": "2026-09-26",
+    "status": "設計済み・レビュー待ち(Figma への書き込みは未実施)",
+    "fileKey": "09Js7rndbabLAoCchqzX9j",
+    "page": "テンプレート (0:1)",
+    "coordinates": "フレームローカル px(左上原点。18:2 はフレームの 180° 回転を打ち消した設計座標。実施時は node.x / node.y にそのまま与える。逆さ面に置く場合のみ relativeTransform [[-1,0,x+w],[0,-1,y+h]])",
+    "constants": {
+      "k_px_per_mm": 5.69,
+      "bleed_px": 17,
+      "text_safety_px": 46,
+      "fold_x": [563.7, 1127.3],
+      "fold_y": 1196,
+      "cover_face": {"x": 1127.3, "y": 0, "w": 563.7, "h": 1196},
+      "hero_K2": {"x": 1127.3, "y": -17, "w": 580.7, "h": 711, "visible": {"x": 1127.3, "y": 0, "w": 563.7, "h": 694}, "visible_ratio_of_face": 0.5803, "mm_with_bleed": [102.06, 124.96], "aspect_w_over_h": 0.8167, "bleed_sides": ["top", "right"], "scaleMode": "CROP"}
+    },
+    "naming_convention": {
+      "rule": "`#<役割>:<スロット名>`。役割 = 本文 | 注記 | 見出し | 電話 | CTA | バッジ | AI表記 | キービジュアル | 地域モチーフ | 人物 | 車両 | 帯 | 背景 | config。スキルは `name.startsWith('#見出し')` のように役割で拾い、スロット名で文言を当てる",
+      "keep": "既存の `#〇〇置き場`(画像スロット)は名前を変えない。`#QR置き場` が `#QR` を兼ねる(`^#QR` で一致)",
+      "fixed_prefixes": "装飾: / ブロック: / 行: / ラベル: / 見出し: / イラスト: / 固定画像: / サンプル: / ガイド: は凡例 599:2 のまま"
+    },
+    "ops_legend": {
+      "rename": "params.to = 新名",
+      "create": "params = ノード仕様(type, parent, insertIndex, x, y, w, h, fills, strokes, visible, text)",
+      "hide": "visible=false(削除しない)",
+      "move": "params.dy / params.dx = 平行移動(px)、または params.parent + params.index = 親の付け替え(位置は維持)",
+      "resize": "params.w / params.h",
+      "setFill": "params.fill = hex(TEXT は全セグメントに setRangeFills)"
+    },
+    "z_order_in_cover_face": ["[0] 装飾:表紙背景(既存)", "[1] #背景(非表示)", "[2] #キービジュアル", "[3] #地域モチーフ", "[4] #車両", "[5] #人物", "[6] #帯(非表示)", "[7..] 既存ブロック(タイトル・サブコピー・CTA・注記)", "[last] #AI表記(非表示)"]
+  },
+  "common_creates": {
+    "description": "4 系統すべての表紙面グループに同じ座標で作る(24:2 は親 763:2、装飾:背景(表紙面) 24:2937 の直上 = insertIndex 1 から)",
+    "placeholder_stroke": {"type": "SOLID", "color": "#999999", "weight": 1, "dash": [6, 6]},
+    "nodes": [
+      {"name": "#背景", "type": "RECTANGLE", "insertIndex": 1, "x": 1127.3, "y": -17, "w": 580.7, "h": 1213, "fills": [], "strokes": [], "visible": false, "note": "表紙面全面+上・右 3mm 塗り足し。tone.json decoration.background で fill=ground にして表示"},
+      {"name": "#キービジュアル", "type": "RECTANGLE", "insertIndex": 2, "x": 1127.3, "y": -17, "w": 580.7, "h": 711, "fills": [{"type": "SOLID", "color": "#E6E6E6"}], "strokes": "placeholder_stroke", "visible": true, "note": "K2 枠。左・下は折り線(塗り足しなし)。画像投入時 fills=[{IMAGE, scaleMode CROP, imageHash}]、strokes=[]"},
+      {"name": "#地域モチーフ", "type": "RECTANGLE", "insertIndex": 3, "x": 1127.3, "y": 260, "w": 580.7, "h": 220, "fills": [], "strokes": "placeholder_stroke", "visible": true, "note": "hero_horizon 帯(ヒーロー見え高 694 の 37〜69%。地平線 ≈60% = y416 を含む)。右は塗り足しまで。画像は FIT"},
+      {"name": "#車両", "type": "RECTANGLE", "insertIndex": 4, "x": 1145, "y": 440, "w": 300, "h": 200, "fills": [], "strokes": "placeholder_stroke", "visible": true, "note": "折り線 x から 17.7px。画像は FIT。#人物 の背面"},
+      {"name": "#人物", "type": "RECTANGLE", "insertIndex": 5, "x": 1462, "y": 330, "w": 212, "h": 310, "fills": [], "strokes": "placeholder_stroke", "visible": true, "note": "右辺 1674 = 仕上がり端の 17px 内側。画像は FIT。ヒーロー内最前面"},
+      {"name": "#帯", "type": "GROUP", "insertIndex": 6, "visible": false, "children": [
+        {"name": "装飾:帯背景", "type": "RECTANGLE", "x": 1144.3, "y": 640, "w": 563.7, "h": 54, "fills": [], "strokes": []},
+        {"name": "#帯文言", "type": "TEXT", "x": 1144.3, "y": 652, "w": 563.7, "h": 30, "font": {"family": "Noto Sans JP", "style": "Bold"}, "fontSize": 28, "fill": "#FFFFFF", "textAlign": "CENTER", "textAutoResize": "NONE", "characters": "〇〇〇〇"}
+      ], "note": "ヒーロー下端の帯。左 1144.3 = 折り線+17、右 1708 = 仕上がり端+17(端ピタ回避)。文言 ≤8 字、帯と一緒に回転(グループ)。tone.json decoration.signature_element で表示"},
+      {"name": "#AI表記", "type": "TEXT", "insertIndex": "last", "font": {"family": "Noto Sans JP", "style": "Regular"}, "fontSize": 16, "fill": "#000000", "textAlign": "CENTER", "textAutoResize": "NONE", "characters": "※本紙のイラストは生成AIを活用して制作しています。", "visible": false, "position_by_series": {"18:2": {"x": 1176, "y": 1126, "w": 486, "h": 22}, "20:2": {"x": 1176, "y": 1120, "w": 486, "h": 22}, "21:2": {"x": 1176, "y": 1097, "w": 486, "h": 22}, "24:2": {"x": 615, "y": 1126, "w": 460, "h": 22, "fontSize": 15, "textAlign": "LEFT", "parent": "790:10 面:表面(左上)"}}, "note": "発行者情報の固定文。既定は表1側に置く(表4 を変えないため)。フッター(逆さ面)に置く案は設計書 3.(c) 参照。Step 5 でスキルが visible=true にする"}
+    ]
+  },
+  "series": {
+    "18:2": {
+      "name": "冊子表紙/あいとま系テンプレート",
+      "frame_rotation": 180,
+      "cover_face": "749:6",
+      "service_face": "750:8",
+      "ops": [
+        {"op": "rename", "target": "18:43", "from": "#補助金表記", "to": "#注記:補助金表記"},
+        {"op": "rename", "target": "596:12", "from": "#表紙サブコピー", "to": "#見出し:表紙サブコピー", "note": "ADS-piccolo 欠落。名前のみ"},
+        {"op": "rename", "target": "18:44", "from": "#電話番号(メイン)", "to": "#電話:メイン"},
+        {"op": "rename", "target": "18:69", "from": "見出し:ご登録・ご予約は", "to": "#CTA:見出し"},
+        {"op": "rename", "target": "18:68", "from": "装飾:枠", "to": "#CTA:パネル"},
+        {"op": "rename", "target": "18:111", "from": "ラベル:TEL", "to": "#CTA:ラベルTEL"},
+        {"op": "rename", "target": "18:112", "from": "ラベル:LINE", "to": "#CTA:ラベルLINE"},
+        {"op": "rename", "target": "18:70", "from": "装飾:まずは登録!", "to": "#バッジ:まずは登録"},
+        {"op": "rename", "target": "18:66", "from": "#対象地域注記", "to": "#注記:対象地域"},
+        {"op": "rename", "target": "596:2", "from": "#キャッチコピー", "to": "#見出し:キャッチコピー"},
+        {"op": "rename", "target": "596:3", "from": "#リード文", "to": "#本文:リード文"},
+        {"op": "rename", "target": "596:4", "from": "#利用シーン1見出し", "to": "#見出し:利用シーン1"},
+        {"op": "rename", "target": "596:5", "from": "#利用シーン1本文", "to": "#本文:利用シーン1", "note": "Source Han 欠落。名前のみ"},
+        {"op": "rename", "target": "596:6", "from": "#利用シーン2見出し", "to": "#見出し:利用シーン2"},
+        {"op": "rename", "target": "596:7", "from": "#利用シーン2本文", "to": "#本文:利用シーン2", "note": "欠落。名前のみ"},
+        {"op": "rename", "target": "596:8", "from": "#利用シーン3見出し", "to": "#見出し:利用シーン3"},
+        {"op": "rename", "target": "596:9", "from": "#利用シーン3本文", "to": "#本文:利用シーン3", "note": "欠落。名前のみ"},
+        {"op": "rename", "target": "596:10", "from": "#吹き出しコピー", "to": "#見出し:吹き出し"},
+        {"op": "rename", "target": "596:11", "from": "#利用上の注意", "to": "#注記:利用上の注意", "note": "欠落。名前のみ"},
+        {"op": "create", "target": "749:6", "params": "common_creates(#背景, #キービジュアル, #地域モチーフ, #車両, #人物, #帯, #AI表記)", "insertAfter": "749:2 装飾:表紙背景"},
+        {"op": "keep", "target": "18:53", "note": "#サービスロゴ置き場 (1229,141,374×324) はヒーロー枠内に残す(層はヒーローより上)。要判断 D-3"},
+        {"op": "keep", "target": "18:54", "note": "#地区名ロゴ置き場 (1249,378,334×312) 同上"},
+        {"op": "keep", "target": "18:43", "note": "#補助金表記(白 17px)はヒーロー上端に重なる。画像次第で読めない → 要判断 D-6"}
+      ]
+    },
+    "20:2": {
+      "name": "冊子表紙/那智勝浦系テンプレート",
+      "frame_rotation": 0,
+      "cover_face": "756:6",
+      "service_face": "756:13",
+      "ops": [
+        {"op": "rename", "target": "625:12", "from": "#表紙サブコピー", "to": "#見出し:表紙サブコピー"},
+        {"op": "rename", "target": "20:135", "from": "#タイトル行1", "to": "#見出し:タイトル行1"},
+        {"op": "rename", "target": "20:133", "from": "#タイトル行2", "to": "#見出し:タイトル行2"},
+        {"op": "rename", "target": "20:134", "from": "#サービス名", "to": "#見出し:サービス名"},
+        {"op": "rename", "target": "20:122", "from": "#電話番号", "to": "#電話:メイン"},
+        {"op": "rename", "target": "20:152", "from": "見出し:ご予約は\\nLINEまたは", "to": "#CTA:見出し", "note": "現名に改行を含む"},
+        {"op": "rename", "target": "20:151", "from": "装飾:枠", "to": "#CTA:パネル"},
+        {"op": "rename", "target": "20:194", "from": "ラベル:TEL", "to": "#CTA:ラベルTEL"},
+        {"op": "rename", "target": "20:195", "from": "ラベル:LINE", "to": "#CTA:ラベルLINE"},
+        {"op": "rename", "target": "20:153", "from": "装飾:まずは登録!", "to": "#バッジ:まずは登録"},
+        {"op": "rename", "target": "20:333", "from": "#受付時間", "to": "#注記:受付時間"},
+        {"op": "rename", "target": "625:37", "from": "#LINE受付注記", "to": "#注記:LINE受付"},
+        {"op": "rename", "target": "625:2", "from": "#キャッチコピー", "to": "#見出し:キャッチコピー"},
+        {"op": "rename", "target": "625:3", "from": "#リード文", "to": "#本文:リード文"},
+        {"op": "rename", "target": "625:4", "from": "#利用シーン1見出し", "to": "#見出し:利用シーン1"},
+        {"op": "rename", "target": "625:5", "from": "#利用シーン1本文", "to": "#本文:利用シーン1", "note": "欠落。名前のみ"},
+        {"op": "rename", "target": "625:6", "from": "#利用シーン2見出し", "to": "#見出し:利用シーン2"},
+        {"op": "rename", "target": "625:7", "from": "#利用シーン2本文", "to": "#本文:利用シーン2", "note": "欠落。名前のみ"},
+        {"op": "rename", "target": "625:8", "from": "#利用シーン3見出し", "to": "#見出し:利用シーン3"},
+        {"op": "rename", "target": "625:9", "from": "#利用シーン3本文", "to": "#本文:利用シーン3", "note": "欠落。名前のみ"},
+        {"op": "rename", "target": "625:10", "from": "#吹き出しコピー", "to": "#見出し:吹き出し"},
+        {"op": "rename", "target": "625:11", "from": "#利用上の注意", "to": "#注記:利用上の注意", "note": "欠落。名前のみ。14px"},
+        {"op": "create", "target": "756:6", "params": "common_creates", "insertAfter": "756:2 装飾:表紙背景(固定ロゴ 20:136 より下)"},
+        {"op": "move", "target": "756:5", "params": {"dy": 30}, "from_bbox": [1173, 661, 488.9, 456.9], "to_bbox": [1173, 691, 488.9, 456.9], "note": "ブロック:ご登録・ご予約 をヒーロー下端(694)の直下へ。#注記:LINE受付 の箱下端 1147 → 折り線まで 49px(≥46)。CTA 見出しの箱上端 691 はヒーローと 3px 重なるが字面は内側"},
+        {"op": "keep", "target": "20:136", "note": "固定ロゴ(表紙中央) (1370,564.8,87×81) はヒーロー内・#車両 と重なる位置。既定は残す(層はヒーローより上)。要判断 D-4"},
+        {"op": "keep", "target": "756:4", "note": "ブロック:タイトル(#ロゴ置き場 20:330 含む)はヒーロー上に重ねて残す"}
+      ]
+    },
+    "21:2": {
+      "name": "冊子表紙/登別系テンプレート",
+      "frame_rotation": 0,
+      "cover_face": "758:5",
+      "service_face": "758:11",
+      "ops": [
+        {"op": "rename", "target": "21:271", "from": "#電話番号", "to": "#電話:メイン"},
+        {"op": "rename", "target": "21:320", "from": "見出し:ご登録・ご予約は", "to": "#CTA:見出し"},
+        {"op": "rename", "target": "21:319", "from": "装飾:枠", "to": "#CTA:パネル"},
+        {"op": "rename", "target": "21:316", "from": "ラベル:TEL", "to": "#CTA:ラベルTEL"},
+        {"op": "rename", "target": "21:317", "from": "ラベル:LINE", "to": "#CTA:ラベルLINE"},
+        {"op": "rename", "target": "21:274", "from": "装飾:まずは登録!", "to": "#バッジ:まずは登録", "note": "子 21:275 は locked(API からは可)"},
+        {"op": "rename", "target": "21:272", "from": "#事業名", "to": "#注記:事業名", "note": "18px 白。折り線から 30px・x が折り線上(既存の P6 違反、要判断 D-7)"},
+        {"op": "rename", "target": "21:325", "from": "#自治体名(縦1文字目)", "to": "#見出し:自治体名1"},
+        {"op": "rename", "target": "21:328", "from": "#自治体名(縦2文字目)", "to": "#見出し:自治体名2"},
+        {"op": "rename", "target": "21:331", "from": "#自治体名(縦3文字目)", "to": "#見出し:自治体名3"},
+        {"op": "rename", "target": "21:333", "from": "実証運行スタート", "to": "#見出し:実証運行スタート", "note": "この系統の主見出し。# を付けると文言差し替え可になる(固定のままにするなら見送り)"},
+        {"op": "rename", "target": "629:2", "from": "#キャッチコピー", "to": "#見出し:キャッチコピー"},
+        {"op": "rename", "target": "629:3", "from": "#リード文", "to": "#本文:リード文"},
+        {"op": "rename", "target": "629:4", "from": "#利用シーン1見出し", "to": "#見出し:利用シーン1"},
+        {"op": "rename", "target": "629:5", "from": "#利用シーン1本文", "to": "#本文:利用シーン1", "note": "欠落。名前のみ"},
+        {"op": "rename", "target": "629:6", "from": "#利用シーン2見出し", "to": "#見出し:利用シーン2"},
+        {"op": "rename", "target": "629:7", "from": "#利用シーン2本文", "to": "#本文:利用シーン2", "note": "欠落。名前のみ"},
+        {"op": "rename", "target": "629:8", "from": "#利用シーン3見出し", "to": "#見出し:利用シーン3"},
+        {"op": "rename", "target": "629:9", "from": "#利用シーン3本文", "to": "#本文:利用シーン3", "note": "欠落。名前のみ"},
+        {"op": "rename", "target": "629:10", "from": "#利用上の注意", "to": "#注記:利用上の注意", "note": "欠落。名前のみ。14px"},
+        {"op": "move", "target": "21:270", "params": {"parent": "758:4", "index": 0}, "note": "#サービスロゴ置き場 が 装飾:表紙背景2 グループ(層 [0])の中にあり、ヒーローを [1] に挿すと隠れる → ブロック:タイトル の最背面へ親を付け替える(位置 1204,247,411×243 は維持)"},
+        {"op": "create", "target": "758:5", "params": "common_creates", "insertAfter": "758:2 装飾:表紙背景"},
+        {"op": "hide", "target": "21:342", "note": "イラスト:車 (1272,595,184×106, IMAGE cec3112b) → #車両 で置き換わるため非表示"},
+        {"op": "hide", "target": "21:344", "note": "#マスコット置き場 (1421,516,166×218) はヒーロー下端 694 をまたぎ #人物 と競合 → 既定は非表示。要判断 D-5"},
+        {"op": "keep", "target": "21:343", "note": "ラベル:予約制 (1322,503,174×43) はヒーロー上に残す"}
+      ]
+    },
+    "24:2": {
+      "name": "冊子表紙/MITT系テンプレート",
+      "frame_rotation": 0,
+      "cover_face": "763:2",
+      "service_face": "790:10",
+      "ops": [
+        {"op": "rename", "target": "27:9", "from": "#サービス名(タイトル)", "to": "#見出し:サービス名1"},
+        {"op": "rename", "target": "27:10", "from": "#サービス名(タイトル)", "to": "#見出し:サービス名2"},
+        {"op": "rename", "target": "24:3026", "from": "#(令和〇年〇月更新)", "to": "#注記:更新日"},
+        {"op": "rename", "target": "24:3716", "from": "#事業主体", "to": "#注記:事業主体"},
+        {"op": "rename", "target": "24:2945", "from": "\\まずは登録!!/", "to": "#バッジ:まずは登録", "note": "VECTOR(fill #254F99)"},
+        {"op": "rename", "target": "24:2941", "from": "Group 283", "to": "ブロック:ご登録(LINE)", "note": "構造名。任意"},
+        {"op": "rename", "target": "24:2950", "from": "Rectangle", "to": "固定画像:LINEアイコン", "note": "IMAGE dbbfecad CROP。任意"},
+        {"op": "rename", "target": "24:2952", "from": "Group 282", "to": "ブロック:サービス名タイトル", "note": "任意"},
+        {"op": "rename", "target": "24:2944", "from": "Group 363", "to": "ブロック:QR", "note": "任意"},
+        {"op": "rename", "target": "24:2956", "from": "Group 420", "to": "装飾:白丸", "note": "任意"},
+        {"op": "rename", "target": "24:3024", "from": "Vector", "to": "イラスト:街の乗合サービス(文字ベクター)", "note": "任意"},
+        {"op": "rename", "target": "789:7", "from": "#キャッチコピー", "to": "#見出し:キャッチコピー"},
+        {"op": "rename", "target": "789:8", "from": "#リード文", "to": "#本文:リード文"},
+        {"op": "rename", "target": "789:9", "from": "#利用シーン1見出し", "to": "#見出し:利用シーン1"},
+        {"op": "rename", "target": "789:10", "from": "#利用シーン1本文", "to": "#本文:利用シーン1"},
+        {"op": "rename", "target": "789:11", "from": "#利用シーン2見出し", "to": "#見出し:利用シーン2"},
+        {"op": "rename", "target": "789:12", "from": "#利用シーン2本文", "to": "#本文:利用シーン2"},
+        {"op": "rename", "target": "789:13", "from": "#利用シーン3見出し", "to": "#見出し:利用シーン3"},
+        {"op": "rename", "target": "789:14", "from": "#利用シーン3本文", "to": "#本文:利用シーン3"},
+        {"op": "rename", "target": "789:15", "from": "#利用シーン4見出し", "to": "#見出し:利用シーン4"},
+        {"op": "rename", "target": "789:16", "from": "#利用シーン4本文", "to": "#本文:利用シーン4"},
+        {"op": "rename", "target": "789:17", "from": "#吹き出しコピー", "to": "#見出し:吹き出し"},
+        {"op": "rename", "target": "789:19", "from": "#利用上の注意", "to": "#注記:利用上の注意"},
+        {"op": "rename", "target": "789:18", "from": "#補助金表記", "to": "#注記:補助金表記"},
+        {"op": "rename", "target": "28:3", "from": "#発行者情報", "to": "#注記:発行者情報"},
+        {"op": "create", "target": "763:2", "params": "common_creates", "insertAfter": "24:2937 装飾:背景(表紙面)"},
+        {"op": "move", "target": "24:2941", "params": {"dy": 400}, "from_bbox": [1155, 377, 509.4, 178.7], "to_bbox": [1155, 777, 509.4, 178.7], "note": "ご登録(LINE) ブロック(まずは登録!!・#QR置き場 24:2946・LINEアイコン・白線)を下情報域へ。QR 下端 955.7 → 折り線まで 240px"},
+        {"op": "hide", "target": "24:3104", "note": "イラスト:表紙(人物群) 335 ノード(#車両写真置き場 24:3439 を含む)。#人物/#車両 で置き換え。要判断 D-2"},
+        {"op": "resize", "target": "24:3439", "params": {"h": 235}, "note": "#車両写真置き場 (1127,944,408×272) の下端 1216 → 1179(折り線−17)。面グループ 763:2 の高さ 1216 → 1196 に戻すため(非表示でも bbox に効く場合の保険)"},
+        {"op": "keep", "target": "24:2952", "note": "タイトル一式(白丸・白線・#見出し:サービス名1/2・街の乗合サービス)はヒーロー上に重ねて残す"},
+        {"op": "keep", "target": "24:3562", "note": "ブロック:事業主体(y19-63)と #注記:更新日(y67-101)はヒーロー上端に重ねて残す"}
+      ]
+    }
+  },
+  "page_ops": [
+    {"op": "create", "target": "0:1", "params": {"name": "#config", "type": "TEXT", "x": -1451, "y": 1800, "w": 1286, "font": {"family": "Noto Sans JP", "style": "Regular"}, "fontSize": 24, "textAutoResize": "HEIGHT", "visible": false,
+      "characters_json": {"skill_min_version": "2026-10", "pipeline": "on", "sheet": "A3_booklet", "k_px_per_mm": 5.69, "fold": {"x": [563.7, 1127.3], "y": 1196}, "cover_face": {"x": 1127.3, "y": 0, "w": 563.7, "h": 1196}, "presets": {"K2": {"hero": {"x": 1127.3, "y": -17, "w": 580.7, "h": 711, "bleed": ["top", "right"], "scaleMode": "CROP"}, "motif": {"x": 1127.3, "y": 260, "w": 580.7, "h": 220}, "vehicle": {"x": 1145, "y": 440, "w": 300, "h": 200}, "person": {"x": 1462, "y": 330, "w": 212, "h": 310}}}, "templates": {"18:2": {"series": "aitoma", "lower_row": "rot180", "frame_rotation": 180}, "20:2": {"series": "nachikatsuura", "lower_row": "rot180"}, "21:2": {"series": "noboribetsu", "lower_row": "rot180"}, "24:2": {"series": "mitt", "lower_row": "upright"}}, "refit": "B.1", "updated": "2026-09-26"},
+      "note": "凡例 599:2 (-1451,955〜1761) の直下。ページ直下に `#` ノードは現在 0 件"}}
+  ],
+  "small_text_to_black": {
+    "rule": "可視 TEXT のうちセグメント最小 fontSize < 24px(12pt=24.1px。24px は合格)。対象は表1側(表紙面+サービス紹介面/表面(左上))。表4側(逆さ面・使い方面(下))は今回触らない",
+    "apply": [
+      {"id": "24:3716", "name": "#注記:事業主体", "px": 17, "from": "#231815", "to": "#000000"},
+      {"id": "789:8", "name": "#本文:リード文", "px": 16, "from": "#231815", "to": "#000000"},
+      {"id": "789:10", "name": "#本文:利用シーン1", "px": 15, "from": "#231815", "to": "#000000"},
+      {"id": "789:12", "name": "#本文:利用シーン2", "px": 15, "from": "#231815", "to": "#000000"},
+      {"id": "789:14", "name": "#本文:利用シーン3", "px": 15, "from": "#231815", "to": "#000000"},
+      {"id": "789:16", "name": "#本文:利用シーン4", "px": 15, "from": "#231815", "to": "#000000"},
+      {"id": "789:19", "name": "#注記:利用上の注意", "px": 14, "from": "#404040", "to": "#000000"},
+      {"id": "790:2", "name": "ラベル:サービスへのご理解をお願いいたします", "px": 13, "from": "#404040", "to": "#000000"},
+      {"id": "789:18", "name": "#注記:補助金表記", "px": 12, "from": "#404040", "to": "#000000"},
+      {"id": "28:3", "name": "#注記:発行者情報", "px": 15, "from": "#404040", "to": "#000000"}
+    ],
+    "decide": [
+      {"id": "18:111", "name": "#CTA:ラベルTEL", "px": 20, "fill": "#EB6EA5", "reason": "系統色のラベル。黒にすると意匠が変わる(D-8)"},
+      {"id": "18:112", "name": "#CTA:ラベルLINE", "px": 20, "fill": "#EB6EA5", "reason": "同上"},
+      {"id": "20:194", "name": "#CTA:ラベルTEL", "px": 20, "fill": "#1B98D0", "reason": "同上"},
+      {"id": "20:195", "name": "#CTA:ラベルLINE", "px": 20, "fill": "#1B98D0", "reason": "同上"},
+      {"id": "21:316", "name": "#CTA:ラベルTEL", "px": 20, "fill": "#D7835F", "reason": "同上"},
+      {"id": "21:317", "name": "#CTA:ラベルLINE", "px": 20, "fill": "#D7835F", "reason": "同上"},
+      {"id": "596:10", "name": "#見出し:吹き出し", "px": 23, "fill": "#EB6EA5", "reason": "見出し役 23px(11.4pt)。境界ケース"},
+      {"id": "625:10", "name": "#見出し:吹き出し", "px": 23, "fill": "#1B98D0", "reason": "同上"},
+      {"id": "789:17", "name": "#見出し:吹き出し", "px": 16, "fill": "#254F99", "reason": "MITT 見出し役 16px。ブランド紺"}
+    ],
+    "exclude": [
+      {"id": "18:43", "name": "#注記:補助金表記", "px": 17, "fill": "#FFFFFF", "reason": "白抜き(地色依存)。P2 の白抜き<12pt 判定で別途 Fail する見込み(D-6)"},
+      {"id": "21:272", "name": "#注記:事業名", "px": 18, "fill": "#FFFFFF", "reason": "白抜き on #513A1E(D-7)"},
+      {"id": "24:3026", "name": "#注記:更新日", "px": 20, "fill": "#E60012", "reason": "赤の強調。黒にすると意味が変わる"}
+    ],
+    "already_black": ["18:66", "596:11", "20:333", "625:37", "625:11", "629:10"],
+    "out_of_scope_back_side": {
+      "18:2": ["18:297", "18:151", "18:167", "18:209", "18:210", "598:6", "598:13", "598:17", "598:26", "598:19", "598:30", "18:217"],
+      "20:2": ["20:314", "20:315", "20:292", "20:293", "20:295", "625:17", "625:18", "625:19", "20:218", "20:234", "20:250", "625:36", "625:23", "20:44", "625:24", "625:25", "625:26", "625:27"],
+      "21:2": ["21:174", "21:175", "21:176", "21:177", "21:178", "21:74", "21:76", "21:91", "21:92", "629:17", "629:19", "629:18", "21:73", "629:13", "21:47", "21:32", "21:18", "629:34", "21:140", "629:36", "629:43", "629:22", "629:26", "629:30", "629:35"],
+      "24:2": ["24:3567", "24:3568", "27:2", "801:4", "801:6", "801:8", "801:10", "801:12", "801:17", "801:19", "801:21", "801:23", "801:25", "793:3", "793:7", "793:11", "793:15", "801:13", "801:20", "801:24", "801:15", "793:4", "793:8", "793:12", "793:16", "27:3", "793:18", "793:19"]
+    }
+  },
+  "placement_checks_new_nodes": [
+    {"node": "#キービジュアル", "fold_x_left": "0(折り線に接する。K2 の定義どおり。P18 は画像内容で判定)", "fold_y_bottom": 502, "trim_top": "外側 17(塗り足し)", "trim_right": "外側 17(塗り足し)", "result": "OK"},
+    {"node": "#地域モチーフ", "fold_x_left": "0(ヒーロー内の背景層)", "fold_y_bottom": 716, "trim_right": "外側 17", "result": "OK"},
+    {"node": "#車両", "fold_x_left": 17.7, "fold_y_bottom": 556, "trim_right": "内側 246", "result": "OK"},
+    {"node": "#人物", "fold_x_left": 334.7, "fold_y_bottom": 556, "trim_right": "内側 17", "result": "OK"},
+    {"node": "#帯", "fold_x_left": 17, "fold_y_bottom": 502, "trim_right": "外側 17", "result": "OK(回転後は corner を再計算)"},
+    {"node": "#背景", "fold_x_left": 0, "fold_y_bottom": 0, "trim": "外側 17(上・右)", "result": "OK(面全面の背景)"},
+    {"node": "#AI表記 18:2", "fold_x_left": 48.7, "fold_y_bottom": 48, "result": "OK"},
+    {"node": "#AI表記 20:2", "fold_x_left": 48.7, "fold_y_bottom": 54, "result": "OK"},
+    {"node": "#AI表記 21:2", "fold_x_left": 48.7, "fold_y_bottom": 77, "result": "OK"},
+    {"node": "#AI表記 24:2", "fold_x_563.7": 51.3, "fold_x_1127.3": 52.3, "fold_y_bottom": 48, "result": "OK"},
+    {"node": "20:2 ブロック:ご登録・ご予約(+30)", "fold_y_bottom": 49, "fold_x_left": 45.7, "result": "OK(x は既存値のまま。#CTA:見出し の箱左端 1173 が折り線から 45.7px = 既存の境界ケース)"},
+    {"node": "24:2 ブロック:ご登録(LINE)(+400)", "fold_x_left": 27.7, "fold_y_bottom": 240, "trim_right": "内側 26.6", "result": "OK"}
+  ],
+  "preexisting_violations_front_side": {
+    "note": "B.1 では触らない(見た目の変更をしない方針)。E(P6)と第2段で扱う",
+    "text_straddles_fold_x563.7": {"18:2": ["596:2", "596:3", "596:5", "596:6", "596:7", "596:9", "596:11"], "20:2": ["625:2", "625:3", "625:5", "625:6", "625:7", "625:8", "625:9", "625:11"], "21:2": ["629:2", "629:3", "629:5", "629:6", "629:7", "629:9", "629:10"], "24:2": ["789:7", "789:13", "789:19", "28:3"]},
+    "text_on_or_near_fold_x1127.3": {"18:2": ["18:43(18.7px)", "596:10(44.2px)", "18:69(45.7px)"], "20:2": ["625:10", "20:152(45.7px)"], "21:2": ["21:272(x=1127 折り線上)", "21:320(37.7px)"]},
+    "text_near_fold_y1196": {"21:2": ["21:272(30px)"], "24:2": ["28:3(23.5px)"]}
+  },
+  "verification": [
+    "V1 構造: 各表紙面グループ内の `#` ノード一覧(id・名前・ローカル bbox・visible・fills)を read-only で取得し、本 JSON の create/rename と突合(名前・座標±0.5px・z 順)",
+    "V2 P5/P6 相当: 新規/移動ノードについて折り線距離と仕上がり端距離を計算(placement_checks_new_nodes の期待値と一致)。TEXT は ≥46、装飾は ≥17 または外側 ≥17",
+    "V3 ヒーロー幾何: #キービジュアル bbox = (1127.3,-17,580.7,711)、見え部分 694/1196 = 58.0%(55〜60%)、塗り足しは上・右のみ、フレーム clipsContent=false のまま",
+    "V4 画像投入テスト(作業用ページの clone 上): 既存 imageHash(例 21:342 の cec3112b…)を #キービジュアル に scaleMode CROP で入れて get_screenshot → 枠いっぱいに描画され、折り線・仕上がり端の幾何が V2 を通ることを確認 → fills を戻す",
+    "V5 表4 不変: 逆さ面グループ(750:15/750:24/18:287 ほか)と 使い方面(下) 763:8 の子孫数・名前・bbox・fills を改修前後で比較し差分 0",
+    "V6 imageHash: 既存 IMAGE fill 33 種の hash が変わっていない(docs/prep/image-inventory.json と突合)。改修後に `docs/prep/template-refit-inventory.json` へ再採取",
+    "V7 24:2 面 bbox: 面:表紙面(右上) 763:2 の高さが 1196 以下",
+    "V8 スクショ: 4 表紙を get_screenshot(18:2 は PIL で 180° 回転)し、`docs/reports/B1-after/` に保存。ヒーロー枠内にタイトル類が重なって見えること、CTA が下情報域に収まることを目視",
+    "V9 フォント: 新規 TEXT(#帯文言・#AI表記・#config)は loadFontAsync('Noto Sans JP', Bold/Regular) 後に作成。既存 TEXT の characters/フォントは一切触らない(rename と setRangeFills のみ)"
+  ]
+}
