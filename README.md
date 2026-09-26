@@ -2,7 +2,10 @@
 
 Cicac 乗合タクシー(MITT)パンフレットを Figma MCP で作る Claude スキル `figma-pamphlet` のソース。
 
-- 計画書(目指すもの / そのために行うこと): https://claude.ai/code/artifact/9ff55393-cd8f-42e0-96e6-33d1f88c8d86
+- **Claude Code で作業するときは先に `CLAUDE.md` → `docs/PLAN.md` を読む**
+- 計画書(目指すもの / そのために行うこと): `docs/plan/plan-v5.1.md`(Claude Doc の書き出し。原本: https://claude.ai/code/artifact/9ff55393-cd8f-42e0-96e6-33d1f88c8d86)
+- 経緯・決定・制約の要約: `docs/context/session-digest.md`(生ログは `docs/context/session-2026-09-26.jsonl`)
+- タスク指示書: `docs/briefs/`(E 第1層 / B1 表紙改修 / C ライブラリv0 / D スキル改訂)
 - `skill/` — スキル本体(配布時にこのディレクトリを zip する)。`SKILL.md` と `references/`
 - `docs/` — 決定事項・タスク台帳・引き継ぎメモ(開発用。配布物には含めない)
 - `scripts/package.sh` — `skill/` を `dist/figma-pamphlet_<版>.skill` にパッケージ
