@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+"""単色背景(#00FF00 / #FF00FF)で生成した前景 PNG をキー抜きして実 alpha の PNG にする。
+
+  .venv/bin/python scripts/library/keyout.py in.png out.png [--key 00FF00] [--erode 1] [--feather 1] [--trim]
+
+手順: (1) キー色との色差で alpha を作る(近い=透明、遠い=不透明、途中は滑らか)
+      (2) 縁に残るキー色のにじみ(spill)を抑える
+      (3) alpha を erode ピクセルだけ収縮(P13-b の「エッジ収縮」)
+      (4) --trim で透明な余白を切り落とす
+Gemini 系は真の alpha を出さないため、この後処理が必須(計画書 5.1)。
+"""
+import argparse
+import numpy as np
+from PIL import Image, ImageFilter
+
+
+def keyout(im: Image.Image, key_hex: str, erode: int, feather: int, near: float = 40.0, far: float = 110.0):
+    rgb = np.asarray(im.convert("RGB")).astype(np.float32)
+    key = np.array([int(key_hex[i:i + 2], 16) for i in (0, 2, 4)], dtype=np.float32)
+    # 色差(ユークリッド)。キー色に近いほど透明
+    dist = np.sqrt(((rgb - key) ** 2).sum(axis=2))
+    alpha = np.clip((dist - near) / (far - near), 0.0, 1.0)
+    # spill 抑制: キー色の支配チャンネルを他2チャンネルの最大値までクランプ
+    dom = int(np.argmax(key))
+    others = [c for c in range(3) if c != dom]
+    lim = np.maximum(rgb[..., others[0]], rgb[..., others[1]])
+    spill = rgb[..., dom] > lim
+    rgb[..., dom] = np.where(spill, lim, rgb[..., dom])
+    a = Image.fromarray((alpha * 255).astype(np.uint8), "L")
+    if erode > 0:
+        a = a.filter(ImageFilter.MinFilter(2 * erode + 1))
+    if feather > 0:
+        a = a.filter(ImageFilter.GaussianBlur(feather))
+    out = Image.fromarray(rgb.astype(np.uint8), "RGB").convert("RGBA")
+    out.putalpha(a)
+    return out
+
+
+if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument("src")
+    ap.add_argument("dst")
+    ap.add_argument("--key", default="00FF00")
+    ap.add_argument("--erode", type=int, default=1)
+    ap.add_argument("--feather", type=float, default=0.8)
+    ap.add_argument("--trim", action="store_true")
+    ns = ap.parse_args()
+    im = Image.open(ns.src)
+    out = keyout(im, ns.key.lstrip("#").upper(), ns.erode, ns.feather)
+    if ns.trim:
+        bbox = out.getchannel("A").point(lambda v: 255 if v > 8 else 0).getbbox()
+        if bbox:
+            out = out.crop(bbox)
+    out.save(ns.dst)
+    a = np.asarray(out.getchannel("A"))
+    print(f"{ns.dst}: {out.size[0]}x{out.size[1]} opaque={100*(a>250).mean():.1f}% semi={100*((a>4)&(a<=250)).mean():.1f}%")
