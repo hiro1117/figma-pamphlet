@@ -17,7 +17,8 @@ const CONFIG = {
   BG_COVER: 0.9,                     // P4 背景候補は TEXT 矩形の 90% 以上を覆う
   FOLD_MARGIN_MM: 8,                 // P6 折り線からの安全域(46px)
   OVERFLOW_TOL_PX: 1,                // P3-a 高さ差の許容
-  TIGHT_BOX: 'ignore',               // P3-a 折り返しが増えず箱だけ低い(単行バッジ等): 'ignore'|'manual'|'fail'
+  TIGHT_BOX: 'ignore',               // P3-a 箱が文字より低いが不足が 1行×TIGHT_RATIO 未満(単行バッジ等): 'ignore'|'manual'|'fail'
+  TIGHT_RATIO: 0.5,                  // 不足 ≥ 1行高×0.5 なら明示改行の追加でもあふれと判定
   P6_SKIP_FOLDS: { x: [], y: [] },   // P6 で検査しない折り線(設計座標px。例: 2面見開きの中央 x:[563.7])
   PHONE_RATIO: 3,                    // P12 電話 ≥ 本文中央値 × 3
   P6_EXCLUDE_NAME: /^(ガイド:|装飾:)/,          // P6 で無視する TEXT 名
@@ -26,6 +27,7 @@ const CONFIG = {
   EXCLUDE_NAME: /^#(tone|state|config)$/,      // 状態保持ノードは走査から除外
   // 役割判定: 名前が #本文 等で始まれば優先。次に名前の正規表現、最後に文字列
   ROLE_PREFIX: { '#本文': 'body', '#注記': 'note', '#見出し': 'heading', '#電話': 'phone', '#CTA': 'heading' },
+  ROLE_PREFIX_EXCEPT: { '#電話': /受付|時間|注記|説明/ },   // 「#電話受付時間」は phone でなく名前規則へ
   ROLE_NAME: [
     ['note',    /注記|注意|受付時間|補助金表記|発行者情報|事業主体|運行事業者|協力会社|実施主体|更新\)|^※|※/],
     ['phone',   /電話番号|(^|[^a-zA-Z])TEL($|[^a-zA-Z])|℡/],
@@ -34,7 +36,8 @@ const CONFIG = {
   ],
   ROLE_CHARS: [
     ['phone', /0\d{1,4}[-‐−ー–]\d{1,4}[-‐−ー–]\d{3,4}/],
-    ['note',  /^※/],
+    ['note',  /^[※＊*]/],
+    ['body',  /^[\s\S]{30,}$/],                   // 無名ノードでも 30 字以上なら本文扱い
   ],
   MAX_ITEMS: 20, NAME_LEN: 20, CHARS_LEN: 15, OUT_LIMIT: 20000,
   TMP_NAME: '__preflight_tmp__',
@@ -42,6 +45,7 @@ const CONFIG = {
 
 // ---------- 共通ユーティリティ ----------
 const t0 = Date.now();
+const LINE_BREAK = new RegExp('\\r?\\n|' + String.fromCharCode(8232)); // 改行と U+2028(リテラルで書くと転送時に壊れる)
 const round1 = v => Math.round(v * 10) / 10;
 const cut = (s, n) => (s || '').replace(/\s+/g, ' ').slice(0, n);
 const lum = c => { const f = v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); return 0.2126 * f(c.r) + 0.7152 * f(c.g) + 0.0722 * f(c.b); };
@@ -56,7 +60,7 @@ const topFill = n => { const fs = Array.isArray(n.fills) ? n.fills : null; if (!
 
 function roleOf(node) {
   const name = node.name || '';
-  for (const p in CONFIG.ROLE_PREFIX) if (name.startsWith(p)) return { role: CONFIG.ROLE_PREFIX[p], by: 'prefix' };
+  for (const p in CONFIG.ROLE_PREFIX) if (name.startsWith(p) && !(CONFIG.ROLE_PREFIX_EXCEPT[p] && CONFIG.ROLE_PREFIX_EXCEPT[p].test(name))) return { role: CONFIG.ROLE_PREFIX[p], by: 'prefix' };
   for (const [r, re] of CONFIG.ROLE_NAME) if (re.test(name)) return { role: r, by: 'name' };
   for (const [r, re] of CONFIG.ROLE_CHARS) if (re.test(node.characters || '')) return { role: r, by: 'chars' };
   return { role: 'other', by: 'default' };
@@ -150,13 +154,14 @@ async function inspect(frame) {
       let c = null;
       try {
         c = n.clone(); c.name = CONFIG.TMP_NAME; c.visible = false;
-        c.textAutoResize = 'WIDTH_AND_HEIGHT'; const hNat = c.height;   // 自然高さ(明示改行のみ)
-        c.textAutoResize = 'HEIGHT'; const hFit = c.height;             // 箱幅で折り返した高さ
+        c.textAutoResize = 'HEIGHT'; const hFit = c.height;             // 箱幅で折り返した高さ(必ず先。順を逆にすると幅が自然幅に変わる)
+        c.textAutoResize = 'WIDTH_AND_HEIGHT'; const hNat = c.height;   // 自然高さ(明示改行のみ、幅は自然幅)
         checked++;
         const diff = hFit - n.height;
         if (diff > CONFIG.OVERFLOW_TOL_PX) {
-          const wrapped = hFit > hNat + 1;
-          if (wrapped || CONFIG.TIGHT_BOX === 'fail') { fails++; items.push(item(n, { role: m.role, value: `${wrapped ? 'あふれ' : 'tight'} need ${round1(hFit)}px / box ${round1(n.height)}px (+${round1(diff)})`, limit: `+${CONFIG.OVERFLOW_TOL_PX}px`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: '文言を短くする(箱・フォントは変えない)' })); }
+          const lineH = hNat / ((n.characters || '').split(LINE_BREAK).length || 1); // 1行の高さ(明示改行で割る)
+          const wrapped = hFit > hNat + 1 || diff >= lineH * CONFIG.TIGHT_RATIO;          // 折り返し増、または不足が半行以上
+          if (wrapped || CONFIG.TIGHT_BOX === 'fail') { fails++; items.push(item(n, { role: m.role, value: `${wrapped ? 'あふれ' : 'tight'} need ${round1(hFit)}px / box ${round1(n.height)}px (+${round1(diff)}, line ${round1(lineH)})`, limit: `+${CONFIG.OVERFLOW_TOL_PX}px`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: '文言を短くする(箱・フォントは変えない)' })); }
           else if (CONFIG.TIGHT_BOX === 'manual') { manuals++; items.push(item(n, { role: m.role, value: `tight box ${round1(n.height)}px < text ${round1(hFit)}px`, fix: '目視(折り返しは増えていない)' })); }
           else tight++;
         }
