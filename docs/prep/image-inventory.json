@@ -1,0 +1,3984 @@
+{
+ "fileKey": "09Js7rndbabLAoCchqzX9j",
+ "page": "テンプレート (0:1)",
+ "notes": [
+  "x,y,w,h はテンプレートフレームのローカル座標(px)。rotInFrame=180 は逆さ面内(フレーム座標で180°回転)。",
+  "中面4フレーム(47:2/48:2/48:393/48:513)と乗降スポット表(28:178)には IMAGE fill を持つノードは存在しない(地図・写真はすべて #〇〇置き場 のグレー矩形=SOLID #E6E6E6 + stroke #999999 破線)。",
+  "imagePx は figma.getImageByHash(hash).getSizeAsync() の実測。",
+  "MITT系表紙 24:2 の (非表示)イラスト素材:illst_0730/0731 は VECTOR 約1,400〜1,500個の非表示フレーム(IMAGEではない)。"
+ ],
+ "imageFillNodes": [
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:57",
+   "name": "イラスト:病院",
+   "type": "RECTANGLE",
+   "x": 683,
+   "y": 303,
+   "w": 182,
+   "h": 149,
+   "rotInFrame": 0,
+   "imageHash": "544541bc4d9a829c2e6614ac49d45a41568211d0",
+   "scaleMode": "FILL",
+   "imagePx": [
+    1158,
+    950
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン1"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:60",
+   "name": "イラスト:妊婦",
+   "type": "RECTANGLE",
+   "x": 945,
+   "y": 230,
+   "w": 101,
+   "h": 183,
+   "rotInFrame": 0,
+   "imageHash": "5137dac635a0a6e5a8021a6871359b994c792d2b",
+   "scaleMode": "FILL",
+   "imagePx": [
+    686,
+    1243
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン1"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:62",
+   "name": "イラスト:病院 1",
+   "type": "RECTANGLE",
+   "x": 532,
+   "y": 290,
+   "w": 103,
+   "h": 79,
+   "rotInFrame": 0,
+   "imageHash": "abe35f7abd9f3dd180fb77d1bd472b74968c85f1",
+   "scaleMode": "FILL",
+   "imagePx": [
+    393,
+    299
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン1"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:58",
+   "name": "イラスト:学生",
+   "type": "RECTANGLE",
+   "x": 126,
+   "y": 513,
+   "w": 72,
+   "h": 188,
+   "rotInFrame": 0,
+   "imageHash": "54f11aa5742e7bbd7fe0a0453e42ae6ae04c5e20",
+   "scaleMode": "FILL",
+   "imagePx": [
+    437,
+    1140
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:59",
+   "name": "イラスト:登園",
+   "type": "RECTANGLE",
+   "x": 231,
+   "y": 479,
+   "w": 119,
+   "h": 175,
+   "rotInFrame": 0,
+   "imageHash": "505512148a7c0180f90b9d5f646e29416540c182",
+   "scaleMode": "FILL",
+   "imagePx": [
+    758,
+    1119
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:64",
+   "name": "イラスト:学校 1",
+   "type": "RECTANGLE",
+   "x": 964,
+   "y": 508,
+   "w": 98,
+   "h": 80,
+   "rotInFrame": 0,
+   "imageHash": "de1b57fb623dc5ac401bbc28f03de956ec6319e8",
+   "scaleMode": "FILL",
+   "imagePx": [
+    373,
+    306
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:56",
+   "name": "イラスト:family",
+   "type": "RECTANGLE",
+   "x": 793,
+   "y": 671,
+   "w": 248,
+   "h": 179,
+   "rotInFrame": 0,
+   "imageHash": "501c22f05d3f5c00af6ab325f64e312267e5fda6",
+   "scaleMode": "FILL",
+   "imagePx": [
+    1684,
+    1213
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン3"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:61",
+   "name": "イラスト:買い物",
+   "type": "RECTANGLE",
+   "x": 645,
+   "y": 732,
+   "w": 100,
+   "h": 164,
+   "rotInFrame": 0,
+   "imageHash": "b01108bd1c4b408d887afcb668a931602c919072",
+   "scaleMode": "FILL",
+   "imagePx": [
+    752,
+    1227
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン3"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:63",
+   "name": "イラスト:お店 1",
+   "type": "RECTANGLE",
+   "x": 553,
+   "y": 726,
+   "w": 102,
+   "h": 80,
+   "rotInFrame": 0,
+   "imageHash": "4122bc2600edd89fad848f60c86b0c7f11976768",
+   "scaleMode": "FILL",
+   "imagePx": [
+    392,
+    306
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン3"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:30",
+   "name": "イラスト:くもワク 1",
+   "type": "RECTANGLE",
+   "x": 655,
+   "y": 853,
+   "w": 439,
+   "h": 312,
+   "rotInFrame": 0,
+   "imageHash": "87e90fc9cfceaf04b9e1f5219d3235be682c0b59",
+   "scaleMode": "FILL",
+   "imagePx": [
+    1099,
+    781
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:31",
+   "name": "イラスト:雪だるま",
+   "type": "RECTANGLE",
+   "x": 859,
+   "y": 1053,
+   "w": 85,
+   "h": 75,
+   "rotInFrame": 0,
+   "imageHash": "94f35bf952e28e43e47cf675c1946eb6ebfe3c0c",
+   "scaleMode": "FILL",
+   "imagePx": [
+    79,
+    70
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:32",
+   "name": "イラスト:晴れ",
+   "type": "RECTANGLE",
+   "x": 718,
+   "y": 1028,
+   "w": 85,
+   "h": 75,
+   "rotInFrame": 0,
+   "imageHash": "d6996dcb77d69c3b0d8721abab8dab05d8448559",
+   "scaleMode": "FILL",
+   "imagePx": [
+    79,
+    70
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:33",
+   "name": "イラスト:雪",
+   "type": "RECTANGLE",
+   "x": 919,
+   "y": 1062,
+   "w": 84,
+   "h": 75,
+   "rotInFrame": 0,
+   "imageHash": "66a793637b574ea076f9d13d4e2ceb4001e33161",
+   "scaleMode": "FILL",
+   "imagePx": [
+    78,
+    70
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:34",
+   "name": "イラスト:雨",
+   "type": "RECTANGLE",
+   "x": 790,
+   "y": 1041,
+   "w": 84,
+   "h": 75,
+   "rotInFrame": 0,
+   "imageHash": "d2e2046fa5065adb55ae020c7ae52bde0d949219",
+   "scaleMode": "FILL",
+   "imagePx": [
+    78,
+    70
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:55",
+   "name": "イラスト:老人2 2",
+   "type": "RECTANGLE",
+   "x": 520,
+   "y": 853,
+   "w": 94,
+   "h": 175,
+   "rotInFrame": 0,
+   "imageHash": "0b61c95b98f9f219e14f913d48f5a80d779eb979",
+   "scaleMode": "FILL",
+   "imagePx": [
+    647,
+    1201
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用上の注意"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:203",
+   "name": "固定画像:MITTアプリバナー",
+   "type": "RECTANGLE",
+   "x": 90,
+   "y": 1942,
+   "w": 439,
+   "h": 296,
+   "rotInFrame": 180,
+   "imageHash": "780ca6e6df56c2194ede47dbe23bc2a93b4d4ffb",
+   "scaleMode": "FILL",
+   "imagePx": [
+    800,
+    540
+   ],
+   "visible": true,
+   "face": "ご利用の流れ・使い方",
+   "parent": "ブロック:アプリ紹介"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "105:2",
+   "name": "固定ロゴ:Cicac(#ロゴ置き場の上)",
+   "type": "RECTANGLE",
+   "x": 123,
+   "y": 1215,
+   "w": 134,
+   "h": 82,
+   "rotInFrame": 180,
+   "imageHash": "824797b24b3ffe80ea4ad255b2bf0435d61a7c45",
+   "scaleMode": "CROP",
+   "imagePx": [
+    225,
+    225
+   ],
+   "visible": true,
+   "face": "お問い合わせフッター",
+   "parent": "面:お問い合わせフッター(逆さ面)"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:285",
+   "name": "固定画像:MITTアプリバナー",
+   "type": "RECTANGLE",
+   "x": 90,
+   "y": 2012,
+   "w": 439,
+   "h": 296,
+   "rotInFrame": 180,
+   "imageHash": "780ca6e6df56c2194ede47dbe23bc2a93b4d4ffb",
+   "scaleMode": "FILL",
+   "imagePx": [
+    800,
+    540
+   ],
+   "visible": true,
+   "face": "ご利用の流れ・使い方",
+   "parent": "ブロック:アプリ紹介"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:147",
+   "name": "イラスト:病院",
+   "type": "RECTANGLE",
+   "x": 727,
+   "y": 319,
+   "w": 175,
+   "h": 143,
+   "rotInFrame": 0,
+   "imageHash": "544541bc4d9a829c2e6614ac49d45a41568211d0",
+   "scaleMode": "FILL",
+   "imagePx": [
+    1158,
+    950
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン1"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:148",
+   "name": "イラスト:妊婦",
+   "type": "RECTANGLE",
+   "x": 942,
+   "y": 241,
+   "w": 97,
+   "h": 176,
+   "rotInFrame": 0,
+   "imageHash": "5137dac635a0a6e5a8021a6871359b994c792d2b",
+   "scaleMode": "FILL",
+   "imagePx": [
+    686,
+    1243
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン1"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:149",
+   "name": "イラスト:病院_1 1",
+   "type": "RECTANGLE",
+   "x": 525,
+   "y": 289,
+   "w": 120,
+   "h": 92,
+   "rotInFrame": 0,
+   "imageHash": "d59074fed846e16425277190cabad55153b8f105",
+   "scaleMode": "FILL",
+   "imagePx": [
+    393,
+    300
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン1"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:302",
+   "name": "イラスト:買い物",
+   "type": "RECTANGLE",
+   "x": 99,
+   "y": 486,
+   "w": 96,
+   "h": 157,
+   "rotInFrame": 0,
+   "imageHash": "b01108bd1c4b408d887afcb668a931602c919072",
+   "scaleMode": "FILL",
+   "imagePx": [
+    752,
+    1227
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:303",
+   "name": "イラスト:お店_1 2",
+   "type": "RECTANGLE",
+   "x": 940,
+   "y": 507,
+   "w": 119,
+   "h": 93,
+   "rotInFrame": 0,
+   "imageHash": "6ee2803beb08948a16d9c767c16d06699004b529",
+   "scaleMode": "FILL",
+   "imagePx": [
+    392,
+    306
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:304",
+   "name": "イラスト:family",
+   "type": "RECTANGLE",
+   "x": 231,
+   "y": 509,
+   "w": 239,
+   "h": 172,
+   "rotInFrame": 0,
+   "imageHash": "501c22f05d3f5c00af6ab325f64e312267e5fda6",
+   "scaleMode": "FILL",
+   "imagePx": [
+    1684,
+    1213
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:106",
+   "name": "学生@2x",
+   "type": "RECTANGLE",
+   "x": 990,
+   "y": 693,
+   "w": 69,
+   "h": 181,
+   "rotInFrame": 0,
+   "imageHash": "54f11aa5742e7bbd7fe0a0453e42ae6ae04c5e20",
+   "scaleMode": "FILL",
+   "imagePx": [
+    437,
+    1140
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "装飾:お子さまグループ(帯・イラスト)"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:107",
+   "name": "登園@2x",
+   "type": "RECTANGLE",
+   "x": 859,
+   "y": 671,
+   "w": 114,
+   "h": 169,
+   "rotInFrame": 0,
+   "imageHash": "505512148a7c0180f90b9d5f646e29416540c182",
+   "scaleMode": "FILL",
+   "imagePx": [
+    758,
+    1119
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "装飾:お子さまグループ(帯・イラスト)"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:108",
+   "name": "学校_1@2x 2",
+   "type": "RECTANGLE",
+   "x": 687,
+   "y": 730,
+   "w": 106,
+   "h": 87,
+   "rotInFrame": 0,
+   "imageHash": "15499bb7ffe9850d6589bd351ba11f1e016e48f8",
+   "scaleMode": "FILL",
+   "imagePx": [
+    374,
+    306
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "装飾:お子さまグループ(帯・イラスト)"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:109",
+   "name": "イラスト:黄色くも 1",
+   "type": "RECTANGLE",
+   "x": 654,
+   "y": 850,
+   "w": 442,
+   "h": 315,
+   "rotInFrame": 0,
+   "imageHash": "b17e47edd02653555bbb3bc58a0106700d5c118d",
+   "scaleMode": "FILL",
+   "imagePx": [
+    1098,
+    781
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:110",
+   "name": "イラスト:雪だるま",
+   "type": "RECTANGLE",
+   "x": 859,
+   "y": 1053,
+   "w": 85,
+   "h": 75,
+   "rotInFrame": 0,
+   "imageHash": "94f35bf952e28e43e47cf675c1946eb6ebfe3c0c",
+   "scaleMode": "FILL",
+   "imagePx": [
+    79,
+    70
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:111",
+   "name": "イラスト:晴れ",
+   "type": "RECTANGLE",
+   "x": 718,
+   "y": 1028,
+   "w": 85,
+   "h": 75,
+   "rotInFrame": 0,
+   "imageHash": "d6996dcb77d69c3b0d8721abab8dab05d8448559",
+   "scaleMode": "FILL",
+   "imagePx": [
+    79,
+    70
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:112",
+   "name": "イラスト:雪",
+   "type": "RECTANGLE",
+   "x": 919,
+   "y": 1062,
+   "w": 84,
+   "h": 75,
+   "rotInFrame": 0,
+   "imageHash": "66a793637b574ea076f9d13d4e2ceb4001e33161",
+   "scaleMode": "FILL",
+   "imagePx": [
+    78,
+    70
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:113",
+   "name": "イラスト:雨",
+   "type": "RECTANGLE",
+   "x": 790,
+   "y": 1041,
+   "w": 84,
+   "h": 75,
+   "rotInFrame": 0,
+   "imageHash": "d2e2046fa5065adb55ae020c7ae52bde0d949219",
+   "scaleMode": "FILL",
+   "imagePx": [
+    78,
+    70
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:146",
+   "name": "イラスト:老人2 2",
+   "type": "RECTANGLE",
+   "x": 520,
+   "y": 863,
+   "w": 89,
+   "h": 165,
+   "rotInFrame": 0,
+   "imageHash": "0b61c95b98f9f219e14f913d48f5a80d779eb979",
+   "scaleMode": "FILL",
+   "imagePx": [
+    647,
+    1201
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用上の注意"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "104:3",
+   "name": "固定ロゴ:Cicac(#ロゴ置き場の上)",
+   "type": "RECTANGLE",
+   "x": 123,
+   "y": 1213,
+   "w": 134,
+   "h": 82,
+   "rotInFrame": 180,
+   "imageHash": "824797b24b3ffe80ea4ad255b2bf0435d61a7c45",
+   "scaleMode": "CROP",
+   "imagePx": [
+    225,
+    225
+   ],
+   "visible": true,
+   "face": "お問い合わせフッター",
+   "parent": "面:お問い合わせフッター(逆さ面)"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:85",
+   "name": "固定画像:MITTアプリバナー",
+   "type": "RECTANGLE",
+   "x": 90,
+   "y": 1950,
+   "w": 439,
+   "h": 296,
+   "rotInFrame": 180,
+   "imageHash": "780ca6e6df56c2194ede47dbe23bc2a93b4d4ffb",
+   "scaleMode": "FILL",
+   "imagePx": [
+    800,
+    540
+   ],
+   "visible": true,
+   "face": "ご利用の流れ・使い方",
+   "parent": "ブロック:アプリ紹介"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:257",
+   "name": "イラスト:病院",
+   "type": "RECTANGLE",
+   "x": 687,
+   "y": 290,
+   "w": 191,
+   "h": 157,
+   "rotInFrame": 0,
+   "imageHash": "e9ec00fd2a134468f084c8c5207478d0ac1964a1",
+   "scaleMode": "FILL",
+   "imagePx": [
+    1158,
+    950
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン1"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:260",
+   "name": "イラスト:妊婦",
+   "type": "RECTANGLE",
+   "x": 950,
+   "y": 230,
+   "w": 106,
+   "h": 193,
+   "rotInFrame": 0,
+   "imageHash": "61bda584a10fd04abe81fed0bf21e86c1b4d7454",
+   "scaleMode": "FILL",
+   "imagePx": [
+    687,
+    1243
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン1"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:262",
+   "name": "イラスト:病院 1",
+   "type": "RECTANGLE",
+   "x": 532,
+   "y": 290,
+   "w": 103,
+   "h": 79,
+   "rotInFrame": 0,
+   "imageHash": "a9b2b041f0c0b593f33dd9bc5dde66fda1b63e8d",
+   "scaleMode": "FILL",
+   "imagePx": [
+    474,
+    361
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン1"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:261",
+   "name": "イラスト:買い物",
+   "type": "RECTANGLE",
+   "x": 665,
+   "y": 714,
+   "w": 106,
+   "h": 172,
+   "rotInFrame": 0,
+   "imageHash": "8fad08ed81df04c73b700d729b8f2622edfc0cb0",
+   "scaleMode": "FILL",
+   "imagePx": [
+    752,
+    1228
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン3"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:263",
+   "name": "イラスト:お店 1",
+   "type": "RECTANGLE",
+   "x": 553,
+   "y": 726,
+   "w": 102,
+   "h": 80,
+   "rotInFrame": 0,
+   "imageHash": "17b36ac0710715701c54364a707589e9b91f2e78",
+   "scaleMode": "FILL",
+   "imagePx": [
+    472,
+    370
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン3"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:256",
+   "name": "イラスト:family",
+   "type": "RECTANGLE",
+   "x": 828,
+   "y": 652,
+   "w": 261,
+   "h": 189,
+   "rotInFrame": 0,
+   "imageHash": "30a24fa8ec79da507ec9bb0211a983a4773aa6f5",
+   "scaleMode": "FILL",
+   "imagePx": [
+    1684,
+    1213
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:258",
+   "name": "イラスト:学生",
+   "type": "RECTANGLE",
+   "x": 110,
+   "y": 508,
+   "w": 76,
+   "h": 198,
+   "rotInFrame": 0,
+   "imageHash": "5c50382b789cd6f1019b94d5bdc2afc178165d28",
+   "scaleMode": "FILL",
+   "imagePx": [
+    437,
+    1140
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:259",
+   "name": "イラスト:登園",
+   "type": "RECTANGLE",
+   "x": 209,
+   "y": 473,
+   "w": 125,
+   "h": 185,
+   "rotInFrame": 180,
+   "imageHash": "a6ef6eb1d43801c402473ffa1882bd383dfcb40a",
+   "scaleMode": "CROP",
+   "imagePx": [
+    758,
+    1119
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:264",
+   "name": "イラスト:学校 1",
+   "type": "RECTANGLE",
+   "x": 964,
+   "y": 508,
+   "w": 98,
+   "h": 80,
+   "rotInFrame": 0,
+   "imageHash": "6e6de445ef99fa5d9b0501f2222118aa512584a0",
+   "scaleMode": "FILL",
+   "imagePx": [
+    450,
+    368
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:255",
+   "name": "イラスト:老人2 2",
+   "type": "RECTANGLE",
+   "x": 521,
+   "y": 836,
+   "w": 99,
+   "h": 184,
+   "rotInFrame": 0,
+   "imageHash": "ef05176e2666750f138117a80741643447c51067",
+   "scaleMode": "FILL",
+   "imagePx": [
+    648,
+    1200
+   ],
+   "visible": true,
+   "face": "サービス紹介面",
+   "parent": "ブロック:利用上の注意"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:342",
+   "name": "イラスト:車",
+   "type": "RECTANGLE",
+   "x": 1272,
+   "y": 595,
+   "w": 184,
+   "h": 106,
+   "rotInFrame": 0,
+   "imageHash": "cec3112b391c2433be7619f8c396b0f8db8a09df",
+   "scaleMode": "FILL",
+   "imagePx": [
+    1005,
+    581
+   ],
+   "visible": true,
+   "face": "表紙面",
+   "parent": "ブロック:タイトル"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3103",
+   "name": "固定画像:MITTアプリバナー",
+   "type": "RECTANGLE",
+   "x": 62,
+   "y": 1451,
+   "w": 450,
+   "h": 304,
+   "rotInFrame": 0,
+   "imageHash": "780ca6e6df56c2194ede47dbe23bc2a93b4d4ffb",
+   "scaleMode": "FILL",
+   "imagePx": [
+    800,
+    540
+   ],
+   "visible": true,
+   "face": "使い方面(下)",
+   "parent": "ブロック:アプリ画面例"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:2950",
+   "name": "Rectangle",
+   "type": "RECTANGLE",
+   "x": 1155,
+   "y": 459.6,
+   "w": 68.2,
+   "h": 68.1,
+   "rotInFrame": 0,
+   "imageHash": "dbbfecaddf4cf1a4c1d9607527db2818b5912462",
+   "scaleMode": "CROP",
+   "imagePx": [
+    1001,
+    1000
+   ],
+   "visible": true,
+   "face": "表紙面(右上)",
+   "parent": "Group 283"
+  }
+ ],
+ "imageHashLedger": [
+  {
+   "imageHash": "544541bc4d9a829c2e6614ac49d45a41568211d0",
+   "imagePx": [
+    1158,
+    950
+   ],
+   "usedBy": [
+    "18:2/18:57",
+    "20:2/20:147"
+   ],
+   "names": [
+    "イラスト:病院"
+   ]
+  },
+  {
+   "imageHash": "5137dac635a0a6e5a8021a6871359b994c792d2b",
+   "imagePx": [
+    686,
+    1243
+   ],
+   "usedBy": [
+    "18:2/18:60",
+    "20:2/20:148"
+   ],
+   "names": [
+    "イラスト:妊婦"
+   ]
+  },
+  {
+   "imageHash": "abe35f7abd9f3dd180fb77d1bd472b74968c85f1",
+   "imagePx": [
+    393,
+    299
+   ],
+   "usedBy": [
+    "18:2/18:62"
+   ],
+   "names": [
+    "イラスト:病院 1"
+   ]
+  },
+  {
+   "imageHash": "54f11aa5742e7bbd7fe0a0453e42ae6ae04c5e20",
+   "imagePx": [
+    437,
+    1140
+   ],
+   "usedBy": [
+    "18:2/18:58",
+    "20:2/20:106"
+   ],
+   "names": [
+    "イラスト:学生",
+    "学生@2x"
+   ]
+  },
+  {
+   "imageHash": "505512148a7c0180f90b9d5f646e29416540c182",
+   "imagePx": [
+    758,
+    1119
+   ],
+   "usedBy": [
+    "18:2/18:59",
+    "20:2/20:107"
+   ],
+   "names": [
+    "イラスト:登園",
+    "登園@2x"
+   ]
+  },
+  {
+   "imageHash": "de1b57fb623dc5ac401bbc28f03de956ec6319e8",
+   "imagePx": [
+    373,
+    306
+   ],
+   "usedBy": [
+    "18:2/18:64"
+   ],
+   "names": [
+    "イラスト:学校 1"
+   ]
+  },
+  {
+   "imageHash": "501c22f05d3f5c00af6ab325f64e312267e5fda6",
+   "imagePx": [
+    1684,
+    1213
+   ],
+   "usedBy": [
+    "18:2/18:56",
+    "20:2/20:304"
+   ],
+   "names": [
+    "イラスト:family"
+   ]
+  },
+  {
+   "imageHash": "b01108bd1c4b408d887afcb668a931602c919072",
+   "imagePx": [
+    752,
+    1227
+   ],
+   "usedBy": [
+    "18:2/18:61",
+    "20:2/20:302"
+   ],
+   "names": [
+    "イラスト:買い物"
+   ]
+  },
+  {
+   "imageHash": "4122bc2600edd89fad848f60c86b0c7f11976768",
+   "imagePx": [
+    392,
+    306
+   ],
+   "usedBy": [
+    "18:2/18:63"
+   ],
+   "names": [
+    "イラスト:お店 1"
+   ]
+  },
+  {
+   "imageHash": "87e90fc9cfceaf04b9e1f5219d3235be682c0b59",
+   "imagePx": [
+    1099,
+    781
+   ],
+   "usedBy": [
+    "18:2/18:30"
+   ],
+   "names": [
+    "イラスト:くもワク 1"
+   ]
+  },
+  {
+   "imageHash": "94f35bf952e28e43e47cf675c1946eb6ebfe3c0c",
+   "imagePx": [
+    79,
+    70
+   ],
+   "usedBy": [
+    "18:2/18:31",
+    "20:2/20:110"
+   ],
+   "names": [
+    "イラスト:雪だるま"
+   ]
+  },
+  {
+   "imageHash": "d6996dcb77d69c3b0d8721abab8dab05d8448559",
+   "imagePx": [
+    79,
+    70
+   ],
+   "usedBy": [
+    "18:2/18:32",
+    "20:2/20:111"
+   ],
+   "names": [
+    "イラスト:晴れ"
+   ]
+  },
+  {
+   "imageHash": "66a793637b574ea076f9d13d4e2ceb4001e33161",
+   "imagePx": [
+    78,
+    70
+   ],
+   "usedBy": [
+    "18:2/18:33",
+    "20:2/20:112"
+   ],
+   "names": [
+    "イラスト:雪"
+   ]
+  },
+  {
+   "imageHash": "d2e2046fa5065adb55ae020c7ae52bde0d949219",
+   "imagePx": [
+    78,
+    70
+   ],
+   "usedBy": [
+    "18:2/18:34",
+    "20:2/20:113"
+   ],
+   "names": [
+    "イラスト:雨"
+   ]
+  },
+  {
+   "imageHash": "0b61c95b98f9f219e14f913d48f5a80d779eb979",
+   "imagePx": [
+    647,
+    1201
+   ],
+   "usedBy": [
+    "18:2/18:55",
+    "20:2/20:146"
+   ],
+   "names": [
+    "イラスト:老人2 2"
+   ]
+  },
+  {
+   "imageHash": "780ca6e6df56c2194ede47dbe23bc2a93b4d4ffb",
+   "imagePx": [
+    800,
+    540
+   ],
+   "usedBy": [
+    "18:2/18:203",
+    "20:2/20:285",
+    "21:2/21:85",
+    "24:2/24:3103"
+   ],
+   "names": [
+    "固定画像:MITTアプリバナー"
+   ]
+  },
+  {
+   "imageHash": "824797b24b3ffe80ea4ad255b2bf0435d61a7c45",
+   "imagePx": [
+    225,
+    225
+   ],
+   "usedBy": [
+    "18:2/105:2",
+    "20:2/104:3"
+   ],
+   "names": [
+    "固定ロゴ:Cicac(#ロゴ置き場の上)"
+   ]
+  },
+  {
+   "imageHash": "d59074fed846e16425277190cabad55153b8f105",
+   "imagePx": [
+    393,
+    300
+   ],
+   "usedBy": [
+    "20:2/20:149"
+   ],
+   "names": [
+    "イラスト:病院_1 1"
+   ]
+  },
+  {
+   "imageHash": "6ee2803beb08948a16d9c767c16d06699004b529",
+   "imagePx": [
+    392,
+    306
+   ],
+   "usedBy": [
+    "20:2/20:303"
+   ],
+   "names": [
+    "イラスト:お店_1 2"
+   ]
+  },
+  {
+   "imageHash": "15499bb7ffe9850d6589bd351ba11f1e016e48f8",
+   "imagePx": [
+    374,
+    306
+   ],
+   "usedBy": [
+    "20:2/20:108"
+   ],
+   "names": [
+    "学校_1@2x 2"
+   ]
+  },
+  {
+   "imageHash": "b17e47edd02653555bbb3bc58a0106700d5c118d",
+   "imagePx": [
+    1098,
+    781
+   ],
+   "usedBy": [
+    "20:2/20:109"
+   ],
+   "names": [
+    "イラスト:黄色くも 1"
+   ]
+  },
+  {
+   "imageHash": "e9ec00fd2a134468f084c8c5207478d0ac1964a1",
+   "imagePx": [
+    1158,
+    950
+   ],
+   "usedBy": [
+    "21:2/21:257"
+   ],
+   "names": [
+    "イラスト:病院"
+   ]
+  },
+  {
+   "imageHash": "61bda584a10fd04abe81fed0bf21e86c1b4d7454",
+   "imagePx": [
+    687,
+    1243
+   ],
+   "usedBy": [
+    "21:2/21:260"
+   ],
+   "names": [
+    "イラスト:妊婦"
+   ]
+  },
+  {
+   "imageHash": "a9b2b041f0c0b593f33dd9bc5dde66fda1b63e8d",
+   "imagePx": [
+    474,
+    361
+   ],
+   "usedBy": [
+    "21:2/21:262"
+   ],
+   "names": [
+    "イラスト:病院 1"
+   ]
+  },
+  {
+   "imageHash": "8fad08ed81df04c73b700d729b8f2622edfc0cb0",
+   "imagePx": [
+    752,
+    1228
+   ],
+   "usedBy": [
+    "21:2/21:261"
+   ],
+   "names": [
+    "イラスト:買い物"
+   ]
+  },
+  {
+   "imageHash": "17b36ac0710715701c54364a707589e9b91f2e78",
+   "imagePx": [
+    472,
+    370
+   ],
+   "usedBy": [
+    "21:2/21:263"
+   ],
+   "names": [
+    "イラスト:お店 1"
+   ]
+  },
+  {
+   "imageHash": "30a24fa8ec79da507ec9bb0211a983a4773aa6f5",
+   "imagePx": [
+    1684,
+    1213
+   ],
+   "usedBy": [
+    "21:2/21:256"
+   ],
+   "names": [
+    "イラスト:family"
+   ]
+  },
+  {
+   "imageHash": "5c50382b789cd6f1019b94d5bdc2afc178165d28",
+   "imagePx": [
+    437,
+    1140
+   ],
+   "usedBy": [
+    "21:2/21:258"
+   ],
+   "names": [
+    "イラスト:学生"
+   ]
+  },
+  {
+   "imageHash": "a6ef6eb1d43801c402473ffa1882bd383dfcb40a",
+   "imagePx": [
+    758,
+    1119
+   ],
+   "usedBy": [
+    "21:2/21:259"
+   ],
+   "names": [
+    "イラスト:登園"
+   ]
+  },
+  {
+   "imageHash": "6e6de445ef99fa5d9b0501f2222118aa512584a0",
+   "imagePx": [
+    450,
+    368
+   ],
+   "usedBy": [
+    "21:2/21:264"
+   ],
+   "names": [
+    "イラスト:学校 1"
+   ]
+  },
+  {
+   "imageHash": "ef05176e2666750f138117a80741643447c51067",
+   "imagePx": [
+    648,
+    1200
+   ],
+   "usedBy": [
+    "21:2/21:255"
+   ],
+   "names": [
+    "イラスト:老人2 2"
+   ]
+  },
+  {
+   "imageHash": "cec3112b391c2433be7619f8c396b0f8db8a09df",
+   "imagePx": [
+    1005,
+    581
+   ],
+   "usedBy": [
+    "21:2/21:342"
+   ],
+   "names": [
+    "イラスト:車"
+   ]
+  },
+  {
+   "imageHash": "dbbfecaddf4cf1a4c1d9607527db2818b5912462",
+   "imagePx": [
+    1001,
+    1000
+   ],
+   "usedBy": [
+    "24:2/24:2950"
+   ],
+   "names": [
+    "Rectangle"
+   ]
+  }
+ ],
+ "vectorIllustrationGroups": [
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:123",
+   "name": "Group 430",
+   "type": "GROUP",
+   "x": 838,
+   "y": 2179,
+   "w": 149,
+   "h": 6,
+   "vectorLikeCount": 12,
+   "visible": true,
+   "parent": "装飾:STEP1バッジ・見出し"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:156",
+   "name": "Group 430",
+   "type": "GROUP",
+   "x": 890,
+   "y": 1777,
+   "w": 97,
+   "h": 6,
+   "vectorLikeCount": 8,
+   "visible": true,
+   "parent": "装飾:STEP3バッジ・見出し"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:172",
+   "name": "Group 430",
+   "type": "GROUP",
+   "x": 838,
+   "y": 1575,
+   "w": 149,
+   "h": 6,
+   "vectorLikeCount": 12,
+   "visible": true,
+   "parent": "装飾:STEP4バッジ・見出し"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:185",
+   "name": "Group 431",
+   "type": "GROUP",
+   "x": 722,
+   "y": 1575,
+   "w": 110,
+   "h": 6,
+   "vectorLikeCount": 9,
+   "visible": true,
+   "parent": "装飾:STEP4バッジ・見出し"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:301",
+   "name": "固定ロゴ(右端)",
+   "type": "GROUP",
+   "x": 30,
+   "y": 1216.4,
+   "w": 90,
+   "h": 83.6,
+   "vectorLikeCount": 7,
+   "visible": true,
+   "parent": "面:お問い合わせフッター(逆さ面)"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:73",
+   "name": "装飾:点線1",
+   "type": "GROUP",
+   "x": 1202,
+   "y": 899,
+   "w": 149,
+   "h": 6,
+   "vectorLikeCount": 12,
+   "visible": true,
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:86",
+   "name": "装飾:点線2",
+   "type": "GROUP",
+   "x": 1357,
+   "y": 899,
+   "w": 110,
+   "h": 6,
+   "vectorLikeCount": 9,
+   "visible": true,
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:96",
+   "name": "装飾:点線3",
+   "type": "GROUP",
+   "x": 1473,
+   "y": 899,
+   "w": 110,
+   "h": 6,
+   "vectorLikeCount": 9,
+   "visible": true,
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:205",
+   "name": "点線(ドット装飾)",
+   "type": "GROUP",
+   "x": 822,
+   "y": 2179,
+   "w": 149,
+   "h": 6,
+   "vectorLikeCount": 12,
+   "visible": true,
+   "parent": "装飾:STEP1バッジ・見出し"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:239",
+   "name": "点線(ドット装飾)",
+   "type": "GROUP",
+   "x": 874,
+   "y": 1774,
+   "w": 97,
+   "h": 6,
+   "vectorLikeCount": 8,
+   "visible": true,
+   "parent": "装飾:STEP3バッジ・見出し"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:255",
+   "name": "点線(ドット装飾)",
+   "type": "GROUP",
+   "x": 822,
+   "y": 1572,
+   "w": 149,
+   "h": 6,
+   "vectorLikeCount": 12,
+   "visible": true,
+   "parent": "装飾:STEP4バッジ・見出し"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:268",
+   "name": "点線(ドット装飾)",
+   "type": "GROUP",
+   "x": 706,
+   "y": 1572,
+   "w": 110,
+   "h": 6,
+   "vectorLikeCount": 9,
+   "visible": true,
+   "parent": "装飾:STEP4バッジ・見出し"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:318",
+   "name": "固定ロゴ(左端)",
+   "type": "GROUP",
+   "x": 30,
+   "y": 1214.4,
+   "w": 90,
+   "h": 83.1,
+   "vectorLikeCount": 7,
+   "visible": true,
+   "parent": "面:お問い合わせフッター(逆さ面)"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:136",
+   "name": "固定ロゴ(表紙中央)",
+   "type": "GROUP",
+   "x": 1370,
+   "y": 564.8,
+   "w": 87,
+   "h": 81.1,
+   "vectorLikeCount": 7,
+   "visible": true,
+   "parent": "面:表紙面"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:156",
+   "name": "装飾:点線1",
+   "type": "GROUP",
+   "x": 1202,
+   "y": 899,
+   "w": 149,
+   "h": 6,
+   "vectorLikeCount": 12,
+   "visible": true,
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:169",
+   "name": "装飾:点線2",
+   "type": "GROUP",
+   "x": 1357,
+   "y": 899,
+   "w": 110,
+   "h": 6,
+   "vectorLikeCount": 9,
+   "visible": true,
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:179",
+   "name": "装飾:点線3",
+   "type": "GROUP",
+   "x": 1473,
+   "y": 899,
+   "w": 110,
+   "h": 6,
+   "vectorLikeCount": 9,
+   "visible": true,
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:219",
+   "name": "固定ロゴ(端)",
+   "type": "GROUP",
+   "x": 57,
+   "y": 1226.2,
+   "w": 74,
+   "h": 68.8,
+   "vectorLikeCount": 7,
+   "visible": true,
+   "parent": "面:お問い合わせフッター(逆さ面)"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:277",
+   "name": "装飾:点線",
+   "type": "GROUP",
+   "x": 1202,
+   "y": 899,
+   "w": 432,
+   "h": 6,
+   "vectorLikeCount": 34,
+   "visible": true,
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:278",
+   "name": "装飾:点線1",
+   "type": "GROUP",
+   "x": 1202,
+   "y": 899,
+   "w": 149,
+   "h": 6,
+   "vectorLikeCount": 12,
+   "visible": true,
+   "parent": "装飾:点線"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:291",
+   "name": "装飾:点線2",
+   "type": "GROUP",
+   "x": 1357,
+   "y": 899,
+   "w": 110,
+   "h": 6,
+   "vectorLikeCount": 9,
+   "visible": true,
+   "parent": "装飾:点線"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:301",
+   "name": "装飾:点線3",
+   "type": "GROUP",
+   "x": 1473,
+   "y": 899,
+   "w": 110,
+   "h": 6,
+   "vectorLikeCount": 9,
+   "visible": true,
+   "parent": "装飾:点線"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:4",
+   "name": "(非表示)イラスト素材:illst_0730",
+   "type": "FRAME",
+   "x": 0,
+   "y": 1196,
+   "w": 1691,
+   "h": 1195,
+   "vectorLikeCount": 1459,
+   "visible": false,
+   "parent": "冊子表紙/MITT系テンプレート"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:1520",
+   "name": "(非表示)イラスト素材:illst_0731",
+   "type": "FRAME",
+   "x": 0,
+   "y": 1196,
+   "w": 1691,
+   "h": 1195,
+   "vectorLikeCount": 1367,
+   "visible": false,
+   "parent": "冊子表紙/MITT系テンプレート"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3490",
+   "name": "middle_ill",
+   "type": "GROUP",
+   "x": 1413.3,
+   "y": 1434.5,
+   "w": 220.8,
+   "h": 162,
+   "vectorLikeCount": 42,
+   "visible": true,
+   "parent": "装飾:右列(背景・バッジ・イラスト)"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3601",
+   "name": "(非表示)旧STEP2見出し(アウトライン)",
+   "type": "GROUP",
+   "x": 648.7,
+   "y": 1502.9,
+   "w": 304.1,
+   "h": 33,
+   "vectorLikeCount": 8,
+   "visible": false,
+   "parent": "行:STEP2"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3635",
+   "name": "(非表示)旧STEP3見出し(アウトライン)",
+   "type": "GROUP",
+   "x": 644.6,
+   "y": 1755.9,
+   "w": 446.7,
+   "h": 34.6,
+   "vectorLikeCount": 13,
+   "visible": false,
+   "parent": "行:STEP3"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3674",
+   "name": "(非表示)旧STEP4見出し(アウトライン)",
+   "type": "GROUP",
+   "x": 645.4,
+   "y": 2016.7,
+   "w": 333.8,
+   "h": 32.1,
+   "vectorLikeCount": 10,
+   "visible": false,
+   "parent": "行:STEP4"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3104",
+   "name": "イラスト:表紙(人物群)",
+   "type": "GROUP",
+   "x": 1127,
+   "y": 607,
+   "w": 500.2,
+   "h": 609,
+   "vectorLikeCount": 329,
+   "visible": true,
+   "parent": "面:表紙面(右上)"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "789:140",
+   "name": "イラスト:工場アイコン",
+   "type": "GROUP",
+   "x": 850,
+   "y": 62,
+   "w": 73.2,
+   "h": 74.1,
+   "vectorLikeCount": 15,
+   "visible": true,
+   "parent": "ブロック:キャッチコピー"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "789:157",
+   "name": "イラスト:家アイコン",
+   "type": "GROUP",
+   "x": 990,
+   "y": 58,
+   "w": 96.8,
+   "h": 75.6,
+   "vectorLikeCount": 27,
+   "visible": true,
+   "parent": "ブロック:キャッチコピー"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "789:21",
+   "name": "イラスト:家族(ベビーカー)",
+   "type": "GROUP",
+   "x": 728.1,
+   "y": 150,
+   "w": 347.6,
+   "h": 250.2,
+   "vectorLikeCount": 115,
+   "visible": true,
+   "parent": "ブロック:利用シーン1"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "789:186",
+   "name": "イラスト:高齢夫婦",
+   "type": "GROUP",
+   "x": 50,
+   "y": 470,
+   "w": 131.2,
+   "h": 244.6,
+   "vectorLikeCount": 57,
+   "visible": true,
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "789:245",
+   "name": "イラスト:医師と患者",
+   "type": "GROUP",
+   "x": 660,
+   "y": 435,
+   "w": 237,
+   "h": 194.2,
+   "vectorLikeCount": 60,
+   "visible": true,
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "789:307",
+   "name": "イラスト:病院アイコン",
+   "type": "GROUP",
+   "x": 960,
+   "y": 440,
+   "w": 92.9,
+   "h": 70.8,
+   "vectorLikeCount": 14,
+   "visible": true,
+   "parent": "ブロック:利用シーン2"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "789:323",
+   "name": "イラスト:妊婦夫婦",
+   "type": "GROUP",
+   "x": 915,
+   "y": 560,
+   "w": 148.4,
+   "h": 270.4,
+   "vectorLikeCount": 45,
+   "visible": true,
+   "parent": "ブロック:利用シーン3"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "789:417",
+   "name": "イラスト:くも",
+   "type": "GROUP",
+   "x": 60,
+   "y": 765,
+   "w": 404.5,
+   "h": 269.3,
+   "vectorLikeCount": 2,
+   "visible": true,
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "789:421",
+   "name": "イラスト:天気アイコン",
+   "type": "GROUP",
+   "x": 130,
+   "y": 951.5,
+   "w": 224,
+   "h": 63.9,
+   "vectorLikeCount": 24,
+   "visible": true,
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "789:457",
+   "name": "イラスト:GOOD POINTバッジ",
+   "type": "GROUP",
+   "x": 370,
+   "y": 780,
+   "w": 84.8,
+   "h": 84.8,
+   "vectorLikeCount": 11,
+   "visible": true,
+   "parent": "ブロック:吹き出し"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "789:370",
+   "name": "イラスト:買い物",
+   "type": "GROUP",
+   "x": 490,
+   "y": 790,
+   "w": 156.6,
+   "h": 256.3,
+   "vectorLikeCount": 45,
+   "visible": true,
+   "parent": "ブロック:利用シーン4"
+  },
+  {
+   "frame": "47:2",
+   "frameName": "冊子中面/あいとま系",
+   "id": "760:2",
+   "name": "装飾:地図ピン(サンプル一式)",
+   "type": "GROUP",
+   "x": 159,
+   "y": 202.4,
+   "w": 778.4,
+   "h": 942.4,
+   "vectorLikeCount": 36,
+   "visible": true,
+   "parent": "ブロック:地図"
+  },
+  {
+   "frame": "47:2",
+   "frameName": "冊子中面/あいとま系",
+   "id": "47:136",
+   "name": "装飾:点線",
+   "type": "GROUP",
+   "x": 1158,
+   "y": 565,
+   "w": 425,
+   "h": 5.5,
+   "vectorLikeCount": 34,
+   "visible": true,
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "48:513",
+   "frameName": "冊子中面/MITT系",
+   "id": "763:9",
+   "name": "面:地図面",
+   "type": "GROUP",
+   "x": 0,
+   "y": 0,
+   "w": 1691,
+   "h": 2392,
+   "vectorLikeCount": 24,
+   "visible": true,
+   "parent": "冊子中面/MITT系テンプレート"
+  }
+ ],
+ "placeholders": [
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:202",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 643,
+   "y": 2142,
+   "w": 162,
+   "h": 162,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "ご利用の流れ・使い方面(",
+   "parent": "ブロック:ご利用の流れ"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:207",
+   "name": "#アプリ画面置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 331,
+   "y": 1403,
+   "w": 216,
+   "h": 469,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "ご利用の流れ・使い方面(",
+   "parent": "ブロック:アプリ画面例"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:208",
+   "name": "#アプリ画面置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 83,
+   "y": 1403,
+   "w": 216,
+   "h": 469,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "ご利用の流れ・使い方面(",
+   "parent": "ブロック:アプリ画面例"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:296",
+   "name": "#事業者ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 668,
+   "y": 1230,
+   "w": 84,
+   "h": 59.5,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "お問い合わせフッター(逆",
+   "parent": "ブロック:お問い合わせ"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:300",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 297,
+   "y": 1215,
+   "w": 100,
+   "h": 72,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "お問い合わせフッター(逆",
+   "parent": "ブロック:お問い合わせ"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:311",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 123,
+   "y": 1215,
+   "w": 134,
+   "h": 82,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": false,
+   "face": "お問い合わせフッター(逆",
+   "parent": "面:お問い合わせフッター(逆さ面)"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:65",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1279,
+   "y": 923,
+   "w": 162,
+   "h": 162,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面",
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:53",
+   "name": "#サービスロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1229,
+   "y": 141,
+   "w": 374,
+   "h": 324,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面",
+   "parent": "ブロック:タイトル"
+  },
+  {
+   "frame": "18:2",
+   "frameName": "冊子表紙/あいとま系",
+   "id": "18:54",
+   "name": "#地区名ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1249,
+   "y": 378,
+   "w": 334,
+   "h": 312,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面",
+   "parent": "ブロック:タイトル"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:6",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1340,
+   "y": 2138,
+   "w": 149,
+   "h": 149,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": null,
+   "parent": "装飾:背景(逆さ面)"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:290",
+   "name": "#アプリ画面置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 331,
+   "y": 1434,
+   "w": 216,
+   "h": 469,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "ご利用の流れ・使い方面(",
+   "parent": "ブロック:アプリ画面例"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:291",
+   "name": "#アプリ画面置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 83,
+   "y": 1434,
+   "w": 216,
+   "h": 469,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "ご利用の流れ・使い方面(",
+   "parent": "ブロック:アプリ画面例"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:332",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 634,
+   "y": 2166,
+   "w": 149,
+   "h": 149,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "ご利用の流れ・使い方面(",
+   "parent": "行:STEP1"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:328",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 123,
+   "y": 1213,
+   "w": 134,
+   "h": 82,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": false,
+   "face": "お問い合わせフッター(逆",
+   "parent": "面:お問い合わせフッター(逆さ面)"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:330",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1413,
+   "y": 168,
+   "w": 209,
+   "h": 139,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面",
+   "parent": "ブロック:タイトル"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:329",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1199,
+   "y": 943.6,
+   "w": 64,
+   "h": 64,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面",
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "20:2",
+   "frameName": "冊子表紙/那智勝浦系",
+   "id": "20:331",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1340,
+   "y": 925,
+   "w": 149,
+   "h": 149,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面",
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:77",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 668,
+   "y": 1971,
+   "w": 97,
+   "h": 97,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "ご利用の流れ・使い方面(",
+   "parent": "装飾:STEP1バッジ・見出し"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:89",
+   "name": "#アプリ画面置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 331,
+   "y": 1411,
+   "w": 216,
+   "h": 469,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "ご利用の流れ・使い方面(",
+   "parent": "ブロック:アプリ画面例"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:90",
+   "name": "#アプリ画面置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 83,
+   "y": 1411,
+   "w": 216,
+   "h": 469,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "ご利用の流れ・使い方面(",
+   "parent": "ブロック:アプリ画面例"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:179",
+   "name": "#協力会社ロゴ置き場",
+   "type": "FRAME",
+   "childCount": 0,
+   "x": 144,
+   "y": 1230,
+   "w": 155,
+   "h": 33,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "お問い合わせフッター(逆",
+   "parent": "ブロック:お問い合わせ"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:180",
+   "name": "#協力会社ロゴ置き場",
+   "type": "FRAME",
+   "childCount": 0,
+   "x": 335,
+   "y": 1236,
+   "w": 106,
+   "h": 39,
+   "rotInFrame": 180,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "お問い合わせフッター(逆",
+   "parent": "ブロック:お問い合わせ"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "41:2",
+   "name": "#協力会社ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 312,
+   "y": 1272,
+   "w": 155,
+   "h": 33,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "お問い合わせフッター(逆",
+   "parent": "ブロック:お問い合わせ"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:270",
+   "name": "#サービスロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1204,
+   "y": 247,
+   "w": 411,
+   "h": 243,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面",
+   "parent": "装飾:表紙背景2(#サービスロゴ置き"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:273",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1279,
+   "y": 923,
+   "w": 162,
+   "h": 162,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面",
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:322",
+   "name": "#自治体ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1245,
+   "y": 145,
+   "w": 91,
+   "h": 128,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面",
+   "parent": "ブロック:自治体名・ロゴ"
+  },
+  {
+   "frame": "21:2",
+   "frameName": "冊子表紙/登別系",
+   "id": "21:344",
+   "name": "#マスコット置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1421,
+   "y": 516,
+   "w": 166,
+   "h": 218,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面",
+   "parent": "ブロック:タイトル"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:1034",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1337.5,
+   "y": 1770.5,
+   "w": 17.3,
+   "h": 17.2,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [],
+   "strokeWeight": 0.029999999329447746,
+   "dashed": false,
+   "visible": true,
+   "face": null,
+   "parent": "Group"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:1061",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1309,
+   "y": 1780.2,
+   "w": 40.3,
+   "h": 30.3,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": null,
+   "parent": "Group"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:1113",
+   "name": "#写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1347.9,
+   "y": 2058.8,
+   "w": 286.3,
+   "h": 171.9,
+   "rotInFrame": 1,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": null,
+   "parent": "Group"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:1124",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1566.3,
+   "y": 2121,
+   "w": 13.6,
+   "h": 13.6,
+   "rotInFrame": 12,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [],
+   "strokeWeight": 0.019999999552965164,
+   "dashed": false,
+   "visible": true,
+   "face": null,
+   "parent": "Group"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:1151",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1548.4,
+   "y": 2126.9,
+   "w": 30.4,
+   "h": 25.2,
+   "rotInFrame": 12,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [],
+   "strokeWeight": 0.019999999552965164,
+   "dashed": false,
+   "visible": true,
+   "face": null,
+   "parent": "Group"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:2550",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1337.5,
+   "y": 1770.5,
+   "w": 17.3,
+   "h": 17.2,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [],
+   "strokeWeight": 0.029999999329447746,
+   "dashed": false,
+   "visible": true,
+   "face": null,
+   "parent": "Group"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:2577",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1309,
+   "y": 1780.2,
+   "w": 40.3,
+   "h": 30.3,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": null,
+   "parent": "Group"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:2629",
+   "name": "#写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1110.8,
+   "y": 1972.7,
+   "w": 524.9,
+   "h": 315.1,
+   "rotInFrame": 1,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": null,
+   "parent": "Group"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:2640",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1547.5,
+   "y": 2096,
+   "w": 27.2,
+   "h": 27.2,
+   "rotInFrame": 12,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [],
+   "strokeWeight": 0.03999999910593033,
+   "dashed": false,
+   "visible": true,
+   "face": null,
+   "parent": "Group"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:2667",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1511.8,
+   "y": 2107.7,
+   "w": 60.8,
+   "h": 50.4,
+   "rotInFrame": 12,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": null,
+   "parent": "Group"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:2936",
+   "name": "#車両写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1059,
+   "y": 1886,
+   "w": 646,
+   "h": 431,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": null,
+   "parent": "(非表示)イラスト素材:illst_"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3028",
+   "name": "#アプリ画面置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 43,
+   "y": 1834,
+   "w": 229,
+   "h": 498,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "使い方面(下)",
+   "parent": "ブロック:アプリ画面例"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3565",
+   "name": "#アプリ画面置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 303,
+   "y": 1834,
+   "w": 229,
+   "h": 498,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "使い方面(下)",
+   "parent": "ブロック:アプリ画面例"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3700",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 984,
+   "y": 1397,
+   "w": 132,
+   "h": 132,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "使い方面(下)",
+   "parent": "ブロック:ご利用の流れ"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3708",
+   "name": "#車両写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 322,
+   "y": 2033,
+   "w": 192,
+   "h": 194,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "使い方面(下)",
+   "parent": "ブロック:車両写真"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:2946",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1521.4,
+   "y": 412.7,
+   "w": 143,
+   "h": 143,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面(右上)",
+   "parent": "Group 363"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3439",
+   "name": "#車両写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1127,
+   "y": 944,
+   "w": 408,
+   "h": 272,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面(右上)",
+   "parent": "イラスト:表紙(人物群)"
+  },
+  {
+   "frame": "24:2",
+   "frameName": "冊子表紙/MITT系",
+   "id": "24:3564",
+   "name": "#自治体章置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1501,
+   "y": 19,
+   "w": 58,
+   "h": 44,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "表紙面(右上)",
+   "parent": "ブロック:事業主体"
+  },
+  {
+   "frame": "47:2",
+   "frameName": "冊子中面/あいとま系",
+   "id": "47:112",
+   "name": "#写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1377,
+   "y": 1836,
+   "w": 199,
+   "h": 136,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "乗降場所一覧面(下)",
+   "parent": "行:スポット13"
+  },
+  {
+   "frame": "47:2",
+   "frameName": "冊子中面/あいとま系",
+   "id": "47:114",
+   "name": "#写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1377,
+   "y": 2136,
+   "w": 199,
+   "h": 136,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "乗降場所一覧面(下)",
+   "parent": "行:スポット15"
+  },
+  {
+   "frame": "47:2",
+   "frameName": "冊子中面/あいとま系",
+   "id": "47:113",
+   "name": "#写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1377,
+   "y": 1986,
+   "w": 199,
+   "h": 136,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "乗降場所一覧面(下)",
+   "parent": "行:スポット14"
+  },
+  {
+   "frame": "47:2",
+   "frameName": "冊子中面/あいとま系",
+   "id": "47:116",
+   "name": "#写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1378,
+   "y": 1578,
+   "w": 199,
+   "h": 136,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "乗降場所一覧面(下)",
+   "parent": "写真枠(スポット10)"
+  },
+  {
+   "frame": "47:2",
+   "frameName": "冊子中面/あいとま系",
+   "id": "47:193",
+   "name": "#写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1378,
+   "y": 1418,
+   "w": 199,
+   "h": 136,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "乗降場所一覧面(下)",
+   "parent": "行:スポット9"
+  },
+  {
+   "frame": "47:2",
+   "frameName": "冊子中面/あいとま系",
+   "id": "47:9",
+   "name": "#サービスロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 109,
+   "y": 45,
+   "w": 804,
+   "h": 159,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "乗降スポット面(上)",
+   "parent": "面:乗降スポット面(上)"
+  },
+  {
+   "frame": "47:2",
+   "frameName": "冊子中面/あいとま系",
+   "id": "47:127",
+   "name": "#地図置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 85,
+   "y": 210,
+   "w": 1038,
+   "h": 970,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "乗降スポット面(上)",
+   "parent": "ブロック:地図"
+  },
+  {
+   "frame": "47:2",
+   "frameName": "冊子中面/あいとま系",
+   "id": "623:20",
+   "name": "#地図ピン見本(複製して番号を変え地図上に配置)",
+   "type": "GROUP",
+   "childCount": 2,
+   "x": 105,
+   "y": 230,
+   "w": 48.4,
+   "h": 58.8,
+   "rotInFrame": 0,
+   "fills": null,
+   "strokes": null,
+   "strokeWeight": null,
+   "dashed": false,
+   "visible": true,
+   "face": "乗降スポット面(上)",
+   "parent": "ブロック:地図"
+  },
+  {
+   "frame": "47:2",
+   "frameName": "冊子中面/あいとま系",
+   "id": "47:132",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1362,
+   "y": 605,
+   "w": 162,
+   "h": 162,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "乗降スポット面(上)",
+   "parent": "ブロック:ご登録・ご予約"
+  },
+  {
+   "frame": "48:2",
+   "frameName": "冊子中面/那智勝浦系",
+   "id": "48:3",
+   "name": "#地図置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 0,
+   "y": 243,
+   "w": 2087,
+   "h": 1504,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "地図面",
+   "parent": "面:地図面"
+  },
+  {
+   "frame": "48:2",
+   "frameName": "冊子中面/那智勝浦系",
+   "id": "48:242",
+   "name": "#看板画像置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1398,
+   "y": 480,
+   "w": 231,
+   "h": 327,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "地図面",
+   "parent": "ブロック:看板・写真案内"
+  },
+  {
+   "frame": "48:2",
+   "frameName": "冊子中面/那智勝浦系",
+   "id": "48:243",
+   "name": "#写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 990,
+   "y": 819,
+   "w": 203,
+   "h": 203,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "地図面",
+   "parent": "ブロック:看板・写真案内"
+  },
+  {
+   "frame": "48:2",
+   "frameName": "冊子中面/那智勝浦系",
+   "id": "48:246",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 843,
+   "y": 176,
+   "w": 149,
+   "h": 149,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "見出し・予約面(左上)",
+   "parent": "ブロック:ご予約"
+  },
+  {
+   "frame": "48:393",
+   "frameName": "冊子中面/登別系",
+   "id": "48:499",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1343,
+   "y": 2142,
+   "w": 197,
+   "h": 197,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "乗降ポイント一覧面(下)",
+   "parent": "ブロック:LINE予約"
+  },
+  {
+   "frame": "48:393",
+   "frameName": "冊子中面/登別系",
+   "id": "48:396",
+   "name": "#地図置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 0,
+   "y": 0,
+   "w": 1691,
+   "h": 1196,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "地図面(上)",
+   "parent": "面:地図面(上)"
+  },
+  {
+   "frame": "48:393",
+   "frameName": "冊子中面/登別系",
+   "id": "48:506",
+   "name": "#のぼり画像置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 96,
+   "y": 358,
+   "w": 277,
+   "h": 742,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "地図面(上)",
+   "parent": "ブロック:のぼり画像"
+  },
+  {
+   "frame": "48:393",
+   "frameName": "冊子中面/登別系",
+   "id": "48:512",
+   "name": "#のぼり画像置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 182.5,
+   "y": 386,
+   "w": 187.1,
+   "h": 561,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "地図面(上)",
+   "parent": "ブロック:のぼり画像"
+  },
+  {
+   "frame": "48:513",
+   "frameName": "冊子中面/MITT系",
+   "id": "48:515",
+   "name": "#地図置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 0,
+   "y": 0,
+   "w": 1691,
+   "h": 2392,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "地図面",
+   "parent": "面:地図面"
+  },
+  {
+   "frame": "48:513",
+   "frameName": "冊子中面/MITT系",
+   "id": "48:526",
+   "name": "#地図置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 131.7,
+   "y": 1006.2,
+   "w": 2044.2,
+   "h": 1420.8,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "地図面",
+   "parent": "Group 418"
+  },
+  {
+   "frame": "48:513",
+   "frameName": "冊子中面/MITT系",
+   "id": "48:527",
+   "name": "#地図置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 217,
+   "y": -69,
+   "w": 2047.5,
+   "h": 1403.7,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "地図面",
+   "parent": "Group 418"
+  },
+  {
+   "frame": "48:513",
+   "frameName": "冊子中面/MITT系",
+   "id": "48:1086",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1015,
+   "y": 538,
+   "w": 61,
+   "h": 63,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "地図面",
+   "parent": "装飾:地図ピン群(サンプル)"
+  },
+  {
+   "frame": "48:513",
+   "frameName": "冊子中面/MITT系",
+   "id": "48:1087",
+   "name": "#ロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 1039,
+   "y": 196,
+   "w": 61,
+   "h": 82,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "地図面",
+   "parent": "装飾:地図ピン群(サンプル)"
+  },
+  {
+   "frame": "48:513",
+   "frameName": "冊子中面/MITT系",
+   "id": "48:532",
+   "name": "#車両写真置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 35,
+   "y": 2236,
+   "w": 346,
+   "h": 156,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "左列(タイトル・一覧・予",
+   "parent": "面:左列(タイトル・一覧・予約)"
+  },
+  {
+   "frame": "48:513",
+   "frameName": "冊子中面/MITT系",
+   "id": "48:616",
+   "name": "#自治体章置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 136,
+   "y": 16,
+   "w": 56,
+   "h": 43,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "左列(タイトル・一覧・予",
+   "parent": "ブロック:事業主体"
+  },
+  {
+   "frame": "48:513",
+   "frameName": "冊子中面/MITT系",
+   "id": "48:617",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 21,
+   "y": 2199,
+   "w": 88,
+   "h": 88,
+   "rotInFrame": 0,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "左列(タイトル・一覧・予",
+   "parent": "ブロック:ご予約"
+  },
+  {
+   "frame": "28:178",
+   "frameName": "乗降スポット表",
+   "id": "28:183",
+   "name": "#地図置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 221.6,
+   "y": 323.1,
+   "w": 371.8,
+   "h": 441.2,
+   "rotInFrame": 270,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "本体",
+   "parent": "面:本体"
+  },
+  {
+   "frame": "28:178",
+   "frameName": "乗降スポット表",
+   "id": "28:188",
+   "name": "#サービスロゴ置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 605.8,
+   "y": 171.4,
+   "w": 152.2,
+   "h": 770.4,
+   "rotInFrame": 270,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "本体",
+   "parent": "面:本体"
+  },
+  {
+   "frame": "28:178",
+   "frameName": "乗降スポット表",
+   "id": "28:187",
+   "name": "#QR置き場",
+   "type": "RECTANGLE",
+   "childCount": null,
+   "x": 230,
+   "y": 860,
+   "w": 193.3,
+   "h": 193.3,
+   "rotInFrame": 270,
+   "fills": [
+    "#E6E6E6"
+   ],
+   "strokes": [
+    "#999999"
+   ],
+   "strokeWeight": 1,
+   "dashed": true,
+   "visible": true,
+   "face": "本体",
+   "parent": "ブロック:ご予約・登録"
+  }
+ ],
+ "sozaiPage": {
+  "pageId": "7:4",
+  "topLevelGroups": [
+   {
+    "id": "112:6",
+    "name": "くろほね",
+    "type": "GROUP",
+    "x": 6345,
+    "y": -734,
+    "w": 2070,
+    "h": 2087,
+    "kids": 3,
+    "desc": 3,
+    "imageFills": 3,
+    "types": {
+     "RECTANGLE": 3
+    },
+    "childNames": [
+     "qr_line_kurohone 1|R*",
+     "logo_kurohone_odekake 1|R*",
+     "stops-map_A3-landscape_3|R*"
+    ]
+   },
+   {
+    "id": "67:63",
+    "name": "くらぶち",
+    "type": "GROUP",
+    "x": 1872,
+    "y": -562,
+    "w": 3229,
+    "h": 3834,
+    "kids": 5,
+    "desc": 5,
+    "imageFills": 5,
+    "types": {
+     "RECTANGLE": 5
+    },
+    "childNames": [
+     "logo_city 1|R*",
+     "logo_kurabuchi_noriai 1|R*",
+     "qr_line 1|R*",
+     "28712_color 1|R*",
+     "stops-map_A3-landscape_3|R*"
+    ]
+   },
+   {
+    "id": "34:59",
+    "name": "MITT",
+    "type": "GROUP",
+    "x": -430,
+    "y": -817,
+    "w": 1103,
+    "h": 3182,
+    "kids": 2,
+    "desc": 57,
+    "imageFills": 4,
+    "types": {
+     "GROUP": 9,
+     "VECTOR": 38,
+     "FRAME": 3,
+     "BOOLEAN_OPERATION": 2,
+     "TEXT": 1,
+     "RECTANGLE": 4
+    },
+    "childNames": [
+     "ロゴ|G",
+     "アプリ画面|G"
+    ]
+   },
+   {
+    "id": "198:18",
+    "name": "群馬県みどり市あずま",
+    "type": "GROUP",
+    "x": -418,
+    "y": 4754,
+    "w": 5726,
+    "h": 3663,
+    "kids": 11,
+    "desc": 11,
+    "imageFills": 11,
+    "types": {
+     "RECTANGLE": 11
+    },
+    "childNames": [
+     "aisome_hospital_simple 1|R*",
+     "travel_01_color 1|R*",
+     "shopping_woman_color 1|R*",
+     "smartphone_calling_woman|R*",
+     "smartphone_middleaged_ma|R*",
+     "smartphone_man_color 1|R*",
+     "aisome_car_simple 1|R*",
+     "calender_color 1|R*",
+     "stops-map_A3-landscape_3|R*",
+     "qr_line_azuma 1|R*",
+     "あずまロゴ 1|R*"
+    ]
+   },
+   {
+    "id": "363:10",
+    "name": "デモ",
+    "type": "GROUP",
+    "x": 6269,
+    "y": 2794,
+    "w": 4313,
+    "h": 3336,
+    "kids": 6,
+    "desc": 21,
+    "imageFills": 20,
+    "types": {
+     "RECTANGLE": 20,
+     "GROUP": 1
+    },
+    "childNames": [
+     "lineQR|R*",
+     "真四角町ＱＲ|R*",
+     "真四角町ロゴ|R*",
+     "マシッカーロゴ|R*",
+     "真四角町マップ 1|R*",
+     "サービス案内|G"
+    ]
+   }
+  ]
+ },
+ "seisakuPage": {
+  "pageId": "7:2",
+  "topLevel": [
+   {
+    "id": "170:3",
+    "name": "くらぶち",
+    "type": "GROUP",
+    "x": -1691,
+    "y": -2392,
+    "w": 3645,
+    "h": 2392,
+    "rot": 0,
+    "kids": 2
+   },
+   {
+    "id": "170:2",
+    "name": "くろほね",
+    "type": "GROUP",
+    "x": -1691,
+    "y": 948,
+    "w": 3645,
+    "h": 2392,
+    "rot": 0,
+    "kids": 2
+   },
+   {
+    "id": "198:21",
+    "name": "あずま",
+    "type": "GROUP",
+    "x": -1778,
+    "y": 3748,
+    "w": 3645,
+    "h": 2392,
+    "rot": 0,
+    "kids": 2
+   },
+   {
+    "id": "239:470",
+    "name": "デモ",
+    "type": "GROUP",
+    "x": 4528,
+    "y": 9370,
+    "w": 3682,
+    "h": 2392,
+    "rot": -180,
+    "kids": 2
+   }
+  ]
+ }
+}
