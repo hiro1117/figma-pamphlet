@@ -68,6 +68,12 @@ def keyout(im: Image.Image, key_hex: str, erode: int, feather: int, near: float 
         lim = np.maximum(rgb[..., others[0]], rgb[..., others[1]])
         spill = (rgb[..., dom] > lim) & (near_outside if flood else True)
         rgb[..., dom] = np.where(spill, lim, rgb[..., dom])
+    # despill: 半透明画素は「前景色 × α + キー色 × (1-α)」とみなし、前景色を復元する
+    if flood and near_outside is not None:
+        band = near_outside & (alpha > 0.02) & (alpha < 0.98)
+        a3 = alpha[..., None]
+        restored = (rgb - (1.0 - a3) * key) / np.maximum(a3, 0.05)
+        rgb = np.where(band[..., None], np.clip(restored, 0, 255), rgb)
     a = Image.fromarray((alpha * 255).astype(np.uint8), "L")
     if erode > 0:
         a = a.filter(ImageFilter.MinFilter(2 * erode + 1))
