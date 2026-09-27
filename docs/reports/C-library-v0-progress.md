@@ -36,3 +36,9 @@
 - 背景の空: mitt 手描きは紺→青の連続グラデーション(ブランド色内なので禁止の紫→青ではない)。noboribetsu 手描きは雲の形が大きめ
 - 人物: 全点で顔・表情あり、普段着、記号化なし。手描き系は緑背景が均一でなく(明るい黄緑〜濃緑のムラ)、キー抜きは色相ベースに変更が必要(→ (3) で keyout.py を改修)。`noboribetsu-K2-flat-person-01` に縦線(電話コード?)が 1 本混入
 - 車両: 白ワゴン・右ハンドル(運転手が窓の左側=車両右側)は概ね守られている。注意点: グリル中央に**エンブレム風の丸い形**が出ているものがある(aitoma-flat / nachikatsuura-hand / noboribetsu-flat)→ 採用時はレタッチか再生成。`noboribetsu-K2-hand-vehicle-01` は車両の右側面が見える向き(スライドドアが見えない)。手描き系の車両は実車に近い描写(写実寄り)
+
+## 2026-09-27 トーン確定と再生成の着手(課金切れで停止)
+- Hiro 決定: 手描き風は不採用、フラット 1 種(thin: あいとま/那智勝浦/登別、noline: MITT)。仕様 `docs/library/tone-spec.md`。探索生成は省略し Pro で 1 点確認 → 展開の方式
+- `gen_candidates.py` に描法 `thin` / `noline` を追加。新描法の背景プロンプトは「余白の多い情景(平坦な空・稜線 1 本・道・地面、民家は 3 つまで)」に差し替え
+- `aitoma-K2-thin-bg-01` の生成で **HTTP 402(プリペイドクレジット枯渇)**。台帳に error 行あり。AI Studio でクレジット追加後に再実行:
+  `.venv/bin/python scripts/library/gen_candidates.py --stage candidates --only bg --families aitoma --styles thin`
