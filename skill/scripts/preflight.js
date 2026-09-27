@@ -9,8 +9,8 @@ const CONFIG = {
   FRAME_IDS: ['71:2'],               // 対象フレーム(表紙1枚なら1件、中面なら2枚まで)
   SHEET: 'A3_booklet',               // 'A3_booklet'(1691×2392 / 2392×1691) | 'A4_spot'(794×1123)
   SHEETS: {
-    A3_booklet: { dims: [[1691, 2392], [2392, 1691]], shortMm: 297, folds: true },
-    A4_spot:    { dims: [[794, 1123], [1123, 794]],   shortMm: 210, folds: false },
+    A3_booklet: { dims: [[1691, 2392], [2392, 1691]], shortMm: 297, folds: true,  p12: true },
+    A4_spot:    { dims: [[794, 1123], [1123, 794]],   shortMm: 210, folds: false, p12: false },   // 乗降スポット表は本文=スポット名(40pt)で電話倍率の規則が合わないため P12 対象外
   },
   FRAME_KIND: 'auto',                // 'auto'(名前で判定) | 'cover'(表紙) | 'inner'(中面)。P6 の折り線種別に使う
   FRAME_KIND_PATTERNS: { cover: /表紙/, inner: /中面/ }, FRAME_KIND_DEFAULT: 'cover',
@@ -279,7 +279,8 @@ async function inspect(frame) {
   } catch (err) { checks.push(errCheck('P7', err)); }
 
   // P12 電話番号(最大の電話番号が本文中央値×倍率以上か。fail/warn の2段)
-  try {
+  if (!sheet.p12) checks.push(finish('P12', [], `対象外(${CONFIG.SHEET})`));
+  else try {
     const bodyPx = []; const phones = [];
     for (const e of liveTexts) {
       const m = meta.get(e.node.id);

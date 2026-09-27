@@ -9,9 +9,9 @@
 - 1 回の `use_figma` で扱うのは 1 ページ(`CONFIG.PAGE_ID`)。複数ページは呼び出しを分けて並列に投げる
 - シート種別 `CONFIG.SHEET`
   - `A3_booklet`: 1691×2392 または 2392×1691。k = 短辺 px ÷ 297 = 5.694 px/mm。折り線は長辺方向 2 本(1/3・2/3)+短辺方向 1 本(1/2)
-  - `A4_spot`: 794×1123(乗降スポット表)。k = 794 ÷ 210 = 3.781 px/mm。折り線なし
+  - `A4_spot`: 794×1123(乗降スポット表)。k = 794 ÷ 210 = 3.781 px/mm。折り線なし。**P12 は対象外**(`SHEETS.A4_spot.p12 = false`。このシートの本文はスポット名 40pt で、電話番号を本文の倍率で測る規則が合わないため。2026-09-27 Hiro 了承)
 - フレーム種別 `CONFIG.FRAME_KIND`(`auto` = 名前に 表紙 → `cover`、中面 → `inner`、どちらも無ければ `cover`)。P6 の折り線種別に使う
-- 系統 `CONFIG.FAMILY`(`auto` = 名前に MITT/ミット → `MITT`)。`PT_BY_FAMILY` の系統別しきい値に使う
+- 系統 `CONFIG.FAMILY`(`auto` = 名前に MITT/ミット → `MITT`)。`PT_BY_FAMILY` の系統別しきい値に使う。**スキルからは系統選択(`#tone` の `meta.template_family`)をもとに明示して渡す**(§5-2)
 - **しきい値は毎回 k から計算する**。`ptPx(pt) = round(pt × k × 25.4 / 72)`、`mmPx(mm) = round(mm × k)`
 
 | 量 | A3_booklet(k=5.694) | A4_spot(k=3.781) |
@@ -39,7 +39,7 @@
 | P4 コントラスト(単色背景) | 役割 body/note/phone(7:1)・heading/label(4.5:1)。`CONTRAST.other = null` は対象外 | 前景 = セグメント fill(可視 SOLID stroke があれば袋文字としてその色)。背景 = 描画順で TEXT より手前にあり TEXT 矩形の `BG_COVER`(90%)以上を覆う軸平行の RECTANGLE/FRAME/COMPONENT/INSTANCE の最前面(なければフレーム fill)。WCAG 相対輝度で比 | 比 < しきい値 | — | 前景が SOLID/不透明でない、背景未検出、背景が IMAGE/GRADIENT/半透明、背景と TEXT の間に TEXT 矩形の 50% 以上を覆う非矩形(VECTOR 等)・画像がある |
 | P6 折り安全域 | 可視 TEXT(`P6_EXCLUDE_NAME` = ガイド:/装飾: を除く) | 折り線は絶対座標で計算し(180°回転でも対称)、設計座標に戻して**種別**を付ける。`P6_FOLD_KINDS[kind]`: 表紙 = 長辺 1/3(x=563.7)`spread`(見開き内)、2/3(x=1127.3)`boundary`(面境界)、短辺 1/2(y=1196)`boundary`。中面 = 3 本とも `spread`。横型フレームは軸を入れ替える | boundary をまたぐ、または余白 < `P6_MARGIN_MM.fail`(5mm=28px) | boundary の余白 < `P6_MARGIN_MM.warn`(8mm=46px)、spread をまたぐ(余白は見ない) | — |
 | P7 仮置き文言 | 可視 TEXT の characters(`P7_EXCLUDE_NAME` = `サンプル:` を除く) | `P7_PATTERN`(`[〇○◯]{2,}`、`〇`+年/月/日/時/号/地区/市/町/村、`0000`、`(仮)`、ダミー、サンプル、XXX、TODO) | 一致あり | — | — |
-| P12 電話番号 | 役割 phone で characters に電話番号らしい数字列を含む TEXT | **最大の**電話番号の fontSize ÷ 本文(役割 body)セグメントの fontSize 中央値 = 倍率 | 倍率 < `PHONE_RATIO.fail`(2.0) | 倍率 < `PHONE_RATIO.warn`(3.0) | 電話番号が無い、本文が無い |
+| P12 電話番号 | 役割 phone で characters に電話番号らしい数字列を含む TEXT。`SHEETS[SHEET].p12 === false`(A4_spot)なら検査せず Pass(message `対象外(A4_spot)`) | **最大の**電話番号の fontSize ÷ 本文(役割 body)セグメントの fontSize 中央値 = 倍率 | 倍率 < `PHONE_RATIO.fail`(2.0) | 倍率 < `PHONE_RATIO.warn`(3.0) | 電話番号が無い、本文が無い |
 
 共通: `visible === false` の枝と名前 `#tone` `#state` `#config` は走査から除く。characters が空の TEXT は P2/P3-a/P4/P6/P12 の対象外。幾何は absoluteBoundingBox。`frame.rotation` は absoluteTransform から求めた絶対回転(0〜359)。`frame.kind` `frame.family` も出力する。
 
@@ -53,6 +53,7 @@
 1. Figma の `figma-use` スキルを読む(use_figma の前に必ず)
 2. `skill/scripts/preflight.js` をそのまま `use_figma` の `code` に貼り、先頭 `CONFIG` の `PAGE_ID` / `FRAME_IDS` / `SHEET` だけ書き換える(必要なら `FRAME_KIND` `FAMILY` を明示)
    - 制作物 `'7:2'`、テスト `'664:2'`。**表紙は 1 枚 / 呼び出し、中面は 2 枚まで**(返り値の上限 20KB は UTF-8 バイト換算。超えると items を 5 → 2 → 0 件に段階的に切り詰め、`note` を付ける。件数 fail/warn/manual は残る)
+   - **スキル(SKILL.md Step 4)からの渡し方**: `SHEET` = 冊子 `'A3_booklet'` / 乗降スポット表 `'A4_spot'`、`FRAME_KIND` = 表紙 `'cover'` / 中面 `'inner'`、`FAMILY` = 系統選択から(あいとま系 `'aitoma'` / 那智勝浦系 `'nachikatsuura'` / 登別系 `'noboribetsu'` / MITT 系 `'MITT'`。系統別しきい値 `PT_BY_FAMILY` があるのは現在 MITT だけ)
 3. しきい値を変えるときも CONFIG だけを触る(`PT` `PT_BY_FAMILY` `CONTRAST` `P6_FOLD_KINDS` `P6_MARGIN_MM` `PHONE_RATIO` `TIGHT_BOX` など)
 4. 複数ページ・多数フレームは呼び出しを分けて同じメッセージで並列に投げる(ページ切替は 1 呼び出し 1 回)
 5. 実行後 `tmpRemovedAtEnd` が 0 であることを確認する(P3-a の一時 clone が残っていない証拠)
@@ -91,14 +92,15 @@
 - P3-a は Figma がテキストを clip しない前提で「行が増えた/半行以上足りない」だけを見る。隣接要素との重なりは見ない(P3-b 予定)。`hasMissingFont` の TEXT は計測できない(Manual)
 - P12 は最大の電話番号だけを評価する。本文が無名の中面では中央値が取れず Manual
 - P2 の白抜き判定は fill の輝度 ≥ 0.85 で、淡黄色なども白扱い
-- 系統(FAMILY)は名前で推定する。フレーム名に系統名が無い場合は `CONFIG.FAMILY` を明示する。B.1 の `#config` 導入後はそこから読む
+- 系統(FAMILY)は名前で推定する。案件フレーム(`くらぶち_表紙_…`)の名前には系統名が無いので、スキルは `#tone` の `meta.template_family` から `CONFIG.FAMILY` を明示する(§5-2)
 - 無名 TEXT の役割は characters(※ / 電話番号 / 短いラベル / 30 字以上)からの推定に頼る
-- ラッパー寸法(1725.2×2426.2 / 858.9×1207.9)と PDF 実寸は次版(P1 の残り)。A4_spot は実例が無く未実測
+- ラッパー寸法(1725.2×2426.2 / 858.9×1207.9)と PDF 実寸は次版(P1 の残り)
+- A4_spot は 2026-09-27 に原本 28:178 の一時 clone で実測済み。P12 は対象外にした(2026-09-27 D で再実行し `対象外(A4_spot)` の Pass を確認)
 - `frame.findAll` ではなく自前の再帰で 1 回だけ走査している(非表示の枝を丸ごと飛ばすため)
 
 ## 8. スクリプト全文(逐語)
 
-以下は `skill/scripts/preflight.js` と同一。差分が出たらファイル側を正とする。
+以下は `skill/scripts/preflight.js` と同一。差分が出たらファイル側を正とする(2026-09-27 D で A4_spot の P12 対象外を追加)。
 
 ```js
 // preflight.js — 第1層チェック(最小版: P1・P2・P3-a・P4単色・P6・P7・P12)
@@ -112,8 +114,8 @@ const CONFIG = {
   FRAME_IDS: ['71:2'],               // 対象フレーム(表紙1枚なら1件、中面なら2枚まで)
   SHEET: 'A3_booklet',               // 'A3_booklet'(1691×2392 / 2392×1691) | 'A4_spot'(794×1123)
   SHEETS: {
-    A3_booklet: { dims: [[1691, 2392], [2392, 1691]], shortMm: 297, folds: true },
-    A4_spot:    { dims: [[794, 1123], [1123, 794]],   shortMm: 210, folds: false },
+    A3_booklet: { dims: [[1691, 2392], [2392, 1691]], shortMm: 297, folds: true,  p12: true },
+    A4_spot:    { dims: [[794, 1123], [1123, 794]],   shortMm: 210, folds: false, p12: false },   // 乗降スポット表は本文=スポット名(40pt)で電話倍率の規則が合わないため P12 対象外
   },
   FRAME_KIND: 'auto',                // 'auto'(名前で判定) | 'cover'(表紙) | 'inner'(中面)。P6 の折り線種別に使う
   FRAME_KIND_PATTERNS: { cover: /表紙/, inner: /中面/ }, FRAME_KIND_DEFAULT: 'cover',
@@ -382,7 +384,8 @@ async function inspect(frame) {
   } catch (err) { checks.push(errCheck('P7', err)); }
 
   // P12 電話番号(最大の電話番号が本文中央値×倍率以上か。fail/warn の2段)
-  try {
+  if (!sheet.p12) checks.push(finish('P12', [], `対象外(${CONFIG.SHEET})`));
+  else try {
     const bodyPx = []; const phones = [];
     for (const e of liveTexts) {
       const m = meta.get(e.node.id);
