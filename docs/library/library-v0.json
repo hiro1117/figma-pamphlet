@@ -100,7 +100,93 @@
       },
       "group_id": "2068:4",
       "label_node_id": "2068:2",
-      "tone_node_id": "2068:3"
+      "tone_node_id": "2068:3",
+      "variants": {
+        "abst": {
+          "label": "抽象グラフィック(比較用、採否は未決)",
+          "group_id": "2074:3",
+          "label_node_id": "2074:2",
+          "style_note": "輪郭線なしの色面。地域モチーフは細線版(kurabuchi-haruna-aitoma-thin-03)を流用中",
+          "assets": {
+            "background": {
+              "id": "aitoma-K2-abst-bg-01",
+              "imageHash": "1f17bcdaa2cf159b968993db2bab240ac509ae77",
+              "nodeId": "2073:2",
+              "px": [
+                3300,
+                4096
+              ],
+              "placement": {
+                "target": "#キービジュアル",
+                "scaleMode": "CROP",
+                "frame_px": [
+                  580,
+                  711
+                ]
+              },
+              "effective_dpi": 823,
+              "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
+            },
+            "人物A": {
+              "id": "aitoma-K2-abst-person-01",
+              "imageHash": "245cbcfca032ebdda02d002438f9249e5565e1e8",
+              "nodeId": "2073:3",
+              "px": [
+                1194,
+                3368
+              ],
+              "placement": {
+                "target": "#人物",
+                "scaleMode": "FIT",
+                "suggested_px": [
+                  149,
+                  420
+                ]
+              },
+              "effective_dpi": 1159,
+              "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
+            },
+            "人物B": {
+              "id": "aitoma-K2-abst-person-02",
+              "imageHash": "fb3886d72ad5d2f1f29b33fc27a1194d3f954251",
+              "nodeId": "2073:4",
+              "px": [
+                2021,
+                3081
+              ],
+              "placement": {
+                "target": "#人物",
+                "scaleMode": "FIT",
+                "suggested_px": [
+                  276,
+                  420
+                ]
+              },
+              "effective_dpi": 1059,
+              "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
+            },
+            "車両": {
+              "id": "aitoma-K2-abst-vehicle-01",
+              "imageHash": "3d63917ac87ca87c088bcd96f977643190b55bd2",
+              "nodeId": "2073:5",
+              "px": [
+                3115,
+                2179
+              ],
+              "placement": {
+                "target": "#車両",
+                "scaleMode": "FIT",
+                "suggested_px": [
+                  360,
+                  252
+                ]
+              },
+              "effective_dpi": 1251,
+              "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
+            }
+          }
+        }
+      }
     },
     "nachikatsuura": {
       "label": "那智勝浦系",
@@ -409,5 +495,10 @@
     "group_id": "2069:9",
     "face_frame_id": "2069:2",
     "desc": "あいとま系 K2 組み: #キービジュアル(CROP)+#地域モチーフ+#人物+#車両。人物高 420/711=59% ≥ 1/3、顔・車両はシルエットに隠れない"
+  },
+  "verification_abst": {
+    "group_id": "2074:11",
+    "face_frame_id": "2074:4",
+    "desc": "あいとま系 K2 組み(abst 背景 CROP + 細線モチーフ + abst 人物A + abst 車両)"
   }
 }
