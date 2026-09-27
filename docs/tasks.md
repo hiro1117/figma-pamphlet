@@ -9,7 +9,7 @@
 - [ ] 準備②: 現行3案件の所要・画面外操作の実測(S4の分母)
 - [~] B.1 表紙フレーム改修(指示書 docs/briefs/B1-cover-refit.md)(`#`命名・`#キービジュアル`枠K2・`#地域モチーフ`・`#人物` `#車両`・`#帯` `#背景`・12pt未満#000000・`#config`)。**(1) 設計済み・レビュー待ち**(docs/reports/B1-cover-refit-design.md、B1-refit-plan.json、B1-shots/)。判断待ち D-1〜D-13(設計書 §8)。(2) 実施は Hiro の OK 後
 - [~] C ライブラリv0(指示書 docs/briefs/C-library-v0.md)(基底案 K2向け×描法2×4系統、切り出し人物・車両、tone.json最小版、くらぶち地域モチーフ)。(1) レイアウトマスク・色チップ・生成/キー抜き/台帳スクリプト完了(docs/library/, scripts/library/)。(2) 2K 候補生成は `.env` の GEMINI_API_KEY 待ち。(5) Figma 投入は Figma MCP の認証待ち
-- [x] E 第1層最小版(指示書 docs/briefs/E-preflight.md)(P1・P2・P3-a・P4単色・P6・P7・P12)。`skill/scripts/preflight.js` + `skill/references/preflight.md`、制作物8枚+テスト4枚で実測(docs/reports/E-test-report.md)。残: CONFIG 既定値の確定(下記)、A4_spot の実測、D での組み込み
+- [~] E 第1層最小版(完了。CONFIG 改訂 Warn/折り線種別/label を反映中)(指示書 docs/briefs/E-preflight.md)(P1・P2・P3-a・P4単色・P6・P7・P12)。`skill/scripts/preflight.js` + `skill/references/preflight.md`、制作物8枚+テスト4枚で実測(docs/reports/E-test-report.md)。残: CONFIG 既定値の確定(下記)、A4_spot の実測、D での組み込み
 - [ ] D スキル2026-10版(指示書 docs/briefs/D-skill-2026-10.md)(Step別改訂・変換表・ラッパー自動化・参照3ファイル)
 - [ ] H(a) 技術MVP(くらぶちモック1件をモードDで通す)
 
