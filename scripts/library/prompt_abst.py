@@ -125,7 +125,7 @@ BG_ABSTRACTION = """ABSTRACTION:
 SUBJECTS = {
     "person-01": "Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.",
     "person-02": "Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.",
-    "vehicle-01": "Create a single illustration of a white community ride-share taxi: a box-shaped Japanese minivan, right-hand drive, seen from the front-left so that the left-side sliding door is visible. White body with one accent stripe. Blank license plate shape. A small roof sign with no text.",
+    "vehicle-01": "Create a single illustration of a white community ride-share taxi: a box-shaped Japanese minivan, right-hand drive. VIEWPOINT: three-quarter view from the FRONT-LEFT of the car. The car's LEFT side (the passenger side with the sliding door) faces the viewer and fills most of the image; the front of the car points toward the lower-left. The driver, if visible, sits on the FAR side (right-hand drive), away from the viewer. Do not show the right side of the car. White body with one accent stripe. Blank license plate shape. A small roof sign with no text.",
 }
 COMPOSITION_BG = "- full-bleed landscape, no margins\n- generous empty sky and ground"
 

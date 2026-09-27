@@ -109,12 +109,12 @@
           "style_note": "輪郭線なしの色面。地域モチーフは細線版(kurabuchi-haruna-aitoma-thin-03)を流用中",
           "assets": {
             "background": {
-              "id": "aitoma-K2-abst-bg-01",
-              "imageHash": "1f17bcdaa2cf159b968993db2bab240ac509ae77",
+              "id": "aitoma-K2-abst-bg-02",
+              "imageHash": "3709572a42d93f7a1a4d7614c5d41aa26e04da0a",
               "nodeId": "2073:2",
               "px": [
-                3300,
-                4096
+                1792,
+                2400
               ],
               "placement": {
                 "target": "#キービジュアル",
@@ -124,8 +124,9 @@
                   711
                 ]
               },
-              "effective_dpi": 823,
-              "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
+              "effective_dpi": 447,
+              "route": "gemini-app 画像モード(Claude in Chrome で自動操作)、2K JPEG 受領",
+              "horizon_ratio": 0.54
             },
             "人物A": {
               "id": "aitoma-K2-abst-person-01",
@@ -166,23 +167,24 @@
               "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
             },
             "車両": {
-              "id": "aitoma-K2-abst-vehicle-01",
-              "imageHash": "3d63917ac87ca87c088bcd96f977643190b55bd2",
+              "id": "aitoma-K2-abst-vehicle-02m",
+              "imageHash": "395152af019edbca1e285c6e29f1a6a78b9ec134",
               "nodeId": "2073:5",
               "px": [
-                3115,
-                2179
+                1857,
+                1266
               ],
               "placement": {
                 "target": "#車両",
                 "scaleMode": "FIT",
                 "suggested_px": [
                   360,
-                  252
+                  245
                 ]
               },
-              "effective_dpi": 1251,
-              "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
+              "effective_dpi": 746,
+              "route": "gemini-app(Claude in Chrome で自動操作)、運転手なし版を左右反転",
+              "note": "運転手シルエットなし(反転のため)"
             }
           }
         }

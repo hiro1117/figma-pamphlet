@@ -627,7 +627,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-aitoma-K2-abst-bg-01,bg,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:56:01,4:5,4K,docs/library/prompts/aitoma-K2-abst-bg-01.txt,docs/library/candidates/aitoma-K2-abst-bg-01.png,candidate,Hiro がアプリで手動生成。受領 JPEG 3712x4608(sha256 c46e7fbe7c63)→長辺 4096 に縮小し PNG。四隅に可視透かしなし,"Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
+aitoma-K2-abst-bg-01,bg,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:56:01,4:5,4K,docs/library/prompts/aitoma-K2-abst-bg-01.txt,docs/library/candidates/aitoma-K2-abst-bg-01.png,rejected,Hiro がアプリで手動生成。受領 JPEG 3712x4608(sha256 c46e7fbe7c63)→長辺 4096 に縮小し PNG。四隅に可視透かしなし | Hiro 指示で作り直し → bg-02 に置換,"Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
 
 The bottom 25% must be only road and ground (people and a vehicle will be placed in front later). Above the ridge there is only sky.
 
@@ -902,7 +902,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-aitoma-K2-abst-vehicle-01,fg_vehicle,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:56:04,4:3,4K,docs/library/prompts/aitoma-K2-abst-vehicle-01.txt,docs/library/candidates/aitoma-K2-abst-vehicle-01.png,candidate,Hiro がアプリで手動生成。受領 JPEG 4800x3584(sha256 e627bc2ca18c)→長辺 4096 に縮小し PNG。四隅に可視透かしなし,"Create a single illustration of a white community ride-share taxi: a box-shaped Japanese minivan, right-hand drive, seen from the front-left so that the left-side sliding door is visible. White body with one accent stripe. Blank license plate shape. A small roof sign with no text.
+aitoma-K2-abst-vehicle-01,fg_vehicle,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:56:04,4:3,4K,docs/library/prompts/aitoma-K2-abst-vehicle-01.txt,docs/library/candidates/aitoma-K2-abst-vehicle-01.png,rejected,Hiro がアプリで手動生成。受領 JPEG 4800x3584(sha256 e627bc2ca18c)→長辺 4096 に縮小し PNG。四隅に可視透かしなし | 右側面向き → vehicle-02m に置換,"Create a single illustration of a white community ride-share taxi: a box-shaped Japanese minivan, right-hand drive, seen from the front-left so that the left-side sliding door is visible. White body with one accent stripe. Blank license plate shape. A small roof sign with no text.
 
 The most important requirement is the LEVEL OF SIMPLIFICATION.
 
@@ -989,3 +989,168 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
+aitoma-K2-abst-vehicle-02m,fg_vehicle,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T18:15:03,4:3,2K,docs/library/prompts/aitoma-K2-abst-vehicle-01.txt,docs/library/candidates/aitoma-K2-abst-vehicle-02m.png,candidate,アプリで 3 回生成(1: NB2 1K 正しい向き / 2: Pro 2K 右側面 / 3: Pro 2K 右側面・運転手なし)。3 を左右反転して左側面向きにした版(運転手なしなので右ハンドルと矛盾しない)。受領 2400x1792 JPEG(sha256 18e5b0cbc6f0),"Create a single illustration of a white community ride-share taxi: a box-shaped Japanese minivan, right-hand drive. VIEWPOINT: three-quarter view from the FRONT-LEFT of the car. The car's LEFT side (the passenger side with the sliding door) faces the viewer and fills most of the image; the front of the car points toward the lower-left. The driver, if visible, sits on the FAR side (right-hand drive), away from the viewer. Do not show the right side of the car. White body with one accent stripe. Blank license plate shape. A small roof sign with no text.
+
+The most important requirement is the LEVEL OF SIMPLIFICATION.
+
+The subject must be highly abstracted and graphically simplified.
+
+Do NOT draw a detailed illustration.
+Do NOT draw realistic anatomy or realistic mechanical detail.
+Do NOT carefully render faces, hands, clothing, hair, shoes, or vehicle parts.
+
+Instead, treat the entire subject as a small collection of bold, simple graphic shapes.
+
+ABSTRACTION:
+- simplify the van into a few large geometric shapes (body, roof, windows, wheels)
+- windows as one or two flat shapes
+- wheels as simple circles
+- grille as one simple shape or two lines
+- headlights as one simple shape each
+- no door handles, mirrors, wipers, badges, trim lines, panel gaps, reflections or chrome
+- the driver, if visible, is a single flat silhouette
+- the taxi roof sign is a small simple shape with no text
+
+The vehicle should be understood primarily through SILHOUETTE and COLOR BLOCKING,
+not through mechanical detail.
+
+The subject should look intentionally designed and abstract,
+not like a realistic subject that has been simplified afterward.
+
+Think:
+""graphic shapes representing the subject""
+rather than
+""an illustrated subject.""
+
+STYLE:
+- highly simplified editorial illustration
+- flat graphic shapes
+- limited visual information
+- bold areas of solid color
+- minimal linework
+- clean but slightly organic shapes
+- distinctive artistic character
+- playful and sophisticated
+- slightly quirky
+- contemporary
+- not cute
+- not realistic
+- not corporate
+- not clip-art
+- not a typical Japanese municipal illustration
+- no gradients, no texture, no shading, no highlights
+
+COLOR:
+Use a restrained, sophisticated palette.
+Use #EB6EA5 as an accent color.
+Use muted navy, olive, warm off-white and natural skin tones.
+Avoid bright generic colors.
+
+COMPOSITION:
+- one vehicle only
+- whole vehicle
+- centered
+- generous negative space
+- 4:3 horizontal 
+- entire subject visible
+- do not touch the edges
+
+BACKGROUND:
+completely uniform pure green #00FF00.
+No environment.
+No floor.
+No shadow.
+No furniture.
+No scenery.
+
+No text, logo, license-plate characters, QR code, numbers, watermark or border.
+No maker emblem. Do not resemble a real person, a real store, or a real car model.
+
+IMPORTANT:
+The final illustration should contain FEWER visual details than a normal flat illustration.
+
+When deciding whether to add a detail, remove it unless it is essential for recognizing the subject or action.
+
+Prioritize:
+SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
+
+The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
+"
+aitoma-K2-abst-bg-02,bg,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T18:15:03,3:4,2K,docs/library/prompts/aitoma-K2-abst-bg-01.txt,docs/library/candidates/aitoma-K2-abst-bg-02.png,candidate,画像モード(比率 3:4、Pro)で生成。受領 1792x2400 JPEG。稜線は上端から約 54%(sha256 5c0c83908967),"Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
+
+The bottom 25% must be only road and ground (people and a vehicle will be placed in front later). Above the ridge there is only sky.
+
+The most important requirement is the LEVEL OF SIMPLIFICATION.
+
+The subject must be highly abstracted and graphically simplified.
+
+Do NOT draw a detailed illustration.
+Do NOT draw realistic anatomy or realistic mechanical detail.
+Do NOT carefully render faces, hands, clothing, hair, shoes, or vehicle parts.
+
+Instead, treat the entire subject as a small collection of bold, simple graphic shapes.
+
+ABSTRACTION:
+- treat the landscape as a few large flat color shapes stacked vertically
+- the ridge is one uninterrupted silhouette shape
+- the road is one or two simple shapes
+- houses and trees, if any, are tiny simple geometric shapes
+- no texture, no gradients, no shading, no atmospheric haze
+- no outlines, or only minimal uniform outlines
+
+The subject should look intentionally designed and abstract,
+not like a realistic subject that has been simplified afterward.
+
+Think:
+""graphic shapes representing the subject""
+rather than
+""an illustrated subject.""
+
+STYLE:
+- highly simplified editorial illustration
+- flat graphic shapes
+- limited visual information
+- bold areas of solid color
+- minimal linework
+- clean but slightly organic shapes
+- distinctive artistic character
+- playful and sophisticated
+- slightly quirky
+- contemporary
+- not cute
+- not realistic
+- not corporate
+- not clip-art
+- not a typical Japanese municipal illustration
+- no gradients, no texture, no shading, no highlights
+
+COLOR:
+Use a restrained, sophisticated palette.
+Sky: flat pale pink #FFD8E3. Ridge: muted rose #EB6EA5 darkened slightly. Ground: warm off-white / very pale pink. Road: paper white. Only these colors.
+Avoid bright generic colors.
+
+COMPOSITION:
+- full-bleed landscape, no margins
+- generous empty sky and ground
+- centered
+- generous negative space
+- 4:5 vertical 
+- entire subject visible
+- do not touch the edges
+
+This image IS the background scenery; it must fill the whole frame edge to edge.
+
+No text, logo, license-plate characters, QR code, numbers, watermark or border.
+No maker emblem. Do not resemble a real person, a real store, or a real car model.
+
+IMPORTANT:
+The final illustration should contain FEWER visual details than a normal flat illustration.
+
+When deciding whether to add a detail, remove it unless it is essential for recognizing the subject or action.
+
+Prioritize:
+SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
+
+The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
+"
+aitoma-K2-abst-bg-03,bg,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T18:15:03,3:4,2K,,docs/library/candidates/aitoma-K2-abst-bg-03.png,rejected,bg-02 の Redo(Pro 4K 指示)。受領 1792x2400 JPEG。予備(sha256 ff94b22d584b),
