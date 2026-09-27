@@ -555,20 +555,19 @@
     "mitt": {
       "label": "MITT系",
       "number": 4,
-      "base_id": "mitt-K2-noline-01",
-      "style": "noline",
-      "tone_json": "docs/library/tone/mitt-K2-noline-01.json",
+      "base_id": "mitt-K2-abst-01",
+      "style": "abst",
+      "tone_json": "docs/library/tone/mitt-K2-abst-01.json",
       "group_name": "ライブラリ/MITT系",
       "assets": {
         "background": {
-          "id": "mitt-K2-noline-bg-01",
-          "imageHash": "dc094c51097632c9af1e02570394c30dfc996e6a",
-          "nodeId": "2066:7",
+          "id": "mitt-K2-abst-bg-01",
+          "imageHash": "f1034f96967dc25bba5122c90836d8656c312052",
+          "nodeId": "2084:2",
           "px": [
-            1856,
-            2304
+            1792,
+            2400
           ],
-          "bytes": 1207625,
           "placement": {
             "target": "#キービジュアル",
             "scaleMode": "CROP",
@@ -577,69 +576,160 @@
               711
             ]
           },
-          "effective_dpi": 463
+          "effective_dpi": 447,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物A": {
-          "id": "mitt-K2-noline-person-01",
-          "imageHash": "7e931bb036a95d2c4096b20539105d1999837953",
-          "nodeId": "2066:8",
+          "id": "mitt-K2-abst-person-01",
+          "imageHash": "b1e6331a07318c91a5fc35e9c698636b4917508f",
+          "nodeId": "2085:2",
           "px": [
-            733,
-            2057
+            928,
+            1953
           ],
-          "bytes": 1450652,
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
             "suggested_px": [
-              150,
+              200,
               420
             ]
           },
-          "effective_dpi": 707
+          "effective_dpi": 671,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物B": {
-          "id": "mitt-K2-noline-person-02",
-          "imageHash": "0545ebb920321b3d9eeecea6bb826588cf91e3d9",
-          "nodeId": "2066:9",
+          "id": "mitt-K2-abst-person-03",
+          "imageHash": "68cdb191409fec0dfee1612e4450998fe376a24e",
+          "nodeId": "2086:2",
           "px": [
-            1459,
-            2153
+            1213,
+            1936
           ],
-          "bytes": 2867218,
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
             "suggested_px": [
-              285,
+              263,
               420
             ]
           },
-          "effective_dpi": 740
+          "effective_dpi": 667,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "車両": {
-          "id": "mitt-K2-noline-vehicle-01",
-          "imageHash": "4c83f13c7240b16459e45db116b365cbea175eae",
-          "nodeId": "2066:10",
+          "id": "mitt-K2-abst-vehicle-01",
+          "imageHash": "d1a38389e8af3df700dd160ad46f40e0a1689384",
+          "nodeId": "2087:2",
           "px": [
-            1682,
-            1002
+            1999,
+            1271
           ],
-          "bytes": 1545282,
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
             "suggested_px": [
               360,
-              214
+              229
             ]
           },
-          "effective_dpi": 676
+          "effective_dpi": 803,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         }
       },
-      "group_id": "2068:13",
-      "label_node_id": "2068:11",
-      "tone_node_id": "2068:12"
+      "group_id": "2088:3",
+      "label_node_id": "2088:2",
+      "tone_node_id": null,
+      "status": "candidate(Hiro 確認待ち)",
+      "route": "gemini-app (Google AI Pro)",
+      "legacy_thin": {
+        "base_id": "mitt-K2-noline-01",
+        "style": "noline",
+        "tone_json": "docs/library/tone/mitt-K2-noline-01.json",
+        "group_name": "ライブラリ/MITT系",
+        "group_id": "2068:13",
+        "label_node_id": "2068:11",
+        "tone_node_id": "2068:12",
+        "assets": {
+          "background": {
+            "id": "mitt-K2-noline-bg-01",
+            "imageHash": "dc094c51097632c9af1e02570394c30dfc996e6a",
+            "nodeId": "2066:7",
+            "px": [
+              1856,
+              2304
+            ],
+            "bytes": 1207625,
+            "placement": {
+              "target": "#キービジュアル",
+              "scaleMode": "CROP",
+              "frame_px": [
+                580,
+                711
+              ]
+            },
+            "effective_dpi": 463
+          },
+          "人物A": {
+            "id": "mitt-K2-noline-person-01",
+            "imageHash": "7e931bb036a95d2c4096b20539105d1999837953",
+            "nodeId": "2066:8",
+            "px": [
+              733,
+              2057
+            ],
+            "bytes": 1450652,
+            "placement": {
+              "target": "#人物",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                150,
+                420
+              ]
+            },
+            "effective_dpi": 707
+          },
+          "人物B": {
+            "id": "mitt-K2-noline-person-02",
+            "imageHash": "0545ebb920321b3d9eeecea6bb826588cf91e3d9",
+            "nodeId": "2066:9",
+            "px": [
+              1459,
+              2153
+            ],
+            "bytes": 2867218,
+            "placement": {
+              "target": "#人物",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                285,
+                420
+              ]
+            },
+            "effective_dpi": 740
+          },
+          "車両": {
+            "id": "mitt-K2-noline-vehicle-01",
+            "imageHash": "4c83f13c7240b16459e45db116b365cbea175eae",
+            "nodeId": "2066:10",
+            "px": [
+              1682,
+              1002
+            ],
+            "bytes": 1545282,
+            "placement": {
+              "target": "#車両",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                360,
+                214
+              ]
+            },
+            "effective_dpi": 676
+          }
+        },
+        "status": "rejected(noline 版、#旧 に改名)"
+      }
     }
   },
   "projects": {
@@ -677,9 +767,23 @@
     "前景は keyout.py(フラッドフィル方式)で実 alpha 化。suggested_px は表紙面 563.7×1196 の K2 ヒーロー 580×711 に置く想定",
     "tone.json は各ライブラリグループ内の非表示・ロック TEXT #tone(Noto Sans JP Regular 8px)に同梱"
   ],
-  "verification": {
-    "group_id": "2074:11",
-    "face_frame_id": "2074:4",
-    "desc": "あいとま系 K2 組み(abst)。旧 thin 版は 2069:9(#旧)"
+  "verifications": {
+    "aitoma": {
+      "group_id": "2074:11",
+      "face_frame_id": "2074:4"
+    },
+    "nachikatsuura": {
+      "group_id": "2079:8",
+      "face_frame_id": "2079:2"
+    },
+    "noboribetsu": {
+      "group_id": "2083:8",
+      "face_frame_id": "2083:2"
+    },
+    "mitt": {
+      "group_id": "2088:10",
+      "face_frame_id": "2088:4"
+    },
+    "desc": "各系統の K2 組み(abst 背景 CROP + 人物A + 車両。あいとまのみ榛名山モチーフ入り)。旧 thin 版は 2069:9(#旧)"
   }
 }
