@@ -436,6 +436,11 @@
       "group_id": "2088:10",
       "face_frame_id": "2088:4"
     },
-    "desc": "各系統の K2 組み(abst 背景 CROP + 人物 + 車両。あいとまのみ榛名山モチーフ入り)。旧 thin 版グループ・検証は 2026-09-27 に削除"
+    "desc": "各系統の K2 組み(abst 背景 CROP + 人物 + 車両。あいとまのみ榛名山モチーフ入り)。旧 thin 版グループ・検証は 2026-09-27 に削除",
+    "layout_rule": {
+      "person": "height 380px, x=14, bottom = hero_bottom(694) - 12",
+      "vehicle": "width ≤300px, right edge = 563.7 - 4, bottom = hero_bottom - 8, width shrinks to keep ≥12px gap from person",
+      "note": "2026-09-27 Hiro 指摘(MITT で車両と人物が重なる)を受けて 4 系統共通に。本組み(B.1)でも同じ規則を既定にする"
+    }
   }
 }
