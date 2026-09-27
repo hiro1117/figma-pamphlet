@@ -49,8 +49,9 @@ def darken_until(hex_color, targets, ratio, step=0.02):
 
 # 系統ごとの実測パレット(colors.md)と採用基底案
 FAMILIES = {
-    "aitoma": dict(family="あいとま系", base="aitoma-K2-thin-01", ground="#FFD8E3", main="#EB6EA5", tint="#F6BED1", ink="#000000",
-                   accent="#1B98D0", locked=False, bg_img="aitoma-K2-thin-bg-01", horizon=0.60, outline="thin", rotated=True,
+    "aitoma": dict(family="あいとま系", base="aitoma-K2-abst-01", ground="#FFD8E3", main="#EB6EA5", tint="#F6BED1", ink="#000000",
+                   accent="#1B98D0", locked=False, bg_img="aitoma-K2-abst-bg-02", horizon=0.54, outline="noline", rotated=True, source="library_gemini_app_2k",
+                   direction=("抽象グラフィック", "平坦なピンクの空と稜線1本の静かな里山に、輪郭線のない色面で描いた人物と白いミニバン", ["静か", "洗練", "ご近所"]),
                    headline={"family": "Zen Maru Gothic", "weight": "Black"}),
     "nachikatsuura": dict(family="那智勝浦系", base="nachikatsuura-K2-thin-01", ground="#E3F7FF", main="#1B98D0", tint="#76C1E3", ink="#000000",
                           accent="#FAEF50", locked=False, bg_img="nachikatsuura-K2-thin-bg-01", horizon=0.50, outline="thin", rotated=True,
@@ -83,8 +84,9 @@ def build(key, f):
                        "fixed_blocks": ["発行者情報", "電話ブロック", "QR"]},
             "library": {"base_id": f["base"], "background_image": f["bg_img"], "regional_motif_id": None},
         },
-        "direction": {"label": "テンプレ準拠フラット", "one_liner": "平坦な空と稜線1本の静かな里山に、細線フラットの人物と白いワゴン",
-                      "mood_words": ["静か", "見やすい", "ご近所"]},
+        "direction": {"label": f.get("direction", ("テンプレ準拠フラット", "平坦な空と稜線1本の静かな里山に、細線フラットの人物と白いワゴン", ["静か", "見やすい", "ご近所"]))[0],
+                      "one_liner": f.get("direction", ("", "平坦な空と稜線1本の静かな里山に、細線フラットの人物と白いワゴン", []))[1],
+                      "mood_words": f.get("direction", ("", "", ["静か", "見やすい", "ご近所"]))[2]},
         "composition": {
             "cover_preset": "K2_top_visual",
             "hero": {"area_ratio_of_face": 0.581, "bleed_sides": ["top", "right"], "crop_focus": "person_and_vehicle",
@@ -97,7 +99,7 @@ def build(key, f):
             "roles": {"ground": f["ground"], "main": main_norm, "main_tint": f["tint"], "panel": "#FFFFFF", "ink": f["ink"],
                       "cta": cta, "cta_text": "#FFFFFF", "accent_decor": f["accent"]},
             "cta_slots": ["#電話", "#CTA"], "accent_decor_slots": ["#バッジ"],
-            "illustration_palette": [main, f["tint"], f["ground"], "#FFFFFF", "#231815" if f["outline"] == "thin" else f["main"]],
+            "illustration_palette": [main, f["tint"], f["ground"], "#FFFFFF", "#231815" if f["outline"] == "thin" else f["main"]] + (["#2B3150", "#7A7A3A", "#F5CEC1"] if f["outline"] == "noline" and f.get("source") else []),
             "print": {"max_saturation_large_fill": 0.80, "min_tint_pct": 5, "gradients_allowed": False},
             "contrast_check": {"main_vs_white": round(contrast(main_norm, "#FFFFFF"), 2),
                                "cta_vs_ground": round(contrast(cta, f["ground"]), 2), "cta_vs_white": round(contrast(cta, "#FFFFFF"), 2)},
@@ -116,11 +118,11 @@ def build(key, f):
                        "background": {"type": "flat", "gradient": None},
                        "no_go_zones": ["fold_8mm", "trim_3mm", "body_text_boxes", "phone_and_qr"]},
         "illustration": {
-            "source_policy": "single_source", "source": "library_nbp_master_2k", "style": style,
+            "source_policy": "single_source", "source": f.get("source", "library_nbp_master_2k"), "style": style,
             "subjects": [
                 {"id": "hero_person", "desc": "70代女性、受話器を持って穏やかに笑う(person-01)/ 70代男性と娘、乗車の手助け(person-02)",
                  "facing": "toward_cta", "placeholder": "#人物"},
-                {"id": "vehicle", "desc": "白いワゴン型乗合タクシー、右ハンドル", "placeholder": "#車両"},
+                {"id": "vehicle", "desc": "白い中型ミニバンの乗合タクシー(屋根白・行灯はアクセント色・運転手なし)" if f.get("source") else "白いワゴン型乗合タクシー、右ハンドル", "placeholder": "#車両"},
                 {"id": "local_motif", "desc": "(地域レイヤー) 案件ごとに差し替え", "placeholder": "#地域モチーフ", "placement": "hero_horizon"}],
             "min_effective_dpi": 200,
             "photos": {"allowed": True, "use": "実車・実風景のみ。中面の信頼ブロック限定。イラストと同一面に混ぜない"},

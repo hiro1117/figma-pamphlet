@@ -8,7 +8,7 @@
 - [~] 準備①: 実測は完了(docs/prep/ 参照: 面表・TEXT 824件・フォント・imageHash 33件・色)。レイアウトマスクは C で作成済み(docs/library/masks/)。残り: PDF画質設定の場所(UI)、既存イラストの出所確認、`入稿済み`ページ作成
 - [ ] 準備②: 現行3案件の所要・画面外操作の実測(S4の分母)
 - [x] B.1 表紙フレーム改修(指示書 docs/briefs/B1-cover-refit.md)(`#`命名・`#キービジュアル`枠K2・`#地域モチーフ`・`#人物` `#車両`・`#帯` `#背景`・12pt未満#000000・`#config`)。**2026-09-27 差し替え済み**: テンプレートページの表紙4系統は 2053:3 / 2053:334 / 2053:682 / 2053:1002、`#config` 2057:2。原本は「テンプレ旧_20260927」(2064:2)に退避。結果 docs/reports/B1-after/、`#`ノード一覧 docs/prep/template-refit-inventory.json。残: skill/references/template-and-assets.md の id 表を新 id に更新(D で)
-- [x] C ライブラリv0(指示書 docs/briefs/C-library-v0.md)。完了 2026-09-27: 描法はフラット 1 種(Hiro 決定)のため基底案は 4 系統×1 = 4 点、前景 12 点、くらぶち榛名山 1 点を素材ページ `ライブラリ/<系統>` `案件/くらぶち` に投入。tone.json 4 本同梱、2K をマスター(463dpi)。詳細 docs/reports/C-library-v0-progress.md、台帳 docs/library/ledger.csv、library-v0.json
+- [~] C ライブラリv0(指示書 docs/briefs/C-library-v0.md)。2026-09-27 描法を抽象グラフィック(abst、Gemini アプリ生成)に変更、あいとま系 4 点は採用済み。残り: 那智勝浦・登別・MITT の abst 生成と投入、榛名山モチーフの abst 化。(旧記録) 描法はフラット 1 種(Hiro 決定)のため基底案は 4 系統×1 = 4 点、前景 12 点、くらぶち榛名山 1 点を素材ページ `ライブラリ/<系統>` `案件/くらぶち` に投入。tone.json 4 本同梱、2K をマスター(463dpi)。詳細 docs/reports/C-library-v0-progress.md、台帳 docs/library/ledger.csv、library-v0.json
 - [x] E 第1層最小版(指示書 docs/briefs/E-preflight.md)(P1・P2・P3-a・P4単色・P6・P7・P12)。`skill/scripts/preflight.js` + `skill/references/preflight.md`。2026-09-27 レビューの CONFIG 決定(Warn/注記 9pt・10pt/白抜き役割別/電話 ×2・×3/折り線種別/label/PT_BY_FAMILY.MITT/ignored_tight)を反映し、制作物8枚+テスト4枚で再実測(docs/reports/E-test-report.md §A)。MITT 系特例と A4_spot も 2026-09-27 に一時 clone で実測済み(§B)。残: D での組み込み、第2段で Warn→Fail 格上げ、A4_spot の P12 の扱い(要判断)
 - [ ] D スキル2026-10版(指示書 docs/briefs/D-skill-2026-10.md)(Step別改訂・変換表・ラッパー自動化・参照3ファイル)
 - [ ] H(a) 技術MVP(くらぶちモック1件をモードDで通す)

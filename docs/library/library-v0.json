@@ -16,20 +16,19 @@
     "aitoma": {
       "label": "あいとま系",
       "number": 1,
-      "base_id": "aitoma-K2-thin-01",
-      "style": "thin",
-      "tone_json": "docs/library/tone/aitoma-K2-thin-01.json",
+      "base_id": "aitoma-K2-abst-01",
+      "style": "abst",
+      "tone_json": "docs/library/tone/aitoma-K2-abst-01.json",
       "group_name": "ライブラリ/あいとま系",
       "assets": {
         "background": {
-          "id": "aitoma-K2-thin-bg-01",
-          "imageHash": "9f845da9e1496a90ffc59aaf7b82125c4bbda82e",
-          "nodeId": "2066:2",
+          "id": "aitoma-K2-abst-bg-02",
+          "imageHash": "3709572a42d93f7a1a4d7614c5d41aa26e04da0a",
+          "nodeId": "2073:2",
           "px": [
-            1856,
-            2304
+            1792,
+            2400
           ],
-          "bytes": 1430190,
           "placement": {
             "target": "#キービジュアル",
             "scaleMode": "CROP",
@@ -38,156 +37,161 @@
               711
             ]
           },
-          "effective_dpi": 463
+          "effective_dpi": 447,
+          "route": "gemini-app 画像モード(Claude in Chrome で自動操作)、2K JPEG 受領",
+          "horizon_ratio": 0.54
         },
         "人物A": {
-          "id": "aitoma-K2-thin-person-01",
-          "imageHash": "86b6f480a51df9a3b589ce53afd7dc8a68154d4a",
-          "nodeId": "2066:3",
+          "id": "aitoma-K2-abst-person-01",
+          "imageHash": "245cbcfca032ebdda02d002438f9249e5565e1e8",
+          "nodeId": "2073:3",
           "px": [
-            697,
-            2004
+            1194,
+            3368
           ],
-          "bytes": 1431700,
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
             "suggested_px": [
-              146,
+              149,
               420
             ]
           },
-          "effective_dpi": 690
+          "effective_dpi": 1159,
+          "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
         },
         "人物B": {
-          "id": "aitoma-K2-thin-person-02",
-          "imageHash": "577b0c86626563d9e3edcf087a47b2991ddf28cb",
-          "nodeId": "2066:4",
+          "id": "aitoma-K2-abst-person-02",
+          "imageHash": "fb3886d72ad5d2f1f29b33fc27a1194d3f954251",
+          "nodeId": "2073:4",
           "px": [
-            1142,
-            1783
+            2021,
+            3081
           ],
-          "bytes": 2048273,
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
             "suggested_px": [
-              269,
+              276,
               420
             ]
           },
-          "effective_dpi": 614
+          "effective_dpi": 1059,
+          "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
         },
         "車両": {
-          "id": "aitoma-K2-thin-vehicle-01",
-          "imageHash": "88a2b95093b7567c78840c277f8536dfff6165d2",
-          "nodeId": "2066:5",
+          "id": "aitoma-K2-abst-vehicle-03",
+          "imageHash": "4d66ea03eabc942ff01a96e2ca21ed8c37d85da8",
+          "nodeId": "2073:5",
           "px": [
-            2170,
-            1280
+            1942,
+            1186
           ],
-          "bytes": 2204220,
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
             "suggested_px": [
               360,
-              212
+              220
             ]
           },
-          "effective_dpi": 872
+          "effective_dpi": 780,
+          "route": "gemini-app 画像モード(Claude in Chrome で自動操作)、2K JPEG 受領",
+          "note": "中型ミニバン、屋根白・行灯アクセント色、運転手なし、左側面向き"
         }
       },
-      "group_id": "2068:4",
-      "label_node_id": "2068:2",
+      "group_id": "2074:3",
+      "label_node_id": "2074:2",
       "tone_node_id": "2068:3",
-      "variants": {
-        "abst": {
-          "label": "抽象グラフィック(比較用、採否は未決)",
-          "group_id": "2074:3",
-          "label_node_id": "2074:2",
-          "style_note": "輪郭線なしの色面。地域モチーフは細線版(kurabuchi-haruna-aitoma-thin-03)を流用中",
-          "assets": {
-            "background": {
-              "id": "aitoma-K2-abst-bg-02",
-              "imageHash": "3709572a42d93f7a1a4d7614c5d41aa26e04da0a",
-              "nodeId": "2073:2",
-              "px": [
-                1792,
-                2400
-              ],
-              "placement": {
-                "target": "#キービジュアル",
-                "scaleMode": "CROP",
-                "frame_px": [
-                  580,
-                  711
-                ]
-              },
-              "effective_dpi": 447,
-              "route": "gemini-app 画像モード(Claude in Chrome で自動操作)、2K JPEG 受領",
-              "horizon_ratio": 0.54
+      "status": "adopted 2026-09-27",
+      "route": "gemini-app (Google AI Pro)",
+      "legacy_thin": {
+        "base_id": "aitoma-K2-thin-01",
+        "style": "thin",
+        "tone_json": "docs/library/tone/aitoma-K2-thin-01.json",
+        "group_name": "ライブラリ/あいとま系",
+        "group_id": "2068:4",
+        "label_node_id": "2068:2",
+        "tone_node_id": "2068:3",
+        "assets": {
+          "background": {
+            "id": "aitoma-K2-thin-bg-01",
+            "imageHash": "9f845da9e1496a90ffc59aaf7b82125c4bbda82e",
+            "nodeId": "2066:2",
+            "px": [
+              1856,
+              2304
+            ],
+            "bytes": 1430190,
+            "placement": {
+              "target": "#キービジュアル",
+              "scaleMode": "CROP",
+              "frame_px": [
+                580,
+                711
+              ]
             },
-            "人物A": {
-              "id": "aitoma-K2-abst-person-01",
-              "imageHash": "245cbcfca032ebdda02d002438f9249e5565e1e8",
-              "nodeId": "2073:3",
-              "px": [
-                1194,
-                3368
-              ],
-              "placement": {
-                "target": "#人物",
-                "scaleMode": "FIT",
-                "suggested_px": [
-                  149,
-                  420
-                ]
-              },
-              "effective_dpi": 1159,
-              "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
+            "effective_dpi": 463
+          },
+          "人物A": {
+            "id": "aitoma-K2-thin-person-01",
+            "imageHash": "86b6f480a51df9a3b589ce53afd7dc8a68154d4a",
+            "nodeId": "2066:3",
+            "px": [
+              697,
+              2004
+            ],
+            "bytes": 1431700,
+            "placement": {
+              "target": "#人物",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                146,
+                420
+              ]
             },
-            "人物B": {
-              "id": "aitoma-K2-abst-person-02",
-              "imageHash": "fb3886d72ad5d2f1f29b33fc27a1194d3f954251",
-              "nodeId": "2073:4",
-              "px": [
-                2021,
-                3081
-              ],
-              "placement": {
-                "target": "#人物",
-                "scaleMode": "FIT",
-                "suggested_px": [
-                  276,
-                  420
-                ]
-              },
-              "effective_dpi": 1059,
-              "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
+            "effective_dpi": 690
+          },
+          "人物B": {
+            "id": "aitoma-K2-thin-person-02",
+            "imageHash": "577b0c86626563d9e3edcf087a47b2991ddf28cb",
+            "nodeId": "2066:4",
+            "px": [
+              1142,
+              1783
+            ],
+            "bytes": 2048273,
+            "placement": {
+              "target": "#人物",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                269,
+                420
+              ]
             },
-            "車両": {
-              "id": "aitoma-K2-abst-vehicle-03",
-              "imageHash": "4d66ea03eabc942ff01a96e2ca21ed8c37d85da8",
-              "nodeId": "2073:5",
-              "px": [
-                1942,
-                1186
-              ],
-              "placement": {
-                "target": "#車両",
-                "scaleMode": "FIT",
-                "suggested_px": [
-                  360,
-                  220
-                ]
-              },
-              "effective_dpi": 780,
-              "route": "gemini-app 画像モード(Claude in Chrome で自動操作)、2K JPEG 受領",
-              "note": "中型ミニバン、屋根白・行灯アクセント色、運転手なし、左側面向き"
-            }
+            "effective_dpi": 614
+          },
+          "車両": {
+            "id": "aitoma-K2-thin-vehicle-01",
+            "imageHash": "88a2b95093b7567c78840c277f8536dfff6165d2",
+            "nodeId": "2066:5",
+            "px": [
+              2170,
+              1280
+            ],
+            "bytes": 2204220,
+            "placement": {
+              "target": "#車両",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                360,
+                212
+              ]
+            },
+            "effective_dpi": 872
           }
-        }
+        },
+        "status": "rejected(thin 版、#旧 に改名)"
       }
     },
     "nachikatsuura": {
@@ -494,13 +498,8 @@
     "tone.json は各ライブラリグループ内の非表示・ロック TEXT #tone(Noto Sans JP Regular 8px)に同梱"
   ],
   "verification": {
-    "group_id": "2069:9",
-    "face_frame_id": "2069:2",
-    "desc": "あいとま系 K2 組み: #キービジュアル(CROP)+#地域モチーフ+#人物+#車両。人物高 420/711=59% ≥ 1/3、顔・車両はシルエットに隠れない"
-  },
-  "verification_abst": {
     "group_id": "2074:11",
     "face_frame_id": "2074:4",
-    "desc": "あいとま系 K2 組み(abst 背景 CROP + 細線モチーフ + abst 人物A + abst 車両)"
+    "desc": "あいとま系 K2 組み(abst)。旧 thin 版は 2069:9(#旧)"
   }
 }
