@@ -1,0 +1,12 @@
+{"script":"skill/scripts/preflight.js @ cbd0a51 (CONFIG の PAGE_ID/FRAME_IDS のみ変更)","page":"テンプレ改修_作業","sheet":"A3_booklet","frame":{"id":"2053:334","orig":"20:2","name":"冊子表紙/那智勝浦系テンプレート","w":1691,"h":2392,"k":5.694,"rotation":0,"texts":92,"roles":{"other":48,"heading":14,"body":11,"note":11,"phone":8}},
+"summary":{"fail":6,"manual":0,"pass":1},"tmpRemovedAtEnd":0,"ms":1127,
+"checks":[
+ {"id":"P1","status":"Pass","count":0},
+ {"id":"P2","status":"Fail","count":16,"message":"limits px: body 24 / note 20 / abs 12 / white 24","items":[["2053:351","#アプリ紹介キャプション","body","22px"],["2053:352","#アプリ画面説明1","body","18px"],["2053:353","#アプリ画面説明2","body","18px"],["2053:381","※新規アプリの…","note","16px"],["2053:400","※乗合タクシーにつき…","note","16px"],["2053:417","※乗車時刻を…","note","16px"],["2053:493","#注記:利用上の注意","note","14px"],["2053:531","#運行時期注記","note","18px"],["2053:555","#受付時間注記","note","18px"],["2053:564","#受付時間","note/white","20px"],["2053:566","#電話予約手順1","phone/white","22px"],["2053:567","#電話予約手順2","phone/white","22px"],["2053:568","#電話予約手順3","phone/white","22px"],["2053:569","#電話予約手順4","phone/white","22px"],["2053:680","#注記:受付時間","note","18px"],["2053:681","#注記:LINE受付","note","18px"]]},
+ {"id":"P3-a","status":"Fail","count":8,"message":"NONE 54 件中 48 件を計測、tight 12 件は ignore。Fail 2 = ラベル:〜 2053:509(+16px)、#予約方法(LINE) 2053:552(+27px)。いずれも逆さ面・既存。Manual 6 = hasMissingFont"},
+ {"id":"P4","status":"Fail","count":23,"message":"対象 44 件。Fail 10: #STEP1本文 4.8:1、#見出し:利用シーン2/3 3.3:1(#1B98D0 on 白)、#受付時間・#電話番号・#電話予約手順1〜4 3.3:1(白 on #1B98D0)、見出し:本件に関する… 3.3:1。Manual 13(背景に非矩形/画像、truncated 3)。新規ノード由来の指摘なし"},
+ {"id":"P6","status":"Fail","count":20,"message":"またぎ x=563.7: 7 件(サービス紹介面の既存レイアウト)、x=563.7 近接 5 件、x=1127.3 近接: #見出し:吹き出し 44.5、#本文:利用シーン2 25.3、#CTA:見出し 45.7(x は既存値のまま。+30 移動は y のみ)、逆さ面フッター 5 件(#問い合わせ先 またぎ+y gap38 ほか)"},
+ {"id":"P7","status":"Fail","count":12,"message":"サンプル文言(〇〇・0000)。テンプレなので想定どおり"},
+ {"id":"P12","status":"Fail","count":1,"message":"body median 24px, phones 50/48/48px → 72px 未満"}
+],
+"note":"改修で新たに増えた指摘なし(#CTA:見出し の gap 45.7 は改修前と同じ x=1173)。E の CONFIG 改訂(Warn/折り線種別)は未反映"}

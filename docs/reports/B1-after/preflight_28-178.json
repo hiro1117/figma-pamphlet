@@ -1,0 +1,12 @@
+{"script":"skill/scripts/preflight.js @ cbd0a51 (CONFIG の PAGE_ID/FRAME_IDS/SHEET のみ変更)","page":"テンプレ改修_作業","sheet":"A4_spot","frame":{"id":"2053:5040","orig":"28:178","name":"乗降スポット表テンプレート","w":794,"h":1123,"k":3.781,"rotation":270,"texts":22,"roles":{"body":1,"phone":2,"note":2,"other":16,"heading":1}},
+"summary":{"fail":2,"manual":1,"pass":4},"tmpRemovedAtEnd":0,"ms":58,
+"checks":[
+ {"id":"P1","status":"Pass","count":0,"message":"794×1123 を A4_spot として認識、k=3.781"},
+ {"id":"P2","status":"Pass","count":0,"message":"limits px: body 16 / note 13 / abs 8 / white 16(k=3.78 で正しく換算)"},
+ {"id":"P3-a","status":"Manual","count":1,"message":"NONE 14 件中 13 件を計測。Manual 1 = #運休注記 2053:5076 hasMissingFont(Source Han Sans JP Bold)"},
+ {"id":"P4","status":"Pass","count":0,"message":"対象 6 件"},
+ {"id":"P6","status":"Pass","count":0,"message":"折り線なしのシート"},
+ {"id":"P7","status":"Fail","count":4,"message":"サンプル文言(〇〇・0000)。テンプレなので想定どおり"},
+ {"id":"P12","status":"Fail","count":1,"message":"body median 53px(#スポット名 1 件のみ), phones 64.4/23.8px → 159px 未満。本文が 1 件しかない A4_spot では中央値の意味が薄い(要検討)"}
+],
+"note":"A4_spot の初回実測。rotation 270(90° 横置き)でも P1/P2 の換算は正しく動いた。B.1 の改修対象ではない(clone のみ)"}

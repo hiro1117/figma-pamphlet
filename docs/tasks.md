@@ -7,7 +7,7 @@
 - [x] 作業対象を複製ファイルへ切替+Step 0の対象ファイル確認
 - [~] 準備①: 実測は完了(docs/prep/ 参照: 面表・TEXT 824件・フォント・imageHash 33件・色)。レイアウトマスクは C で作成済み(docs/library/masks/)。残り: PDF画質設定の場所(UI)、既存イラストの出所確認、`入稿済み`ページ作成
 - [ ] 準備②: 現行3案件の所要・画面外操作の実測(S4の分母)
-- [~] B.1 表紙フレーム改修(指示書 docs/briefs/B1-cover-refit.md)(`#`命名・`#キービジュアル`枠K2・`#地域モチーフ`・`#人物` `#車両`・`#帯` `#背景`・12pt未満#000000・`#config`)。**(1) 設計済み・レビュー待ち**(docs/reports/B1-cover-refit-design.md、B1-refit-plan.json、B1-shots/)。判断待ち D-1〜D-13(設計書 §8)。(2) 実施は Hiro の OK 後
+- [~] B.1 表紙フレーム改修(指示書 docs/briefs/B1-cover-refit.md)(`#`命名・`#キービジュアル`枠K2・`#地域モチーフ`・`#人物` `#車両`・`#帯` `#背景`・12pt未満#000000・`#config`)。**(2) 実施済み・差し替え待ち**(2026-09-27、作業用ページ「テンプレ改修_作業」2053:2。rename 86 / create 37 / hide 4 / move 3 / resize 2 / 黒化 16。結果 docs/reports/B1-after/、`#`ノード一覧 docs/prep/template-refit-inventory.json)。原本との差し替えは Hiro 確認後(手順は B1-after/README.md §6)。設計: docs/reports/B1-cover-refit-design.md
 - [~] C ライブラリv0(指示書 docs/briefs/C-library-v0.md)(基底案 K2向け×描法2×4系統、切り出し人物・車両、tone.json最小版、くらぶち地域モチーフ)。(1) レイアウトマスク・色チップ・生成/キー抜き/台帳スクリプト完了(docs/library/, scripts/library/)。(2) 2K 候補生成は `.env` の GEMINI_API_KEY 待ち。(5) Figma 投入は Figma MCP の認証待ち
 - [x] E 第1層最小版(指示書 docs/briefs/E-preflight.md)(P1・P2・P3-a・P4単色・P6・P7・P12)。`skill/scripts/preflight.js` + `skill/references/preflight.md`。2026-09-27 レビューの CONFIG 決定(Warn/注記 9pt・10pt/白抜き役割別/電話 ×2・×3/折り線種別/label/PT_BY_FAMILY.MITT/ignored_tight)を反映し、制作物8枚+テスト4枚で再実測(docs/reports/E-test-report.md §A)。残: A4_spot の実測(B.1 の作業用ページで)、D での組み込み、第2段で Warn→Fail 格上げ
 - [ ] D スキル2026-10版(指示書 docs/briefs/D-skill-2026-10.md)(Step別改訂・変換表・ラッパー自動化・参照3ファイル)

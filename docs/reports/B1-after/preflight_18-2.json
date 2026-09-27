@@ -1,0 +1,12 @@
+{"script":"skill/scripts/preflight.js @ cbd0a51 (CONFIG の PAGE_ID/FRAME_IDS のみ変更)","page":"テンプレ改修_作業","sheet":"A3_booklet","frame":{"id":"2053:3","orig":"18:2","name":"冊子表紙/あいとま系テンプレート","w":1691,"h":2392,"k":5.694,"rotation":180,"texts":86,"roles":{"heading":12,"body":9,"note":12,"other":49,"phone":4}},
+"summary":{"fail":6,"manual":0,"pass":1},"tmpRemovedAtEnd":0,"ms":962,
+"checks":[
+ {"id":"P1","status":"Pass","count":0},
+ {"id":"P2","status":"Fail","count":11,"message":"limits px: body 24 / note 20 / abs 12 / white 24","items":[["2053:100","※乗合タクシーにつき…","note","16px"],["2053:117","※乗車時刻を５分…","note","16px"],["2053:154","#アプリ紹介キャプション","body","22px"],["2053:160","#受付時間","note/white","18px"],["2053:183","#料金2注記","note","18px"],["2053:190","#料金3注記","note","18px"],["2053:201","#料金5注記","note","18px"],["2053:204","#料金小見出し注記","note","18px"],["2053:237","#運行時期注記","note","18px"],["2053:270","#注記:補助金表記","note/white","17px"],["2053:330","#注記:対象地域","note","18px"]]},
+ {"id":"P3-a","status":"Fail","count":25,"message":"NONE 69 件中 45 件を計測、tight 12 件は ignore。Fail 1 = #STEP2本文 2053:97(あふれ +29px、逆さ面・既存)、Manual 24 = hasMissingFont(Source Han Sans JP)"},
+ {"id":"P4","status":"Fail","count":18,"message":"対象 37 件。Fail: #見出し:利用シーン2/3 2.9:1(#EB6EA5 on 白)、#STEP1本文 4.8:1、見出し:お電話でも… 2.9:1、#受付時間・#電話番号(予約) 2.9:1(白 on #EB6EA5)、#注記:補助金表記 1.2:1(白 on #E6E6E6 = #キービジュアル の灰プレースホルダ、D-6 で残した)。Manual: 背景に非矩形/画像 12 件"},
+ {"id":"P6","status":"Fail","count":24,"message":"folds x:1127.3,563.7 y:1196 margin 46px。またぎ x=563.7: 7 件(サービス紹介面の既存レイアウト)、x=1127.3 近接: 吹き出し 44.5 / STEP バッジ 8 件 33〜35 / #運行時期注記 45.7、逆さ面フッター: #問い合わせ先(またぎ+y gap34)、ラベル:TEL. y gap20 ほか truncated 4"},
+ {"id":"P7","status":"Fail","count":10,"message":"サンプル文言(〇〇・0000)。テンプレなので想定どおり"},
+ {"id":"P12","status":"Fail","count":1,"message":"body median 24px, phones 50/46/43.2px → 72px 未満"}
+],
+"note":"新規ノード由来の指摘は P4 の #注記:補助金表記(灰プレースホルダ上の白文字)のみ。他はすべて改修前から存在する指摘(E-test-report と同種)。E の CONFIG 改訂(Warn/折り線種別)は作業コピーで進行中・未コミットのため未反映"}

@@ -1,0 +1,12 @@
+{"script":"skill/scripts/preflight.js @ cbd0a51 (CONFIG の PAGE_ID/FRAME_IDS のみ変更)","page":"テンプレ改修_作業","sheet":"A3_booklet","frame":{"id":"2053:1002","orig":"24:2","name":"冊子表紙/MITT系テンプレート","w":1691,"h":2392,"k":5.694,"rotation":0,"texts":58,"roles":{"note":13,"other":18,"body":11,"heading":15,"phone":1}},
+"summary":{"fail":5,"manual":0,"pass":2},"tmpRemovedAtEnd":0,"ms":511,
+"checks":[
+ {"id":"P1","status":"Pass","count":0},
+ {"id":"P2","status":"Fail","count":25,"message":"limits px: body 24 / note 20 / abs 12 / white 24。MITT 系の本文 15px(7.5pt)・注記 13〜14px が全滅(既知。review-2026-09-27 の PT_BY_FAMILY.MITT で暫定対応、第2段で本文引き上げ)","items":[["2053:3954","ラベル:※例１","note","18px"],["2053:3955","ラベル:※例２","note","18px"],["2053:4047","#料金注記","note","14px"],["2053:4049","#支払い方法本文","body","15px"],["2053:4058","#運賃例2合計","body","15px"],["2053:4078","#STEP1本文","body","15px"],["2053:4079","#STEP1注記","note","13px"],["2053:4114","#STEP2本文","body","15px"],["2053:4115","#STEP2注記","note","13px"],["2053:4155","#STEP3本文","body","15px"],["2053:4156","#STEP3注記","note","13px"],["2053:4193","#STEP4本文","body","15px"],["2053:4194","#STEP4注記","note","13px"],["2053:4201","#電話受付時間","note/white","12px"],["2053:4202","ラベル:＜ご案内＞","other/white","14px"],["2053:4203","ラベル:お電話でご予約も…","other/white","14px"],["2053:4578","#注記:事業主体","note","17px"],["2053:4634","#本文:リード文","body","16px"],["2053:4753","#本文:利用シーン1","body","15px"],["2053:4890","#本文:利用シーン2","body","15px"],["(truncated 5)","","",""]]},
+ {"id":"P3-a","status":"Pass","count":0,"message":"NONE 3 件中 3 件を計測"},
+ {"id":"P4","status":"Fail","count":23,"message":"対象 40 件。表示 20 件はすべて Manual(背景に非矩形/画像 Vector = 使い方面の装飾ベクター)、truncated 3 に Fail を含む(status Fail)。新規ノード由来の指摘なし"},
+ {"id":"P6","status":"Fail","count":13,"message":"x=1127.3 近接: 使い方面 STEP2〜4 本文/注記 6 件 gap 41.3、x=563.7 またぎ: #見出し:キャッチコピー・#見出し:利用シーン3・#注記:利用上の注意・#注記:発行者情報(+y gap23.5)、x=563.7 近接 3 件。すべて既存"},
+ {"id":"P7","status":"Fail","count":11,"message":"サンプル文言(〇〇・0000)。テンプレなので想定どおり"},
+ {"id":"P12","status":"Fail","count":1,"message":"body median 15px, phones 24px → 45px 未満"}
+],
+"note":"改修で新たに増えた指摘なし。イラスト:表紙(人物群) と #車両写真置き場 は非表示なので走査対象外。表紙面(右上)の高さは 1216 → 1196 に戻った(V7)。E の CONFIG 改訂は未反映"}

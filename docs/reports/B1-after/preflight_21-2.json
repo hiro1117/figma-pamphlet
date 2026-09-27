@@ -1,0 +1,12 @@
+{"script":"skill/scripts/preflight.js @ cbd0a51 (CONFIG の PAGE_ID/FRAME_IDS のみ変更)","page":"テンプレ改修_作業","sheet":"A3_booklet","frame":{"id":"2053:682","orig":"21:2","name":"冊子表紙/登別系テンプレート","w":1691,"h":2392,"k":5.694,"rotation":0,"texts":93,"roles":{"other":49,"note":19,"phone":3,"body":10,"heading":12}},
+"summary":{"fail":5,"manual":1,"pass":1},"tmpRemovedAtEnd":0,"ms":315,
+"checks":[
+ {"id":"P1","status":"Pass","count":0},
+ {"id":"P2","status":"Fail","count":15,"message":"limits px: body 24 / note 20 / abs 12 / white 24","items":[["2053:714","※予約の際には…","note","16px"],["2053:715","#受付時間","note","16px"],["2053:721","#STEP1注記","note","16px"],["2053:724","※目印の「のぼり」…","note","16px"],["2053:739","※運賃は乗車時に…","note","16px"],["2053:754","※車内で案内される…","note","16px"],["2053:775","#アプリ紹介キャプション","body","22px"],["2053:778","#電話予約注記本文","note","18px"],["2053:815","#運行時間注記","note","18px"],["2053:843","#料金1注記","note","18px"],["2053:848","#料金2注記","note","18px"],["2053:853","#料金3注記","note","18px"],["2053:858","#料金注記","note","18px"],["2053:918","#注記:利用上の注意","note","14px"],["2053:976","#注記:事業名","note/white","18px"]]},
+ {"id":"P3-a","status":"Manual","count":21,"message":"NONE 66 件中 45 件を計測、tight 13 件は ignore。Fail 0、Manual 21 = hasMissingFont(Source Han Sans JP)"},
+ {"id":"P4","status":"Fail","count":33,"message":"対象 44 件。Fail 1 = #料金注記 2053:858 2.9:1(#D7835F on 白、逆さ面・既存)。Manual 32(背景に非矩形/画像 Vector、truncated 13)。新規ノード由来の指摘なし"},
+ {"id":"P6","status":"Fail","count":29,"message":"またぎ x=563.7: 7 件(サービス紹介面)+逆さ面 2 件、x=563.7 近接 8 件、x=1127.3 近接: STEP バッジ 8 件 33〜35、#料金注記 38.7、#実施主体 14.7、#協力会社 y gap33 ほか truncated 9(#注記:事業名 = 折り線上・y gap30 を含む)"},
+ {"id":"P7","status":"Fail","count":10,"message":"サンプル文言(〇〇・0000)。テンプレなので想定どおり"},
+ {"id":"P12","status":"Fail","count":1,"message":"body median 25px, phones 46/43.2px → 75px 未満"}
+],
+"note":"改修で新たに増えた指摘なし。イラスト:車・#マスコット置き場 は非表示なので走査対象外。E の CONFIG 改訂は未反映"}
