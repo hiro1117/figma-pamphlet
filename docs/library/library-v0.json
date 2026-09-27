@@ -80,24 +80,24 @@
           "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
         },
         "車両": {
-          "id": "aitoma-K2-abst-vehicle-03",
-          "imageHash": "4d66ea03eabc942ff01a96e2ca21ed8c37d85da8",
+          "id": "aitoma-K2-abst-vehicle-04",
+          "imageHash": "9bf7bf2b3d0414d825e7bf2eec999ba3bd634891",
           "nodeId": "2073:5",
           "px": [
-            1942,
-            1186
+            1562,
+            899
           ],
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
             "suggested_px": [
               360,
-              220
+              207
             ]
           },
-          "effective_dpi": 780,
-          "route": "gemini-app 画像モード(Claude in Chrome で自動操作)、2K JPEG 受領",
-          "note": "中型ミニバン、屋根白・行灯アクセント色、運転手なし、左側面向き"
+          "effective_dpi": 627,
+          "route": "Hiro 手動生成の JPN タクシー型を PIL でアクセント色置換",
+          "note": "4 系統共通の車両(2026-09-27 Hiro 指示)"
         }
       },
       "group_id": "2074:3",
@@ -172,23 +172,24 @@
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "車両": {
-          "id": "nachikatsuura-K2-abst-vehicle-01",
-          "imageHash": "665daf151b2243ed74b4af832ed158884a4e4149",
+          "id": "nachikatsuura-K2-abst-vehicle-04",
+          "imageHash": "5baaff4f7add6c77fcd33b936ee8fcaac6e607cd",
           "nodeId": "2078:5",
           "px": [
-            2055,
-            1342
+            1562,
+            899
           ],
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
             "suggested_px": [
               360,
-              235
+              207
             ]
           },
-          "effective_dpi": 825,
-          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
+          "effective_dpi": 627,
+          "route": "Hiro 手動生成の JPN タクシー型を PIL でアクセント色置換",
+          "note": "4 系統共通の車両(2026-09-27 Hiro 指示)"
         }
       },
       "group_id": "2078:7",
@@ -263,23 +264,24 @@
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "車両": {
-          "id": "noboribetsu-K2-abst-vehicle-01",
-          "imageHash": "ce3040a0ff32795585ff2699ed59d5d248295590",
+          "id": "noboribetsu-K2-abst-vehicle-04",
+          "imageHash": "bffea960776d729efc8cf851698a0908a7098ae7",
           "nodeId": "2082:2",
           "px": [
-            2050,
-            1295
+            1562,
+            899
           ],
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
             "suggested_px": [
               360,
-              227
+              207
             ]
           },
-          "effective_dpi": 823,
-          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
+          "effective_dpi": 627,
+          "route": "Hiro 手動生成の JPN タクシー型を PIL でアクセント色置換",
+          "note": "4 系統共通の車両(2026-09-27 Hiro 指示)"
         }
       },
       "group_id": "2082:4",
@@ -355,23 +357,24 @@
           "route": "gemini-app(Hiro 手動)、4K JPEG 受領→長辺 3300 に縮小(10MB 上限)"
         },
         "車両": {
-          "id": "mitt-K2-abst-vehicle-01",
-          "imageHash": "d1a38389e8af3df700dd160ad46f40e0a1689384",
+          "id": "mitt-K2-abst-vehicle-02",
+          "imageHash": "22c5caf4f4f0a7ee4b4d39fbee2b3029816333da",
           "nodeId": "2087:2",
           "px": [
-            1999,
-            1271
+            1562,
+            899
           ],
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
             "suggested_px": [
               360,
-              229
+              207
             ]
           },
-          "effective_dpi": 803,
-          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
+          "effective_dpi": 627,
+          "route": "Hiro 手動生成の JPN タクシー型",
+          "note": "4 系統共通の車両(2026-09-27 Hiro 指示)"
         }
       },
       "group_id": "2088:3",
