@@ -1,0 +1,94 @@
+Create a single illustration of a white community ride-share taxi: a box-shaped Japanese minivan, right-hand drive, seen from the front-left so that the left-side sliding door is visible. White body with one accent stripe. Blank license plate shape. A small roof sign with no text.
+
+Use the attached reference image as the PRIMARY visual reference for the artistic style and level of abstraction.
+
+The most important requirement is the LEVEL OF SIMPLIFICATION.
+
+The subject must be highly abstracted and graphically simplified.
+
+Do NOT draw a detailed illustration.
+Do NOT draw realistic anatomy or realistic mechanical detail.
+Do NOT carefully render faces, hands, clothing, hair, shoes, or vehicle parts.
+
+Instead, treat the entire subject as a small collection of bold, simple graphic shapes.
+
+ABSTRACTION:
+- simplify the van into a few large geometric shapes (body, roof, windows, wheels)
+- windows as one or two flat shapes
+- wheels as simple circles
+- grille as one simple shape or two lines
+- headlights as one simple shape each
+- no door handles, mirrors, wipers, badges, trim lines, panel gaps, reflections or chrome
+- the driver, if visible, is a single flat silhouette
+- the taxi roof sign is a small simple shape with no text
+
+The vehicle should be understood primarily through SILHOUETTE and COLOR BLOCKING,
+not through mechanical detail.
+
+The subject should look intentionally designed and abstract,
+not like a realistic subject that has been simplified afterward.
+
+Think:
+"graphic shapes representing the subject"
+rather than
+"an illustrated subject."
+
+STYLE:
+- highly simplified editorial illustration
+- flat graphic shapes
+- limited visual information
+- bold areas of solid color
+- minimal linework
+- clean but slightly organic shapes
+- distinctive artistic character
+- playful and sophisticated
+- slightly quirky
+- contemporary
+- not cute
+- not realistic
+- not corporate
+- not clip-art
+- not a typical Japanese municipal illustration
+- no gradients, no texture, no shading, no highlights
+
+The reference image should influence the visual language,
+especially its abstraction, simplicity, shape design, color blocking,
+and unconventional graphic feeling.
+
+Do NOT copy the reference image's characters or poses.
+
+COLOR:
+Use a restrained, sophisticated palette.
+Use #EB6EA5 as an accent color.
+Use muted navy, olive, warm off-white and natural skin tones.
+Avoid bright generic colors.
+
+COMPOSITION:
+- one vehicle only
+- whole vehicle
+- centered
+- generous negative space
+- 4:3 horizontal 
+- entire subject visible
+- do not touch the edges
+
+BACKGROUND:
+completely uniform pure green #00FF00.
+No environment.
+No floor.
+No shadow.
+No furniture.
+No scenery.
+
+No text, logo, license-plate characters, QR code, numbers, watermark or border.
+No maker emblem. Do not resemble a real person, a real store, or a real car model.
+
+IMPORTANT:
+The final illustration should contain FEWER visual details than a normal flat illustration.
+
+When deciding whether to add a detail, remove it unless it is essential for recognizing the subject or action.
+
+Prioritize:
+SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
+
+The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.

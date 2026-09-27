@@ -23,7 +23,10 @@ from pathlib import Path
 
 import requests
 
+from prompt_abst import abst_prompt
+
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 LIB = ROOT / "docs/library"
 MASKS = LIB / "masks"
 LEDGER = LIB / "ledger.csv"
@@ -64,7 +67,14 @@ YURU_DESC = ("『ゆるい線画のビジネスイラスト』(日本の自治�
              "服は 1 色のベタ+輪郭線で、しわ線・柄・ボタン・縫い目を描かない。1 人あたり色は 5 色以内(肌・髪・上衣・下衣・靴)。"
              "情報量はピクトグラムより少し豊かで、アニメ・劇画・ストックイラストよりはるかに単純。"
              "English: simple flat line-art character, dot eyes, no nose, one-line mouth, solid single-color hair, mitten hands, 4.5-head proportions, uniform outline, flat fills, no shading, no texture, minimal detail.")
+ABST_PALETTE = {
+    "aitoma": ("#EB6EA5", "Use muted navy, olive, warm off-white and natural skin tones."),
+    "nachikatsuura": ("#1B98D0", "Use muted navy, sand, warm off-white and natural skin tones."),
+    "noboribetsu": ("#D7835F", "Use muted dark brown #513A1E, olive, cream off-white and natural skin tones."),
+    "mitt": ("#254F99", "Use brand blue #258FC2, deep navy #143747, soft yellow #F9F27F, off-white and natural skin tones. Stay within this brand palette."),
+}
 STYLES = {
+    "abst": dict(label="抽象グラフィック(Hiro 提供プロンプト)", desc="(prompt_abst.py の英語プロンプトを使用)"),
     "yuru": dict(
         label="ゆるい線画(参照準拠)",
         desc=YURU_DESC + " 輪郭は均一な細さの黒線(#231815)で閉じる。線の強弱なし。塗りは均一で、影・ハイライト・グラデーション・質感なし。",
@@ -135,6 +145,8 @@ AI_REALISM_BANS = ("次の要素は『AI が描いたリアル寄りの質感』
 
 def person_prompt(fam, sty, variant):
     f, s = FAMILIES[fam], STYLES[sty]
+    if sty == "abst":
+        return abst_prompt(f"person-{variant:02d}", *ABST_PALETTE[fam])
     if sty.startswith("yuru"):
         who = {
             1: "70代の女性が1人。受話器を耳に当てて、にこやかに予約の電話をしている立ち姿(全身)。年齢は白髪ではなく、落ち着いた髪色(灰茶)と服(カーディガン)と少し前かがみの姿勢で表す。",
@@ -169,6 +181,8 @@ def person_prompt(fam, sty, variant):
 
 def vehicle_prompt(fam, sty):
     f, s = FAMILIES[fam], STYLES[sty]
+    if sty == "abst":
+        return abst_prompt("vehicle-01", *ABST_PALETTE[fam])
     if sty.startswith("yuru"):
         return "\n".join([
             f"1. 役割: {ROLE}",
@@ -281,7 +295,8 @@ def build_jobs(ns):
                 if "bg" in only:
                     jobs.append(dict(id=f"{base}-bg-{ns.seq:02d}", kind="bg", family=fam, style=sty, prompt=bg_prompt(fam, sty),
                                      refs=[MASKS / "K2-mask-hero.png", chips], aspect="4:5", size=ns.size, out=LIB / "candidates"))
-                fg_refs = ([MASKS / "style-tile-person.png", chips] if sty.startswith("yuru") else [chips])
+                style_ref = Path(ns.style_ref) if ns.style_ref else MASKS / "style-tile-person.png"
+                fg_refs = ([style_ref, chips] if (sty.startswith("yuru") or sty == "abst") else [chips])
                 if "person" in only:
                     for v in (1, 2):
                         jobs.append(dict(id=f"{base}-person-{v + 2*(ns.seq-1):02d}", kind="fg_person", family=fam, style=sty, prompt=person_prompt(fam, sty, v),
@@ -314,6 +329,7 @@ def main():
     ap.add_argument("--styles")
     ap.add_argument("--ids")
     ap.add_argument("--seq", type=int, default=1, help="連番(2回目の生成は 2)")
+    ap.add_argument("--style-ref", help="スタイル参照画像のパス(自前の権利物のみ。既定は masks/style-tile-person.png)")
     ap.add_argument("--size", default="2K", choices=["1K", "2K", "4K"])
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--dry-run", action="store_true", help="API を呼ばずプロンプトだけ書き出す")
