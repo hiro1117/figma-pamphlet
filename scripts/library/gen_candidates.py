@@ -23,7 +23,7 @@ from pathlib import Path
 
 import requests
 
-from prompt_abst import abst_prompt
+from prompt_abst import abst_prompt, abst_bg_prompt
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -67,6 +67,12 @@ YURU_DESC = ("『ゆるい線画のビジネスイラスト』(日本の自治�
              "服は 1 色のベタ+輪郭線で、しわ線・柄・ボタン・縫い目を描かない。1 人あたり色は 5 色以内(肌・髪・上衣・下衣・靴)。"
              "情報量はピクトグラムより少し豊かで、アニメ・劇画・ストックイラストよりはるかに単純。"
              "English: simple flat line-art character, dot eyes, no nose, one-line mouth, solid single-color hair, mitten hands, 4.5-head proportions, uniform outline, flat fills, no shading, no texture, minimal detail.")
+ABST_BG_PALETTE = {
+    "aitoma": "Sky: flat pale pink #FFD8E3. Ridge: muted rose #EB6EA5 darkened slightly. Ground: warm off-white / very pale pink. Road: paper white. Only these colors.",
+    "nachikatsuura": "Sky: flat pale blue #E3F7FF. Ridge: sea blue #1B98D0. Ground: pale blue #76C1E3 or sand off-white. Road: paper white. Only these colors.",
+    "noboribetsu": "Sky: flat cream #F9F2DC. Ridge: terracotta #D7835F. Ground: pale yellow #FFF9B3 or cream. Road: paper white. Only these colors.",
+    "mitt": "Sky: flat brand blue #258FC2 (optionally a navy #254F99 band at the very top). Ridge: navy #143747. Ground: soft yellow #F9F27F. Road: white. Stay strictly within this brand palette.",
+}
 ABST_PALETTE = {
     "aitoma": ("#EB6EA5", "Use muted navy, olive, warm off-white and natural skin tones."),
     "nachikatsuura": ("#1B98D0", "Use muted navy, sand, warm off-white and natural skin tones."),
@@ -111,6 +117,8 @@ COMMON_BANS = ("文字・ロゴ・看板・QRコードや電話番号らしき�
 
 def bg_prompt(fam, sty):
     f, s = FAMILIES[fam], STYLES[sty]
+    if sty == "abst":
+        return abst_bg_prompt(ABST_BG_PALETTE[fam])
     if sty in ("thin", "noline"):
         return "\n".join([
             f"1. 役割: {ROLE}",
@@ -294,7 +302,7 @@ def build_jobs(ns):
                 chips = MASKS / FAMILIES[fam]["chips"]
                 if "bg" in only:
                     jobs.append(dict(id=f"{base}-bg-{ns.seq:02d}", kind="bg", family=fam, style=sty, prompt=bg_prompt(fam, sty),
-                                     refs=[MASKS / "K2-mask-hero.png", chips], aspect="4:5", size=ns.size, out=LIB / "candidates"))
+                                     refs=([] if sty == "abst" else [MASKS / "K2-mask-hero.png", chips]), aspect="4:5", size=ns.size, out=LIB / "candidates"))
                 style_ref = Path(ns.style_ref) if ns.style_ref else MASKS / "style-tile-person.png"
                 fg_refs = ([] if sty == "abst" else [style_ref, chips] if sty.startswith("yuru") else [chips])  # abst は参照画像なし
                 if "person" in only:

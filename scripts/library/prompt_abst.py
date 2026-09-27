@@ -110,17 +110,44 @@ VEHICLE_ABSTRACTION = """ABSTRACTION:
 The vehicle should be understood primarily through SILHOUETTE and COLOR BLOCKING,
 not through mechanical detail."""
 
+BG_SUBJECT = """Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
+
+The bottom 25% must be only road and ground (people and a vehicle will be placed in front later). Above the ridge there is only sky."""
+
+BG_ABSTRACTION = """ABSTRACTION:
+- treat the landscape as a few large flat color shapes stacked vertically
+- the ridge is one uninterrupted silhouette shape
+- the road is one or two simple shapes
+- houses and trees, if any, are tiny simple geometric shapes
+- no texture, no gradients, no shading, no atmospheric haze
+- no outlines, or only minimal uniform outlines"""
+
 SUBJECTS = {
     "person-01": "Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.",
     "person-02": "Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.",
     "vehicle-01": "Create a single illustration of a white community ride-share taxi: a box-shaped Japanese minivan, right-hand drive, seen from the front-left so that the left-side sliding door is visible. White body with one accent stripe. Blank license plate shape. A small roof sign with no text.",
 }
+COMPOSITION_BG = "- full-bleed landscape, no margins\n- generous empty sky and ground"
+
 COMPOSITION = {
     "person-01": "- one woman only\n- full body",
     "person-02": "- two people only\n- full body",
     "vehicle-01": "- one vehicle only\n- whole vehicle",
 }
 ASPECT = {"person-01": "3:4 vertical", "person-02": "3:4 vertical", "vehicle-01": "4:3 horizontal"}
+
+
+def abst_bg_prompt(family_colors):
+    body = ABST_STYLE.format(abstraction=BG_ABSTRACTION, accent="", palette_note=family_colors, composition=COMPOSITION_BG, aspect="4:5 vertical")
+    body = body.replace("Use  as an accent color.\n", "")
+    body = body.replace("""BACKGROUND:
+completely uniform pure green #00FF00.
+No environment.
+No floor.
+No shadow.
+No furniture.
+No scenery.""", "This image IS the background scenery; it must fill the whole frame edge to edge.")
+    return BG_SUBJECT + "\n\n" + body
 
 
 def abst_prompt(kind, accent_hex, palette_note):

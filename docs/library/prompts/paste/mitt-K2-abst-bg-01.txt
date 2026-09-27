@@ -1,0 +1,76 @@
+Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
+
+The bottom 25% must be only road and ground (people and a vehicle will be placed in front later). Above the ridge there is only sky.
+
+The most important requirement is the LEVEL OF SIMPLIFICATION.
+
+The subject must be highly abstracted and graphically simplified.
+
+Do NOT draw a detailed illustration.
+Do NOT draw realistic anatomy or realistic mechanical detail.
+Do NOT carefully render faces, hands, clothing, hair, shoes, or vehicle parts.
+
+Instead, treat the entire subject as a small collection of bold, simple graphic shapes.
+
+ABSTRACTION:
+- treat the landscape as a few large flat color shapes stacked vertically
+- the ridge is one uninterrupted silhouette shape
+- the road is one or two simple shapes
+- houses and trees, if any, are tiny simple geometric shapes
+- no texture, no gradients, no shading, no atmospheric haze
+- no outlines, or only minimal uniform outlines
+
+The subject should look intentionally designed and abstract,
+not like a realistic subject that has been simplified afterward.
+
+Think:
+"graphic shapes representing the subject"
+rather than
+"an illustrated subject."
+
+STYLE:
+- highly simplified editorial illustration
+- flat graphic shapes
+- limited visual information
+- bold areas of solid color
+- minimal linework
+- clean but slightly organic shapes
+- distinctive artistic character
+- playful and sophisticated
+- slightly quirky
+- contemporary
+- not cute
+- not realistic
+- not corporate
+- not clip-art
+- not a typical Japanese municipal illustration
+- no gradients, no texture, no shading, no highlights
+
+COLOR:
+Use a restrained, sophisticated palette.
+Sky: flat brand blue #258FC2 (optionally a navy #254F99 band at the very top). Ridge: navy #143747. Ground: soft yellow #F9F27F. Road: white. Stay strictly within this brand palette.
+Avoid bright generic colors.
+
+COMPOSITION:
+- full-bleed landscape, no margins
+- generous empty sky and ground
+- centered
+- generous negative space
+- 4:5 vertical 
+- entire subject visible
+- do not touch the edges
+
+This image IS the background scenery; it must fill the whole frame edge to edge.
+
+No text, logo, license-plate characters, QR code, numbers, watermark or border.
+No maker emblem. Do not resemble a real person, a real store, or a real car model.
+
+IMPORTANT:
+The final illustration should contain FEWER visual details than a normal flat illustration.
+
+When deciding whether to add a detail, remove it unless it is essential for recognizing the subject or action.
+
+Prioritize:
+SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
+
+The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
