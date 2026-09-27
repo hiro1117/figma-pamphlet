@@ -58,7 +58,21 @@ FAMILIES = {
         chips="chips-mitt.png",
     ),
 }
+YURU_DESC = ("『ゆるい線画のビジネスイラスト』(日本の自治体広報でよく使われる、人が描いた簡略イラスト)。"
+             "頭身は 4.5〜5(頭が大きく手足は細く短い)。顔の輪郭は丸く、目は小さな黒い点 2 つだけ(白目・まつげ・ハイライト・二重線なし)、鼻は描かない、口は短い線 1 本(笑顔は上向きの弧)、眉は省略。頬紅・しわ・ほうれい線なし。"
+             "髪は 1 色のベタ塗りの塊で毛束・毛流れ・ツヤを描かない。手は指を描かない丸い塊(ミトン)。首・関節・筋肉を描かない。"
+             "服は 1 色のベタ+輪郭線で、しわ線・柄・ボタン・縫い目を描かない。1 人あたり色は 5 色以内(肌・髪・上衣・下衣・靴)。"
+             "情報量はピクトグラムより少し豊かで、アニメ・劇画・ストックイラストよりはるかに単純。"
+             "English: simple flat line-art character, dot eyes, no nose, one-line mouth, solid single-color hair, mitten hands, 4.5-head proportions, uniform outline, flat fills, no shading, no texture, minimal detail.")
 STYLES = {
+    "yuru": dict(
+        label="ゆるい線画(参照準拠)",
+        desc=YURU_DESC + " 輪郭は均一な細さの黒線(#231815)で閉じる。線の強弱なし。塗りは均一で、影・ハイライト・グラデーション・質感なし。",
+    ),
+    "yuru_noline": dict(
+        label="ゆるい線なしフラット(MITT 参照準拠)",
+        desc=YURU_DESC + " 輪郭線は一切使わず、均一なベタ塗りの色面だけで形を作る。影・ハイライト・グラデーション・質感なし。",
+    ),
     "thin": dict(
         label="フラット・細い均一線(テンプレ準拠)",
         desc="日本の自治体パンフレットで使われるシンプルなフラットイラスト。輪郭は均一で細い #231815 の線(画面幅の約0.3%の太さ)、塗りは均一なベタ塗りのみ。影・ハイライト・グラデーション・紙の質感・線の強弱を一切つけない。形は単純化し、細部を描き込まない。色は指定パレットの濃・淡 2 段と紙白、肌色、黒だけに限定する",
@@ -115,8 +129,27 @@ def bg_prompt(fam, sty):
     ])
 
 
+AI_REALISM_BANS = ("次の要素は『AI が描いたリアル寄りの質感』になるため絶対に描かない: 6 頭身以上の写実的な体型、白目・まつげ・ハイライト・二重のある目、鼻筋・小鼻、頬の赤み・しわ・ほうれい線、"
+                   "毛束・毛流れ・ツヤのある髪、服のしわ・柄・ボタン・縫い目、指の描き分け、影・ハイライト・グラデーション、線の強弱・かすれ、アニメ調・劇画調・3D 調・ストックイラスト調の仕上げ、地面の線や影。")
+
+
 def person_prompt(fam, sty, variant):
     f, s = FAMILIES[fam], STYLES[sty]
+    if sty.startswith("yuru"):
+        who = {
+            1: "70代の女性が1人。受話器を耳に当てて、にこやかに予約の電話をしている立ち姿(全身)。年齢は白髪ではなく、落ち着いた髪色(灰茶)と服(カーディガン)と少し前かがみの姿勢で表す。",
+            2: "70代の男性と、その娘とみられる40代の女性の2人。娘が父の腕に軽く手を添えて並んで立つ姿(全身)。2人とも口は笑顔の弧。",
+        }[variant]
+        return "\n".join([
+            f"1. 役割: {ROLE}",
+            f"2. {PROJECT_GENERIC}",
+            f"3. 必須要素(前景の切り出し素材): {who} 服装は今の日本の普段着(カーディガン、ブラウス、スラックス、スニーカー)。着物・杖・白髪で高齢者を記号化しない。人物は画面中央にひとかたまりで配置し、画面端に触れさせない。",
+            f"4. 因子: 描法 = {s['label']}: {s['desc']} 色: 肌は薄いベージュ 1 色、服の 1 か所に {f['palette'].split('、')[0]}、他は {f['label']}の淡色・紙白・黒・灰茶のみ。",
+            f"5. 制約: {AI_REALISM_BANS} 背景は必ず完全に均一なベタ塗りの #00FF00(純緑)のみ(白や他の色の背景は不可)。地面・床・影・机・椅子・電話機本体・小物・景色を一切描かない(受話器は手に持つものだけ)。"
+            f"画像比率は 3:4。{COMMON_BANS}",
+            "6. 参照: 添付1 = スタイル見本(幾何図形で描いた人物図。頭身・点目・ミトンの手・単色ベタ・均一線という『作り』だけを真似る。ポーズや服の形は真似なくてよい)、添付2 = 色チップ。",
+            "7. 出力: 1枚の PNG。文字なし。",
+        ])
     who = {
         1: "70代の女性が1人。自宅の玄関先で、少し身を乗り出して固定電話の受話器(またはスマートフォン)を耳に当て、穏やかに笑って予約の電話をしている全身像。",
         2: "70代の男性と、その娘とみられる40代の女性の2人。乗合タクシーに乗り込もうとして、娘が父の手を軽く支えている全身像。表情は明るくリラックス。",
@@ -136,6 +169,19 @@ def person_prompt(fam, sty, variant):
 
 def vehicle_prompt(fam, sty):
     f, s = FAMILIES[fam], STYLES[sty]
+    if sty.startswith("yuru"):
+        return "\n".join([
+            f"1. 役割: {ROLE}",
+            f"2. {PROJECT_GENERIC}",
+            "3. 必須要素(前景の切り出し素材): 乗合タクシーの車両 1 台を、子ども向け絵本のように数本の線で単純化した箱型の白いワゴン(ミニバン)として描く。日本仕様の右ハンドル・左側通行。"
+            "斜め前(車の左前が見える向き。左側のスライドドアが見える)から見た全体像。窓は 1 色のベタ、タイヤは黒い丸+灰の円、グリルは横線 2 本、ヘッドライトは単純な形 1 つ。"
+            "ドアハンドル・ミラー・ワイパー・ナンバープレートの文字・エンブレム・ラッピング・ロゴは描かない(ナンバープレートは無地の小さな矩形)。運転席の人物は黒いシルエット 1 つ。",
+            f"4. 因子: 描法 = {s['label']}: {s['desc']} 色: 車体は白、窓は {f['label']}の淡色、ドアの帯に {f['palette'].split('、')[0]} を 1 本。車両全体で 5 色以内。",
+            f"5. 制約: {AI_REALISM_BANS} 背景は完全に均一なベタ塗りの #00FF00(純緑)のみ。地面・影・道路・景色を一切描かない。車両は画面中央、画面端に触れさせない。"
+            f"画像比率は 4:3。{COMMON_BANS}",
+            "6. 参照: 添付1 = スタイル見本(幾何図形で描いた人物図。均一線・単色ベタという『作り』だけを真似る)、添付2 = 色チップ。",
+            "7. 出力: 1枚の PNG。文字なし。",
+        ])
     return "\n".join([
         f"1. 役割: {ROLE}",
         f"2. {PROJECT_GENERIC}",
@@ -235,13 +281,14 @@ def build_jobs(ns):
                 if "bg" in only:
                     jobs.append(dict(id=f"{base}-bg-{ns.seq:02d}", kind="bg", family=fam, style=sty, prompt=bg_prompt(fam, sty),
                                      refs=[MASKS / "K2-mask-hero.png", chips], aspect="4:5", size=ns.size, out=LIB / "candidates"))
+                fg_refs = ([MASKS / "style-tile-person.png", chips] if sty.startswith("yuru") else [chips])
                 if "person" in only:
                     for v in (1, 2):
                         jobs.append(dict(id=f"{base}-person-{v + 2*(ns.seq-1):02d}", kind="fg_person", family=fam, style=sty, prompt=person_prompt(fam, sty, v),
-                                         refs=[chips], aspect="3:4", size=ns.size, out=LIB / "candidates"))
+                                         refs=fg_refs, aspect="3:4", size=ns.size, out=LIB / "candidates"))
                 if "vehicle" in only:
                     jobs.append(dict(id=f"{base}-vehicle-{ns.seq:02d}", kind="fg_vehicle", family=fam, style=sty, prompt=vehicle_prompt(fam, sty),
-                                     refs=[chips], aspect="4:3", size=ns.size, out=LIB / "candidates"))
+                                     refs=fg_refs, aspect="4:3", size=ns.size, out=LIB / "candidates"))
     elif ns.stage == "master":
         if not ns.ids:
             sys.exit("--ids に採用した基底案 id(例 aitoma-K2-hand-bg-01)を指定してください")
