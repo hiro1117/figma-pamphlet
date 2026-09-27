@@ -1,0 +1,297 @@
+{
+  "schema_version": "tone/3",
+  "meta": {
+    "template_family": "登別系",
+    "sheet": {
+      "size_mm": [
+        297,
+        420
+      ],
+      "fold": "half_then_roll3",
+      "px_per_mm": 5.69
+    },
+    "faces": {
+      "cover": {
+        "name": "表1",
+        "size_mm": [
+          99,
+          210
+        ],
+        "position": "top_right",
+        "rotated_in_frame": false
+      },
+      "back": {
+        "name": "表4",
+        "size_mm": [
+          99,
+          210
+        ],
+        "rotated_in_frame": true
+      }
+    },
+    "fold_lines_px": {
+      "x": [
+        563.7,
+        1127.3
+      ],
+      "y": [
+        1196
+      ]
+    },
+    "bottom_row_rotated": true,
+    "locked": {
+      "brand_palette": false,
+      "body_typography": true,
+      "fold_and_bleed": true,
+      "fixed_blocks": [
+        "発行者情報",
+        "電話ブロック",
+        "QR"
+      ]
+    },
+    "library": {
+      "base_id": "noboribetsu-K2-thin-01",
+      "background_image": "noboribetsu-K2-thin-bg-01",
+      "regional_motif_id": null
+    }
+  },
+  "direction": {
+    "label": "テンプレ準拠フラット",
+    "one_liner": "平坦な空と稜線1本の静かな里山に、細線フラットの人物と白いワゴン",
+    "mood_words": [
+      "静か",
+      "見やすい",
+      "ご近所"
+    ]
+  },
+  "composition": {
+    "cover_preset": "K2_top_visual",
+    "hero": {
+      "area_ratio_of_face": 0.581,
+      "bleed_sides": [
+        "top",
+        "right"
+      ],
+      "crop_focus": "person_and_vehicle",
+      "horizon_ratio": 0.4
+    },
+    "title": {
+      "placement": "bottom_left",
+      "align": "left",
+      "scale": 1.0,
+      "max_width_ratio": 0.7
+    },
+    "cta_block": {
+      "placement": "bottom_right",
+      "panel": "solid"
+    },
+    "margin_scale": "normal"
+  },
+  "palette": {
+    "roles": {
+      "ground": "#F9F2DC",
+      "main": "#A56549",
+      "main_tint": "#FFF9B3",
+      "panel": "#FFFFFF",
+      "ink": "#000000",
+      "cta": "#734633",
+      "cta_text": "#FFFFFF",
+      "accent_decor": "#513A1E"
+    },
+    "cta_slots": [
+      "#電話",
+      "#CTA"
+    ],
+    "accent_decor_slots": [
+      "#バッジ"
+    ],
+    "illustration_palette": [
+      "#D7835F",
+      "#FFF9B3",
+      "#F9F2DC",
+      "#FFFFFF",
+      "#231815"
+    ],
+    "print": {
+      "max_saturation_large_fill": 0.8,
+      "min_tint_pct": 5,
+      "gradients_allowed": false
+    },
+    "contrast_check": {
+      "main_vs_white": 4.61,
+      "cta_vs_ground": 7.07,
+      "cta_vs_white": 7.92
+    }
+  },
+  "typography": {
+    "headline_preset": "H1_round_black_horizontal_2tone",
+    "headline": {
+      "family": "Zen Maru Gothic",
+      "weight": "Black",
+      "line_height": 1.25,
+      "tracking_pct": -2,
+      "treatment": "solid_on_panel",
+      "two_tone": {
+        "enabled": true,
+        "colors": [
+          "#000000",
+          "#A56549"
+        ],
+        "apply_to": "service_name"
+      },
+      "effects": {
+        "outline": {
+          "enabled": false,
+          "max_ratio_of_size": 0.06
+        },
+        "shadow": {
+          "enabled": false
+        }
+      }
+    },
+    "numerals": {
+      "family": "Noto Sans JP",
+      "weight": "Black",
+      "phone_min_ratio_to_body": 3.0,
+      "tilt": "none"
+    },
+    "body": {
+      "locked_by_template": true,
+      "allowed_families": [
+        "Noto Sans JP",
+        "BIZ UDPGothic"
+      ],
+      "min_pt": 12
+    }
+  },
+  "decoration": {
+    "signature_element": "none",
+    "budget": {
+      "max_devices_per_face": 3,
+      "max_shape_patterns": 3
+    },
+    "corner_radius_mm": {
+      "small": 2,
+      "large": 6
+    },
+    "shadow_policy": "none",
+    "background": {
+      "type": "flat",
+      "gradient": null
+    },
+    "no_go_zones": [
+      "fold_8mm",
+      "trim_3mm",
+      "body_text_boxes",
+      "phone_and_qr"
+    ]
+  },
+  "illustration": {
+    "source_policy": "single_source",
+    "source": "library_nbp_master_2k",
+    "style": {
+      "rendering": "flat_vector_thin_outline",
+      "outline_mm": 0.5,
+      "shading": "none",
+      "background": "transparent"
+    },
+    "subjects": [
+      {
+        "id": "hero_person",
+        "desc": "70代女性、受話器を持って穏やかに笑う(person-01)/ 70代男性と娘、乗車の手助け(person-02)",
+        "facing": "toward_cta",
+        "placeholder": "#人物"
+      },
+      {
+        "id": "vehicle",
+        "desc": "白いワゴン型乗合タクシー、右ハンドル",
+        "placeholder": "#車両"
+      },
+      {
+        "id": "local_motif",
+        "desc": "(地域レイヤー) 案件ごとに差し替え",
+        "placeholder": "#地域モチーフ",
+        "placement": "hero_horizon"
+      }
+    ],
+    "min_effective_dpi": 200,
+    "photos": {
+      "allowed": true,
+      "use": "実車・実風景のみ。中面の信頼ブロック限定。イラストと同一面に混ぜない"
+    }
+  },
+  "avoid": {
+    "generation": [
+      "3d_pixar_render",
+      "glossy_skin",
+      "left_hand_drive",
+      "kimono_elderly",
+      "cane_white_hair_only",
+      "fuji_sakura_torii_mix",
+      "fake_logos_qr_digits",
+      "english_heavy",
+      "photo_realism",
+      "purple_blue_gradient",
+      "hand_drawn_watercolor"
+    ],
+    "layout": [
+      "multiple_text_effects_on_one_text",
+      "tilted_body_or_numbers",
+      "text_over_image_without_panel",
+      "rainbow_or_diagonal_gradient_bg",
+      "more_than_2_font_families",
+      "exclamation_star_overuse",
+      "box_everything",
+      "reversed_white_small_text"
+    ]
+  },
+  "provenance": {
+    "meta.sheet": "rule",
+    "meta.faces": "rule",
+    "composition.cover_preset": "default",
+    "composition.hero.horizon_ratio": "image",
+    "palette.roles.ground": "image",
+    "palette.roles.main": "rule",
+    "palette.roles.main_tint": "image",
+    "palette.roles.cta": "rule",
+    "palette.roles.accent_decor": "image",
+    "typography.headline.family": "default",
+    "decoration.signature_element": "default",
+    "illustration.style": "image",
+    "direction": "brief"
+  },
+  "consumers": {
+    "figma_conversion": [
+      "composition",
+      "palette.roles",
+      "typography.headline",
+      "typography.numerals",
+      "decoration",
+      "illustration.subjects"
+    ],
+    "illustration_brief": [
+      "illustration",
+      "palette.illustration_palette",
+      "avoid.generation",
+      "direction.mood_words"
+    ],
+    "preflight": [
+      "meta.sheet",
+      "meta.fold_lines_px",
+      "palette.print",
+      "typography.body",
+      "typography.headline.effects",
+      "decoration.budget",
+      "decoration.no_go_zones",
+      "illustration.min_effective_dpi",
+      "avoid.layout"
+    ],
+    "evaluator_pass2_R5": [
+      "direction",
+      "palette.roles",
+      "typography.headline",
+      "illustration.style",
+      "provenance"
+    ]
+  }
+}

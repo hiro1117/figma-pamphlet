@@ -20,7 +20,7 @@ def main():
     ap.add_argument("--out")
     ap.add_argument("--cell", type=int, default=520)
     ns = ap.parse_args()
-    pat = re.compile(r"^(?P<fam>[a-z]+)-K2-(?P<sty>hand|flat)-(?P<kind>[a-z]+)-(?P<n>\d+)\.png$")
+    pat = re.compile(r"^(?P<fam>[a-z]+)-K2-(?P<sty>hand|flat|thin|noline)-(?P<kind>[a-z]+)-(?P<n>\d+)\.png$")
     files = []
     for p in sorted(CAND.glob("*.png")):
         if p.name.startswith("_"):
