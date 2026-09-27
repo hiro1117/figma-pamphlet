@@ -117,3 +117,7 @@
 - 素材ページの最終構成: `ライブラリ/あいとま系` 2074:3 / `ライブラリ/那智勝浦系` 2078:7 / `ライブラリ/登別系` 2082:4 / `ライブラリ/MITT系` 2088:3(各 ラベル+4 素材+非表示 `#tone`)、`案件/くらぶち` 2068:16、`検証/<系統>_K2組み` ×4。旧グループは削除済み
 - 前景配置規則(人物左・高さ 380、車両右端・幅 ≤300、重なりなし)は library-v0.json `verifications.layout_rule` と decisions.md に記録。B.1 本組み(H(a))の既定にする
 - 引き継ぎ: `docs/library/final/` が Figma と同じ内容の原本。再投入は `upload_assets` → curl → `use_figma`(手順は本レポート上部)。車両の色替えは `docs/library/final/mitt-K2-abst-vehicle-02.png` からアクセント色置換(PIL、青支配・b>120・g>90 マスク)
+
+## 2026-09-27 不採用画像の削除
+- 台帳で rejected のみ、かつ library-v0.json に出てこない id の画像 75 ファイル(candidates/ 62・final/ 13、約 194MB)を削除。台帳の行とプロンプトは残す(output_file は削除済みのパスを指す)
+- 台帳の kurabuchi-haruna-aitoma-thin-03 が rejected になっていたため adopted に訂正
