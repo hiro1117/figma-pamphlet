@@ -376,20 +376,19 @@
     "noboribetsu": {
       "label": "登別系",
       "number": 3,
-      "base_id": "noboribetsu-K2-thin-01",
-      "style": "thin",
-      "tone_json": "docs/library/tone/noboribetsu-K2-thin-01.json",
+      "base_id": "noboribetsu-K2-abst-01",
+      "style": "abst",
+      "tone_json": "docs/library/tone/noboribetsu-K2-abst-01.json",
       "group_name": "ライブラリ/登別系",
       "assets": {
         "background": {
-          "id": "noboribetsu-K2-thin-bg-01",
-          "imageHash": "6f93854c4a58cd7bb2cc1c1796e45ffc6fb9c47e",
-          "nodeId": "2066:15",
+          "id": "noboribetsu-K2-abst-bg-01",
+          "imageHash": "83e0a59f7e2460afa7a092a4cb652ca908028054",
+          "nodeId": "2081:2",
           "px": [
-            1856,
-            2304
+            1792,
+            2400
           ],
-          "bytes": 1371139,
           "placement": {
             "target": "#キービジュアル",
             "scaleMode": "CROP",
@@ -398,69 +397,160 @@
               711
             ]
           },
-          "effective_dpi": 463
+          "effective_dpi": 447,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物A": {
-          "id": "noboribetsu-K2-thin-person-01",
-          "imageHash": "4f400e6e9cefa9ac5cbe252257948ae3049cacec",
-          "nodeId": "2066:16",
+          "id": "noboribetsu-K2-abst-person-01",
+          "imageHash": "bb899c6050cf4770ee3a5eb964bd2752efdd944d",
+          "nodeId": "2081:3",
           "px": [
-            715,
-            2034
+            815,
+            2056
           ],
-          "bytes": 1340749,
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
             "suggested_px": [
-              148,
+              167,
               420
             ]
           },
-          "effective_dpi": 699
+          "effective_dpi": 706,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物B": {
-          "id": "noboribetsu-K2-thin-person-02",
-          "imageHash": "ad7f723edbd77434e89a2e432e7e4a8160427b0b",
-          "nodeId": "2066:17",
+          "id": "noboribetsu-K2-abst-person-02",
+          "imageHash": "7c6c2338a5079122d87f9e5bed32e3901723d06f",
+          "nodeId": "2081:4",
           "px": [
-            1440,
-            2066
+            1216,
+            2007
           ],
-          "bytes": 3037219,
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
             "suggested_px": [
-              293,
+              254,
               420
             ]
           },
-          "effective_dpi": 711
+          "effective_dpi": 692,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "車両": {
-          "id": "noboribetsu-K2-thin-vehicle-02",
-          "imageHash": "af523e96fffd2c46a617ca14e2ee48d4792d54c2",
-          "nodeId": "2066:18",
+          "id": "noboribetsu-K2-abst-vehicle-01",
+          "imageHash": "ce3040a0ff32795585ff2699ed59d5d248295590",
+          "nodeId": "2082:2",
           "px": [
-            2065,
-            1177
+            2050,
+            1295
           ],
-          "bytes": 2330489,
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
             "suggested_px": [
               360,
-              205
+              227
             ]
           },
-          "effective_dpi": 829
+          "effective_dpi": 823,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         }
       },
-      "group_id": "2068:10",
-      "label_node_id": "2068:8",
-      "tone_node_id": "2068:9"
+      "group_id": "2082:4",
+      "label_node_id": "2082:3",
+      "tone_node_id": null,
+      "status": "candidate(Hiro 確認待ち)",
+      "route": "gemini-app (Google AI Pro)",
+      "legacy_thin": {
+        "base_id": "noboribetsu-K2-thin-01",
+        "style": "thin",
+        "tone_json": "docs/library/tone/noboribetsu-K2-thin-01.json",
+        "group_name": "ライブラリ/登別系",
+        "group_id": "2068:10",
+        "label_node_id": "2068:8",
+        "tone_node_id": "2068:9",
+        "assets": {
+          "background": {
+            "id": "noboribetsu-K2-thin-bg-01",
+            "imageHash": "6f93854c4a58cd7bb2cc1c1796e45ffc6fb9c47e",
+            "nodeId": "2066:15",
+            "px": [
+              1856,
+              2304
+            ],
+            "bytes": 1371139,
+            "placement": {
+              "target": "#キービジュアル",
+              "scaleMode": "CROP",
+              "frame_px": [
+                580,
+                711
+              ]
+            },
+            "effective_dpi": 463
+          },
+          "人物A": {
+            "id": "noboribetsu-K2-thin-person-01",
+            "imageHash": "4f400e6e9cefa9ac5cbe252257948ae3049cacec",
+            "nodeId": "2066:16",
+            "px": [
+              715,
+              2034
+            ],
+            "bytes": 1340749,
+            "placement": {
+              "target": "#人物",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                148,
+                420
+              ]
+            },
+            "effective_dpi": 699
+          },
+          "人物B": {
+            "id": "noboribetsu-K2-thin-person-02",
+            "imageHash": "ad7f723edbd77434e89a2e432e7e4a8160427b0b",
+            "nodeId": "2066:17",
+            "px": [
+              1440,
+              2066
+            ],
+            "bytes": 3037219,
+            "placement": {
+              "target": "#人物",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                293,
+                420
+              ]
+            },
+            "effective_dpi": 711
+          },
+          "車両": {
+            "id": "noboribetsu-K2-thin-vehicle-02",
+            "imageHash": "af523e96fffd2c46a617ca14e2ee48d4792d54c2",
+            "nodeId": "2066:18",
+            "px": [
+              2065,
+              1177
+            ],
+            "bytes": 2330489,
+            "placement": {
+              "target": "#車両",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                360,
+                205
+              ]
+            },
+            "effective_dpi": 829
+          }
+        },
+        "status": "rejected(thin 版、#旧 に改名)"
+      }
     },
     "mitt": {
       "label": "MITT系",
