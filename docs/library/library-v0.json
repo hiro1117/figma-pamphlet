@@ -33,7 +33,7 @@
               488,
               398
             ],
-            "note": "2K 縦長(1792×2400)を横長枠に CROP: 幅で合わせ上下を切る(表示は上端から縦 61%)"
+            "note": "2K 縦長(1792×2400)を横長枠 488×398 に CROP: 幅で合わせ、縦は 61% だけ表示。稜線がモチーフ帯(枠上端から 53%)に来るよう imageTransform の縦オフセットを tone.json の horizon_ratio から決める"
           },
           "effective_dpi": 531,
           "route": "gemini-app 画像モード(Claude in Chrome で自動操作)、2K JPEG 受領",
@@ -102,7 +102,8 @@
       "label_node_id": "2074:2",
       "tone_node_id": "2077:2",
       "status": "adopted 2026-09-27",
-      "route": "gemini-app (Google AI Pro)"
+      "route": "gemini-app (Google AI Pro)",
+      "k2b_horizon_pct": 53
     },
     "nachikatsuura": {
       "label": "那智勝浦系",
@@ -127,7 +128,7 @@
               488,
               329
             ],
-            "note": "2K 縦長(1792×2400)を横長枠に CROP: 幅で合わせ上下を切る(表示は上端から縦 50%)"
+            "note": "2K 縦長(1792×2400)を横長枠 488×329 に CROP: 幅で合わせ、縦は 50% だけ表示。稜線がモチーフ帯(枠上端から 64%)に来るよう imageTransform の縦オフセットを tone.json の horizon_ratio から決める"
           },
           "effective_dpi": 531,
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
@@ -195,7 +196,8 @@
       "label_node_id": "2078:6",
       "tone_node_id": "2089:2",
       "status": "adopted 2026-09-27",
-      "route": "gemini-app (Google AI Pro)"
+      "route": "gemini-app (Google AI Pro)",
+      "k2b_horizon_pct": 64
     },
     "noboribetsu": {
       "label": "登別系",
@@ -220,7 +222,7 @@
               488,
               354
             ],
-            "note": "2K 縦長(1792×2400)を横長枠に CROP: 幅で合わせ上下を切る(表示は上端から縦 54%)"
+            "note": "2K 縦長(1792×2400)を横長枠 488×354 に CROP: 幅で合わせ、縦は 54% だけ表示。稜線がモチーフ帯(枠上端から 66%)に来るよう imageTransform の縦オフセットを tone.json の horizon_ratio から決める"
           },
           "effective_dpi": 531,
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
@@ -288,7 +290,8 @@
       "label_node_id": "2082:3",
       "tone_node_id": "2089:3",
       "status": "adopted 2026-09-27",
-      "route": "gemini-app (Google AI Pro)"
+      "route": "gemini-app (Google AI Pro)",
+      "k2b_horizon_pct": 66
     },
     "mitt": {
       "label": "MITT系",
@@ -313,7 +316,7 @@
               488,
               500
             ],
-            "note": "2K 縦長(1792×2400)を横長枠に CROP: 幅で合わせ上下を切る(表示は上端から縦 77%)"
+            "note": "2K 縦長(1792×2400)を横長枠 488×500 に CROP: 幅で合わせ、縦は 77% だけ表示。稜線がモチーフ帯(枠上端から 58%)に来るよう imageTransform の縦オフセットを tone.json の horizon_ratio から決める"
           },
           "effective_dpi": 531,
           "route": "gemini-app(Hiro 手動)、2K JPEG 受領",
@@ -382,7 +385,8 @@
       "label_node_id": "2088:2",
       "tone_node_id": "2089:4",
       "status": "adopted 2026-09-27",
-      "route": "gemini-app (Google AI Pro)"
+      "route": "gemini-app (Google AI Pro)",
+      "k2b_horizon_pct": 58
     }
   },
   "projects": {
