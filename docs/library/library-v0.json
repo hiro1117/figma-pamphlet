@@ -195,7 +195,7 @@
       "group_id": "2078:7",
       "label_node_id": "2078:6",
       "tone_node_id": "2089:2",
-      "status": "candidate(Hiro 確認待ち)",
+      "status": "adopted 2026-09-27",
       "route": "gemini-app (Google AI Pro)"
     },
     "noboribetsu": {
@@ -287,7 +287,7 @@
       "group_id": "2082:4",
       "label_node_id": "2082:3",
       "tone_node_id": "2089:3",
-      "status": "candidate(Hiro 確認待ち)",
+      "status": "adopted 2026-09-27",
       "route": "gemini-app (Google AI Pro)"
     },
     "mitt": {
@@ -380,7 +380,7 @@
       "group_id": "2088:3",
       "label_node_id": "2088:2",
       "tone_node_id": "2089:4",
-      "status": "candidate(Hiro 確認待ち)",
+      "status": "adopted 2026-09-27",
       "route": "gemini-app (Google AI Pro)"
     }
   },

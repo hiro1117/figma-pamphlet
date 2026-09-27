@@ -1241,7 +1241,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-nachikatsuura-K2-abst-bg-01,bg,nachikatsuura,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T19:56:22,3:4,2K,docs/library/prompts/nachikatsuura-K2-abst-bg-01.txt,docs/library/candidates/nachikatsuura-K2-abst-bg-01.png,candidate,画像モード Pro。受領 1792x2400 JPEG(sha256 ac03442c6e6e)。四隅に可視透かしなし(目視),"Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
+nachikatsuura-K2-abst-bg-01,bg,nachikatsuura,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T19:56:22,3:4,2K,docs/library/prompts/nachikatsuura-K2-abst-bg-01.txt,docs/library/candidates/nachikatsuura-K2-abst-bg-01.png,adopted,画像モード Pro。受領 1792x2400 JPEG(sha256 ac03442c6e6e)。四隅に可視透かしなし(目視) | 2026-09-27 Hiro 採用,"Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
 
 The bottom 25% must be only road and ground (people and a vehicle will be placed in front later). Above the ridge there is only sky.
 
@@ -1318,7 +1318,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-nachikatsuura-K2-abst-person-01,fg_person,nachikatsuura,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T19:56:22,3:4,2K,docs/library/prompts/nachikatsuura-K2-abst-person-01.txt,docs/library/candidates/nachikatsuura-K2-abst-person-01.png,candidate,画像モード Pro。受領 1792x2400 JPEG(sha256 7f01c6f36125)。四隅に可視透かしなし(目視),"Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
+nachikatsuura-K2-abst-person-01,fg_person,nachikatsuura,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T19:56:22,3:4,2K,docs/library/prompts/nachikatsuura-K2-abst-person-01.txt,docs/library/candidates/nachikatsuura-K2-abst-person-01.png,adopted,画像モード Pro。受領 1792x2400 JPEG(sha256 7f01c6f36125)。四隅に可視透かしなし(目視) | 2026-09-27 Hiro 採用,"Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
 
 The most important requirement is the LEVEL OF SIMPLIFICATION.
 
@@ -1417,7 +1417,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-nachikatsuura-K2-abst-person-02,fg_person,nachikatsuura,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T19:56:22,3:4,2K,docs/library/prompts/nachikatsuura-K2-abst-person-02.txt,docs/library/candidates/nachikatsuura-K2-abst-person-02.png,candidate,画像モード Pro。受領 1792x2400 JPEG(sha256 3cb4f54f9e49)。四隅に可視透かしなし(目視),"Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
+nachikatsuura-K2-abst-person-02,fg_person,nachikatsuura,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T19:56:22,3:4,2K,docs/library/prompts/nachikatsuura-K2-abst-person-02.txt,docs/library/candidates/nachikatsuura-K2-abst-person-02.png,adopted,画像モード Pro。受領 1792x2400 JPEG(sha256 3cb4f54f9e49)。四隅に可視透かしなし(目視) | 2026-09-27 Hiro 採用,"Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
 
 The most important requirement is the LEVEL OF SIMPLIFICATION.
 
@@ -1603,7 +1603,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-noboribetsu-K2-abst-bg-01,bg,noboribetsu,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:04:57,3:4,2K,docs/library/prompts/noboribetsu-K2-abst-bg-01.txt,docs/library/candidates/noboribetsu-K2-abst-bg-01.png,candidate,画像モード Pro。受領 1792x2400 JPEG(sha256 f7b7f425872d),"Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
+noboribetsu-K2-abst-bg-01,bg,noboribetsu,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:04:57,3:4,2K,docs/library/prompts/noboribetsu-K2-abst-bg-01.txt,docs/library/candidates/noboribetsu-K2-abst-bg-01.png,adopted,画像モード Pro。受領 1792x2400 JPEG(sha256 f7b7f425872d) | 2026-09-27 Hiro 採用,"Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
 
 The bottom 25% must be only road and ground (people and a vehicle will be placed in front later). Above the ridge there is only sky.
 
@@ -1680,7 +1680,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-noboribetsu-K2-abst-person-01,fg_person,noboribetsu,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:09:39,3:4,2K,docs/library/prompts/noboribetsu-K2-abst-person-01.txt,docs/library/candidates/noboribetsu-K2-abst-person-01.png,candidate,画像モード Pro。受領 1792x2400 JPEG(sha256 32b34bb66b1f),"Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
+noboribetsu-K2-abst-person-01,fg_person,noboribetsu,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:09:39,3:4,2K,docs/library/prompts/noboribetsu-K2-abst-person-01.txt,docs/library/candidates/noboribetsu-K2-abst-person-01.png,adopted,画像モード Pro。受領 1792x2400 JPEG(sha256 32b34bb66b1f) | 2026-09-27 Hiro 採用,"Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
 
 The most important requirement is the LEVEL OF SIMPLIFICATION.
 
@@ -1779,7 +1779,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-noboribetsu-K2-abst-person-02,fg_person,noboribetsu,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:14:55,3:4,2K,docs/library/prompts/noboribetsu-K2-abst-person-02.txt,docs/library/candidates/noboribetsu-K2-abst-person-02.png,candidate,画像モード Pro。受領 1792x2400 JPEG(sha256 3b8bc942f667),"Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
+noboribetsu-K2-abst-person-02,fg_person,noboribetsu,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:14:55,3:4,2K,docs/library/prompts/noboribetsu-K2-abst-person-02.txt,docs/library/candidates/noboribetsu-K2-abst-person-02.png,adopted,画像モード Pro。受領 1792x2400 JPEG(sha256 3b8bc942f667) | 2026-09-27 Hiro 採用,"Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
 
 The most important requirement is the LEVEL OF SIMPLIFICATION.
 
@@ -2042,7 +2042,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-mitt-K2-abst-person-01,fg_person,mitt,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:30:11,3:4,2K,docs/library/prompts/mitt-K2-abst-person-01.txt,docs/library/candidates/mitt-K2-abst-person-01.png,candidate,画像モード Pro。受領 1792x2400 JPEG(sha256 4c9f09063e3a),"Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
+mitt-K2-abst-person-01,fg_person,mitt,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:30:11,3:4,2K,docs/library/prompts/mitt-K2-abst-person-01.txt,docs/library/candidates/mitt-K2-abst-person-01.png,adopted,画像モード Pro。受領 1792x2400 JPEG(sha256 4c9f09063e3a) | 2026-09-27 Hiro 採用,"Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
 
 The most important requirement is the LEVEL OF SIMPLIFICATION.
 
