@@ -45,3 +45,11 @@
 - 2026-09-27 (C) Hiro 決定: 那智勝浦・登別・MITT の abst 素材(背景・人物 2・車両)を採用。これで 4 系統 16 点の v0 ライブラリが確定
 - 2026-09-27 (C) 榛名山モチーフは細線版(kurabuchi-haruna-aitoma-thin-03)のまま採用、abst 化はしない(Hiro)。C は完了
 - 2026-09-27 (C) 不採用の画像 75 ファイル(約 194MB、candidates/ と final/)をリポジトリから削除(Hiro 指示)。対象は台帳で rejected のみかつ library-v0.json に無い id。プロンプトと台帳の行は記録として残す。台帳の kurabuchi-haruna-aitoma-thin-03 を adopted に訂正
+- 2026-09-27 (D) D を2段に分割。前半 = Step 0/1/1.5/1.7/2/4・参照ファイル(H(a) に依存しない部分)、後半 = Step 3 の変換表(D.2)・Step 5 のラッパー自動化(D.3)・自動修正2回の中身(H(a) 先行版の報告待ち)。SKILL.md では【H の結果待ち】と明記
+- 2026-09-27 (D) Hiro 了承: **A4_spot(乗降スポット表)では P12 を対象外**。preflight.js の `SHEETS.A4_spot.p12 = false` で Pass + `対象外(A4_spot)` を返す
+- 2026-09-27 (D) `#tone` / `#state` は Step 1.7 でスタイルタイルの中に作り、Step 2 で表紙フレーム直下へ移す(非表示・ロック、Noto Sans JP Regular 8px、1行 JSON)。`#state` は `state/1`(step = 最後に終わった Step)
+- 2026-09-27 (D) preflight の `CONFIG.FAMILY` はスキルが `#tone.meta.template_family` から明示(aitoma / nachikatsuura / noboribetsu / MITT)。案件フレーム名からは推定しない
+- 2026-09-27 (D) Step 0: `#config` の `skill_min_version` > スキル版 で停止、`pipeline: off`・`#config` 未検出・読めない → 旧手順。版は文字列比較。旧手順は `skill/references/legacy-2026-08-20.md`(新 id を使い、`pipeline_off_hide` の4枠を複製直後に非表示)
+- 2026-09-27 (D) 生成AIの絵が使えない案件は Step 1.5 以降に進まず旧手順。ライブラリの見本が1つの系統では消去法を使わず「この見本で進めてよいか」を聞く
+- 2026-09-27 (D) 発見: `#config`(2057:2)の `templates` と `presets.K2.vehicle.by_series` のキーが旧 id(18:2 等)のまま。スキルは系統名で引く。`#config` の書き換えは後半でデザイン担当が行う
+- 2026-09-27 (D) 発見: テンプレの `#人物`(1462,330 212×310)・`#車両`(1145,440 300×200)枠と、C の配置規則(人物 380px・左 14px / 車両 右 4px)が一致しない。どちらに合わせるかは H(a) の結果で決める

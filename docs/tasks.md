@@ -7,10 +7,10 @@
 - [x] 作業対象を複製ファイルへ切替+Step 0の対象ファイル確認
 - [~] 準備①: 実測は完了(docs/prep/ 参照: 面表・TEXT 824件・フォント・imageHash 33件・色)。レイアウトマスクは C で作成済み(docs/library/masks/)。残り: PDF画質設定の場所(UI)、既存イラストの出所確認、`入稿済み`ページ作成
 - [ ] 準備②: 現行3案件の所要・画面外操作の実測(S4の分母)
-- [x] B.1 表紙フレーム改修(指示書 docs/briefs/B1-cover-refit.md)(`#`命名・`#キービジュアル`枠K2・`#地域モチーフ`・`#人物` `#車両`・`#帯` `#背景`・12pt未満#000000・`#config`)。**2026-09-27 差し替え済み**: テンプレートページの表紙4系統は 2053:3 / 2053:334 / 2053:682 / 2053:1002、`#config` 2057:2。原本は「テンプレ旧_20260927」(2064:2)に退避。結果 docs/reports/B1-after/、`#`ノード一覧 docs/prep/template-refit-inventory.json。残: skill/references/template-and-assets.md の id 表を新 id に更新(D で)
+- [x] B.1 表紙フレーム改修(指示書 docs/briefs/B1-cover-refit.md)(`#`命名・`#キービジュアル`枠K2・`#地域モチーフ`・`#人物` `#車両`・`#帯` `#背景`・12pt未満#000000・`#config`)。**2026-09-27 差し替え済み**: テンプレートページの表紙4系統は 2053:3 / 2053:334 / 2053:682 / 2053:1002、`#config` 2057:2。原本は「テンプレ旧_20260927」(2064:2)に退避。結果 docs/reports/B1-after/、`#`ノード一覧 docs/prep/template-refit-inventory.json。skill/references/template-and-assets.md の id 表は D 前半で新 id に更新済み
 - [x] C ライブラリv0(指示書 docs/briefs/C-library-v0.md)。完了 2026-09-27: 描法は抽象グラフィック(abst、Gemini アプリ生成)。4 系統×(背景・人物 2・車両)= 16 点 + くらぶち榛名山モチーフ 1 点を素材ページ `ライブラリ/<系統>` `案件/くらぶち` に投入、tone.json 4 本同梱、2K マスター。検証 4 フレーム。詳細 docs/reports/C-library-v0-progress.md、library-v0.json、ledger.csv
-- [x] E 第1層最小版(指示書 docs/briefs/E-preflight.md)(P1・P2・P3-a・P4単色・P6・P7・P12)。`skill/scripts/preflight.js` + `skill/references/preflight.md`。2026-09-27 レビューの CONFIG 決定(Warn/注記 9pt・10pt/白抜き役割別/電話 ×2・×3/折り線種別/label/PT_BY_FAMILY.MITT/ignored_tight)を反映し、制作物8枚+テスト4枚で再実測(docs/reports/E-test-report.md §A)。MITT 系特例と A4_spot も 2026-09-27 に一時 clone で実測済み(§B)。残: D での組み込み、第2段で Warn→Fail 格上げ、A4_spot の P12 の扱い(要判断)
-- [ ] D スキル2026-10版(指示書 docs/briefs/D-skill-2026-10.md)(Step別改訂・変換表・ラッパー自動化・参照3ファイル)
+- [x] E 第1層最小版(指示書 docs/briefs/E-preflight.md)(P1・P2・P3-a・P4単色・P6・P7・P12)。`skill/scripts/preflight.js` + `skill/references/preflight.md`。2026-09-27 レビューの CONFIG 決定(Warn/注記 9pt・10pt/白抜き役割別/電話 ×2・×3/折り線種別/label/PT_BY_FAMILY.MITT/ignored_tight)を反映し、制作物8枚+テスト4枚で再実測(docs/reports/E-test-report.md §A)。MITT 系特例と A4_spot も 2026-09-27 に一時 clone で実測済み(§B)。残: 第2段で Warn→Fail 格上げ(D での組み込みと A4_spot の P12 対象外は 2026-09-27 D 前半で済)
+- [~] D スキル2026-10版(指示書 docs/briefs/D-skill-2026-10.md)(Step別改訂・変換表・ラッパー自動化・参照3ファイル)。**前半完了 2026-09-27**: Step 0/1/1.5/1.7/2/4、references(preflight・keyvisual・evaluator 枠・template-and-assets・figma-ops・legacy)、A4_spot の P12 対象外。制作物ページで単体試験済み。報告 docs/reports/D-skill-part1.md。**後半(Step 3 の D.2・Step 5 の D.3・自動修正2回)は H(a) 先行版の報告待ち**。パッケージ化・release notes も後半
 - [ ] H(a) 先行版: D の前にくらぶちモックを手作業で1件通す(指示書 docs/briefs/Ha-tech-mvp-pre.md)
 - [ ] H(a) 技術MVP(くらぶちモック1件をモードDで通す)
 
