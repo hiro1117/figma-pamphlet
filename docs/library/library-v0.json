@@ -197,20 +197,19 @@
     "nachikatsuura": {
       "label": "那智勝浦系",
       "number": 2,
-      "base_id": "nachikatsuura-K2-thin-01",
-      "style": "thin",
-      "tone_json": "docs/library/tone/nachikatsuura-K2-thin-01.json",
+      "base_id": "nachikatsuura-K2-abst-01",
+      "style": "abst",
+      "tone_json": "docs/library/tone/nachikatsuura-K2-abst-01.json",
       "group_name": "ライブラリ/那智勝浦系",
       "assets": {
         "background": {
-          "id": "nachikatsuura-K2-thin-bg-01",
-          "imageHash": "25364f91794b07ea397b42b7cc4557e82f9051e6",
-          "nodeId": "2066:11",
+          "id": "nachikatsuura-K2-abst-bg-01",
+          "imageHash": "f3281e34966f845311d015bf6296590bebfa833f",
+          "nodeId": "2078:2",
           "px": [
-            1856,
-            2304
+            1792,
+            2400
           ],
-          "bytes": 1405170,
           "placement": {
             "target": "#キービジュアル",
             "scaleMode": "CROP",
@@ -219,69 +218,160 @@
               711
             ]
           },
-          "effective_dpi": 463
+          "effective_dpi": 447,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物A": {
-          "id": "nachikatsuura-K2-thin-person-03",
-          "imageHash": "5f5339796a03a65d3d688c62378610d91213e9dc",
-          "nodeId": "2066:13",
+          "id": "nachikatsuura-K2-abst-person-01",
+          "imageHash": "19d5d71fb78c19d2896cca9f9110b1e177943b06",
+          "nodeId": "2078:3",
           "px": [
-            679,
-            2059
+            670,
+            2056
           ],
-          "bytes": 1440321,
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
             "suggested_px": [
-              139,
+              137,
               420
             ]
           },
-          "effective_dpi": 706
+          "effective_dpi": 707,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物B": {
-          "id": "nachikatsuura-K2-thin-person-02",
-          "imageHash": "eb1f32dd1ca51a7e346b6fb70ed535d44bb5e569",
-          "nodeId": "2066:12",
+          "id": "nachikatsuura-K2-abst-person-02",
+          "imageHash": "7c0c91b3c015c24d6a0cee2a5fa81d296beab4cd",
+          "nodeId": "2078:4",
           "px": [
-            954,
-            1669
+            1431,
+            2099
           ],
-          "bytes": 1707883,
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
             "suggested_px": [
-              240,
+              286,
               420
             ]
           },
-          "effective_dpi": 575
+          "effective_dpi": 724,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "車両": {
-          "id": "nachikatsuura-K2-thin-vehicle-01r",
-          "imageHash": "ec908c62ea1ddb47aac843fc81c652ea3da50788",
-          "nodeId": "2066:14",
+          "id": "nachikatsuura-K2-abst-vehicle-01",
+          "imageHash": "665daf151b2243ed74b4af832ed158884a4e4149",
+          "nodeId": "2078:5",
           "px": [
-            1937,
-            1098
+            2055,
+            1342
           ],
-          "bytes": 1961685,
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
             "suggested_px": [
               360,
-              204
+              235
             ]
           },
-          "effective_dpi": 778
+          "effective_dpi": 825,
+          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         }
       },
-      "group_id": "2068:7",
-      "label_node_id": "2068:5",
-      "tone_node_id": "2068:6"
+      "group_id": "2078:7",
+      "label_node_id": "2078:6",
+      "tone_node_id": null,
+      "status": "candidate(Hiro 確認待ち)",
+      "route": "gemini-app (Google AI Pro)",
+      "legacy_thin": {
+        "base_id": "nachikatsuura-K2-thin-01",
+        "style": "thin",
+        "tone_json": "docs/library/tone/nachikatsuura-K2-thin-01.json",
+        "group_name": "ライブラリ/那智勝浦系",
+        "group_id": "2068:7",
+        "label_node_id": "2068:5",
+        "tone_node_id": "2068:6",
+        "assets": {
+          "background": {
+            "id": "nachikatsuura-K2-thin-bg-01",
+            "imageHash": "25364f91794b07ea397b42b7cc4557e82f9051e6",
+            "nodeId": "2066:11",
+            "px": [
+              1856,
+              2304
+            ],
+            "bytes": 1405170,
+            "placement": {
+              "target": "#キービジュアル",
+              "scaleMode": "CROP",
+              "frame_px": [
+                580,
+                711
+              ]
+            },
+            "effective_dpi": 463
+          },
+          "人物A": {
+            "id": "nachikatsuura-K2-thin-person-03",
+            "imageHash": "5f5339796a03a65d3d688c62378610d91213e9dc",
+            "nodeId": "2066:13",
+            "px": [
+              679,
+              2059
+            ],
+            "bytes": 1440321,
+            "placement": {
+              "target": "#人物",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                139,
+                420
+              ]
+            },
+            "effective_dpi": 706
+          },
+          "人物B": {
+            "id": "nachikatsuura-K2-thin-person-02",
+            "imageHash": "eb1f32dd1ca51a7e346b6fb70ed535d44bb5e569",
+            "nodeId": "2066:12",
+            "px": [
+              954,
+              1669
+            ],
+            "bytes": 1707883,
+            "placement": {
+              "target": "#人物",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                240,
+                420
+              ]
+            },
+            "effective_dpi": 575
+          },
+          "車両": {
+            "id": "nachikatsuura-K2-thin-vehicle-01r",
+            "imageHash": "ec908c62ea1ddb47aac843fc81c652ea3da50788",
+            "nodeId": "2066:14",
+            "px": [
+              1937,
+              1098
+            ],
+            "bytes": 1961685,
+            "placement": {
+              "target": "#車両",
+              "scaleMode": "FIT",
+              "suggested_px": [
+                360,
+                204
+              ]
+            },
+            "effective_dpi": 778
+          }
+        },
+        "status": "rejected(thin 版、#旧 に改名)"
+      }
     },
     "noboribetsu": {
       "label": "登別系",
