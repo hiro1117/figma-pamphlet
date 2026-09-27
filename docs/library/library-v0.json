@@ -104,95 +104,7 @@
       "label_node_id": "2074:2",
       "tone_node_id": "2077:2",
       "status": "adopted 2026-09-27",
-      "route": "gemini-app (Google AI Pro)",
-      "legacy_thin": {
-        "base_id": "aitoma-K2-thin-01",
-        "style": "thin",
-        "tone_json": "docs/library/tone/aitoma-K2-thin-01.json",
-        "group_name": "ライブラリ/あいとま系",
-        "group_id": "2068:4",
-        "label_node_id": "2068:2",
-        "tone_node_id": "2068:3",
-        "assets": {
-          "background": {
-            "id": "aitoma-K2-thin-bg-01",
-            "imageHash": "9f845da9e1496a90ffc59aaf7b82125c4bbda82e",
-            "nodeId": "2066:2",
-            "px": [
-              1856,
-              2304
-            ],
-            "bytes": 1430190,
-            "placement": {
-              "target": "#キービジュアル",
-              "scaleMode": "CROP",
-              "frame_px": [
-                580,
-                711
-              ]
-            },
-            "effective_dpi": 463
-          },
-          "人物A": {
-            "id": "aitoma-K2-thin-person-01",
-            "imageHash": "86b6f480a51df9a3b589ce53afd7dc8a68154d4a",
-            "nodeId": "2066:3",
-            "px": [
-              697,
-              2004
-            ],
-            "bytes": 1431700,
-            "placement": {
-              "target": "#人物",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                146,
-                420
-              ]
-            },
-            "effective_dpi": 690
-          },
-          "人物B": {
-            "id": "aitoma-K2-thin-person-02",
-            "imageHash": "577b0c86626563d9e3edcf087a47b2991ddf28cb",
-            "nodeId": "2066:4",
-            "px": [
-              1142,
-              1783
-            ],
-            "bytes": 2048273,
-            "placement": {
-              "target": "#人物",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                269,
-                420
-              ]
-            },
-            "effective_dpi": 614
-          },
-          "車両": {
-            "id": "aitoma-K2-thin-vehicle-01",
-            "imageHash": "88a2b95093b7567c78840c277f8536dfff6165d2",
-            "nodeId": "2066:5",
-            "px": [
-              2170,
-              1280
-            ],
-            "bytes": 2204220,
-            "placement": {
-              "target": "#車両",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                360,
-                212
-              ]
-            },
-            "effective_dpi": 872
-          }
-        },
-        "status": "rejected(thin 版、#旧 に改名)"
-      }
+      "route": "gemini-app (Google AI Pro)"
     },
     "nachikatsuura": {
       "label": "那智勝浦系",
@@ -283,95 +195,7 @@
       "label_node_id": "2078:6",
       "tone_node_id": "2089:2",
       "status": "candidate(Hiro 確認待ち)",
-      "route": "gemini-app (Google AI Pro)",
-      "legacy_thin": {
-        "base_id": "nachikatsuura-K2-thin-01",
-        "style": "thin",
-        "tone_json": "docs/library/tone/nachikatsuura-K2-thin-01.json",
-        "group_name": "ライブラリ/那智勝浦系",
-        "group_id": "2068:7",
-        "label_node_id": "2068:5",
-        "tone_node_id": "2068:6",
-        "assets": {
-          "background": {
-            "id": "nachikatsuura-K2-thin-bg-01",
-            "imageHash": "25364f91794b07ea397b42b7cc4557e82f9051e6",
-            "nodeId": "2066:11",
-            "px": [
-              1856,
-              2304
-            ],
-            "bytes": 1405170,
-            "placement": {
-              "target": "#キービジュアル",
-              "scaleMode": "CROP",
-              "frame_px": [
-                580,
-                711
-              ]
-            },
-            "effective_dpi": 463
-          },
-          "人物A": {
-            "id": "nachikatsuura-K2-thin-person-03",
-            "imageHash": "5f5339796a03a65d3d688c62378610d91213e9dc",
-            "nodeId": "2066:13",
-            "px": [
-              679,
-              2059
-            ],
-            "bytes": 1440321,
-            "placement": {
-              "target": "#人物",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                139,
-                420
-              ]
-            },
-            "effective_dpi": 706
-          },
-          "人物B": {
-            "id": "nachikatsuura-K2-thin-person-02",
-            "imageHash": "eb1f32dd1ca51a7e346b6fb70ed535d44bb5e569",
-            "nodeId": "2066:12",
-            "px": [
-              954,
-              1669
-            ],
-            "bytes": 1707883,
-            "placement": {
-              "target": "#人物",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                240,
-                420
-              ]
-            },
-            "effective_dpi": 575
-          },
-          "車両": {
-            "id": "nachikatsuura-K2-thin-vehicle-01r",
-            "imageHash": "ec908c62ea1ddb47aac843fc81c652ea3da50788",
-            "nodeId": "2066:14",
-            "px": [
-              1937,
-              1098
-            ],
-            "bytes": 1961685,
-            "placement": {
-              "target": "#車両",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                360,
-                204
-              ]
-            },
-            "effective_dpi": 778
-          }
-        },
-        "status": "rejected(thin 版、#旧 に改名)"
-      }
+      "route": "gemini-app (Google AI Pro)"
     },
     "noboribetsu": {
       "label": "登別系",
@@ -462,95 +286,7 @@
       "label_node_id": "2082:3",
       "tone_node_id": "2089:3",
       "status": "candidate(Hiro 確認待ち)",
-      "route": "gemini-app (Google AI Pro)",
-      "legacy_thin": {
-        "base_id": "noboribetsu-K2-thin-01",
-        "style": "thin",
-        "tone_json": "docs/library/tone/noboribetsu-K2-thin-01.json",
-        "group_name": "ライブラリ/登別系",
-        "group_id": "2068:10",
-        "label_node_id": "2068:8",
-        "tone_node_id": "2068:9",
-        "assets": {
-          "background": {
-            "id": "noboribetsu-K2-thin-bg-01",
-            "imageHash": "6f93854c4a58cd7bb2cc1c1796e45ffc6fb9c47e",
-            "nodeId": "2066:15",
-            "px": [
-              1856,
-              2304
-            ],
-            "bytes": 1371139,
-            "placement": {
-              "target": "#キービジュアル",
-              "scaleMode": "CROP",
-              "frame_px": [
-                580,
-                711
-              ]
-            },
-            "effective_dpi": 463
-          },
-          "人物A": {
-            "id": "noboribetsu-K2-thin-person-01",
-            "imageHash": "4f400e6e9cefa9ac5cbe252257948ae3049cacec",
-            "nodeId": "2066:16",
-            "px": [
-              715,
-              2034
-            ],
-            "bytes": 1340749,
-            "placement": {
-              "target": "#人物",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                148,
-                420
-              ]
-            },
-            "effective_dpi": 699
-          },
-          "人物B": {
-            "id": "noboribetsu-K2-thin-person-02",
-            "imageHash": "ad7f723edbd77434e89a2e432e7e4a8160427b0b",
-            "nodeId": "2066:17",
-            "px": [
-              1440,
-              2066
-            ],
-            "bytes": 3037219,
-            "placement": {
-              "target": "#人物",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                293,
-                420
-              ]
-            },
-            "effective_dpi": 711
-          },
-          "車両": {
-            "id": "noboribetsu-K2-thin-vehicle-02",
-            "imageHash": "af523e96fffd2c46a617ca14e2ee48d4792d54c2",
-            "nodeId": "2066:18",
-            "px": [
-              2065,
-              1177
-            ],
-            "bytes": 2330489,
-            "placement": {
-              "target": "#車両",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                360,
-                205
-              ]
-            },
-            "effective_dpi": 829
-          }
-        },
-        "status": "rejected(thin 版、#旧 に改名)"
-      }
+      "route": "gemini-app (Google AI Pro)"
     },
     "mitt": {
       "label": "MITT系",
@@ -561,8 +297,8 @@
       "group_name": "ライブラリ/MITT系",
       "assets": {
         "background": {
-          "id": "mitt-K2-abst-bg-01",
-          "imageHash": "f1034f96967dc25bba5122c90836d8656c312052",
+          "id": "mitt-K2-abst-bg-02",
+          "imageHash": "1618b53004756dfa178ef0635ce20bf9bb5f43cb",
           "nodeId": "2084:2",
           "px": [
             1792,
@@ -577,7 +313,8 @@
             ]
           },
           "effective_dpi": 447,
-          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
+          "route": "gemini-app(Hiro 手動)、2K JPEG 受領",
+          "horizon_ratio": 0.72
         },
         "人物A": {
           "id": "mitt-K2-abst-person-01",
@@ -599,23 +336,23 @@
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物B": {
-          "id": "mitt-K2-abst-person-03",
-          "imageHash": "68cdb191409fec0dfee1612e4450998fe376a24e",
+          "id": "mitt-K2-abst-person-04",
+          "imageHash": "ef6d820d88fab1dd0ddb2e99f08af590ab58eb92",
           "nodeId": "2086:2",
           "px": [
-            1213,
-            1936
+            2223,
+            3300
           ],
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
             "suggested_px": [
-              263,
+              283,
               420
             ]
           },
-          "effective_dpi": 667,
-          "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
+          "effective_dpi": 1136,
+          "route": "gemini-app(Hiro 手動)、4K JPEG 受領→長辺 3300 に縮小(10MB 上限)"
         },
         "車両": {
           "id": "mitt-K2-abst-vehicle-01",
@@ -641,95 +378,7 @@
       "label_node_id": "2088:2",
       "tone_node_id": "2089:4",
       "status": "candidate(Hiro 確認待ち)",
-      "route": "gemini-app (Google AI Pro)",
-      "legacy_thin": {
-        "base_id": "mitt-K2-noline-01",
-        "style": "noline",
-        "tone_json": "docs/library/tone/mitt-K2-noline-01.json",
-        "group_name": "ライブラリ/MITT系",
-        "group_id": "2068:13",
-        "label_node_id": "2068:11",
-        "tone_node_id": "2068:12",
-        "assets": {
-          "background": {
-            "id": "mitt-K2-noline-bg-01",
-            "imageHash": "dc094c51097632c9af1e02570394c30dfc996e6a",
-            "nodeId": "2066:7",
-            "px": [
-              1856,
-              2304
-            ],
-            "bytes": 1207625,
-            "placement": {
-              "target": "#キービジュアル",
-              "scaleMode": "CROP",
-              "frame_px": [
-                580,
-                711
-              ]
-            },
-            "effective_dpi": 463
-          },
-          "人物A": {
-            "id": "mitt-K2-noline-person-01",
-            "imageHash": "7e931bb036a95d2c4096b20539105d1999837953",
-            "nodeId": "2066:8",
-            "px": [
-              733,
-              2057
-            ],
-            "bytes": 1450652,
-            "placement": {
-              "target": "#人物",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                150,
-                420
-              ]
-            },
-            "effective_dpi": 707
-          },
-          "人物B": {
-            "id": "mitt-K2-noline-person-02",
-            "imageHash": "0545ebb920321b3d9eeecea6bb826588cf91e3d9",
-            "nodeId": "2066:9",
-            "px": [
-              1459,
-              2153
-            ],
-            "bytes": 2867218,
-            "placement": {
-              "target": "#人物",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                285,
-                420
-              ]
-            },
-            "effective_dpi": 740
-          },
-          "車両": {
-            "id": "mitt-K2-noline-vehicle-01",
-            "imageHash": "4c83f13c7240b16459e45db116b365cbea175eae",
-            "nodeId": "2066:10",
-            "px": [
-              1682,
-              1002
-            ],
-            "bytes": 1545282,
-            "placement": {
-              "target": "#車両",
-              "scaleMode": "FIT",
-              "suggested_px": [
-                360,
-                214
-              ]
-            },
-            "effective_dpi": 676
-          }
-        },
-        "status": "rejected(noline 版、#旧 に改名)"
-      }
+      "route": "gemini-app (Google AI Pro)"
     }
   },
   "projects": {
@@ -784,6 +433,6 @@
       "group_id": "2088:10",
       "face_frame_id": "2088:4"
     },
-    "desc": "各系統の K2 組み(abst 背景 CROP + 人物A + 車両。あいとまのみ榛名山モチーフ入り)。旧 thin 版は 2069:9(#旧)"
+    "desc": "各系統の K2 組み(abst 背景 CROP + 人物 + 車両。あいとまのみ榛名山モチーフ入り)。旧 thin 版グループ・検証は 2026-09-27 に削除"
   }
 }

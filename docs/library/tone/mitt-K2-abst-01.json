@@ -51,13 +51,13 @@
     },
     "library": {
       "base_id": "mitt-K2-abst-01",
-      "background_image": "mitt-K2-abst-bg-01",
+      "background_image": "mitt-K2-abst-bg-02",
       "regional_motif_id": null
     }
   },
   "direction": {
     "label": "抽象グラフィック",
-    "one_liner": "ブランド青の空と紺の稜線1本の静かな里山に、輪郭線のない色面で描いた人物と白いミニバン",
+    "one_liner": "淡い青紫の空と薄紫の稜線1本の静かな里山に、輪郭線のない色面で描いた人物と白いミニバン",
     "mood_words": [
       "静か",
       "洗練",
@@ -73,7 +73,7 @@
         "right"
       ],
       "crop_focus": "person_and_vehicle",
-      "horizon_ratio": 0.68
+      "horizon_ratio": 0.72
     },
     "title": {
       "placement": "bottom_left",

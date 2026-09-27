@@ -109,3 +109,4 @@
 - tone.json 4 本を abst 版に更新(`illustration.style` = flat_vector_no_outline、`horizon_ratio` は各背景の実測 0.54 / 0.62 / 0.65 / 0.68、`source` = library_gemini_app_2k)。旧版は `_old_` で残置
 - 実効 dpi: 背景 447(2K を K2 枠 580px に配置)、人物 667〜724、車両 803〜825
 - 残: Hiro の採否確認 → 台帳 adopted 化、榛名山モチーフの abst 化(あいとま)、`#旧` グループの削除判断、B.1 テンプレでの本組み(H(a))
+- 2026-09-27 Hiro 指示: `#旧` 5 グループを削除。MITT の人物 B → person-04(Hiro 手動、4K→長辺 3300 に縮小。upload_assets は 10MB 上限)、背景 → bg-02(青紫の空。服と同系色の回避)。Figma 2084:2 / 2086:2 の fill を差し替え、#tone と検証 MITT を更新

@@ -1965,7 +1965,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-mitt-K2-abst-bg-01,bg,mitt,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:24:59,3:4,2K,docs/library/prompts/mitt-K2-abst-bg-01.txt,docs/library/candidates/mitt-K2-abst-bg-01.png,candidate,画像モード Pro。ブランド色固定。受領 1792x2400 JPEG(sha256 75c9d2bc6584),"Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
+mitt-K2-abst-bg-01,bg,mitt,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:24:59,3:4,2K,docs/library/prompts/mitt-K2-abst-bg-01.txt,docs/library/candidates/mitt-K2-abst-bg-01.png,rejected,画像モード Pro。ブランド色固定。受領 1792x2400 JPEG(sha256 75c9d2bc6584) | 人物の服(紺・青)と背景が同系色で見づらい → bg-02 に置換(Hiro 指示),"Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
 
 The bottom 25% must be only road and ground (people and a vehicle will be placed in front later). Above the ridge there is only sky.
 
@@ -2240,7 +2240,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-mitt-K2-abst-person-03,fg_person,mitt,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:41:14,3:4,2K,docs/library/prompts/mitt-K2-abst-person-02.txt,docs/library/candidates/mitt-K2-abst-person-03.png,candidate,02 の Redo(肌 #F5CEC1 指定を強調・余白追加)。実測 #F5C7BF。受領 1792x2400 JPEG(sha256 586123dde134),"Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
+mitt-K2-abst-person-03,fg_person,mitt,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:41:14,3:4,2K,docs/library/prompts/mitt-K2-abst-person-02.txt,docs/library/candidates/mitt-K2-abst-person-03.png,rejected,02 の Redo(肌 #F5CEC1 指定を強調・余白追加)。実測 #F5C7BF。受領 1792x2400 JPEG(sha256 586123dde134) | Hiro が手動生成した person-04 に置換,"Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
 
 The most important requirement is the LEVEL OF SIMPLIFICATION.
 
@@ -2426,3 +2426,5 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
+mitt-K2-abst-person-04,fg_person,mitt,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Hiro 手動),2026-09-27T21:18:42,3:4,4K,,docs/library/candidates/mitt-K2-abst-person-04.png,adopted,Hiro がアプリで手動生成(4K 3584x4800、長辺 4096 に縮小せず原寸のままキー抜き)。肌色は指定どおり。受領 3584x4800 JPEG(sha256 f1d00db31bf8)、四隅に可視透かしなし,(Hiro 側で入力。abst 系プロンプトを改変)
+mitt-K2-abst-bg-02,bg,mitt,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Hiro 手動),2026-09-27T21:18:42,3:4,2K,,docs/library/candidates/mitt-K2-abst-bg-02.png,adopted,Hiro がアプリで手動生成。空を淡い青紫、稜線を薄紫、地面をクリームに変更(服との同系色回避)。稜線は上端から約 72%。受領 1792x2400 JPEG(sha256 37b2326f258f)、四隅に可視透かしなし,(Hiro 側で入力。abst 系プロンプトを改変)

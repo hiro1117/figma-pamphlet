@@ -62,8 +62,8 @@ FAMILIES = {
                         direction=("抽象グラフィック", "クリームの空とテラコッタの稜線1本の静かな里山に、輪郭線のない色面で描いた人物と白いミニバン", ["静か", "洗練", "ご近所"]),
                         headline={"family": "Zen Maru Gothic", "weight": "Black"}),
     "mitt": dict(family="MITT系", base="mitt-K2-abst-01", ground="#FCF9C6", main="#254F99", tint="#258FC2", ink="#231815",
-                 accent="#FAEF50", locked=True, bg_img="mitt-K2-abst-bg-01", horizon=0.68, outline="noline", rotated=False, source="library_gemini_app_2k",
-                 direction=("抽象グラフィック", "ブランド青の空と紺の稜線1本の静かな里山に、輪郭線のない色面で描いた人物と白いミニバン", ["静か", "洗練", "ご近所"]),
+                 accent="#FAEF50", locked=True, bg_img="mitt-K2-abst-bg-02", horizon=0.72, outline="noline", rotated=False, source="library_gemini_app_2k",
+                 direction=("抽象グラフィック", "淡い青紫の空と薄紫の稜線1本の静かな里山に、輪郭線のない色面で描いた人物と白いミニバン", ["静か", "洗練", "ご近所"]),
                  headline={"family": "Noto Sans JP", "weight": "Black"}),
 }
 
