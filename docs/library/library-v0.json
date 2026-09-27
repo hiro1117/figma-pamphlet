@@ -33,9 +33,10 @@
             "target": "#キービジュアル",
             "scaleMode": "CROP",
             "frame_px": [
-              580,
-              711
-            ]
+              488,
+              398
+            ],
+            "note": "B.1 v2: 横長の枠。上下を切って使う(effective_dpi は幅基準で再計算のこと)"
           },
           "effective_dpi": 447,
           "route": "gemini-app 画像モード(Claude in Chrome で自動操作)、2K JPEG 受領",
@@ -126,9 +127,10 @@
             "target": "#キービジュアル",
             "scaleMode": "CROP",
             "frame_px": [
-              580,
-              711
-            ]
+              488,
+              329
+            ],
+            "note": "B.1 v2: 横長の枠。上下を切って使う(effective_dpi は幅基準で再計算のこと)"
           },
           "effective_dpi": 447,
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
@@ -218,9 +220,10 @@
             "target": "#キービジュアル",
             "scaleMode": "CROP",
             "frame_px": [
-              580,
-              711
-            ]
+              488,
+              354
+            ],
+            "note": "B.1 v2: 横長の枠。上下を切って使う(effective_dpi は幅基準で再計算のこと)"
           },
           "effective_dpi": 447,
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
@@ -310,9 +313,10 @@
             "target": "#キービジュアル",
             "scaleMode": "CROP",
             "frame_px": [
-              580,
-              711
-            ]
+              488,
+              500
+            ],
+            "note": "B.1 v2: 横長の枠。上下を切って使う(effective_dpi は幅基準で再計算のこと)"
           },
           "effective_dpi": 447,
           "route": "gemini-app(Hiro 手動)、2K JPEG 受領",
@@ -438,9 +442,30 @@
     },
     "desc": "各系統の K2 組み(abst 背景 CROP + 人物 + 車両。あいとまのみ榛名山モチーフ入り)。旧 thin 版グループ・検証は 2026-09-27 に削除",
     "layout_rule": {
-      "person": "height 380px, x=14, bottom = hero_bottom(694) - 12",
-      "vehicle": "width ≤300px, right edge = 563.7 - 4, bottom = hero_bottom - 8, width shrinks to keep ≥12px gap from person",
-      "note": "2026-09-27 Hiro 指摘(MITT で車両と人物が重なる)を受けて 4 系統共通に。本組み(B.1)でも同じ規則を既定にする"
+      "person": "#人物 の枠(系統別。高さ 283〜317)に FIT。枠の下端 = ヒーロー下端 − 4、左端 = ヒーロー左端 + 14",
+      "vehicle": "#車両 の枠 300×173 に FIT。右端 = ヒーロー右端 − 4、下端 = ヒーロー下端",
+      "logo": "サービスロゴは車両の右下に重ねるバッジ(高さ 95)",
+      "background": "CROP。imageTransform を枠と画像の比率から計算(skill/references/template-and-assets.md)",
+      "note": "2026-09-28 B.1 v2(Hiro 調整版)で更新。枠の座標は docs/prep/template-refit-inventory.json の k2b_panel_by_family"
     }
+  },
+  "hero_frame_px_note": "B.1 v2(2026-09-28)で表紙面のヒーローは白パネル内・系統別サイズになった。hero_frame_px_by_family を使う。旧値 [580,711] のマスク(docs/library/masks/)は再生成が必要",
+  "hero_frame_px_by_family": {
+    "aitoma": [
+      488,
+      398
+    ],
+    "nachikatsuura": [
+      488,
+      329
+    ],
+    "noboribetsu": [
+      488,
+      354
+    ],
+    "mitt": [
+      488,
+      500
+    ]
   }
 }
