@@ -431,7 +431,7 @@ noboribetsu-K2-thin-vehicle-02,fg_vehicle,noboribetsu,thin,gemini-3-pro-image,ge
 5. 制約: 背景は完全に均一なベタ塗りの #00FF00(純緑)のみ。地面・影・道路・景色を一切描かない。車両は画面中央、画面端に触れさせない。画像比率は 4:3。文字・ロゴ・看板・QRコードや電話番号らしき数字を描かない。写実(写真調)禁止。3D レンダ調・CG 調禁止。メーカーのエンブレム・実在の店舗・実在の人物に似せない。富士山+桜+鳥居の組み合わせ禁止。紫→青のグラデーション禁止。透かし・署名・枠線・余白を入れない。
 6. 参照: 添付 = 色チップ。
 7. 出力: 1枚の PNG。文字なし。"
-aitoma-K2-abst-person-01,fg_person,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:34:16,3:4,app-default,docs/library/prompts/aitoma-K2-abst-person-01.txt,docs/library/candidates/aitoma-K2-abst-person-01.png,candidate,Hiro がアプリで手動生成。受領 JPEG 896x1200(sha256 f3ae0f3ed1c0)→PNG 変換。四隅に可視透かしなし,"Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
+aitoma-K2-abst-person-01,fg_person,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:34:16,3:4,app-default,docs/library/prompts/aitoma-K2-abst-person-01.txt,docs/library/candidates/aitoma-K2-abst-person-01.png,rejected,Hiro がアプリで手動生成。受領 JPEG 896x1200(sha256 f3ae0f3ed1c0)→PNG 変換。四隅に可視透かしなし | 4K 版に置換(superseded),"Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
 
 The most important requirement is the LEVEL OF SIMPLIFICATION.
 
@@ -529,7 +529,7 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
-aitoma-K2-abst-person-02,fg_person,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:47:23,3:4,app-default,docs/library/prompts/aitoma-K2-abst-person-02.txt,docs/library/candidates/aitoma-K2-abst-person-02.png,candidate,Hiro がアプリで手動生成。受領 JPEG 1493x2000(sha256 bfb2c707faf2)→PNG。背景の緑が 2 段(#30C030/#30B040)だがフラッドフィルで抜けることを確認。可視透かしなし,"Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
+aitoma-K2-abst-person-02,fg_person,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:47:23,3:4,app-default,docs/library/prompts/aitoma-K2-abst-person-02.txt,docs/library/candidates/aitoma-K2-abst-person-02.png,rejected,Hiro がアプリで手動生成。受領 JPEG 1493x2000(sha256 bfb2c707faf2)→PNG。背景の緑が 2 段(#30C030/#30B040)だがフラッドフィルで抜けることを確認。可視透かしなし | 4K 版に置換(superseded),"Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
 
 The most important requirement is the LEVEL OF SIMPLIFICATION.
 
@@ -603,6 +603,368 @@ COMPOSITION:
 - centered
 - generous negative space
 - 3:4 vertical 
+- entire subject visible
+- do not touch the edges
+
+BACKGROUND:
+completely uniform pure green #00FF00.
+No environment.
+No floor.
+No shadow.
+No furniture.
+No scenery.
+
+No text, logo, license-plate characters, QR code, numbers, watermark or border.
+No maker emblem. Do not resemble a real person, a real store, or a real car model.
+
+IMPORTANT:
+The final illustration should contain FEWER visual details than a normal flat illustration.
+
+When deciding whether to add a detail, remove it unless it is essential for recognizing the subject or action.
+
+Prioritize:
+SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
+
+The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
+"
+aitoma-K2-abst-bg-01,bg,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:56:01,4:5,4K,docs/library/prompts/aitoma-K2-abst-bg-01.txt,docs/library/candidates/aitoma-K2-abst-bg-01.png,candidate,Hiro がアプリで手動生成。受領 JPEG 3712x4608(sha256 c46e7fbe7c63)→長辺 4096 に縮小し PNG。四隅に可視透かしなし,"Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
+
+The bottom 25% must be only road and ground (people and a vehicle will be placed in front later). Above the ridge there is only sky.
+
+The most important requirement is the LEVEL OF SIMPLIFICATION.
+
+The subject must be highly abstracted and graphically simplified.
+
+Do NOT draw a detailed illustration.
+Do NOT draw realistic anatomy or realistic mechanical detail.
+Do NOT carefully render faces, hands, clothing, hair, shoes, or vehicle parts.
+
+Instead, treat the entire subject as a small collection of bold, simple graphic shapes.
+
+ABSTRACTION:
+- treat the landscape as a few large flat color shapes stacked vertically
+- the ridge is one uninterrupted silhouette shape
+- the road is one or two simple shapes
+- houses and trees, if any, are tiny simple geometric shapes
+- no texture, no gradients, no shading, no atmospheric haze
+- no outlines, or only minimal uniform outlines
+
+The subject should look intentionally designed and abstract,
+not like a realistic subject that has been simplified afterward.
+
+Think:
+""graphic shapes representing the subject""
+rather than
+""an illustrated subject.""
+
+STYLE:
+- highly simplified editorial illustration
+- flat graphic shapes
+- limited visual information
+- bold areas of solid color
+- minimal linework
+- clean but slightly organic shapes
+- distinctive artistic character
+- playful and sophisticated
+- slightly quirky
+- contemporary
+- not cute
+- not realistic
+- not corporate
+- not clip-art
+- not a typical Japanese municipal illustration
+- no gradients, no texture, no shading, no highlights
+
+COLOR:
+Use a restrained, sophisticated palette.
+Sky: flat pale pink #FFD8E3. Ridge: muted rose #EB6EA5 darkened slightly. Ground: warm off-white / very pale pink. Road: paper white. Only these colors.
+Avoid bright generic colors.
+
+COMPOSITION:
+- full-bleed landscape, no margins
+- generous empty sky and ground
+- centered
+- generous negative space
+- 4:5 vertical 
+- entire subject visible
+- do not touch the edges
+
+This image IS the background scenery; it must fill the whole frame edge to edge.
+
+No text, logo, license-plate characters, QR code, numbers, watermark or border.
+No maker emblem. Do not resemble a real person, a real store, or a real car model.
+
+IMPORTANT:
+The final illustration should contain FEWER visual details than a normal flat illustration.
+
+When deciding whether to add a detail, remove it unless it is essential for recognizing the subject or action.
+
+Prioritize:
+SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
+
+The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
+"
+aitoma-K2-abst-person-01,fg_person,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:56:02,3:4,4K,docs/library/prompts/aitoma-K2-abst-person-01.txt,docs/library/candidates/aitoma-K2-abst-person-01.png,candidate,Hiro がアプリで手動生成。受領 JPEG 3584x4800(sha256 7baaae6c2149)→長辺 4096 に縮小し PNG。四隅に可視透かしなし,"Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
+
+The most important requirement is the LEVEL OF SIMPLIFICATION.
+
+The subject must be highly abstracted and graphically simplified.
+
+Do NOT draw a detailed illustration.
+Do NOT draw realistic anatomy or realistic mechanical detail.
+Do NOT carefully render faces, hands, clothing, hair, shoes, or vehicle parts.
+
+Instead, treat the entire subject as a small collection of bold, simple graphic shapes.
+
+ABSTRACTION:
+- simplify the human body into large geometric shapes
+- simplify the face dramatically
+- use only tiny, minimal shapes for the eyes, nose and mouth
+- no detailed facial anatomy
+- no detailed wrinkles
+- no eyelashes
+- no detailed eyebrows
+- no realistic ears
+- hair should be one or two simple solid shapes
+- hands should be simple silhouettes with little or no finger detail
+- arms and legs should be simple flat shapes
+- clothing should be large uninterrupted color shapes
+- remove clothing folds, seams, buttons, stitching and fabric texture
+- shoes should be simple graphic shapes with almost no detail
+- any held object (smartphone, handset, bag) should be a simple recognizable geometric shape
+
+The face should contain only the minimum information necessary to communicate a calm, friendly expression.
+
+The hands should contain only the minimum information necessary to communicate the action.
+
+The clothing should be understood primarily through COLOR, SILHOUETTE and SHAPE,
+not through detailed garment construction.
+
+The subject should look intentionally designed and abstract,
+not like a realistic subject that has been simplified afterward.
+
+Think:
+""graphic shapes representing the subject""
+rather than
+""an illustrated subject.""
+
+STYLE:
+- highly simplified editorial illustration
+- flat graphic shapes
+- limited visual information
+- bold areas of solid color
+- minimal linework
+- clean but slightly organic shapes
+- distinctive artistic character
+- playful and sophisticated
+- slightly quirky
+- contemporary
+- not cute
+- not realistic
+- not corporate
+- not clip-art
+- not a typical Japanese municipal illustration
+- no gradients, no texture, no shading, no highlights
+
+COLOR:
+Use a restrained, sophisticated palette.
+Use #EB6EA5 as an accent color.
+Use muted navy, olive, warm off-white and natural skin tones.
+Skin: one flat pale pinkish-beige color, exactly #F5CEC1, the same for every character (face and hands). No tan, no peach, no orange skin, no blush, no shading on skin.
+Avoid bright generic colors.
+
+COMPOSITION:
+- one woman only
+- full body
+- centered
+- generous negative space
+- 3:4 vertical 
+- entire subject visible
+- do not touch the edges
+
+BACKGROUND:
+completely uniform pure green #00FF00.
+No environment.
+No floor.
+No shadow.
+No furniture.
+No scenery.
+
+No text, logo, license-plate characters, QR code, numbers, watermark or border.
+No maker emblem. Do not resemble a real person, a real store, or a real car model.
+
+IMPORTANT:
+The final illustration should contain FEWER visual details than a normal flat illustration.
+
+When deciding whether to add a detail, remove it unless it is essential for recognizing the subject or action.
+
+Prioritize:
+SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
+
+The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
+"
+aitoma-K2-abst-person-02,fg_person,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:56:03,3:4,4K,docs/library/prompts/aitoma-K2-abst-person-02.txt,docs/library/candidates/aitoma-K2-abst-person-02.png,candidate,Hiro がアプリで手動生成。受領 JPEG 3584x4800(sha256 8fc1d45678c3)→長辺 4096 に縮小し PNG。四隅に可視透かしなし,"Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
+
+The most important requirement is the LEVEL OF SIMPLIFICATION.
+
+The subject must be highly abstracted and graphically simplified.
+
+Do NOT draw a detailed illustration.
+Do NOT draw realistic anatomy or realistic mechanical detail.
+Do NOT carefully render faces, hands, clothing, hair, shoes, or vehicle parts.
+
+Instead, treat the entire subject as a small collection of bold, simple graphic shapes.
+
+ABSTRACTION:
+- simplify the human body into large geometric shapes
+- simplify the face dramatically
+- use only tiny, minimal shapes for the eyes, nose and mouth
+- no detailed facial anatomy
+- no detailed wrinkles
+- no eyelashes
+- no detailed eyebrows
+- no realistic ears
+- hair should be one or two simple solid shapes
+- hands should be simple silhouettes with little or no finger detail
+- arms and legs should be simple flat shapes
+- clothing should be large uninterrupted color shapes
+- remove clothing folds, seams, buttons, stitching and fabric texture
+- shoes should be simple graphic shapes with almost no detail
+- any held object (smartphone, handset, bag) should be a simple recognizable geometric shape
+
+The face should contain only the minimum information necessary to communicate a calm, friendly expression.
+
+The hands should contain only the minimum information necessary to communicate the action.
+
+The clothing should be understood primarily through COLOR, SILHOUETTE and SHAPE,
+not through detailed garment construction.
+
+The subject should look intentionally designed and abstract,
+not like a realistic subject that has been simplified afterward.
+
+Think:
+""graphic shapes representing the subject""
+rather than
+""an illustrated subject.""
+
+STYLE:
+- highly simplified editorial illustration
+- flat graphic shapes
+- limited visual information
+- bold areas of solid color
+- minimal linework
+- clean but slightly organic shapes
+- distinctive artistic character
+- playful and sophisticated
+- slightly quirky
+- contemporary
+- not cute
+- not realistic
+- not corporate
+- not clip-art
+- not a typical Japanese municipal illustration
+- no gradients, no texture, no shading, no highlights
+
+COLOR:
+Use a restrained, sophisticated palette.
+Use #EB6EA5 as an accent color.
+Use muted navy, olive, warm off-white and natural skin tones.
+Skin: one flat pale pinkish-beige color, exactly #F5CEC1, the same for every character (face and hands). No tan, no peach, no orange skin, no blush, no shading on skin.
+Avoid bright generic colors.
+
+COMPOSITION:
+- two people only
+- full body
+- centered
+- generous negative space
+- 3:4 vertical 
+- entire subject visible
+- do not touch the edges
+
+BACKGROUND:
+completely uniform pure green #00FF00.
+No environment.
+No floor.
+No shadow.
+No furniture.
+No scenery.
+
+No text, logo, license-plate characters, QR code, numbers, watermark or border.
+No maker emblem. Do not resemble a real person, a real store, or a real car model.
+
+IMPORTANT:
+The final illustration should contain FEWER visual details than a normal flat illustration.
+
+When deciding whether to add a detail, remove it unless it is essential for recognizing the subject or action.
+
+Prioritize:
+SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
+
+The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
+"
+aitoma-K2-abst-vehicle-01,fg_vehicle,aitoma,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app,2026-09-27T17:56:04,4:3,4K,docs/library/prompts/aitoma-K2-abst-vehicle-01.txt,docs/library/candidates/aitoma-K2-abst-vehicle-01.png,candidate,Hiro がアプリで手動生成。受領 JPEG 4800x3584(sha256 e627bc2ca18c)→長辺 4096 に縮小し PNG。四隅に可視透かしなし,"Create a single illustration of a white community ride-share taxi: a box-shaped Japanese minivan, right-hand drive, seen from the front-left so that the left-side sliding door is visible. White body with one accent stripe. Blank license plate shape. A small roof sign with no text.
+
+The most important requirement is the LEVEL OF SIMPLIFICATION.
+
+The subject must be highly abstracted and graphically simplified.
+
+Do NOT draw a detailed illustration.
+Do NOT draw realistic anatomy or realistic mechanical detail.
+Do NOT carefully render faces, hands, clothing, hair, shoes, or vehicle parts.
+
+Instead, treat the entire subject as a small collection of bold, simple graphic shapes.
+
+ABSTRACTION:
+- simplify the van into a few large geometric shapes (body, roof, windows, wheels)
+- windows as one or two flat shapes
+- wheels as simple circles
+- grille as one simple shape or two lines
+- headlights as one simple shape each
+- no door handles, mirrors, wipers, badges, trim lines, panel gaps, reflections or chrome
+- the driver, if visible, is a single flat silhouette
+- the taxi roof sign is a small simple shape with no text
+
+The vehicle should be understood primarily through SILHOUETTE and COLOR BLOCKING,
+not through mechanical detail.
+
+The subject should look intentionally designed and abstract,
+not like a realistic subject that has been simplified afterward.
+
+Think:
+""graphic shapes representing the subject""
+rather than
+""an illustrated subject.""
+
+STYLE:
+- highly simplified editorial illustration
+- flat graphic shapes
+- limited visual information
+- bold areas of solid color
+- minimal linework
+- clean but slightly organic shapes
+- distinctive artistic character
+- playful and sophisticated
+- slightly quirky
+- contemporary
+- not cute
+- not realistic
+- not corporate
+- not clip-art
+- not a typical Japanese municipal illustration
+- no gradients, no texture, no shading, no highlights
+
+COLOR:
+Use a restrained, sophisticated palette.
+Use #EB6EA5 as an accent color.
+Use muted navy, olive, warm off-white and natural skin tones.
+Avoid bright generic colors.
+
+COMPOSITION:
+- one vehicle only
+- whole vehicle
+- centered
+- generous negative space
+- 4:3 horizontal 
 - entire subject visible
 - do not touch the edges
 
