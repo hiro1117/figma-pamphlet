@@ -1,91 +1,102 @@
 # preflight.js — 第1層チェック(最小版)仕様書
 
-対象: `skill/scripts/preflight.js`(2026-09-26 版、最小版 = P1・P2・P3-a・P4単色・P6・P7・P12)。
-計画書 v5.1 §6.5 の第1層のうち、機械判定できる 7 項目を `use_figma` 1 回で実行し、Pass / Fail / Manual を JSON で返す。オペレータには ○/✗ の要約だけを見せる(組み込みはスキル改訂 D で行う)。
+対象: `skill/scripts/preflight.js`(2026-09-27 版 = レビュー `docs/reports/review-2026-09-27.md` の CONFIG 決定を反映。最小版 = P1・P2・P3-a・P4単色・P6・P7・P12)。
+計画書 v5.1 §6.5 の第1層のうち機械判定できる 7 項目を `use_figma` 1 回で実行し、**Pass / Fail / Warn / Manual / Error** の 5 値で返す。Warn は「第2段の目標値に未達だが第1段では入稿を止めない」。オペレータには ○/✗/△ の要約だけを見せる(組み込みはスキル改訂 D)。
 
 ## 1. 前提
 
-- Figma は複製ファイル `09Js7rndbabLAoCchqzX9j` だけ。本番は触らない。テンプレート原本(ページ `テンプレート` 0:1)には走らせない(P3-a が一時 clone を書き込むため)
+- Figma は複製ファイル `09Js7rndbabLAoCchqzX9j` だけ。テンプレート原本(ページ `テンプレート` 0:1)には走らせない(P3-a が一時 clone を書き込むため)。制作物・テスト・作業用ページで使う
 - 1 回の `use_figma` で扱うのは 1 ページ(`CONFIG.PAGE_ID`)。複数ページは呼び出しを分けて並列に投げる
 - シート種別 `CONFIG.SHEET`
-  - `A3_booklet`: 1691×2392 または 2392×1691。k = 短辺 px ÷ 297 = 5.694 px/mm。折り線は縦 2 本(1/3・2/3)+横 1 本(1/2)。横型は縦横を入れ替える
+  - `A3_booklet`: 1691×2392 または 2392×1691。k = 短辺 px ÷ 297 = 5.694 px/mm。折り線は長辺方向 2 本(1/3・2/3)+短辺方向 1 本(1/2)
   - `A4_spot`: 794×1123(乗降スポット表)。k = 794 ÷ 210 = 3.781 px/mm。折り線なし
-- **しきい値は毎回 k から計算する**(旧計画の 34px は使わない)。`ptPx(pt) = round(pt × k × 25.4 / 72)`、`mmPx(mm) = round(mm × k)`
+- フレーム種別 `CONFIG.FRAME_KIND`(`auto` = 名前に 表紙 → `cover`、中面 → `inner`、どちらも無ければ `cover`)。P6 の折り線種別に使う
+- 系統 `CONFIG.FAMILY`(`auto` = 名前に MITT/ミット → `MITT`)。`PT_BY_FAMILY` の系統別しきい値に使う
+- **しきい値は毎回 k から計算する**。`ptPx(pt) = round(pt × k × 25.4 / 72)`、`mmPx(mm) = round(mm × k)`
 
 | 量 | A3_booklet(k=5.694) | A4_spot(k=3.781) |
 |---|---|---|
-| 12pt(本文・白抜き) | 24px | 16px |
-| 10pt(注記) | 20px | 13px |
+| 12pt(本文・白抜き本文) | 24px | 16px |
+| 10pt(注記の目標 Warn) | 20px | 13px |
+| 9pt(注記の Fail、白抜き見出し/ラベルの Fail) | 18px | 12px |
+| 7.5pt(MITT 系の本文 Fail) | 15px | — |
 | 6pt(絶対下限) | 12px | 8px |
-| 8mm(折り安全域) | 46px | — |
+| 8mm(面境界の Warn) / 5mm(面境界の Fail) | 46px / 28px | — |
 
-## 2. チェック定義
+## 2. ステータスとしきい値の 2 段構え
 
-| ID | 対象 | 判定 | Fail | Manual |
-|---|---|---|---|---|
-| P1 作業寸法 | フレームの width/height | `SHEETS[SHEET].dims` と ±0.01px で一致 | 不一致(rescale 不可、複製をやり直す) | — |
-| P2 文字サイズ | 可視 TEXT の全セグメント(`getStyledTextSegments(['fontSize','fills','fontName'])`) | 役割 body ≥ `PT.body`、note ≥ `PT.note`、全セグメント ≥ `PT.absMin`、fill 輝度 ≥ `WHITE_LUM`(0.85)の白抜きは ≥ `PT.white`。同一ノードでは (px, 理由) が同じ違反を 1 件に畳む | いずれか未達 | — |
-| P3-a 文字あふれ | `textAutoResize === 'NONE'` の可視 TEXT | 全フォントを `loadFontAsync` → `clone()`(名前 `__preflight_tmp__`、非表示)→ `textAutoResize='HEIGHT'` で箱幅の折返し高さ hFit → `'WIDTH_AND_HEIGHT'` で自然高さ hNat → **finally で `clone.remove()`**。`diff = hFit − 箱高` が `OVERFLOW_TOL_PX`(1px)を超え、かつ「hFit > hNat+1(折返しが増えた)」または「diff ≥ 1行高 × `TIGHT_RATIO`(0.5)」なら あふれ。それ以外の超過(単行バッジの箱が行高より低いだけ)は tight として `TIGHT_BOX`('ignore'/'manual'/'fail')に従う | あふれ | `hasMissingFont`、フォントロード失敗、clone 失敗 |
-| P4 コントラスト(単色背景) | 役割 body/note/phone(7:1)・heading(4.5:1)。`CONTRAST.other = null` の役割は対象外 | 前景 = セグメント fill(可視 SOLID stroke があれば袋文字としてその色)。背景 = 走査順(描画順)で TEXT より手前にあり、TEXT 矩形の `BG_COVER`(90%)以上を覆う軸平行の RECTANGLE/FRAME/COMPONENT/INSTANCE のうち最前面(なければフレーム自身の fill)。WCAG 相対輝度で比 | 比 < しきい値 | 前景が SOLID/不透明でない、背景未検出、背景が IMAGE/GRADIENT/半透明、背景と TEXT の間に TEXT 矩形の 50% 以上を覆う非矩形(VECTOR 等)や画像がある |
-| P6 折り安全域 | 可視 TEXT(`P6_EXCLUDE_NAME` = ガイド:/装飾: を除く) | 折り線は絶対座標で `absoluteBoundingBox` から計算(180°回転フレームでも 1/3・2/3・1/2 は対称)。TEXT の absoluteBoundingBox が折り線 ± `FOLD_MARGIN_MM`(8mm=46px)に入る、または折り線をまたぐ。表示・除外(`P6_SKIP_FOLDS`)は設計座標(回転を打ち消した px) | 該当あり | — |
-| P7 仮置き文言 | 可視 TEXT の characters(`P7_EXCLUDE_NAME` = `サンプル:` で始まる名前を除く) | `P7_PATTERN` に一致(既定: `[〇○◯]{2,}`、`〇`+年/月/日/時/号/地区/市/町/村、`0000`、`(仮)`、ダミー、サンプル、XXX、TODO) | 一致あり | — |
-| P12 電話番号 | 役割 phone で characters に電話番号らしい数字列(`0\d{1,4}-\d{1,4}-\d{3,4}`)を含む TEXT | **最大の**電話番号の fontSize ≥ 本文(役割 body)セグメントの fontSize 中央値 × `PHONE_RATIO`(3) | 未達 | 電話番号が見つからない、本文が見つからない |
+- 各 item は `sev: 'Fail' | 'Warn' | 'Manual'`。チェックの `status` は Fail が 1 件でもあれば Fail、なければ Warn、なければ Manual、なければ Pass。`Error` はそのチェックだけ失敗(他は続行)
+- しきい値は `{ fail, warn }`。`fail` 未満で Fail、`warn` 未満で Warn(`warn` 省略可)。目標値(warn)は第2段のテンプレ改修で `fail` に格上げする
+- `summary` はフレームごとに `{ fail, warn, manual, pass, error, ignored_tight }`(ステータス別のチェック数と、P3-a で無視した tight 件数)
 
-共通: `visible === false` の枝と名前 `#tone` `#state` `#config` は走査から除く。characters が空の TEXT は P2/P3-a/P4/P6/P12 の対象外。幾何は absoluteBoundingBox。出力の `frame.rotation` は absoluteTransform から求めた絶対回転(0〜359)。
+## 3. チェック定義
 
-## 3. 役割判定(NAME_MAP)
+| ID | 対象 | 判定 | Fail | Warn | Manual |
+|---|---|---|---|---|---|
+| P1 作業寸法 | フレームの width/height | `SHEETS[SHEET].dims` と ±0.01px で一致 | 不一致(rescale 不可、複製をやり直す) | — | — |
+| P2 文字サイズ | 可視 TEXT の全セグメント(`getStyledTextSegments(['fontSize','fills','fontName'])`) | 役割ごとに `PT[role]`(body `{fail:12}`、note `{fail:9, warn:10}`)、全セグメント `PT.absMin {fail:6}`、白抜き(fill 輝度 ≥ `WHITE_LUM` 0.85)は `PT.white[role]`(body/note/phone `{fail:12}`、heading/label/other `{fail:9, warn:12}`)。系統別 `PT_BY_FAMILY`(MITT: body `{fail:7.5, warn:12}`)で上書き。複数規則に当たれば最も重い方を採る。同一ノードでは (px, 規則, 重さ) が同じ違反を 1 件に畳む | fail 未満 | warn 未満 | — |
+| P3-a 文字あふれ | `textAutoResize === 'NONE'` の可視 TEXT | 全フォントを `loadFontAsync` → `clone()`(名前 `__preflight_tmp__`、非表示)→ **`textAutoResize='HEIGHT'`(箱幅で折り返した高さ hFit。必ず先)→ `'WIDTH_AND_HEIGHT'`(自然高さ hNat)** → **finally で `clone.remove()`**。`diff = hFit − 箱高` が `OVERFLOW_TOL_PX`(1px)を超え、かつ「hFit > hNat+1(折返しが増えた)」または「diff ≥ 1行高 × `TIGHT_RATIO`(0.5)」なら あふれ。それ以外(単行バッジの箱が行高より少し低いだけ = tight)は `TIGHT_BOX`('ignore' 既定 / 'manual' / 'fail')に従い、ignore の件数を `summary.ignored_tight` に出す | あふれ | — | `hasMissingFont`、フォントロード失敗、clone 失敗 |
+| P4 コントラスト(単色背景) | 役割 body/note/phone(7:1)・heading/label(4.5:1)。`CONTRAST.other = null` は対象外 | 前景 = セグメント fill(可視 SOLID stroke があれば袋文字としてその色)。背景 = 描画順で TEXT より手前にあり TEXT 矩形の `BG_COVER`(90%)以上を覆う軸平行の RECTANGLE/FRAME/COMPONENT/INSTANCE の最前面(なければフレーム fill)。WCAG 相対輝度で比 | 比 < しきい値 | — | 前景が SOLID/不透明でない、背景未検出、背景が IMAGE/GRADIENT/半透明、背景と TEXT の間に TEXT 矩形の 50% 以上を覆う非矩形(VECTOR 等)・画像がある |
+| P6 折り安全域 | 可視 TEXT(`P6_EXCLUDE_NAME` = ガイド:/装飾: を除く) | 折り線は絶対座標で計算し(180°回転でも対称)、設計座標に戻して**種別**を付ける。`P6_FOLD_KINDS[kind]`: 表紙 = 長辺 1/3(x=563.7)`spread`(見開き内)、2/3(x=1127.3)`boundary`(面境界)、短辺 1/2(y=1196)`boundary`。中面 = 3 本とも `spread`。横型フレームは軸を入れ替える | boundary をまたぐ、または余白 < `P6_MARGIN_MM.fail`(5mm=28px) | boundary の余白 < `P6_MARGIN_MM.warn`(8mm=46px)、spread をまたぐ(余白は見ない) | — |
+| P7 仮置き文言 | 可視 TEXT の characters(`P7_EXCLUDE_NAME` = `サンプル:` を除く) | `P7_PATTERN`(`[〇○◯]{2,}`、`〇`+年/月/日/時/号/地区/市/町/村、`0000`、`(仮)`、ダミー、サンプル、XXX、TODO) | 一致あり | — | — |
+| P12 電話番号 | 役割 phone で characters に電話番号らしい数字列を含む TEXT | **最大の**電話番号の fontSize ÷ 本文(役割 body)セグメントの fontSize 中央値 = 倍率 | 倍率 < `PHONE_RATIO.fail`(2.0) | 倍率 < `PHONE_RATIO.warn`(3.0) | 電話番号が無い、本文が無い |
 
-判定順: (1) 名前の接頭辞 `ROLE_PREFIX`(`#本文` `#注記` `#見出し` `#電話` `#CTA`。ただし `ROLE_PREFIX_EXCEPT` の `#電話` + 受付/時間/注記/説明 は除く)→ (2) 名前の正規表現 `ROLE_NAME`(note → phone → heading → body の順)→ (3) characters の正規表現 `ROLE_CHARS`(電話番号の数字列 → phone、先頭 `※＊*` → note、30 字以上 → body)→ (4) `other`。
-出力の `role` は `役割/根拠`(prefix / name / chars / default)。既定値は `docs/prep/text-inventory.md` の候補表から決めた(`#〜本文` `#リード文` `#〜名称` → body、`#〜注記` `#利用上の注意` `#受付時間` `#補助金表記` `#事業主体` → note、`#キャッチコピー` `#サービス名` `#タイトル` `見出し:` → heading、`#電話番号〜` `TEL` `℡` → phone)。
+共通: `visible === false` の枝と名前 `#tone` `#state` `#config` は走査から除く。characters が空の TEXT は P2/P3-a/P4/P6/P12 の対象外。幾何は absoluteBoundingBox。`frame.rotation` は absoluteTransform から求めた絶対回転(0〜359)。`frame.kind` `frame.family` も出力する。
 
-## 4. 実行手順
+## 4. 役割判定(NAME_MAP)
+
+判定順: (1) 名前の接頭辞 `ROLE_PREFIX`(`#本文` `#注記` `#見出し` `#電話` `#CTA`。`ROLE_PREFIX_EXCEPT` の `#電話` + 受付/時間/注記/説明 は除く)→ (2) 名前の正規表現 `ROLE_NAME`(note → **label**(`ラベル:` / TEL / LINE / FAX / ℡)→ phone(`電話番号`)→ heading → body)→ (3) characters の正規表現 `ROLE_CHARS`(電話番号の数字列 → phone、TEL/LINE/FAX/QR/℡ だけ → label、先頭 `※＊*` → note、30 字以上 → body)→ (4) `other`。
+役割は 6 種: body / note / heading / phone / **label**(短いラベル。P4 は 4.5:1、白抜きは 9pt Fail/12pt Warn)/ other。**数字列を含むものだけが phone**(7:1)。出力の `role` は `役割/根拠`(prefix / name / chars / default)。
+
+## 5. 実行手順
 
 1. Figma の `figma-use` スキルを読む(use_figma の前に必ず)
-2. `skill/scripts/preflight.js` をそのまま `use_figma` の `code` に貼り、先頭 `CONFIG` の 3 行だけ書き換える
-   - `PAGE_ID`: 制作物 `'7:2'`、テスト `'664:2'`
-   - `FRAME_IDS`: 検査するフレーム ID の配列。**表紙は 1 枚 / 呼び出し、中面は 2 枚まで**(返り値 20KB の目安。超えると自動で items を 5 件に切り詰め `note` を付ける)
-   - `SHEET`: 冊子 `'A3_booklet'`、乗降スポット表 `'A4_spot'`
-3. しきい値を変えるときも CONFIG だけを触る(`PT` `CONTRAST` `FOLD_MARGIN_MM` `PHONE_RATIO` `P6_SKIP_FOLDS` `TIGHT_BOX` など)
+2. `skill/scripts/preflight.js` をそのまま `use_figma` の `code` に貼り、先頭 `CONFIG` の `PAGE_ID` / `FRAME_IDS` / `SHEET` だけ書き換える(必要なら `FRAME_KIND` `FAMILY` を明示)
+   - 制作物 `'7:2'`、テスト `'664:2'`。**表紙は 1 枚 / 呼び出し、中面は 2 枚まで**(返り値の上限 20KB は UTF-8 バイト換算。超えると items を 5 → 2 → 0 件に段階的に切り詰め、`note` を付ける。件数 fail/warn/manual は残る)
+3. しきい値を変えるときも CONFIG だけを触る(`PT` `PT_BY_FAMILY` `CONTRAST` `P6_FOLD_KINDS` `P6_MARGIN_MM` `PHONE_RATIO` `TIGHT_BOX` など)
 4. 複数ページ・多数フレームは呼び出しを分けて同じメッセージで並列に投げる(ページ切替は 1 呼び出し 1 回)
-5. 実行後 `tmpRemovedAtEnd` が 0 であることを確認する(P3-a の一時 clone が残っていない証拠。0 以外なら掃き残しを消した件数)
-6. ページ全体で確認したいときは読み取り専用で `page.findAllWithCriteria({types:['TEXT']}).filter(n => n.name === '__preflight_tmp__')` が 0 件であることを見る
+5. 実行後 `tmpRemovedAtEnd` が 0 であることを確認する(P3-a の一時 clone が残っていない証拠)
+6. 念のためページ全体で `page.findAllWithCriteria({types:['TEXT']}).filter(n => n.name === '__preflight_tmp__')` が 0 件であることを見る
 
-注意: 転送経路で ` ` のような正規表現リテラルは実文字に化けて構文エラーになる。スクリプトでは `String.fromCharCode(8232)` で組んでいる。同種の追加をするときも同じ書き方にする。
+注意: 転送経路で ` ` のような正規表現リテラルは実文字に化けて構文エラーになる。スクリプトでは `String.fromCharCode(8232)` で組んでいる。
 
-## 5. 出力の読み方
+## 6. 出力の読み方
 
 ```json
 { "page": "制作物", "sheet": "A3_booklet",
-  "results": [ { "frame": { "id", "name", "w", "h", "k", "rotation", "sheet", "texts", "roles": {"body": 9, ...} },
-                 "checks": [ { "id": "P2", "status": "Pass|Fail|Manual|Error", "count": 24,
-                               "items": [ { "node", "name", "role", "value", "limit", "chars", "fix", "at"? } ], "truncated"?: 4, "message"? } ],
-                 "summary": { "fail": 6, "manual": 0, "pass": 1 } } ],
+  "results": [ { "frame": { "id", "name", "w", "h", "k", "rotation", "sheet", "kind": "cover|inner", "family": "MITT|null", "texts", "roles": {"body": 9, "label": 3, ...} },
+                 "checks": [ { "id": "P6", "status": "Fail", "count": 21, "fail": 4, "warn": 17, "manual": 0,
+                               "items": [ { "node", "name", "sev": "Fail|Warn|Manual", "role", "value", "limit", "chars", "fix", "at"? } ], "truncated"?: 1, "message"? } ],
+                 "summary": { "fail": 5, "warn": 1, "manual": 0, "pass": 1, "error": 0, "ignored_tight": 5 } } ],
   "tmpRemovedAtEnd": 0, "ms": 509, "bytes": 10537, "note"? }
 ```
 
-- `items` は Fail / Manual のみ、1 チェック最大 20 件(`truncated` は溢れた件数)。`name` は先頭 20 字、`chars` は先頭 15 字
-- `value` は実測、`limit` はしきい値、`fix` は直し方の一言。P6 の `at` は設計座標(x,y w×h)、`value` の `x=563.7(またぎ)` `y=1196(gap 27)` も設計座標
-- `status` の決め方: Fail が 1 件でもあれば Fail、なければ Manual があれば Manual、どちらもなければ Pass。`Error` はそのチェックだけ失敗(他は続行)
-- **○/✗ 要約の作り方**(オペレータ向け、チェックごとに 1 行):
+- `items` は Fail / Warn / Manual のみ、1 チェック最大 20 件(`truncated` は溢れた件数)。`name` は先頭 20 字、`chars` は先頭 15 字
+- P6 の `value` は `x=1127.3面境界(gap 18.7)` `x=563.7見開き(またぎ)` のように折り線の設計座標・種別・状態を示す。`at` は TEXT の設計座標(x,y w×h)
+- P12 の `value` は `50px = 本文×2.8`、`limit` に Fail 線(×2)と目標(×3)の px を併記
+- **○/✗/△ 要約の作り方**(オペレータ向け、チェックごとに 1 行):
   - Pass → `○ 文字サイズ: 問題なし`
-  - Fail → `✗ 文字サイズ: 24 か所(例: 「リード文」21px → 24px 以上に)`。例は items[0] の name と fix を使う
-  - Manual → `△ コントラスト: 10 か所は目で確認(背景が絵柄のため)`。message の要約を添える
+  - Fail → `✗ 文字サイズ: 19 か所(例: 「リード文」21px → 24px 以上に)`。例は sev=Fail の items[0] の name と fix
+  - Warn → `△ 折り線: 17 か所は次回改善(入稿は可)`。Fail と Warn が混在するチェックは `✗ … 4 か所 / △ 17 か所` と併記
+  - Manual → `△ コントラスト: 11 か所は目で確認(背景が絵柄のため)`
   - Error → `? 文字あふれ: 検査できませんでした(次回に再実行)`
-  - P1 の Fail はそれ以外を読まずに「寸法が違うので複製からやり直し」を先に出す
+  - P1 の Fail はそれ以外を読まずに「寸法が違うので複製からやり直し」を先に出す。`ignored_tight` は要約に出さない
 
-## 6. 既知の限界(2026-09-26 時点)
+## 7. 既知の限界(2026-09-27 時点)
 
-- P4 は単色の矩形背景だけ計算する。テンプレの「背景」グループにある波形 VECTOR が TEXT の下にあると Manual になる(現行テンプレの表紙ではほぼ全滅)。B.1 で文字に座布団(矩形)を敷けば計算できる
-- P4 は `other` 役割(ラベル・バッジ・無名テキスト)を見ない。`ラベル:TEL` など名前に TEL を含むものは phone(7:1)で判定される
-- P6 は現行テンプレの設計そのもの(2 面見開きの中央折りをまたぐ見出し・リード文、折りから 27〜45px の STEP バッジやフッター)と衝突して大量に Fail する。`P6_SKIP_FOLDS` と `FOLD_MARGIN_MM` で緩和できるが、既定値は仕様どおり厳格。詳細は `docs/reports/E-test-report.md`
-- P3-a は Figma がテキストを clip しない前提で「行が増えた/半行以上足りない」だけを見る。tight(箱が行高より少し低い)は既定で無視。隣接要素との重なりは見ない(P3-b 予定)。`hasMissingFont` の TEXT は計測できない(Manual)
-- P12 は最大の電話番号だけを評価する(フッターの小さい電話番号は message に一覧)。倍率 3 は現行テンプレの電話(43〜75px)では達成不能(本文 24px × 3 = 72px)
-- P2 の白抜き判定は fill の輝度 ≥ 0.85 で、淡黄色なども白扱いになる
-- 無名 TEXT の役割は characters(※ / 電話番号 / 30 字以上)からの推定に頼る。旧世代の複製(制作物ページの 2026-08 版)は無名が多い
-- ラッパー寸法(1725.2×2426.2 / 858.9×1207.9)と PDF 実寸は次版(P1 の残り)
-- `frame.findAll` ではなく自前の再帰で 1 回だけ走査している(非表示の枝を丸ごと飛ばすため)。走査回数は同じ
+- P4 は単色の矩形背景だけ計算する。テンプレの「背景」グループにある波形 VECTOR が TEXT の下にあると Manual になる(現行表紙で対象の 1/3〜2/3)。B.1 で文字に座布団(矩形)を敷けば計算できる
+- P4 は `other` 役割(バッジ・無名テキスト・数字)を見ない
+- P6 の種別は `FRAME_KIND`(名前判定)に依存する。名前に 表紙/中面 が無いフレームは `cover` 扱い。面グループ幅からの自動判定は B.1 の命名確定後
+- P6 は見開き内の折りをまたぐ文字を Warn にとどめる(現行テンプレの 2 面見開き設計を第1段で許容)。第2段でサービス紹介面を組み直すかを判断
+- P3-a は Figma がテキストを clip しない前提で「行が増えた/半行以上足りない」だけを見る。隣接要素との重なりは見ない(P3-b 予定)。`hasMissingFont` の TEXT は計測できない(Manual)
+- P12 は最大の電話番号だけを評価する。本文が無名の中面では中央値が取れず Manual
+- P2 の白抜き判定は fill の輝度 ≥ 0.85 で、淡黄色なども白扱い
+- 系統(FAMILY)は名前で推定する。フレーム名に系統名が無い場合は `CONFIG.FAMILY` を明示する。B.1 の `#config` 導入後はそこから読む
+- 無名 TEXT の役割は characters(※ / 電話番号 / 短いラベル / 30 字以上)からの推定に頼る
+- ラッパー寸法(1725.2×2426.2 / 858.9×1207.9)と PDF 実寸は次版(P1 の残り)。A4_spot は実例が無く未実測
+- `frame.findAll` ではなく自前の再帰で 1 回だけ走査している(非表示の枝を丸ごと飛ばすため)
 
-## 7. スクリプト全文(逐語)
+## 8. スクリプト全文(逐語)
 
 以下は `skill/scripts/preflight.js` と同一。差分が出たらファイル側を正とする。
 
@@ -94,44 +105,59 @@
 // use_figma にそのまま貼る素の JavaScript(トップレベル await + return)。
 // 仕様: skill/references/preflight.md。しきい値は k(px/mm)から毎回計算する。
 // 書き込みは P3-a の一時 clone のみ(try/finally で必ず remove)。
+// ステータスは Pass / Fail / Warn / Manual / Error。Warn = 第2段の目標値に未達(入稿は止めない)。
 
 const CONFIG = {
   PAGE_ID: '7:2',                    // 対象ページ(1呼び出しで切替は1回)
-  FRAME_IDS: ['71:2'],               // 対象フレーム(表紙1枚なら1件、中面なら2〜3件まで)
+  FRAME_IDS: ['71:2'],               // 対象フレーム(表紙1枚なら1件、中面なら2枚まで)
   SHEET: 'A3_booklet',               // 'A3_booklet'(1691×2392 / 2392×1691) | 'A4_spot'(794×1123)
   SHEETS: {
     A3_booklet: { dims: [[1691, 2392], [2392, 1691]], shortMm: 297, folds: true },
     A4_spot:    { dims: [[794, 1123], [1123, 794]],   shortMm: 210, folds: false },
   },
-  PT: { body: 12, note: 10, absMin: 6, white: 12 },   // P2(pt)。白抜き=fill 輝度 ≥ WHITE_LUM
-  WHITE_LUM: 0.85,
-  CONTRAST: { body: 7, note: 7, phone: 7, heading: 4.5, other: null }, // P4(null=対象外)
+  FRAME_KIND: 'auto',                // 'auto'(名前で判定) | 'cover'(表紙) | 'inner'(中面)。P6 の折り線種別に使う
+  FRAME_KIND_PATTERNS: { cover: /表紙/, inner: /中面/ }, FRAME_KIND_DEFAULT: 'cover',
+  FAMILY: 'auto',                    // 'auto'(名前で判定) | 'MITT' | ... 系統別しきい値 PT_BY_FAMILY に使う
+  FAMILY_PATTERNS: { MITT: /MITT|ミット/i },
+  // P2(pt)。{fail, warn}: fail 未満で Fail、warn 未満で Warn(warn 省略可)
+  PT: {
+    body: { fail: 12 }, note: { fail: 9, warn: 10 }, absMin: { fail: 6 },
+    white: { body: { fail: 12 }, note: { fail: 12 }, phone: { fail: 12 }, heading: { fail: 9, warn: 12 }, label: { fail: 9, warn: 12 }, other: { fail: 9, warn: 12 } },
+  },
+  PT_BY_FAMILY: { MITT: { body: { fail: 7.5, warn: 12 } } },   // 系統別オーバーライド(第2段でテンプレを直すまでの暫定)
+  WHITE_LUM: 0.85,                   // 白抜き = fill の相対輝度がこれ以上
+  CONTRAST: { body: 7, note: 7, phone: 7, heading: 4.5, label: 4.5, other: null }, // P4(null=対象外)
   BG_COVER: 0.9,                     // P4 背景候補は TEXT 矩形の 90% 以上を覆う
-  FOLD_MARGIN_MM: 8,                 // P6 折り線からの安全域(46px)
+  // P6 折り線の種別。boundary=面境界(またぐ→Fail、余白<fail mm→Fail、<warn mm→Warn)、spread=見開き内(またぐ→Warn、余白は見ない)
+  // third1/third2 = 長辺方向の 1/3・2/3 の折り(設計座標で小さい方が third1)、half = 短辺方向の 1/2 の折り
+  P6_FOLD_KINDS: { cover: { third1: 'spread', third2: 'boundary', half: 'boundary' }, inner: { third1: 'spread', third2: 'spread', half: 'spread' } },
+  P6_MARGIN_MM: { fail: 5, warn: 8 },
+  P6_SKIP_FOLDS: { x: [], y: [] },   // 検査しない折り線(設計座標px)
+  P6_EXCLUDE_NAME: /^(ガイド:|装飾:)/,          // P6 で無視する TEXT 名
   OVERFLOW_TOL_PX: 1,                // P3-a 高さ差の許容
   TIGHT_BOX: 'ignore',               // P3-a 箱が文字より低いが不足が 1行×TIGHT_RATIO 未満(単行バッジ等): 'ignore'|'manual'|'fail'
   TIGHT_RATIO: 0.5,                  // 不足 ≥ 1行高×0.5 なら明示改行の追加でもあふれと判定
-  P6_SKIP_FOLDS: { x: [], y: [] },   // P6 で検査しない折り線(設計座標px。例: 2面見開きの中央 x:[563.7])
-  PHONE_RATIO: 3,                    // P12 電話 ≥ 本文中央値 × 3
-  P6_EXCLUDE_NAME: /^(ガイド:|装飾:)/,          // P6 で無視する TEXT 名
+  PHONE_RATIO: { fail: 2.0, warn: 3.0 }, // P12 最大の電話番号 ≥ 本文中央値 × 倍率
   P7_PATTERN: /[〇○◯]{2,}|[〇○◯](?=年|月|日|時|号|地区|市|町|村)|0000|[（(]仮[)）]|ダミー|サンプル|XXX|TODO/,
   P7_EXCLUDE_NAME: /^サンプル:/,                 // テンプレの見本文言は除外
   EXCLUDE_NAME: /^#(tone|state|config)$/,      // 状態保持ノードは走査から除外
-  // 役割判定: 名前が #本文 等で始まれば優先。次に名前の正規表現、最後に文字列
+  // 役割判定: 名前の接頭辞 > 名前の正規表現 > 文字列の正規表現 > other
   ROLE_PREFIX: { '#本文': 'body', '#注記': 'note', '#見出し': 'heading', '#電話': 'phone', '#CTA': 'heading' },
   ROLE_PREFIX_EXCEPT: { '#電話': /受付|時間|注記|説明/ },   // 「#電話受付時間」は phone でなく名前規則へ
   ROLE_NAME: [
     ['note',    /注記|注意|受付時間|補助金表記|発行者情報|事業主体|運行事業者|協力会社|実施主体|更新\)|^※|※/],
-    ['phone',   /電話番号|(^|[^a-zA-Z])TEL($|[^a-zA-Z])|℡/],
-    ['heading', /見出し|キャッチコピー|サブコピー|サービス名|タイトル|自治体名|事業名|^見出し:|^ラベル:見出し|分類\d/],
+    ['label',   /^ラベル:|^(TEL|LINE|FAX|℡)[.:：]?$/i],     // 短いラベル(TEL/LINE 等)は見出し相当 4.5:1
+    ['phone',   /電話番号/],
+    ['heading', /見出し|キャッチコピー|サブコピー|サービス名|タイトル|自治体名|事業名|^見出し:|分類\d/],
     ['body',    /本文|リード文|名称|停留所名|スポット名|乗降場所\d|リスト|説明|キャプション|手順/],
   ],
   ROLE_CHARS: [
-    ['phone', /0\d{1,4}[-‐−ー–]\d{1,4}[-‐−ー–]\d{3,4}/],
+    ['phone', /0\d{1,4}[-‐−ー–]\d{1,4}[-‐−ー–]\d{3,4}/],   // 数字列だけを phone
+    ['label', /^(TEL|LINE|FAX|QR|℡)[.:：]?$/i],
     ['note',  /^[※＊*]/],
-    ['body',  /^[\s\S]{30,}$/],                   // 無名ノードでも 30 字以上なら本文扱い
+    ['body',  /^[\s\S]{30,}$/],                          // 無名ノードでも 30 字以上なら本文扱い
   ],
-  MAX_ITEMS: 20, NAME_LEN: 20, CHARS_LEN: 15, OUT_LIMIT: 20000,
+  MAX_ITEMS: 20, NAME_LEN: 20, CHARS_LEN: 15, OUT_LIMIT_BYTES: 19000,   // MCP の返り値上限 20KB は UTF-8 バイト換算(日本語は 3 バイト)
   TMP_NAME: '__preflight_tmp__',
 };
 
@@ -149,6 +175,8 @@ const inter = (a, b) => { const w = Math.min(a.x + a.width, b.x + b.width) - Mat
 // 絶対座標 → フレームの設計座標(回転を打ち消す)
 const toLocal = (frame, px, py) => { const [[a, c, e], [b, d, f]] = frame.absoluteTransform; const det = a * d - b * c; return { x: round1((d * (px - e) - c * (py - f)) / det), y: round1((-b * (px - e) + a * (py - f)) / det) }; };
 const topFill = n => { const fs = Array.isArray(n.fills) ? n.fills : null; if (!fs) return undefined; for (let i = fs.length - 1; i >= 0; i--) if (fs[i].visible !== false) return fs[i]; return null; };
+const SEV = { Fail: 3, Warn: 2, Manual: 1 };
+const detect = (name, patterns, fallback) => { for (const k in patterns) if (patterns[k].test(name)) return k; return fallback; };
 
 function roleOf(node) {
   const name = node.name || '';
@@ -170,15 +198,16 @@ function walk(root) {
   return all;
 }
 
-function item(n, extra) { return Object.assign({ node: n.id, name: cut(n.name, CONFIG.NAME_LEN) }, extra); }
-function finish(check, items, fails, manuals, message) {
-  check.status = fails > 0 ? 'Fail' : manuals > 0 ? 'Manual' : 'Pass';
-  check.count = fails + manuals;
-  check.items = items.slice(0, CONFIG.MAX_ITEMS);
+// item: sev は 'Fail' | 'Warn' | 'Manual'
+function item(n, sev, extra) { return Object.assign({ node: n ? n.id : null, name: n ? cut(n.name, CONFIG.NAME_LEN) : '-', sev }, extra); }
+function finish(id, items, message) {
+  const c = { Fail: 0, Warn: 0, Manual: 0 }; for (const i of items) c[i.sev]++;
+  const check = { id, status: c.Fail ? 'Fail' : c.Warn ? 'Warn' : c.Manual ? 'Manual' : 'Pass', count: items.length, fail: c.Fail, warn: c.Warn, manual: c.Manual, items: items.slice(0, CONFIG.MAX_ITEMS) };
   if (items.length > CONFIG.MAX_ITEMS) check.truncated = items.length - CONFIG.MAX_ITEMS;
   if (message) check.message = message;
   return check;
 }
+const errCheck = (id, err) => ({ id, status: 'Error', count: 0, items: [], message: String(err) });
 
 // ---------- 1フレーム分の検査 ----------
 async function inspect(frame) {
@@ -186,15 +215,18 @@ async function inspect(frame) {
   const w = frame.width, h = frame.height;
   const dimOk = sheet.dims.some(([a, b]) => Math.abs(w - a) < 0.01 && Math.abs(h - b) < 0.01);
   const k = (dimOk ? Math.min(w, h) : Math.min(...sheet.dims[0])) / sheet.shortMm; // px/mm
-  const ptPx = pt => Math.round(pt * k * 25.4 / 72);   // 12pt→24px, 10pt→20px, 6pt→12px
-  const mmPx = mm => Math.round(mm * k);              // 8mm→46px
+  const ptPx = pt => Math.round(pt * k * 25.4 / 72);   // 12pt→24px, 10pt→20px, 9pt→18px, 6pt→12px
+  const mmPx = mm => Math.round(mm * k);              // 5mm→28px, 8mm→46px
   const fbb = frame.absoluteBoundingBox;
-  const out = { frame: { id: frame.id, name: cut(frame.name, 40), w: round1(w), h: round1(h), k: round1(k * 100) / 100, rotation: absDeg(frame), sheet: CONFIG.SHEET }, checks: [], summary: {} };
+  const kind = CONFIG.FRAME_KIND === 'auto' ? detect(frame.name, CONFIG.FRAME_KIND_PATTERNS, CONFIG.FRAME_KIND_DEFAULT) : CONFIG.FRAME_KIND;
+  const family = CONFIG.FAMILY === 'auto' ? detect(frame.name, CONFIG.FAMILY_PATTERNS, null) : CONFIG.FAMILY;
+  const PT = Object.assign({}, CONFIG.PT, (family && CONFIG.PT_BY_FAMILY[family]) || {});
+  const out = { frame: { id: frame.id, name: cut(frame.name, 40), w: round1(w), h: round1(h), k: round1(k * 100) / 100, rotation: absDeg(frame), sheet: CONFIG.SHEET, kind, family }, checks: [], summary: {} };
   const checks = out.checks;
+  let ignoredTight = 0;
 
   // P1 作業寸法
-  checks.push({ id: 'P1', status: dimOk ? 'Pass' : 'Fail', count: dimOk ? 0 : 1,
-    items: dimOk ? [] : [item(frame, { value: `${round1(w)}×${round1(h)}`, limit: sheet.dims.map(d => d.join('×')).join(' / '), fix: '複製をやり直す(resize 不可)' })] });
+  checks.push(finish('P1', dimOk ? [] : [item(frame, 'Fail', { value: `${round1(w)}×${round1(h)}`, limit: sheet.dims.map(d => d.join('×')).join(' / '), fix: '複製をやり直す(resize 不可)' })]));
 
   // 走査(1回)
   const all = walk(frame);
@@ -210,30 +242,31 @@ async function inspect(frame) {
   out.frame.texts = texts.length;
   out.frame.roles = liveTexts.reduce((a, e) => { const r = meta.get(e.node.id).role; a[r] = (a[r] || 0) + 1; return a; }, {});
 
-  // P2 文字サイズ(セグメント単位)
+  // P2 文字サイズ(セグメント単位、Fail/Warn の2段)
   try {
-    const items = []; let fails = 0;
-    const lim = { body: ptPx(CONFIG.PT.body), note: ptPx(CONFIG.PT.note), abs: ptPx(CONFIG.PT.absMin), white: ptPx(CONFIG.PT.white) };
+    const items = [];
+    const judge = (px, th) => !th ? null : px < ptPx(th.fail) ? 'Fail' : (th.warn && px < ptPx(th.warn)) ? 'Warn' : null;
+    const lim = th => th ? `${ptPx(th.fail)}px${th.warn ? '/' + ptPx(th.warn) + 'px' : ''}` : '';
     for (const e of liveTexts) {
       const m = meta.get(e.node.id); const seen = new Set();
       for (const s of m.segs) {
         if (!(s.characters || '').trim()) continue;
         const px = s.fontSize; const f = Array.isArray(s.fills) && s.fills.length ? s.fills[s.fills.length - 1] : null;
         const white = f && f.type === 'SOLID' && lum(f.color) >= CONFIG.WHITE_LUM;
-        let limit = lim.abs, why = 'abs';
-        if (m.role === 'body' && lim.body > limit) { limit = lim.body; why = 'body'; }
-        if (m.role === 'note' && lim.note > limit) { limit = lim.note; why = 'note'; }
-        if (white && lim.white > limit) { limit = lim.white; why = 'white'; }
-        const key = px + why; if (px >= limit || seen.has(key)) continue; seen.add(key); fails++;
-        items.push(item(e.node, { role: m.role + '/' + m.by, value: `${round1(px)}px=${round1(px / k / 25.4 * 72)}pt`, limit: `${limit}px(${why})`, chars: cut(s.characters, CONFIG.CHARS_LEN), fix: `fontSize を ${limit}px 以上に(文言を短くして収める)` }));
+        const rules = [['abs', PT.absMin], [m.role, PT[m.role]], white ? ['white/' + m.role, PT.white[m.role] || PT.white.other] : null].filter(r => r && r[1]);
+        let worst = null;
+        for (const [why, th] of rules) { const sev = judge(px, th); if (sev && (!worst || SEV[sev] > SEV[worst.sev])) worst = { sev, why, th }; }
+        if (!worst) continue;
+        const key = px + worst.why + worst.sev; if (seen.has(key)) continue; seen.add(key);
+        items.push(item(e.node, worst.sev, { role: m.role + '/' + m.by, value: `${round1(px)}px=${round1(px / k / 25.4 * 72)}pt`, limit: `${lim(worst.th)}(${worst.why})`, chars: cut(s.characters, CONFIG.CHARS_LEN), fix: `fontSize を ${ptPx(worst.th.fail)}px 以上に(文言を短くして収める)` }));
       }
     }
-    checks.push(finish({ id: 'P2' }, items, fails, 0, `limits px: body ${lim.body} / note ${lim.note} / abs ${lim.abs} / white ${lim.white}`));
-  } catch (err) { checks.push({ id: 'P2', status: 'Error', count: 0, items: [], message: String(err) }); }
+    checks.push(finish('P2', items, `limits px(fail/warn): body ${lim(PT.body)} / note ${lim(PT.note)} / abs ${lim(PT.absMin)} / white heading ${lim(PT.white.heading)}${family ? ' / family ' + family : ''}`));
+  } catch (err) { checks.push(errCheck('P2', err)); }
 
-  // P3-a 文字あふれ(textAutoResize NONE のみ。clone → HEIGHT → 高さ比較 → finally remove)
+  // P3-a 文字あふれ(textAutoResize NONE のみ。clone → HEIGHT → WIDTH_AND_HEIGHT → 高さ比較 → finally remove)
   try {
-    const items = []; let fails = 0, manuals = 0, checked = 0, tight = 0;
+    const items = []; let checked = 0, tight = 0;
     const targets = liveTexts.filter(e => e.node.textAutoResize === 'NONE');
     const fontKeys = new Map();
     for (const e of targets) if (!e.node.hasMissingFont) for (const s of meta.get(e.node.id).segs) if (s.fontName) fontKeys.set(s.fontName.family + '|' + s.fontName.style, s.fontName);
@@ -241,8 +274,8 @@ async function inspect(frame) {
     for (const [key, fn] of fontKeys) { try { await figma.loadFontAsync(fn); } catch (err) { failedFonts.add(key); } }
     for (const e of targets) {
       const n = e.node, m = meta.get(n.id);
-      if (n.hasMissingFont) { manuals++; items.push(item(n, { role: m.role, value: 'hasMissingFont', fix: 'フォントを入れて再実行、または目視' })); continue; }
-      if (m.segs.some(s => s.fontName && failedFonts.has(s.fontName.family + '|' + s.fontName.style))) { manuals++; items.push(item(n, { role: m.role, value: 'font load failed', fix: '目視' })); continue; }
+      if (n.hasMissingFont) { items.push(item(n, 'Manual', { role: m.role, value: 'hasMissingFont', fix: 'フォントを入れて再実行、または目視' })); continue; }
+      if (m.segs.some(s => s.fontName && failedFonts.has(s.fontName.family + '|' + s.fontName.style))) { items.push(item(n, 'Manual', { role: m.role, value: 'font load failed', fix: '目視' })); continue; }
       let c = null;
       try {
         c = n.clone(); c.name = CONFIG.TMP_NAME; c.visible = false;
@@ -253,19 +286,20 @@ async function inspect(frame) {
         if (diff > CONFIG.OVERFLOW_TOL_PX) {
           const lineH = hNat / ((n.characters || '').split(LINE_BREAK).length || 1); // 1行の高さ(明示改行で割る)
           const wrapped = hFit > hNat + 1 || diff >= lineH * CONFIG.TIGHT_RATIO;          // 折り返し増、または不足が半行以上
-          if (wrapped || CONFIG.TIGHT_BOX === 'fail') { fails++; items.push(item(n, { role: m.role, value: `${wrapped ? 'あふれ' : 'tight'} need ${round1(hFit)}px / box ${round1(n.height)}px (+${round1(diff)}, line ${round1(lineH)})`, limit: `+${CONFIG.OVERFLOW_TOL_PX}px`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: '文言を短くする(箱・フォントは変えない)' })); }
-          else if (CONFIG.TIGHT_BOX === 'manual') { manuals++; items.push(item(n, { role: m.role, value: `tight box ${round1(n.height)}px < text ${round1(hFit)}px`, fix: '目視(折り返しは増えていない)' })); }
+          if (wrapped || CONFIG.TIGHT_BOX === 'fail') items.push(item(n, 'Fail', { role: m.role, value: `${wrapped ? 'あふれ' : 'tight'} need ${round1(hFit)}px / box ${round1(n.height)}px (+${round1(diff)}, line ${round1(lineH)})`, limit: `+${CONFIG.OVERFLOW_TOL_PX}px`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: '文言を短くする(箱・フォントは変えない)' }));
+          else if (CONFIG.TIGHT_BOX === 'manual') items.push(item(n, 'Manual', { role: m.role, value: `tight box ${round1(n.height)}px < text ${round1(hFit)}px`, fix: '目視(折り返しは増えていない)' }));
           else tight++;
         }
-      } catch (err) { manuals++; items.push(item(n, { role: m.role, value: 'clone error: ' + String(err).slice(0, 60), fix: '目視' }));
+      } catch (err) { items.push(item(n, 'Manual', { role: m.role, value: 'clone error: ' + String(err).slice(0, 60), fix: '目視' }));
       } finally { if (c) { try { c.remove(); } catch (e2) {} } }
     }
-    checks.push(finish({ id: 'P3-a' }, items, fails, manuals, `NONE ${targets.length} 件中 ${checked} 件を計測、tight(折返し増なし) ${tight} 件は ${CONFIG.TIGHT_BOX}`));
-  } catch (err) { checks.push({ id: 'P3-a', status: 'Error', count: 0, items: [], message: String(err) }); }
+    ignoredTight = tight;
+    checks.push(finish('P3-a', items, `NONE ${targets.length} 件中 ${checked} 件を計測、tight(折返し増なし) ${tight} 件は ${CONFIG.TIGHT_BOX}`));
+  } catch (err) { checks.push(errCheck('P3-a', err)); }
 
   // P4 コントラスト(単色背景のみ)
   try {
-    const items = []; let fails = 0, manuals = 0, skipped = 0;
+    const items = []; let skipped = 0;
     const rectTypes = new Set(['RECTANGLE', 'FRAME', 'COMPONENT', 'INSTANCE']);
     const shapeTypes = new Set(['VECTOR', 'BOOLEAN_OPERATION', 'ELLIPSE', 'POLYGON', 'STAR', 'LINE']);
     const cands = []; // 背景候補・要注意シェイプ
@@ -285,56 +319,69 @@ async function inspect(frame) {
       let fgs = [];
       if (strokes.length && n.strokeWeight > 0) { const s = strokes[strokes.length - 1]; fgs = [s.type === 'SOLID' && (s.opacity == null || s.opacity >= 0.99) ? s.color : null]; }
       else for (const s of m.segs) { if (!(s.characters || '').trim()) continue; const f = Array.isArray(s.fills) && s.fills.length ? s.fills[s.fills.length - 1] : null; fgs.push(f && f.type === 'SOLID' && (f.opacity == null || f.opacity >= 0.99) ? f.color : null); }
-      if ((n.opacity != null && n.opacity < 0.99) || fgs.some(c => !c)) { manuals++; items.push(item(n, { role: m.role, value: '文字色が SOLID/不透明でない', fix: '目視' })); continue; }
+      if ((n.opacity != null && n.opacity < 0.99) || fgs.some(c => !c)) { items.push(item(n, 'Manual', { role: m.role, value: '文字色が SOLID/不透明でない', fix: '目視' })); continue; }
       // 背景=TEXT 矩形を 90% 以上覆う、手前側の最上位。root フレームは最背面候補
       let bg = rootFill ? { idx: -1, fill: rootFill, opacity: frame.opacity == null ? 1 : frame.opacity, rect: true, name: '(frame)' } : null;
       for (const c of cands) if (c.idx < e.idx && c.rect && inter(c.bb, tb) / ta >= CONFIG.BG_COVER) bg = c;
-      if (!bg) { manuals++; items.push(item(n, { role: m.role, value: '背景未検出', fix: '目視' })); continue; }
+      if (!bg) { items.push(item(n, 'Manual', { role: m.role, value: '背景未検出', fix: '目視' })); continue; }
       const between = cands.find(c => c.idx > bg.idx && c.idx < e.idx && (c.shape || c.fill.type !== 'SOLID') && inter(c.bb, tb) / ta >= 0.5);
-      if (between) { manuals++; items.push(item(n, { role: m.role, value: `背景に非矩形/画像 ${cut(between.name, 12)}`, fix: '目視' })); continue; }
-      if (bg.fill.type !== 'SOLID' || (bg.fill.opacity != null && bg.fill.opacity < 0.99) || bg.opacity < 0.99) { manuals++; items.push(item(n, { role: m.role, value: `背景 ${bg.fill.type}${bg.opacity < 0.99 || (bg.fill.opacity != null && bg.fill.opacity < 0.99) ? '(半透明)' : ''} ${cut(bg.name, 12)}`, fix: '目視' })); continue; }
+      if (between) { items.push(item(n, 'Manual', { role: m.role, value: `背景に非矩形/画像 ${cut(between.name, 12)}`, fix: '目視' })); continue; }
+      const semi = bg.opacity < 0.99 || (bg.fill.opacity != null && bg.fill.opacity < 0.99);
+      if (bg.fill.type !== 'SOLID' || semi) { items.push(item(n, 'Manual', { role: m.role, value: `背景 ${bg.fill.type}${semi ? '(半透明)' : ''} ${cut(bg.name, 12)}`, fix: '目視' })); continue; }
       let worst = Infinity, worstFg = null;
       for (const c of new Set(fgs.map(hex))) { const col = fgs.find(x => hex(x) === c); const r = contrast(col, bg.fill.color); if (r < worst) { worst = r; worstFg = col; } }
-      if (worst < need) { fails++; items.push(item(n, { role: m.role + '/' + m.by, value: `${round1(worst)}:1 ${hex(worstFg)} on ${hex(bg.fill.color)} (${cut(bg.name, 12)})`, limit: `${need}:1`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: '文字色を濃く/背景を淡く' })); }
+      if (worst < need) items.push(item(n, 'Fail', { role: m.role + '/' + m.by, value: `${round1(worst)}:1 ${hex(worstFg)} on ${hex(bg.fill.color)} (${cut(bg.name, 12)})`, limit: `${need}:1`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: '文字色を濃く/背景を淡く' }));
     }
-    checks.push(finish({ id: 'P4' }, items, fails, manuals, `対象 ${liveTexts.length - skipped} 件(other ${skipped} 件は対象外)`));
-  } catch (err) { checks.push({ id: 'P4', status: 'Error', count: 0, items: [], message: String(err) }); }
+    checks.push(finish('P4', items, `対象 ${liveTexts.length - skipped} 件(other ${skipped} 件は対象外)`));
+  } catch (err) { checks.push(errCheck('P4', err)); }
 
-  // P6 折り安全域(全 TEXT が折り線 ±46px に入らない・またがない)
+  // P6 折り安全域(折り線の種別: boundary=面境界 / spread=見開き内)
   try {
-    const items = []; let fails = 0;
-    if (!sheet.folds || !fbb) { checks.push({ id: 'P6', status: 'Pass', count: 0, items: [], message: '折り線なしのシート' }); }
+    if (!sheet.folds || !fbb) checks.push(finish('P6', [], '折り線なしのシート'));
     else {
-      const margin = mmPx(CONFIG.FOLD_MARGIN_MM);
+      const items = [];
+      const mFail = mmPx(CONFIG.P6_MARGIN_MM.fail), mWarn = mmPx(CONFIG.P6_MARGIN_MM.warn);
       const portrait = fbb.height >= fbb.width;
-      // 折り線は絶対座標で計算(180°回転でも 1/3・2/3・1/2 は対称)。表示・除外は設計座標
+      const kinds = CONFIG.P6_FOLD_KINDS[kind] || CONFIG.P6_FOLD_KINDS.cover;
+      // 折り線は絶対座標で計算(180°回転でも 1/3・2/3・1/2 は対称)。種別・表示・除外は設計座標
       const lx = ax => toLocal(frame, ax, fbb.y + fbb.height / 2).x, ly = ay => toLocal(frame, fbb.x + fbb.width / 2, ay).y;
       const skip = (v, arr) => arr.some(s => Math.abs(s - v) < 1);
-      const vx = (portrait ? [fbb.x + fbb.width / 3, fbb.x + fbb.width * 2 / 3] : [fbb.x + fbb.width / 2]).filter(x => !skip(lx(x), CONFIG.P6_SKIP_FOLDS.x));
-      const hy = (portrait ? [fbb.y + fbb.height / 2] : [fbb.y + fbb.height / 3, fbb.y + fbb.height * 2 / 3]).filter(y => !skip(ly(y), CONFIG.P6_SKIP_FOLDS.y));
+      const thirds = (len, off) => [off + len / 3, off + len * 2 / 3];
+      const folds = []; // {axis:'x'|'y', abs, local, kind}
+      const longLen = portrait ? h : w;
+      for (const ax of (portrait ? thirds(fbb.width, fbb.x) : [fbb.x + fbb.width / 2])) { const l = lx(ax); if (skip(l, CONFIG.P6_SKIP_FOLDS.x)) continue; folds.push({ axis: 'x', abs: ax, local: l, kind: portrait ? kinds[l < w / 2 ? 'third1' : 'third2'] : kinds.half }); }
+      for (const ay of (portrait ? [fbb.y + fbb.height / 2] : thirds(fbb.height, fbb.y))) { const l = ly(ay); if (skip(l, CONFIG.P6_SKIP_FOLDS.y)) continue; folds.push({ axis: 'y', abs: ay, local: l, kind: portrait ? kinds.half : kinds[l < longLen / 2 ? 'third1' : 'third2'] }); }
       for (const e of liveTexts) {
         const n = e.node; if (CONFIG.P6_EXCLUDE_NAME.test(n.name || '')) continue;
-        const b = meta.get(n.id).bbox; const hits = [];
-        for (const x of vx) if (x > b.x - margin && x < b.x + b.width + margin) hits.push(`x=${lx(x)}(${x > b.x && x < b.x + b.width ? 'またぎ' : 'gap ' + round1(Math.min(Math.abs(b.x - x), Math.abs(b.x + b.width - x)))})`);
-        for (const y of hy) if (y > b.y - margin && y < b.y + b.height + margin) hits.push(`y=${ly(y)}(${y > b.y && y < b.y + b.height ? 'またぎ' : 'gap ' + round1(Math.min(Math.abs(b.y - y), Math.abs(b.y + b.height - y)))})`);
-        if (hits.length) { const p = toLocal(frame, b.x, b.y), q = toLocal(frame, b.x + b.width, b.y + b.height); fails++; items.push(item(n, { role: meta.get(n.id).role, value: hits.join(' '), limit: `≥${margin}px`, at: `${Math.min(p.x, q.x)},${Math.min(p.y, q.y)} ${round1(b.width)}×${round1(b.height)}`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: '折り線から離す/文言を短くする' })); }
+        const b = meta.get(n.id).bbox; const hits = []; let sev = null;
+        for (const f of folds) {
+          const lo = f.axis === 'x' ? b.x : b.y, hi = lo + (f.axis === 'x' ? b.width : b.height);
+          const cross = f.abs > lo && f.abs < hi; const gap = cross ? 0 : Math.min(Math.abs(lo - f.abs), Math.abs(hi - f.abs));
+          let s = null;
+          if (f.kind === 'boundary') s = cross || gap < mFail ? 'Fail' : gap < mWarn ? 'Warn' : null;
+          else if (cross) s = 'Warn';
+          if (!s) continue;
+          hits.push(`${f.axis}=${f.local}${f.kind === 'boundary' ? '面境界' : '見開き'}(${cross ? 'またぎ' : 'gap ' + round1(gap)})`);
+          if (!sev || SEV[s] > SEV[sev]) sev = s;
+        }
+        if (hits.length) { const p = toLocal(frame, b.x, b.y), q = toLocal(frame, b.x + b.width, b.y + b.height); items.push(item(n, sev, { role: meta.get(n.id).role, value: hits.join(' '), limit: `面境界: またぎ/<${mFail}px Fail, <${mWarn}px Warn。見開き: またぎ Warn`, at: `${Math.min(p.x, q.x)},${Math.min(p.y, q.y)} ${round1(b.width)}×${round1(b.height)}`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: sev === 'Fail' ? '折り線から離す/文言を短くする' : '第2段で見開きの組み直しを検討(入稿は可)' })); }
       }
-      checks.push(finish({ id: 'P6' }, items, fails, 0, `folds(local) x:${vx.map(lx).join(',')} y:${hy.map(ly).join(',')} margin ${margin}px`));
+      checks.push(finish('P6', items, `kind ${kind}, folds(local): ${folds.map(f => f.axis + '=' + f.local + ':' + f.kind).join(' ')}`));
     }
-  } catch (err) { checks.push({ id: 'P6', status: 'Error', count: 0, items: [], message: String(err) }); }
+  } catch (err) { checks.push(errCheck('P6', err)); }
 
   // P7 仮置き文言
   try {
-    const items = []; let fails = 0;
+    const items = [];
     for (const e of texts) {
       const n = e.node; if (CONFIG.P7_EXCLUDE_NAME.test(n.name || '')) continue;
       const mt = (n.characters || '').match(CONFIG.P7_PATTERN);
-      if (mt) { fails++; items.push(item(n, { role: meta.get(n.id).role, value: mt[0], chars: cut(n.characters, CONFIG.CHARS_LEN), fix: '実内容に置換、使わないなら hidden に' })); }
+      if (mt) items.push(item(n, 'Fail', { role: meta.get(n.id).role, value: mt[0], chars: cut(n.characters, CONFIG.CHARS_LEN), fix: '実内容に置換、使わないなら hidden に' }));
     }
-    checks.push(finish({ id: 'P7' }, items, fails, 0));
-  } catch (err) { checks.push({ id: 'P7', status: 'Error', count: 0, items: [], message: String(err) }); }
+    checks.push(finish('P7', items));
+  } catch (err) { checks.push(errCheck('P7', err)); }
 
-  // P12 電話番号(最大の電話番号が本文中央値×倍率以上か)
+  // P12 電話番号(最大の電話番号が本文中央値×倍率以上か。fail/warn の2段)
   try {
     const bodyPx = []; const phones = [];
     for (const e of liveTexts) {
@@ -342,17 +389,19 @@ async function inspect(frame) {
       if (m.role === 'body') for (const s of m.segs) if ((s.characters || '').trim()) bodyPx.push(s.fontSize);
       if (m.role === 'phone' && CONFIG.ROLE_CHARS[0][1].test(e.node.characters || '')) phones.push({ n: e.node, px: Math.max(...m.segs.map(s => s.fontSize || 0)) });
     }
-    if (!phones.length) checks.push({ id: 'P12', status: 'Manual', count: 1, items: [], message: '電話番号らしい TEXT が見つからない(role phone + 数字列)' });
-    else if (!bodyPx.length) checks.push({ id: 'P12', status: 'Manual', count: 1, items: [], message: '本文(role body)が見つからず中央値が取れない' });
+    if (!phones.length) checks.push(finish('P12', [item(null, 'Manual', { value: '電話番号らしい TEXT が見つからない(role phone + 数字列)' })]));
+    else if (!bodyPx.length) checks.push(finish('P12', [item(null, 'Manual', { value: '本文(role body)が見つからず中央値が取れない' })]));
     else {
       bodyPx.sort((a, b) => a - b); const med = bodyPx[Math.floor(bodyPx.length / 2)];
-      const limit = med * CONFIG.PHONE_RATIO; phones.sort((a, b) => b.px - a.px); const top = phones[0];
-      const items = top.px < limit ? [item(top.n, { role: 'phone', value: `${round1(top.px)}px`, limit: `≥${round1(limit)}px(本文中央値 ${med}px×${CONFIG.PHONE_RATIO})`, chars: cut(top.n.characters, CONFIG.CHARS_LEN), fix: '電話番号を大きくする' })] : [];
-      checks.push(finish({ id: 'P12' }, items, items.length, 0, `body median ${med}px, phones: ${phones.map(p => round1(p.px) + 'px').join('/')}`));
+      phones.sort((a, b) => b.px - a.px); const top = phones[0];
+      const sev = top.px < med * CONFIG.PHONE_RATIO.fail ? 'Fail' : top.px < med * CONFIG.PHONE_RATIO.warn ? 'Warn' : null;
+      const items = sev ? [item(top.n, sev, { role: 'phone', value: `${round1(top.px)}px = 本文×${round1(top.px / med)}`, limit: `≥×${CONFIG.PHONE_RATIO.fail}(${round1(med * CONFIG.PHONE_RATIO.fail)}px) Fail / ≥×${CONFIG.PHONE_RATIO.warn}(${round1(med * CONFIG.PHONE_RATIO.warn)}px) 目標`, chars: cut(top.n.characters, CONFIG.CHARS_LEN), fix: '電話番号を大きくする' })] : [];
+      checks.push(finish('P12', items, `body median ${med}px, phones: ${phones.map(p => round1(p.px) + 'px').join('/')}`));
     }
-  } catch (err) { checks.push({ id: 'P12', status: 'Error', count: 0, items: [], message: String(err) }); }
+  } catch (err) { checks.push(errCheck('P12', err)); }
 
-  out.summary = checks.reduce((a, c) => { const key = c.status.toLowerCase(); a[key] = (a[key] || 0) + 1; return a; }, { fail: 0, manual: 0, pass: 0 });
+  out.summary = checks.reduce((a, c) => { const key = c.status.toLowerCase(); a[key] = (a[key] || 0) + 1; return a; }, { fail: 0, warn: 0, manual: 0, pass: 0, error: 0 });
+  out.summary.ignored_tight = ignoredTight;
   return out;
 }
 
@@ -369,13 +418,16 @@ for (const id of CONFIG.FRAME_IDS) {
 // 一時 clone の残骸を掃く(通常 0 件)
 let tmpLeft = 0;
 for (const id of CONFIG.FRAME_IDS) { const f = await figma.getNodeByIdAsync(id); if (f && 'findAllWithCriteria' in f) for (const n of f.findAllWithCriteria({ types: ['TEXT'] })) if (n.name === CONFIG.TMP_NAME) { tmpLeft++; n.remove(); } }
+// UTF-8 バイト数(TextEncoder は使わない)
+const utf8 = s => { let b = 0; for (let i = 0; i < s.length; i++) { const c = s.charCodeAt(i); b += c < 0x80 ? 1 : c < 0x800 ? 2 : (c >= 0xd800 && c <= 0xdfff) ? 2 : 3; } return b; };
 let payload = { page: page.name, sheet: CONFIG.SHEET, results, tmpRemovedAtEnd: tmpLeft, ms: Date.now() - t0 };
-let json = JSON.stringify(payload);
-if (json.length > CONFIG.OUT_LIMIT) {
-  for (const r of results) for (const c of (r.checks || [])) { if (c.items && c.items.length > 5) { c.truncated = (c.truncated || 0) + c.items.length - 5; c.items = c.items.slice(0, 5); } }
-  payload.note = `出力が ${json.length} 字で 20KB を超えたため items を 5 件に切り詰めた。FRAME_IDS を分けて再実行すること`;
-  json = JSON.stringify(payload);
+let bytes = utf8(JSON.stringify(payload)); const before = bytes;
+for (const keep of [5, 2, 0]) {   // 超えていれば items を 5 → 2 → 0 件に段階的に切り詰める(件数 fail/warn/manual は残る)
+  if (bytes <= CONFIG.OUT_LIMIT_BYTES) break;
+  for (const r of results) for (const c of (r.checks || [])) if (c.items && c.items.length > keep) { c.truncated = (c.truncated || 0) + c.items.length - keep; c.items = c.items.slice(0, keep); }
+  payload.note = `出力が ${before} バイトで上限を超えたため items を ${keep} 件に切り詰めた。FRAME_IDS を分けて再実行すること`;
+  bytes = utf8(JSON.stringify(payload));
 }
-payload.bytes = json.length;
+payload.bytes = bytes;
 return payload;
 ```
