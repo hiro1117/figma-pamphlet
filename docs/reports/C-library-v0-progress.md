@@ -88,3 +88,11 @@
 - あいとま系 4 点(背景・人物 2・車両)を final/ に加工(長辺 4096、キー抜き)し、素材ページに `ライブラリ/あいとま系(abst 比較用)` 2074:3 と `検証/あいとま_K2組み_abst` 2074:11 を追加。細線版のグループ・検証はそのまま残して比較できる状態
 - keyout.py を支配度ベースに書き直し(明るさの違う緑の帯・島も透明化、境界の despill)。アプリ出力は緑が 2 段になることがあるため必須
 - 残: 採否の決定(abst 採用なら 他 3 系統もアプリで生成 → 投入、細線版グループの整理、tone.json の illustration.style 更新、地域モチーフの描法合わせ)
+
+## 2026-09-27 Claude in Chrome で Gemini アプリを自動操作(車両・背景の作り直し)
+- 経路: gemini.google.com の「Images」モード(Hiro のログイン済み Chrome を Claude in Chrome で操作)。モデル Pro、比率は 4:3 / 3:4 を UI で選択。プロンプトは `paste/` の 1 行化版をタイプ入力(contenteditable は form_input 不可、Enter 送信のため改行を除去)
+- 解像度: 画像モードの初回生成は Nano Banana 2(1K, 1200×896)。「Redo with Pro」または「Output at 4K」の追記で Nano Banana Pro になるが、保存ファイルは **2K(2400×1792 / 1792×2400)**。UI の「4K」表記と保存解像度は一致しない。K2 配置での実効 dpi は背景 447・車両 746 で基準 200 を満たす
+- 車両の向き: 「左側面(スライドドア側)を見せる」指示を 3 回試しても Pro は右側面向きを返した。**運転手シルエットなしの版を作らせ、こちらで左右反転**して解決(`aitoma-K2-abst-vehicle-02m`)。運転手がいないので右ハンドルと矛盾しない
+- 背景: `aitoma-K2-abst-bg-02`(稜線 54%、民家 1・木 1)。Redo 版 bg-03 は予備(rejected)
+- Figma: `ライブラリ/あいとま系(abst 比較用)` の 2073:2 / 2073:5 を `upload_assets` の nodeIds 指定で差し替え、検証 v2(2074:4)の #キービジュアル/#車両 も更新。スクショ `C-shots/verify_aitoma_K2_abst_v2.png`
+- 注意: Chrome 拡張は一度「not connected」を返したが再試行で復帰(一過性)。ダウンロードは Chrome 既定の ~/Downloads に `Gemini_Generated_Image_*.jpeg` で保存される
