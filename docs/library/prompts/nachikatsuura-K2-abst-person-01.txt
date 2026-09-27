@@ -64,6 +64,7 @@ COLOR:
 Use a restrained, sophisticated palette.
 Use #1B98D0 as an accent color.
 Use muted navy, sand, warm off-white and natural skin tones.
+Skin: one flat pale pinkish-beige color, exactly #F5CEC1, the same for every character (face and hands). No tan, no peach, no orange skin, no blush, no shading on skin.
 Avoid bright generic colors.
 
 COMPOSITION:

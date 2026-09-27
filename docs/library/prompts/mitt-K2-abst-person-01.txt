@@ -64,6 +64,7 @@ COLOR:
 Use a restrained, sophisticated palette.
 Use #254F99 as an accent color.
 Use brand blue #258FC2, deep navy #143747, soft yellow #F9F27F, off-white and natural skin tones. Stay within this brand palette.
+Skin: one flat pale pinkish-beige color, exactly #F5CEC1, the same for every character (face and hands). No tan, no peach, no orange skin, no blush, no shading on skin.
 Avoid bright generic colors.
 
 COMPOSITION:

@@ -64,6 +64,7 @@ COLOR:
 Use a restrained, sophisticated palette.
 Use #D7835F as an accent color.
 Use muted dark brown #513A1E, olive, cream off-white and natural skin tones.
+Skin: one flat pale pinkish-beige color, exactly #F5CEC1, the same for every character (face and hands). No tan, no peach, no orange skin, no blush, no shading on skin.
 Avoid bright generic colors.
 
 COMPOSITION:

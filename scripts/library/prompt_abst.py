@@ -42,7 +42,7 @@ COLOR:
 Use a restrained, sophisticated palette.
 Use {accent} as an accent color.
 {palette_note}
-Avoid bright generic colors.
+{skin_note}Avoid bright generic colors.
 
 COMPOSITION:
 {composition}
@@ -137,8 +137,11 @@ COMPOSITION = {
 ASPECT = {"person-01": "3:4 vertical", "person-02": "3:4 vertical", "vehicle-01": "4:3 horizontal"}
 
 
+SKIN_NOTE = "Skin: one flat pale pinkish-beige color, exactly #F5CEC1, the same for every character (face and hands). No tan, no peach, no orange skin, no blush, no shading on skin.\n"
+
+
 def abst_bg_prompt(family_colors):
-    body = ABST_STYLE.format(abstraction=BG_ABSTRACTION, accent="", palette_note=family_colors, composition=COMPOSITION_BG, aspect="4:5 vertical")
+    body = ABST_STYLE.format(abstraction=BG_ABSTRACTION, accent="", palette_note=family_colors, composition=COMPOSITION_BG, aspect="4:5 vertical", skin_note="")
     body = body.replace("Use  as an accent color.\n", "")
     body = body.replace("""BACKGROUND:
 completely uniform pure green #00FF00.
@@ -153,4 +156,5 @@ No scenery.""", "This image IS the background scenery; it must fill the whole fr
 def abst_prompt(kind, accent_hex, palette_note):
     return SUBJECTS[kind] + "\n\n" + ABST_STYLE.format(
         abstraction=PERSON_ABSTRACTION if kind.startswith("person") else VEHICLE_ABSTRACTION,
-        accent=accent_hex, palette_note=palette_note, composition=COMPOSITION[kind], aspect=ASPECT[kind])
+        accent=accent_hex, palette_note=palette_note, composition=COMPOSITION[kind], aspect=ASPECT[kind],
+        skin_note=SKIN_NOTE if kind.startswith("person") else "")
