@@ -11,7 +11,8 @@
 - [x] C ライブラリv0(指示書 docs/briefs/C-library-v0.md)。完了 2026-09-27: 描法は抽象グラフィック(abst、Gemini アプリ生成)。4 系統×(背景・人物 2・車両)= 16 点 + くらぶち榛名山モチーフ 1 点を素材ページ `ライブラリ/<系統>` `案件/くらぶち` に投入、tone.json 4 本同梱、2K マスター。検証 4 フレーム。詳細 docs/reports/C-library-v0-progress.md、library-v0.json、ledger.csv
 - [x] E 第1層最小版(指示書 docs/briefs/E-preflight.md)(P1・P2・P3-a・P4単色・P6・P7・P12)。`skill/scripts/preflight.js` + `skill/references/preflight.md`。2026-09-27 レビューの CONFIG 決定(Warn/注記 9pt・10pt/白抜き役割別/電話 ×2・×3/折り線種別/label/PT_BY_FAMILY.MITT/ignored_tight)を反映し、制作物8枚+テスト4枚で再実測(docs/reports/E-test-report.md §A)。MITT 系特例と A4_spot も 2026-09-27 に一時 clone で実測済み(§B)。残: 第2段で Warn→Fail 格上げ(D での組み込みと A4_spot の P12 対象外は 2026-09-27 D 前半で済)
 - [~] D スキル2026-10版(指示書 docs/briefs/D-skill-2026-10.md)(Step別改訂・変換表・ラッパー自動化・参照3ファイル)。**前半完了 2026-09-27**: Step 0/1/1.5/1.7/2/4、references(preflight・keyvisual・evaluator 枠・template-and-assets・figma-ops・legacy)、A4_spot の P12 対象外。制作物ページで単体試験済み。報告 docs/reports/D-skill-part1.md。**後半(Step 3 の D.2・Step 5 の D.3・自動修正2回)は H(a) 先行版の報告待ち**。パッケージ化・release notes も後半
-- [ ] H(a) 先行版: D の前にくらぶちモックを手作業で1件通す(指示書 docs/briefs/Ha-tech-mvp-pre.md)
+- [~] H(a) 先行版: D の前にくらぶちモックを手作業で1件通す(指示書 docs/briefs/Ha-tech-mvp-pre.md)。**draft1 で中断 2026-09-27**: 表紙が破綻(docs/reports/Ha-draft1-findings.md)→ B.1 v2 の後に再実行
+- [ ] B.1 v2 表紙面を K2 用に組み直す(指示書 docs/briefs/B1v2-cover-relayout.md)。あいとまで 2〜3 案 → Hiro 選択 → 4 系統展開 → 差し替え
 - [ ] H(a) 技術MVP(くらぶちモック1件をモードDで通す)
 
 ## 要確認
