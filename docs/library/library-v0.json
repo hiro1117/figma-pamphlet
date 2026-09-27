@@ -1,0 +1,413 @@
+{
+  "schema": "library/v0",
+  "file_key": "09Js7rndbabLAoCchqzX9j",
+  "page": {
+    "id": "7:4",
+    "name": "素材"
+  },
+  "generated": "2026-09-27",
+  "k_px_per_mm": 5.69,
+  "hero_frame_px": [
+    580,
+    711
+  ],
+  "dpi_formula": "image_px / placed_px * 144.6",
+  "families": {
+    "aitoma": {
+      "label": "あいとま系",
+      "number": 1,
+      "base_id": "aitoma-K2-thin-01",
+      "style": "thin",
+      "tone_json": "docs/library/tone/aitoma-K2-thin-01.json",
+      "group_name": "ライブラリ/あいとま系",
+      "assets": {
+        "background": {
+          "id": "aitoma-K2-thin-bg-01",
+          "imageHash": "9f845da9e1496a90ffc59aaf7b82125c4bbda82e",
+          "nodeId": "2066:2",
+          "px": [
+            1856,
+            2304
+          ],
+          "bytes": 1430190,
+          "placement": {
+            "target": "#キービジュアル",
+            "scaleMode": "CROP",
+            "frame_px": [
+              580,
+              711
+            ]
+          },
+          "effective_dpi": 463
+        },
+        "人物A": {
+          "id": "aitoma-K2-thin-person-01",
+          "imageHash": "86b6f480a51df9a3b589ce53afd7dc8a68154d4a",
+          "nodeId": "2066:3",
+          "px": [
+            697,
+            2004
+          ],
+          "bytes": 1431700,
+          "placement": {
+            "target": "#人物",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              146,
+              420
+            ]
+          },
+          "effective_dpi": 690
+        },
+        "人物B": {
+          "id": "aitoma-K2-thin-person-02",
+          "imageHash": "577b0c86626563d9e3edcf087a47b2991ddf28cb",
+          "nodeId": "2066:4",
+          "px": [
+            1142,
+            1783
+          ],
+          "bytes": 2048273,
+          "placement": {
+            "target": "#人物",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              269,
+              420
+            ]
+          },
+          "effective_dpi": 614
+        },
+        "車両": {
+          "id": "aitoma-K2-thin-vehicle-01",
+          "imageHash": "88a2b95093b7567c78840c277f8536dfff6165d2",
+          "nodeId": "2066:5",
+          "px": [
+            2170,
+            1280
+          ],
+          "bytes": 2204220,
+          "placement": {
+            "target": "#車両",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              360,
+              212
+            ]
+          },
+          "effective_dpi": 872
+        }
+      },
+      "group_id": "2068:4",
+      "label_node_id": "2068:2",
+      "tone_node_id": "2068:3"
+    },
+    "nachikatsuura": {
+      "label": "那智勝浦系",
+      "number": 2,
+      "base_id": "nachikatsuura-K2-thin-01",
+      "style": "thin",
+      "tone_json": "docs/library/tone/nachikatsuura-K2-thin-01.json",
+      "group_name": "ライブラリ/那智勝浦系",
+      "assets": {
+        "background": {
+          "id": "nachikatsuura-K2-thin-bg-01",
+          "imageHash": "25364f91794b07ea397b42b7cc4557e82f9051e6",
+          "nodeId": "2066:11",
+          "px": [
+            1856,
+            2304
+          ],
+          "bytes": 1405170,
+          "placement": {
+            "target": "#キービジュアル",
+            "scaleMode": "CROP",
+            "frame_px": [
+              580,
+              711
+            ]
+          },
+          "effective_dpi": 463
+        },
+        "人物A": {
+          "id": "nachikatsuura-K2-thin-person-03",
+          "imageHash": "5f5339796a03a65d3d688c62378610d91213e9dc",
+          "nodeId": "2066:13",
+          "px": [
+            679,
+            2059
+          ],
+          "bytes": 1440321,
+          "placement": {
+            "target": "#人物",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              139,
+              420
+            ]
+          },
+          "effective_dpi": 706
+        },
+        "人物B": {
+          "id": "nachikatsuura-K2-thin-person-02",
+          "imageHash": "eb1f32dd1ca51a7e346b6fb70ed535d44bb5e569",
+          "nodeId": "2066:12",
+          "px": [
+            954,
+            1669
+          ],
+          "bytes": 1707883,
+          "placement": {
+            "target": "#人物",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              240,
+              420
+            ]
+          },
+          "effective_dpi": 575
+        },
+        "車両": {
+          "id": "nachikatsuura-K2-thin-vehicle-01r",
+          "imageHash": "ec908c62ea1ddb47aac843fc81c652ea3da50788",
+          "nodeId": "2066:14",
+          "px": [
+            1937,
+            1098
+          ],
+          "bytes": 1961685,
+          "placement": {
+            "target": "#車両",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              360,
+              204
+            ]
+          },
+          "effective_dpi": 778
+        }
+      },
+      "group_id": "2068:7",
+      "label_node_id": "2068:5",
+      "tone_node_id": "2068:6"
+    },
+    "noboribetsu": {
+      "label": "登別系",
+      "number": 3,
+      "base_id": "noboribetsu-K2-thin-01",
+      "style": "thin",
+      "tone_json": "docs/library/tone/noboribetsu-K2-thin-01.json",
+      "group_name": "ライブラリ/登別系",
+      "assets": {
+        "background": {
+          "id": "noboribetsu-K2-thin-bg-01",
+          "imageHash": "6f93854c4a58cd7bb2cc1c1796e45ffc6fb9c47e",
+          "nodeId": "2066:15",
+          "px": [
+            1856,
+            2304
+          ],
+          "bytes": 1371139,
+          "placement": {
+            "target": "#キービジュアル",
+            "scaleMode": "CROP",
+            "frame_px": [
+              580,
+              711
+            ]
+          },
+          "effective_dpi": 463
+        },
+        "人物A": {
+          "id": "noboribetsu-K2-thin-person-01",
+          "imageHash": "4f400e6e9cefa9ac5cbe252257948ae3049cacec",
+          "nodeId": "2066:16",
+          "px": [
+            715,
+            2034
+          ],
+          "bytes": 1340749,
+          "placement": {
+            "target": "#人物",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              148,
+              420
+            ]
+          },
+          "effective_dpi": 699
+        },
+        "人物B": {
+          "id": "noboribetsu-K2-thin-person-02",
+          "imageHash": "ad7f723edbd77434e89a2e432e7e4a8160427b0b",
+          "nodeId": "2066:17",
+          "px": [
+            1440,
+            2066
+          ],
+          "bytes": 3037219,
+          "placement": {
+            "target": "#人物",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              293,
+              420
+            ]
+          },
+          "effective_dpi": 711
+        },
+        "車両": {
+          "id": "noboribetsu-K2-thin-vehicle-02",
+          "imageHash": "af523e96fffd2c46a617ca14e2ee48d4792d54c2",
+          "nodeId": "2066:18",
+          "px": [
+            2065,
+            1177
+          ],
+          "bytes": 2330489,
+          "placement": {
+            "target": "#車両",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              360,
+              205
+            ]
+          },
+          "effective_dpi": 829
+        }
+      },
+      "group_id": "2068:10",
+      "label_node_id": "2068:8",
+      "tone_node_id": "2068:9"
+    },
+    "mitt": {
+      "label": "MITT系",
+      "number": 4,
+      "base_id": "mitt-K2-noline-01",
+      "style": "noline",
+      "tone_json": "docs/library/tone/mitt-K2-noline-01.json",
+      "group_name": "ライブラリ/MITT系",
+      "assets": {
+        "background": {
+          "id": "mitt-K2-noline-bg-01",
+          "imageHash": "dc094c51097632c9af1e02570394c30dfc996e6a",
+          "nodeId": "2066:7",
+          "px": [
+            1856,
+            2304
+          ],
+          "bytes": 1207625,
+          "placement": {
+            "target": "#キービジュアル",
+            "scaleMode": "CROP",
+            "frame_px": [
+              580,
+              711
+            ]
+          },
+          "effective_dpi": 463
+        },
+        "人物A": {
+          "id": "mitt-K2-noline-person-01",
+          "imageHash": "7e931bb036a95d2c4096b20539105d1999837953",
+          "nodeId": "2066:8",
+          "px": [
+            733,
+            2057
+          ],
+          "bytes": 1450652,
+          "placement": {
+            "target": "#人物",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              150,
+              420
+            ]
+          },
+          "effective_dpi": 707
+        },
+        "人物B": {
+          "id": "mitt-K2-noline-person-02",
+          "imageHash": "0545ebb920321b3d9eeecea6bb826588cf91e3d9",
+          "nodeId": "2066:9",
+          "px": [
+            1459,
+            2153
+          ],
+          "bytes": 2867218,
+          "placement": {
+            "target": "#人物",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              285,
+              420
+            ]
+          },
+          "effective_dpi": 740
+        },
+        "車両": {
+          "id": "mitt-K2-noline-vehicle-01",
+          "imageHash": "4c83f13c7240b16459e45db116b365cbea175eae",
+          "nodeId": "2066:10",
+          "px": [
+            1682,
+            1002
+          ],
+          "bytes": 1545282,
+          "placement": {
+            "target": "#車両",
+            "scaleMode": "FIT",
+            "suggested_px": [
+              360,
+              214
+            ]
+          },
+          "effective_dpi": 676
+        }
+      },
+      "group_id": "2068:13",
+      "label_node_id": "2068:11",
+      "tone_node_id": "2068:12"
+    }
+  },
+  "projects": {
+    "kurabuchi": {
+      "label": "くらぶち",
+      "group_name": "案件/くらぶち",
+      "regional_motif": {
+        "id": "kurabuchi-haruna-aitoma-thin-03",
+        "imageHash": "69dcc673d684f5b9ebaf5cf38b97272c7547d257",
+        "nodeId": "2066:6",
+        "px": [
+          3070,
+          899
+        ],
+        "bytes": 2096852,
+        "subject": "榛名山(榛名富士+相馬山)",
+        "placement": {
+          "target": "#地域モチーフ",
+          "scaleMode": "FIT",
+          "suggested_px": [
+            580,
+            170
+          ],
+          "position": "hero_horizon"
+        },
+        "effective_dpi": 765
+      },
+      "group_id": "2068:16",
+      "label_node_id": "2068:14",
+      "ledger_node_id": "2068:15"
+    }
+  },
+  "notes": [
+    "背景 4 点は Gemini が JPEG バイトを返したものを PNG 名でアップロード(Figma 側は問題なく IMAGE fill 化)。final/ は本物の PNG に変換済み",
+    "前景は keyout.py(フラッドフィル方式)で実 alpha 化。suggested_px は表紙面 563.7×1196 の K2 ヒーロー 580×711 に置く想定",
+    "tone.json は各ライブラリグループ内の非表示・ロック TEXT #tone(Noto Sans JP Regular 8px)に同梱"
+  ],
+  "verification": {
+    "group_id": "2069:9",
+    "face_frame_id": "2069:2",
+    "desc": "あいとま系 K2 組み: #キービジュアル(CROP)+#地域モチーフ+#人物+#車両。人物高 420/711=59% ≥ 1/3、顔・車両はシルエットに隠れない"
+  }
+}

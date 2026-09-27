@@ -51,7 +51,15 @@ def keyout(im: Image.Image, key_hex: str, erode: int, feather: int, near: float 
         from PIL import ImageFilter
         m = Image.fromarray((outside * 255).astype(np.uint8), "L").filter(ImageFilter.MaxFilter(7))
         near_outside = np.asarray(m) > 0
-        alpha = np.where(near_outside, alpha, 1.0)
+        chromatic = (key.max() - key.min()) > 60
+        if chromatic:
+            # 内部でも線で囲まれた穴(電話コードのコイル等)に残るキー色そのものは透明にする
+            inner_hole = (~near_outside) & (dist < near)
+            hole_band = np.asarray(Image.fromarray((inner_hole * 255).astype(np.uint8), "L").filter(ImageFilter.MaxFilter(9))) > 0
+            near_outside = near_outside | hole_band  # spill 抑制も穴の縁に効かせる
+            alpha = np.where(near_outside | inner_hole, alpha, 1.0)
+        else:
+            alpha = np.where(near_outside, alpha, 1.0)
         alpha = np.where(outside, np.minimum(alpha, 0.0), alpha)
     # spill 抑制(有彩色キーのみ、外周近傍 7px だけ): キー色の支配チャンネルを他2チャンネルの最大値までクランプ
     if key.max() - key.min() > 60:
