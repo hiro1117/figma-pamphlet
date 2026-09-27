@@ -28,7 +28,7 @@ LIB = ROOT / "docs/library"
 MASKS = LIB / "masks"
 LEDGER = LIB / "ledger.csv"
 PROMPTS = LIB / "prompts"
-DEFAULT_MODEL = "gemini-3-pro-image-preview"
+DEFAULT_MODEL = "gemini-3-pro-image"
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
 # ---------------------------------------------------------------- 系統・描法
@@ -211,14 +211,14 @@ def build_jobs(ns):
                 base = f"{fam}-K2-{sty}"
                 chips = MASKS / FAMILIES[fam]["chips"]
                 if "bg" in only:
-                    jobs.append(dict(id=f"{base}-bg-01", kind="bg", family=fam, style=sty, prompt=bg_prompt(fam, sty),
+                    jobs.append(dict(id=f"{base}-bg-{ns.seq:02d}", kind="bg", family=fam, style=sty, prompt=bg_prompt(fam, sty),
                                      refs=[MASKS / "K2-mask-hero.png", chips], aspect="4:5", size=ns.size, out=LIB / "candidates"))
                 if "person" in only:
                     for v in (1, 2):
-                        jobs.append(dict(id=f"{base}-person-{v:02d}", kind="fg_person", family=fam, style=sty, prompt=person_prompt(fam, sty, v),
+                        jobs.append(dict(id=f"{base}-person-{v + 2*(ns.seq-1):02d}", kind="fg_person", family=fam, style=sty, prompt=person_prompt(fam, sty, v),
                                          refs=[chips], aspect="3:4", size=ns.size, out=LIB / "candidates"))
                 if "vehicle" in only:
-                    jobs.append(dict(id=f"{base}-vehicle-01", kind="fg_vehicle", family=fam, style=sty, prompt=vehicle_prompt(fam, sty),
+                    jobs.append(dict(id=f"{base}-vehicle-{ns.seq:02d}", kind="fg_vehicle", family=fam, style=sty, prompt=vehicle_prompt(fam, sty),
                                      refs=[chips], aspect="4:3", size=ns.size, out=LIB / "candidates"))
     elif ns.stage == "master":
         if not ns.ids:
@@ -244,6 +244,7 @@ def main():
     ap.add_argument("--families")
     ap.add_argument("--styles")
     ap.add_argument("--ids")
+    ap.add_argument("--seq", type=int, default=1, help="連番(2回目の生成は 2)")
     ap.add_argument("--size", default="2K", choices=["1K", "2K", "4K"])
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--dry-run", action="store_true", help="API を呼ばずプロンプトだけ書き出す")
