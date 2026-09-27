@@ -1,8 +1,6 @@
 """描法 abst(抽象グラフィック)のプロンプト。Hiro 提供の英語プロンプト(2026-09-27)を土台に、被写体・アクセント色・比率だけを差し替える。"""
 
-ABST_STYLE = """Use the attached reference image as the PRIMARY visual reference for the artistic style and level of abstraction.
-
-The most important requirement is the LEVEL OF SIMPLIFICATION.
+ABST_STYLE = """The most important requirement is the LEVEL OF SIMPLIFICATION.
 
 The subject must be highly abstracted and graphically simplified.
 
@@ -39,12 +37,6 @@ STYLE:
 - not clip-art
 - not a typical Japanese municipal illustration
 - no gradients, no texture, no shading, no highlights
-
-The reference image should influence the visual language,
-especially its abstraction, simplicity, shape design, color blocking,
-and unconventional graphic feeling.
-
-Do NOT copy the reference image's characters or poses.
 
 COLOR:
 Use a restrained, sophisticated palette.

@@ -296,7 +296,7 @@ def build_jobs(ns):
                     jobs.append(dict(id=f"{base}-bg-{ns.seq:02d}", kind="bg", family=fam, style=sty, prompt=bg_prompt(fam, sty),
                                      refs=[MASKS / "K2-mask-hero.png", chips], aspect="4:5", size=ns.size, out=LIB / "candidates"))
                 style_ref = Path(ns.style_ref) if ns.style_ref else MASKS / "style-tile-person.png"
-                fg_refs = ([style_ref, chips] if (sty.startswith("yuru") or sty == "abst") else [chips])
+                fg_refs = ([] if sty == "abst" else [style_ref, chips] if sty.startswith("yuru") else [chips])  # abst は参照画像なし
                 if "person" in only:
                     for v in (1, 2):
                         jobs.append(dict(id=f"{base}-person-{v + 2*(ns.seq-1):02d}", kind="fg_person", family=fam, style=sty, prompt=person_prompt(fam, sty, v),

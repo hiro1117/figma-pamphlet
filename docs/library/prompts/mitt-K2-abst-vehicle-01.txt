@@ -51,8 +51,8 @@ STYLE:
 
 COLOR:
 Use a restrained, sophisticated palette.
-Use #EB6EA5 as an accent color.
-Use muted navy, olive, warm off-white and natural skin tones.
+Use #254F99 as an accent color.
+Use brand blue #258FC2, deep navy #143747, soft yellow #F9F27F, off-white and natural skin tones. Stay within this brand palette.
 Avoid bright generic colors.
 
 COMPOSITION:

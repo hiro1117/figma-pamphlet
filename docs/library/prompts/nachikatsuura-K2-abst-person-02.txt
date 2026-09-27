@@ -1,4 +1,4 @@
-Create a single illustration of a white community ride-share taxi: a box-shaped Japanese minivan, right-hand drive, seen from the front-left so that the left-side sliding door is visible. White body with one accent stripe. Blank license plate shape. A small roof sign with no text.
+Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.
 
 The most important requirement is the LEVEL OF SIMPLIFICATION.
 
@@ -11,17 +11,28 @@ Do NOT carefully render faces, hands, clothing, hair, shoes, or vehicle parts.
 Instead, treat the entire subject as a small collection of bold, simple graphic shapes.
 
 ABSTRACTION:
-- simplify the van into a few large geometric shapes (body, roof, windows, wheels)
-- windows as one or two flat shapes
-- wheels as simple circles
-- grille as one simple shape or two lines
-- headlights as one simple shape each
-- no door handles, mirrors, wipers, badges, trim lines, panel gaps, reflections or chrome
-- the driver, if visible, is a single flat silhouette
-- the taxi roof sign is a small simple shape with no text
+- simplify the human body into large geometric shapes
+- simplify the face dramatically
+- use only tiny, minimal shapes for the eyes, nose and mouth
+- no detailed facial anatomy
+- no detailed wrinkles
+- no eyelashes
+- no detailed eyebrows
+- no realistic ears
+- hair should be one or two simple solid shapes
+- hands should be simple silhouettes with little or no finger detail
+- arms and legs should be simple flat shapes
+- clothing should be large uninterrupted color shapes
+- remove clothing folds, seams, buttons, stitching and fabric texture
+- shoes should be simple graphic shapes with almost no detail
+- any held object (smartphone, handset, bag) should be a simple recognizable geometric shape
 
-The vehicle should be understood primarily through SILHOUETTE and COLOR BLOCKING,
-not through mechanical detail.
+The face should contain only the minimum information necessary to communicate a calm, friendly expression.
+
+The hands should contain only the minimum information necessary to communicate the action.
+
+The clothing should be understood primarily through COLOR, SILHOUETTE and SHAPE,
+not through detailed garment construction.
 
 The subject should look intentionally designed and abstract,
 not like a realistic subject that has been simplified afterward.
@@ -51,16 +62,16 @@ STYLE:
 
 COLOR:
 Use a restrained, sophisticated palette.
-Use #EB6EA5 as an accent color.
-Use muted navy, olive, warm off-white and natural skin tones.
+Use #1B98D0 as an accent color.
+Use muted navy, sand, warm off-white and natural skin tones.
 Avoid bright generic colors.
 
 COMPOSITION:
-- one vehicle only
-- whole vehicle
+- two people only
+- full body
 - centered
 - generous negative space
-- 4:3 horizontal 
+- 3:4 vertical 
 - entire subject visible
 - do not touch the edges
 
