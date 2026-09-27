@@ -2339,3 +2339,90 @@ SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
 
 The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
 "
+mitt-K2-abst-vehicle-01,fg_vehicle,mitt,abst,"gemini-app (Nano Banana Pro, Google AI Pro)",gemini-app (Claude in Chrome で自動操作),2026-09-27T20:45:42,4:3,2K,docs/library/prompts/mitt-K2-abst-vehicle-01.txt,docs/library/candidates/mitt-K2-abst-vehicle-01.png,candidate,画像モード Pro。左側面向き・行灯 #254F99・ストライプ #258FC2。受領 2400x1792 JPEG(sha256 09db7deb2f10),"Create a single illustration of a white community ride-share taxi. VEHICLE TYPE: a mid-size Japanese minivan / people-mover used as a taxi (tall rounded body, long hood-less front, large windows, a rear sliding door), like a 7-seat family minivan taxi. NOT a kei microvan, NOT a sedan, NOT a bus. Right-hand drive. VIEWPOINT: three-quarter view from the FRONT-LEFT of the car. The car's LEFT side (the passenger side with the sliding door) faces the viewer and fills most of the image; the front of the car points toward the lower-left. No driver and no passengers: all windows are empty flat shapes. COLORS OF PARTS: the whole body INCLUDING THE ROOF is white / warm off-white; the small taxi roof sign (lamp) on top is the accent color #254F99 so it clearly contrasts with the white roof; windows are one dark flat color (muted navy); wheels dark; one thin accent stripe on the side. Blank license plate shape. No text on the roof sign.
+
+The most important requirement is the LEVEL OF SIMPLIFICATION.
+
+The subject must be highly abstracted and graphically simplified.
+
+Do NOT draw a detailed illustration.
+Do NOT draw realistic anatomy or realistic mechanical detail.
+Do NOT carefully render faces, hands, clothing, hair, shoes, or vehicle parts.
+
+Instead, treat the entire subject as a small collection of bold, simple graphic shapes.
+
+ABSTRACTION:
+- simplify the van into a few large geometric shapes (body, roof, windows, wheels)
+- windows as one or two flat shapes
+- wheels as simple circles
+- grille as one simple shape or two lines
+- headlights as one simple shape each
+- no door handles, mirrors, wipers, badges, trim lines, panel gaps, reflections or chrome
+- no driver, no passengers; windows are empty flat shapes
+- the taxi roof sign is a small simple shape in the accent color, clearly different from the white roof, with no text
+
+The vehicle should be understood primarily through SILHOUETTE and COLOR BLOCKING,
+not through mechanical detail.
+
+The subject should look intentionally designed and abstract,
+not like a realistic subject that has been simplified afterward.
+
+Think:
+""graphic shapes representing the subject""
+rather than
+""an illustrated subject.""
+
+STYLE:
+- highly simplified editorial illustration
+- flat graphic shapes
+- limited visual information
+- bold areas of solid color
+- minimal linework
+- clean but slightly organic shapes
+- distinctive artistic character
+- playful and sophisticated
+- slightly quirky
+- contemporary
+- not cute
+- not realistic
+- not corporate
+- not clip-art
+- not a typical Japanese municipal illustration
+- no gradients, no texture, no shading, no highlights
+
+COLOR:
+Use a restrained, sophisticated palette.
+Use #254F99 as an accent color.
+Use brand blue #258FC2, deep navy #143747, soft yellow #F9F27F, off-white and natural skin tones. Stay within this brand palette.
+Avoid bright generic colors.
+
+COMPOSITION:
+- one vehicle only
+- whole vehicle
+- centered
+- generous negative space
+- 4:3 horizontal 
+- entire subject visible
+- do not touch the edges
+
+BACKGROUND:
+completely uniform pure green #00FF00.
+No environment.
+No floor.
+No shadow.
+No furniture.
+No scenery.
+
+No text, logo, license-plate characters, QR code, numbers, watermark or border.
+No maker emblem. Do not resemble a real person, a real store, or a real car model.
+
+IMPORTANT:
+The final illustration should contain FEWER visual details than a normal flat illustration.
+
+When deciding whether to add a detail, remove it unless it is essential for recognizing the subject or action.
+
+Prioritize:
+SILHOUETTE > SHAPE > COLOR > EXPRESSION > DETAIL.
+
+The result should feel like a deliberately abstract graphic artwork, not a detailed illustration.
+"
