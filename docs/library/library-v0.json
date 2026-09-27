@@ -167,24 +167,24 @@
               "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
             },
             "車両": {
-              "id": "aitoma-K2-abst-vehicle-02m",
-              "imageHash": "395152af019edbca1e285c6e29f1a6a78b9ec134",
+              "id": "aitoma-K2-abst-vehicle-03",
+              "imageHash": "4d66ea03eabc942ff01a96e2ca21ed8c37d85da8",
               "nodeId": "2073:5",
               "px": [
-                1857,
-                1266
+                1942,
+                1186
               ],
               "placement": {
                 "target": "#車両",
                 "scaleMode": "FIT",
                 "suggested_px": [
                   360,
-                  245
+                  220
                 ]
               },
-              "effective_dpi": 746,
-              "route": "gemini-app(Claude in Chrome で自動操作)、運転手なし版を左右反転",
-              "note": "運転手シルエットなし(反転のため)"
+              "effective_dpi": 780,
+              "route": "gemini-app 画像モード(Claude in Chrome で自動操作)、2K JPEG 受領",
+              "note": "中型ミニバン、屋根白・行灯アクセント色、運転手なし、左側面向き"
             }
           }
         }

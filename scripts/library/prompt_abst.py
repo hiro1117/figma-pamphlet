@@ -104,8 +104,8 @@ VEHICLE_ABSTRACTION = """ABSTRACTION:
 - grille as one simple shape or two lines
 - headlights as one simple shape each
 - no door handles, mirrors, wipers, badges, trim lines, panel gaps, reflections or chrome
-- the driver, if visible, is a single flat silhouette
-- the taxi roof sign is a small simple shape with no text
+- no driver, no passengers; windows are empty flat shapes
+- the taxi roof sign is a small simple shape in the accent color, clearly different from the white roof, with no text
 
 The vehicle should be understood primarily through SILHOUETTE and COLOR BLOCKING,
 not through mechanical detail."""
@@ -125,8 +125,7 @@ BG_ABSTRACTION = """ABSTRACTION:
 SUBJECTS = {
     "person-01": "Create a single full-body illustration of a Japanese woman in her 70s making a reservation for a community ride-share taxi by talking on a smartphone (or a telephone handset). She looks calm and friendly. Her age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.",
     "person-02": "Create a single full-body illustration of a Japanese man in his 70s and his daughter in her 40s standing side by side, the daughter lightly holding his arm, both looking relaxed and friendly. Their age is suggested by hair color and posture, not by a kimono, a cane or white hair alone.",
-    "vehicle-01": "Create a single illustration of a white community ride-share taxi: a box-shaped Japanese minivan, right-hand drive. VIEWPOINT: three-quarter view from the FRONT-LEFT of the car. The car's LEFT side (the passenger side with the sliding door) faces the viewer and fills most of the image; the front of the car points toward the lower-left. The driver, if visible, sits on the FAR side (right-hand drive), away from the viewer. Do not show the right side of the car. White body with one accent stripe. Blank license plate shape. A small roof sign with no text.",
-}
+    "vehicle-01": "Create a single illustration of a white community ride-share taxi. VEHICLE TYPE: a mid-size Japanese minivan / people-mover used as a taxi (tall rounded body, long hood-less front, large windows, a rear sliding door), like a 7-seat family minivan taxi. NOT a kei microvan, NOT a sedan, NOT a bus. Right-hand drive. VIEWPOINT: three-quarter view from the FRONT-LEFT of the car. The car's LEFT side (the passenger side with the sliding door) faces the viewer and fills most of the image; the front of the car points toward the lower-left. No driver and no passengers: all windows are empty flat shapes. COLORS OF PARTS: the whole body INCLUDING THE ROOF is white / warm off-white; the small taxi roof sign (lamp) on top is the accent color {accent} so it clearly contrasts with the white roof; windows are one dark flat color (muted navy); wheels dark; one thin accent stripe on the side. Blank license plate shape. No text on the roof sign.",}
 COMPOSITION_BG = "- full-bleed landscape, no margins\n- generous empty sky and ground"
 
 COMPOSITION = {
@@ -154,7 +153,7 @@ No scenery.""", "This image IS the background scenery; it must fill the whole fr
 
 
 def abst_prompt(kind, accent_hex, palette_note):
-    return SUBJECTS[kind] + "\n\n" + ABST_STYLE.format(
+    return SUBJECTS[kind].replace("{accent}", accent_hex) + "\n\n" + ABST_STYLE.format(
         abstraction=PERSON_ABSTRACTION if kind.startswith("person") else VEHICLE_ABSTRACTION,
         accent=accent_hex, palette_note=palette_note, composition=COMPOSITION[kind], aspect=ASPECT[kind],
         skin_note=SKIN_NOTE if kind.startswith("person") else "")

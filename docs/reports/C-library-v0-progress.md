@@ -96,3 +96,4 @@
 - 背景: `aitoma-K2-abst-bg-02`(稜線 54%、民家 1・木 1)。Redo 版 bg-03 は予備(rejected)
 - Figma: `ライブラリ/あいとま系(abst 比較用)` の 2073:2 / 2073:5 を `upload_assets` の nodeIds 指定で差し替え、検証 v2(2074:4)の #キービジュアル/#車両 も更新。スクショ `C-shots/verify_aitoma_K2_abst_v2.png`
 - 注意: Chrome 拡張は一度「not connected」を返したが再試行で復帰(一過性)。ダウンロードは Chrome 既定の ~/Downloads に `Gemini_Generated_Image_*.jpeg` で保存される
+- 2026-09-27 車両を再度作り直し(Hiro 指示: 屋根と行灯が同色、軽バンは不可)。プロンプトに「中型ミニバンのタクシー(軽バン・セダン・バス不可)」「屋根は白、行灯はアクセント色」「運転手なし」を明記 → Pro 2K で左側面向きが一発で出た(`aitoma-K2-abst-vehicle-03`、反転不要)。Figma 2073:5 / 検証 v2 を差し替え
