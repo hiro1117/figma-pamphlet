@@ -24,6 +24,7 @@ from pathlib import Path
 import requests
 
 from prompt_abst import abst_prompt, abst_bg_prompt
+from make_masks import K2B, ratio_table  # B.1 v2 の系統別ヒーロー枠と Gemini 比率
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -115,10 +116,15 @@ COMMON_BANS = ("文字・ロゴ・看板・QRコードや電話番号らしき�
                "透かし・署名・枠線・余白を入れない。")
 
 
+# B.1 v2(2026-09-28): 表紙のヒーローは白パネル内の横長枠(K2B_panel、系統別)。背景の生成比率は枠に最も近い Gemini 比率
+K2B_ASPECT = {row[0]: row[4] for row in ratio_table()}   # 例 {"aitoma": "5:4", "nachikatsuura": "3:2", "noboribetsu": "4:3", "mitt": "1:1"}
+K2B_HORIZON = {fam: round((c["motif"][1] + c["motif"][3] / 2 - c["hero"][1]) / c["hero"][3], 2) for fam, c in K2B.items()}  # 地域モチーフ帯の中心(枠上端から)
+
+
 def bg_prompt(fam, sty):
     f, s = FAMILIES[fam], STYLES[sty]
     if sty == "abst":
-        return abst_bg_prompt(ABST_BG_PALETTE[fam])
+        return abst_bg_prompt(ABST_BG_PALETTE[fam], aspect=K2B_ASPECT[fam] + " landscape", horizon_pct=int(K2B_HORIZON[fam] * 100))
     if sty in ("thin", "noline"):
         return "\n".join([
             f"1. 役割: {ROLE}",
@@ -301,8 +307,9 @@ def build_jobs(ns):
                 base = f"{fam}-K2-{sty}"
                 chips = MASKS / FAMILIES[fam]["chips"]
                 if "bg" in only:
+                    # abst は参照画像なし(Hiro 方針)。旧描法は K2B の系統別 hero マスク+色チップ
                     jobs.append(dict(id=f"{base}-bg-{ns.seq:02d}", kind="bg", family=fam, style=sty, prompt=bg_prompt(fam, sty),
-                                     refs=([] if sty == "abst" else [MASKS / "K2-mask-hero.png", chips]), aspect="4:5", size=ns.size, out=LIB / "candidates"))
+                                     refs=([] if sty == "abst" else [MASKS / f"K2B-mask-hero-{fam}.png", chips]), aspect=K2B_ASPECT[fam], size=ns.size, out=LIB / "candidates"))
                 style_ref = Path(ns.style_ref) if ns.style_ref else MASKS / "style-tile-person.png"
                 fg_refs = ([] if sty == "abst" else [style_ref, chips] if sty.startswith("yuru") else [chips])  # abst は参照画像なし
                 if "person" in only:
@@ -319,7 +326,7 @@ def build_jobs(ns):
             fam, _, sty, kind, _ = cid.split("-")
             chips = MASKS / FAMILIES[fam]["chips"]
             jobs.append(dict(id=cid.replace("-bg-", "-bgmaster-"), kind="bg_master", family=fam, style=sty, prompt=bg_prompt(fam, sty),
-                             refs=[MASKS / "K2-mask-hero.png", chips], aspect="4:5", size="4K", out=LIB / "masters"))
+                             refs=[MASKS / f"K2B-mask-hero-{fam}.png", chips], aspect=K2B_ASPECT[fam], size="4K", out=LIB / "masters"))
     elif ns.stage == "motif":
         for fam in fams:
             for sty in stys:

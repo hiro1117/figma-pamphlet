@@ -110,7 +110,7 @@ VEHICLE_ABSTRACTION = """ABSTRACTION:
 The vehicle should be understood primarily through SILHOUETTE and COLOR BLOCKING,
 not through mechanical detail."""
 
-BG_SUBJECT = """Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
+BG_SUBJECT = """Create a single background illustration for a landscape-format picture panel on a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about {horizon_pct}% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
 
 The bottom 25% must be only road and ground (people and a vehicle will be placed in front later). Above the ridge there is only sky."""
 
@@ -139,8 +139,8 @@ ASPECT = {"person-01": "3:4 vertical", "person-02": "3:4 vertical", "vehicle-01"
 SKIN_NOTE = "Skin: one flat pale pinkish-beige color, exactly #F5CEC1, the same for every character (face and hands). No tan, no peach, no orange skin, no blush, no shading on skin.\n"
 
 
-def abst_bg_prompt(family_colors):
-    body = ABST_STYLE.format(abstraction=BG_ABSTRACTION, accent="", palette_note=family_colors, composition=COMPOSITION_BG, aspect="4:5 vertical", skin_note="")
+def abst_bg_prompt(family_colors, aspect="4:5 vertical", horizon_pct=60):
+    body = ABST_STYLE.format(abstraction=BG_ABSTRACTION, accent="", palette_note=family_colors, composition=COMPOSITION_BG, aspect=aspect, skin_note="")
     body = body.replace("Use  as an accent color.\n", "")
     body = body.replace("""BACKGROUND:
 completely uniform pure green #00FF00.
@@ -149,7 +149,7 @@ No floor.
 No shadow.
 No furniture.
 No scenery.""", "This image IS the background scenery; it must fill the whole frame edge to edge.")
-    return BG_SUBJECT + "\n\n" + body
+    return BG_SUBJECT.replace("{horizon_pct}", str(horizon_pct)) + "\n\n" + body
 
 
 def abst_prompt(kind, accent_hex, palette_note):

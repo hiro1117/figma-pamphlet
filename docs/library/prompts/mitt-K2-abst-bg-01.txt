@@ -1,4 +1,4 @@
-Create a single background illustration for the top part of a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 60% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
+Create a single background illustration for a landscape-format picture panel on a pamphlet cover: a quiet, generic rural Japanese landscape with only four elements: (a) a flat single-color sky, (b) one simple gentle ridge line of low hills at about 57% from the top (one solid color, one silhouette), (c) one road coming toward the viewer, (d) a flat single-color ground. Optionally up to three tiny simplified houses or trees near the ridge. No people, no vehicles, no animals, no landmarks, no clouds, no sun, no text.
 
 The bottom 25% must be only road and ground (people and a vehicle will be placed in front later). Above the ridge there is only sky.
 
@@ -56,7 +56,7 @@ COMPOSITION:
 - generous empty sky and ground
 - centered
 - generous negative space
-- 4:5 vertical 
+- 1:1 landscape 
 - entire subject visible
 - do not touch the edges
 

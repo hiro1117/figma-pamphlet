@@ -5,13 +5,10 @@
     "id": "7:4",
     "name": "素材"
   },
-  "generated": "2026-09-27",
+  "generated": "2026-09-28",
   "k_px_per_mm": 5.69,
-  "hero_frame_px": [
-    580,
-    711
-  ],
-  "dpi_formula": "image_px / placed_px * 144.6",
+  "hero_frame_px": null,
+  "dpi_formula": "CROP: image_px_w / frame_w * 144.6(横長枠に縦長 2K を置くと幅が支配的)。FIT: image_px_w / placed_w * 144.6",
   "families": {
     "aitoma": {
       "label": "あいとま系",
@@ -36,9 +33,9 @@
               488,
               398
             ],
-            "note": "B.1 v2: 横長の枠。上下を切って使う(effective_dpi は幅基準で再計算のこと)"
+            "note": "2K 縦長(1792×2400)を横長枠に CROP: 幅で合わせ上下を切る(表示は上端から縦 61%)"
           },
-          "effective_dpi": 447,
+          "effective_dpi": 531,
           "route": "gemini-app 画像モード(Claude in Chrome で自動操作)、2K JPEG 受領",
           "horizon_ratio": 0.54
         },
@@ -53,12 +50,12 @@
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
-            "suggested_px": [
-              149,
-              420
+            "frame_px": [
+              113,
+              317
             ]
           },
-          "effective_dpi": 1159,
+          "effective_dpi": 1536,
           "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
         },
         "人物B": {
@@ -72,12 +69,12 @@
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
-            "suggested_px": [
-              276,
-              420
+            "frame_px": [
+              113,
+              317
             ]
           },
-          "effective_dpi": 1059,
+          "effective_dpi": 2586,
           "route": "gemini-app (Google AI Pro), 4K, JPEG 受領"
         },
         "車両": {
@@ -91,12 +88,12 @@
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
-            "suggested_px": [
-              360,
-              207
+            "frame_px": [
+              300,
+              173
             ]
           },
-          "effective_dpi": 627,
+          "effective_dpi": 753,
           "route": "Hiro 手動生成の JPN タクシー型を PIL でアクセント色置換",
           "note": "4 系統共通の車両(2026-09-27 Hiro 指示)"
         }
@@ -130,9 +127,9 @@
               488,
               329
             ],
-            "note": "B.1 v2: 横長の枠。上下を切って使う(effective_dpi は幅基準で再計算のこと)"
+            "note": "2K 縦長(1792×2400)を横長枠に CROP: 幅で合わせ上下を切る(表示は上端から縦 50%)"
           },
-          "effective_dpi": 447,
+          "effective_dpi": 531,
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物A": {
@@ -146,12 +143,12 @@
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
-            "suggested_px": [
-              137,
-              420
+            "frame_px": [
+              92,
+              283
             ]
           },
-          "effective_dpi": 707,
+          "effective_dpi": 1053,
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物B": {
@@ -165,12 +162,12 @@
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
-            "suggested_px": [
-              286,
-              420
+            "frame_px": [
+              92,
+              283
             ]
           },
-          "effective_dpi": 724,
+          "effective_dpi": 2249,
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "車両": {
@@ -184,12 +181,12 @@
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
-            "suggested_px": [
-              360,
-              207
+            "frame_px": [
+              300,
+              173
             ]
           },
-          "effective_dpi": 627,
+          "effective_dpi": 753,
           "route": "Hiro 手動生成の JPN タクシー型を PIL でアクセント色置換",
           "note": "4 系統共通の車両(2026-09-27 Hiro 指示)"
         }
@@ -223,9 +220,9 @@
               488,
               354
             ],
-            "note": "B.1 v2: 横長の枠。上下を切って使う(effective_dpi は幅基準で再計算のこと)"
+            "note": "2K 縦長(1792×2400)を横長枠に CROP: 幅で合わせ上下を切る(表示は上端から縦 54%)"
           },
-          "effective_dpi": 447,
+          "effective_dpi": 531,
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物A": {
@@ -239,12 +236,12 @@
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
-            "suggested_px": [
-              167,
-              420
+            "frame_px": [
+              126,
+              317
             ]
           },
-          "effective_dpi": 706,
+          "effective_dpi": 938,
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物B": {
@@ -258,12 +255,12 @@
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
-            "suggested_px": [
-              254,
-              420
+            "frame_px": [
+              126,
+              317
             ]
           },
-          "effective_dpi": 692,
+          "effective_dpi": 1396,
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "車両": {
@@ -277,12 +274,12 @@
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
-            "suggested_px": [
-              360,
-              207
+            "frame_px": [
+              300,
+              173
             ]
           },
-          "effective_dpi": 627,
+          "effective_dpi": 753,
           "route": "Hiro 手動生成の JPN タクシー型を PIL でアクセント色置換",
           "note": "4 系統共通の車両(2026-09-27 Hiro 指示)"
         }
@@ -316,9 +313,9 @@
               488,
               500
             ],
-            "note": "B.1 v2: 横長の枠。上下を切って使う(effective_dpi は幅基準で再計算のこと)"
+            "note": "2K 縦長(1792×2400)を横長枠に CROP: 幅で合わせ上下を切る(表示は上端から縦 77%)"
           },
-          "effective_dpi": 447,
+          "effective_dpi": 531,
           "route": "gemini-app(Hiro 手動)、2K JPEG 受領",
           "horizon_ratio": 0.72
         },
@@ -333,12 +330,12 @@
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
-            "suggested_px": [
-              200,
-              420
+            "frame_px": [
+              151,
+              317
             ]
           },
-          "effective_dpi": 671,
+          "effective_dpi": 891,
           "route": "gemini-app 画像モード(Claude in Chrome 自動操作)、2K JPEG 受領"
         },
         "人物B": {
@@ -352,12 +349,12 @@
           "placement": {
             "target": "#人物",
             "scaleMode": "FIT",
-            "suggested_px": [
-              283,
-              420
+            "frame_px": [
+              151,
+              317
             ]
           },
-          "effective_dpi": 1136,
+          "effective_dpi": 2129,
           "route": "gemini-app(Hiro 手動)、4K JPEG 受領→長辺 3300 に縮小(10MB 上限)"
         },
         "車両": {
@@ -371,12 +368,12 @@
           "placement": {
             "target": "#車両",
             "scaleMode": "FIT",
-            "suggested_px": [
-              360,
-              207
+            "frame_px": [
+              300,
+              173
             ]
           },
-          "effective_dpi": 627,
+          "effective_dpi": 753,
           "route": "Hiro 手動生成の JPN タクシー型",
           "note": "4 系統共通の車両(2026-09-27 Hiro 指示)"
         }
@@ -447,7 +444,8 @@
       "logo": "サービスロゴは車両の右下に重ねるバッジ(高さ 95)",
       "background": "CROP。imageTransform を枠と画像の比率から計算(skill/references/template-and-assets.md)",
       "note": "2026-09-28 B.1 v2(Hiro 調整版)で更新。枠の座標は docs/prep/template-refit-inventory.json の k2b_panel_by_family"
-    }
+    },
+    "note_v2": "検証グループ(2074:11 等)は旧 K2 枠のまま。B.1 v2 の枠での本組みは H(a) 再実行で行う(Figma には C からは書き込まない)"
   },
   "hero_frame_px_note": "B.1 v2(2026-09-28)で表紙面のヒーローは白パネル内・系統別サイズになった。hero_frame_px_by_family を使う。旧値 [580,711] のマスク(docs/library/masks/)は再生成が必要",
   "hero_frame_px_by_family": {
@@ -467,5 +465,24 @@
       488,
       500
     ]
+  },
+  "hero_frame_note": "B.1 v2(2026-09-28)から hero_frame_px_by_family(K2B_panel、裁ち落としなし)を使う。旧 K2(580×711)は不採用",
+  "gemini_aspect_by_family": {
+    "aitoma": {
+      "aspect": "5:4",
+      "frame_ratio": 1.226
+    },
+    "nachikatsuura": {
+      "aspect": "3:2",
+      "frame_ratio": 1.483
+    },
+    "noboribetsu": {
+      "aspect": "4:3",
+      "frame_ratio": 1.379
+    },
+    "mitt": {
+      "aspect": "1:1",
+      "frame_ratio": 0.976
+    }
   }
 }

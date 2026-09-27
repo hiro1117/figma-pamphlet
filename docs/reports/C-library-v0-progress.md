@@ -121,3 +121,10 @@
 ## 2026-09-27 不採用画像の削除
 - 台帳で rejected のみ、かつ library-v0.json に出てこない id の画像 75 ファイル(candidates/ 62・final/ 13、約 194MB)を削除。台帳の行とプロンプトは残す(output_file は削除済みのパスを指す)
 - 台帳の kurabuchi-haruna-aitoma-thin-03 が rejected になっていたため adopted に訂正
+
+## 2026-09-28 B.1 v2(K2B_panel)に合わせてレイアウトマスクを作り直し
+- `#config`(2057:2)の `presets.K2B_panel.by_family` を読み取り、library-v0.json の `hero_frame_px_by_family`(あいとま 488×398 / 那智勝浦 488×329 / 登別 488×354 / MITT 488×500)と一致することを確認。motif/vehicle/person の枠も同じ出典から取得
+- `make_masks.py` を系統別出力に変更: `K2B-mask-face-<系統>.png`(表紙面全体、白パネル・ヒーロー枠・モチーフ帯・人物/車両位置・文字ゾーン)と `K2B-mask-hero-<系統>.png`(枠のみ)。旧 K2/K1 マスクは `_old_` で残置。`ratio_table()` で Gemini 比率と CROP の切れ量を算出(あいとま 5:4 左右 1.9% / 那智勝浦 3:2 左右 1.1% / 登別 4:3 上下 3.3% / MITT 1:1 左右 2.4%)
+- `gen_candidates.py`: 背景の比率を `K2B_ASPECT[fam]`、参照を系統別 hero マスクに。`prompt_abst.py` の背景プロンプトは横長パネル向けに文言と稜線位置(`K2B_HORIZON`: モチーフ帯の中心 = あいとま 51% / 那智勝浦 64% / 登別 66% / MITT 58%)を系統別に。**背景の再生成は未実施**(H(a) の再実行で枠が確定してから)
+- `library-v0.json`: `effective_dpi` を新枠で再計算。背景は CROP で幅が支配的 → 4 系統とも 531dpi(1792÷488×144.6)。人物・車両は FIT の枠(person 92〜151px 幅、vehicle 300×173)基準で 500〜1,900dpi。`hero_frame_px` は廃止し `gemini_aspect_by_family` を追加
+- Figma には書き込んでいない(検証グループ 4 つは旧 K2 枠のまま。本組みは H(a))

@@ -1,37 +1,42 @@
 #!/usr/bin/env python3
 """レイアウトマスク(幾何図形のみ)と系統色チップを生成する。
 
-- 出典: docs/prep/physical-size.md(表紙面 99×210mm、塗り足し 上/右 3mm、K2 ヒーロー = 表紙面の上 55〜60%)
-- テンプレや完成見本のスクショは一切使わない(白/灰の矩形だけ)
-- 文字は描かない(生成 AI の参照に渡すため)
+- 出典: docs/prep/physical-size.md(表紙面 99×210mm、k=5.69)、Figma #config(2057:2) presets.K2B_panel.by_family(B.1 v2、2026-09-28)
+- テンプレや完成見本のスクショは一切使わない(白/灰の矩形だけ)。文字は描かない(生成 AI の参照に渡すため)
 
 出力: docs/library/masks/
-  K2-mask-face.png  表紙面+塗り足し(102×213mm)全体。ヒーロー枠・塗り足し・下情報域・タイトル/CTA ゾーン
-  K2-mask-hero.png  ヒーロー枠+塗り足しだけ(102×125mm)。生成画像と同じ範囲
-  K1-mask-face.png  (任意)全面ビジュアル K1 用。タイトル帯・CTA ゾーンを無地で示す
-  chips-<系統>.png  系統の色チップ(濃/淡/紙白/文字色)
+  K2B-mask-face-<family>.png  表紙面 99×210mm 全体(塗り足し込み 102×213mm)。白パネル・ヒーロー枠・地域モチーフ帯・人物/車両の想定位置・文字ゾーン
+  K2B-mask-hero-<family>.png  ヒーロー枠だけ(裁ち落としなし、系統ごとに 488×329〜500px = 85.8×57.8〜87.9mm)。背景生成の参照
+  chips-<family>.png          系統の色チップ
+  _old_K2-*.png / _old_K1-*.png  旧 K2(上ビジュアル 102×125mm)用。B.1 v2 で不採用
 """
 from pathlib import Path
 from PIL import Image, ImageDraw
 
 OUT = Path(__file__).resolve().parents[2] / "docs/library/masks"
-S = 10  # px per mm(マスクの解像度。Figma の k=5.69 とは無関係)
-
-# 物理寸法(mm)
+S = 10          # マスクの px/mm(Figma の k とは無関係)
+K = 5.69        # Figma px/mm
 FACE_W, FACE_H = 99.0, 210.0
 BLEED = 3.0
-HERO_RATIO = 0.581   # 122mm / 210mm → ヒーロー+塗り足し = 102×125mm(≈102:125)
-HERO_H = round(FACE_H * HERO_RATIO)  # 122
-FOLD_MARGIN = 8.0    # 折り線側(左・下)の余白
-TRIM_MARGIN = 3.0    # 仕上がり端側の内側余白(塗り足しとは別)
-HORIZON = 0.60       # 地平線帯の位置(ヒーロー上端から)
+FOLD_MARGIN = 8.0
+COVER_X = 1127.3  # 表紙面のフレーム内 x(#config.cover_face)
 
-# 色(白/灰のみ)
-C_IMAGE = (255, 255, 255)   # 絵が入る領域
-C_BLEED = (200, 200, 200)   # 塗り足し域(断裁で消える)
-C_INFO = (160, 160, 160)    # 下情報域(文字ゾーン、絵を入れない)
-C_ZONE = (110, 110, 110)    # タイトル/CTA ゾーン
-C_BAND = (235, 235, 235)    # 地平線帯(地域モチーフで覆う余地)
+# Figma #config presets.K2B_panel.by_family(表紙面ローカル px は frame 座標 − 1127.3)
+K2B = {
+    "aitoma":        dict(hero=(1169, 172, 488, 398), motif=(1169, 310, 488, 143), vehicle=(1353, 397, 300, 173), person=(1183, 249, 113, 317)),
+    "nachikatsuura": dict(hero=(1169, 241, 488, 329), motif=(1169, 380, 488, 143), vehicle=(1353, 397, 300, 173), person=(1183, 283, 92, 283)),
+    "noboribetsu":   dict(hero=(1165, 217, 488, 354), motif=(1169, 380, 488, 143), vehicle=(1353, 397, 300, 173), person=(1183, 249, 126, 317)),
+    "mitt":          dict(hero=(1169, 200, 488, 500), motif=(1169, 420, 488, 143), vehicle=(1353, 527, 300, 173), person=(1183, 379, 151, 317)),
+}
+# 白パネル(ヒーローの外側に 8px 程度の白地。実測ではなく描画用の目安)
+PANEL_PAD = 8
+
+C_IMAGE = (255, 255, 255)
+C_BLEED = (200, 200, 200)
+C_INFO = (160, 160, 160)
+C_ZONE = (110, 110, 110)
+C_BAND = (235, 235, 235)
+C_FG = (215, 215, 215)
 C_LINE = (60, 60, 60)
 
 
@@ -39,47 +44,55 @@ def mm(v):
     return int(round(v * S))
 
 
-def draw_face(k1=False):
-    # キャンバス = 表紙面 + 上/右塗り足し。原点 = 塗り足し込みの左上
+def px2mm(v):
+    return v / K
+
+
+def draw_face(fam):
+    """表紙面全体(塗り足し込み)。原点 = 塗り足し込みの左上。"""
+    c = K2B[fam]
     W, H = mm(FACE_W + BLEED), mm(FACE_H + BLEED)
     im = Image.new("RGB", (W, H), C_INFO)
     d = ImageDraw.Draw(im)
-    top = mm(BLEED)  # 仕上がり上端の y
-    hero_bottom = H if k1 else top + mm(HERO_H)
-    # ヒーロー(塗り足し込み)
-    d.rectangle([0, 0, W, hero_bottom], fill=C_IMAGE)
-    # 地平線帯
-    hero_h_mm = (FACE_H if k1 else HERO_H) + BLEED
-    by = int(hero_h_mm * HORIZON * S)
-    d.rectangle([0, by - mm(6), W, by + mm(6)], fill=C_BAND)
+    top = mm(BLEED)
     # 塗り足し域(上・右)
     d.rectangle([0, 0, W, top], fill=C_BLEED)
-    d.rectangle([W - mm(BLEED), 0, W, hero_bottom], fill=C_BLEED)
-    # 仕上がり線・折り線(細線)
-    d.rectangle([0, top, W - mm(BLEED), H], outline=C_LINE, width=2)
-    if not k1:
-        d.line([0, hero_bottom, W, hero_bottom], fill=C_LINE, width=2)
-    # 文字ゾーン
-    if k1:
-        # K1: タイトル帯は上部、CTA は下部(いずれも絵の上に無地パネルで載る)
-        d.rectangle([mm(FOLD_MARGIN), top + mm(14), mm(FOLD_MARGIN + 0.7 * FACE_W), top + mm(56)], fill=C_ZONE)
-        d.rectangle([mm(40), H - mm(FOLD_MARGIN + 34), W - mm(BLEED + TRIM_MARGIN), H - mm(FOLD_MARGIN)], fill=C_ZONE)
-    else:
-        # K2: 下情報域(hero_bottom〜下端)にタイトル(左)と CTA(右下)
-        d.rectangle([mm(FOLD_MARGIN), hero_bottom + mm(8), mm(FOLD_MARGIN + 0.7 * FACE_W), hero_bottom + mm(46)], fill=C_ZONE)
-        d.rectangle([mm(40), H - mm(FOLD_MARGIN + 30), W - mm(BLEED + TRIM_MARGIN), H - mm(FOLD_MARGIN)], fill=C_ZONE)
+    d.rectangle([W - mm(BLEED), 0, W, H], fill=C_BLEED)
+
+    def box(px, pad=0):
+        x, y, w, h = px
+        x0 = mm(px2mm(x - COVER_X - pad)); y0 = top + mm(px2mm(y - pad))
+        return [x0, y0, x0 + mm(px2mm(w + 2 * pad)), y0 + mm(px2mm(h + 2 * pad))]
+
+    d.rectangle(box(c["hero"], PANEL_PAD), fill=C_IMAGE)        # 白パネル
+    d.rectangle(box(c["hero"]), fill=C_IMAGE, outline=C_LINE, width=2)  # ヒーロー枠
+    d.rectangle(box(c["motif"]), fill=C_BAND)                    # 地域モチーフ帯
+    d.rectangle(box(c["vehicle"]), fill=C_FG, outline=C_LINE, width=1)
+    d.rectangle(box(c["person"]), fill=C_FG, outline=C_LINE, width=1)
+    # 文字ゾーン: ヒーロー上(タイトル)とヒーロー下(CTA)
+    hx0, hy0, hx1, hy1 = box(c["hero"])
+    d.rectangle([mm(FOLD_MARGIN), top + mm(10), hx1, hy0 - mm(6)], fill=C_ZONE)
+    d.rectangle([mm(FOLD_MARGIN), hy1 + mm(8), W - mm(BLEED + 3), H - mm(FOLD_MARGIN + 30)], fill=C_ZONE)
+    d.rectangle([0, top, W - mm(BLEED), H], outline=C_LINE, width=2)  # 仕上がり・折り線
     return im
 
 
-def draw_hero():
-    W, H = mm(FACE_W + BLEED), mm(HERO_H + BLEED)
+def draw_hero(fam):
+    """ヒーロー枠だけ(裁ち落としなし)。地域モチーフ帯と人物・車両の想定位置を薄く示す。"""
+    x, y, w, h = K2B[fam]["hero"]
+    W, H = mm(px2mm(w)), mm(px2mm(h))
     im = Image.new("RGB", (W, H), C_IMAGE)
     d = ImageDraw.Draw(im)
-    by = int((HERO_H + BLEED) * HORIZON * S)
-    d.rectangle([0, by - mm(6), W, by + mm(6)], fill=C_BAND)
-    d.rectangle([0, 0, W, mm(BLEED)], fill=C_BLEED)
-    d.rectangle([W - mm(BLEED), 0, W, H], fill=C_BLEED)
-    d.rectangle([0, mm(BLEED), W - mm(BLEED), H], outline=C_LINE, width=2)
+
+    def rel(px):
+        px_, py_, pw, ph = px
+        x0 = mm(px2mm(px_ - x)); y0 = mm(px2mm(py_ - y))
+        return [x0, y0, x0 + mm(px2mm(pw)), y0 + mm(px2mm(ph))]
+
+    d.rectangle(rel(K2B[fam]["motif"]), fill=C_BAND)
+    d.rectangle(rel(K2B[fam]["vehicle"]), fill=C_FG)
+    d.rectangle(rel(K2B[fam]["person"]), fill=C_FG)
+    d.rectangle([0, 0, W - 1, H - 1], outline=C_LINE, width=2)
     return im
 
 
@@ -90,6 +103,23 @@ FAMILIES = {
     "noboribetsu": ["#D7835F", "#F9F2DC", "#FFF9B3", "#FFFFFF", "#513A1E"],
     "mitt": ["#254F99", "#258FC2", "#143747", "#FAEF50", "#FFFFFF", "#231815"],
 }
+
+# Gemini 3 Pro Image の対応比率(横長のみ)
+GEMINI_RATIOS = {"1:1": 1.0, "5:4": 1.25, "4:3": 4 / 3, "3:2": 1.5, "16:9": 16 / 9, "21:9": 21 / 9}
+
+
+def ratio_table():
+    rows = []
+    for fam, c in K2B.items():
+        w, h = c["hero"][2], c["hero"][3]; fr = w / h
+        name, r = min(GEMINI_RATIOS.items(), key=lambda kv: abs(kv[1] - fr))
+        # CROP(枠を満たす): 画像が枠より横長なら左右が切れる、縦長なら上下が切れる
+        if r > fr:
+            cut = (1 - fr / r) * 100; where = "左右"
+        else:
+            cut = (1 - r / fr) * 100; where = "上下"
+        rows.append((fam, w, h, round(fr, 3), name, round(r, 3), where, round(cut, 1)))
+    return rows
 
 
 def draw_chips(colors):
@@ -103,11 +133,15 @@ def draw_chips(colors):
 
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
-    draw_face().save(OUT / "K2-mask-face.png")
-    draw_hero().save(OUT / "K2-mask-hero.png")
-    draw_face(k1=True).save(OUT / "K1-mask-face.png")
+    for fam in K2B:
+        draw_face(fam).save(OUT / f"K2B-mask-face-{fam}.png")
+        draw_hero(fam).save(OUT / f"K2B-mask-hero-{fam}.png")
     for name, cols in FAMILIES.items():
         draw_chips(cols).save(OUT / f"chips-{name}.png")
-    for p in sorted(OUT.glob("*.png")):
+    for p in sorted(OUT.glob("K2B-*.png")):
         w, h = Image.open(p).size
-        print(f"{p.name}: {w}x{h}px = {w/S:.0f}x{h/S:.0f}mm ratio {w/h:.3f}")
+        print(f"{p.name}: {w}x{h}px = {w/S:.1f}x{h/S:.1f}mm ratio {w/h:.3f}")
+    print("\n| 系統 | 枠 px | 枠比率 | Gemini 比率 | CROP で切れる側 | 切れる量 |")
+    print("|---|---|---|---|---|---|")
+    for fam, w, h, fr, name, r, where, cut in ratio_table():
+        print(f"| {fam} | {w}×{h} | {fr} | {name} ({r}) | {where} | {cut}% |")
