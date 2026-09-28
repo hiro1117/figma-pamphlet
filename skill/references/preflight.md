@@ -1,6 +1,6 @@
 # preflight.js — 第1層チェック(最小版)仕様書
 
-対象: `skill/scripts/preflight.js`(2026-09-28 版 v5 = レビュー `docs/reports/review-2026-09-27.md` の CONFIG 決定と、H(a) 先行版の指摘 4 点(`docs/reports/Ha-tech-mvp-pre.md` §3.3・§9)を反映。最小版 = P1・P2・P3-a・**P3-b**・P4単色・P6・P7・P12)。
+対象: `skill/scripts/preflight.js`(2026-09-28 版 v6 = レビュー `docs/reports/review-2026-09-27.md` の CONFIG 決定と、H(a) 先行版の指摘 4 点(`docs/reports/Ha-tech-mvp-pre.md` §3.3・§9)と、表4 フッターの P6 対象外(Hiro 決定 2026-09-28)を反映。最小版 = P1・P2・P3-a・**P3-b**・P4単色・P6・P7・P12)。
 計画書 v5.1 §6.5 の第1層のうち機械判定できる 7 項目を `use_figma` 1 回で実行し、**Pass / Fail / Warn / Manual / Error** の 5 値で返す。Warn は「第2段の目標値に未達だが第1段では入稿を止めない」。オペレータには ○/✗/△ の要約だけを見せる(組み込みはスキル改訂 D)。
 
 ## 1. 前提
@@ -38,7 +38,7 @@
 | P3-b 枠はみ出し | 可視 TEXT の字面(`absoluteRenderBounds`) | 「親の枠」= 描画順で TEXT より後ろにあり、字面の `P3B_OVERLAP`(50%)以上を覆い、字面より大きい軸平行の RECTANGLE/FRAME/COMPONENT/INSTANCE(可視 fill か stroke あり)、または名前が `P3B_VECTOR_PANEL` に一致する VECTOR/BOOLEAN(bbox 近似)のうち**面積最小**のもの。IMAGE fill・名前や祖先名が `P3B_EXCLUDE_PANEL`(置き場|イラスト|画像|写真|ロゴ|QR)・ブーリアン図形の部品は候補にしない。枠の内側は stroke ぶんを差し引く | 字面が枠の内側を `P3B_TOL_PX`(2px)より越える(方向・px・枠名を出力)。シート(フレーム)の外に出る | — | — |
 | P3-a 文字あふれ | `textAutoResize === 'NONE'` の可視 TEXT | 全フォントを `loadFontAsync` → `clone()`(名前 `__preflight_tmp__`、非表示)→ **`textAutoResize='HEIGHT'`(箱幅で折り返した高さ hFit。必ず先)→ `'WIDTH_AND_HEIGHT'`(自然高さ hNat)** → **finally で `clone.remove()`**。`diff = hFit − 箱高` が `OVERFLOW_TOL_PX`(1px)を超え、かつ「hFit > hNat+1(折返しが増えた)」または「diff ≥ 1行高 × `TIGHT_RATIO`(0.5)」なら あふれ。それ以外(単行バッジの箱が行高より少し低いだけ = tight)は `TIGHT_BOX`('ignore' 既定 / 'manual' / 'fail')に従い、ignore の件数を `summary.ignored_tight` に出す | あふれ | — | `hasMissingFont`、フォントロード失敗、clone 失敗 |
 | P4 コントラスト(単色背景) | 役割 body/note/phone(7:1)・heading/label(4.5:1)。`CONTRAST.other = null` は対象外 | 前景 = セグメント fill(可視 SOLID stroke があれば袋文字としてその色)。背景 = 描画順で TEXT より手前にあり TEXT 矩形の `BG_COVER`(90%)以上を覆う軸平行の RECTANGLE/FRAME/COMPONENT/INSTANCE の最前面(なければフレーム fill)。WCAG 相対輝度で比 | 比 < しきい値 | — | 前景が SOLID/不透明でない、背景未検出、背景が IMAGE/GRADIENT/半透明、背景と TEXT の間に TEXT 矩形の 50% 以上を覆う非矩形(VECTOR 等)・画像がある |
-| P6 折り安全域 | 可視 TEXT の**字面**(`absoluteRenderBounds`。箱ではない。`P6_EXCLUDE_NAME` = ガイド:/装飾: を除く) | 折り線は絶対座標で計算し(180°回転でも対称)、設計座標に戻して**種別**を付ける。`P6_FOLD_KINDS[kind]`: 表紙 = 長辺 1/3(x=563.7)`spread`(見開き内)、2/3(x=1127.3)`boundary`(面境界)、短辺 1/2(y=1196)`boundary`。中面 = 3 本とも `spread`。横型フレームは軸を入れ替える | boundary をまたぐ、または余白 < `P6_MARGIN_MM.fail`(5mm=28px) | boundary の余白 < `P6_MARGIN_MM.warn`(8mm=46px)、spread をまたぐ(余白は見ない) | — |
+| P6 折り安全域 | 可視 TEXT の**字面**(`absoluteRenderBounds`。箱ではない。`P6_EXCLUDE_NAME` = ガイド:/装飾: を除く。**祖先の名前が `P6_EXEMPT_ANCESTOR`(お問い合わせフッター)に一致する TEXT は対象外**(表4 フッターの折り線またぎは許容、Hiro 決定 2026-09-28)。対象外の件数と本来の判定は `message` と `check.exempt` に注記し、他のチェックには影響しない) | 折り線は絶対座標で計算し(180°回転でも対称)、設計座標に戻して**種別**を付ける。`P6_FOLD_KINDS[kind]`: 表紙 = 長辺 1/3(x=563.7)`spread`(見開き内)、2/3(x=1127.3)`boundary`(面境界)、短辺 1/2(y=1196)`boundary`。中面 = 3 本とも `spread`。横型フレームは軸を入れ替える | boundary をまたぐ、または余白 < `P6_MARGIN_MM.fail`(5mm=28px) | boundary の余白 < `P6_MARGIN_MM.warn`(8mm=46px)、spread をまたぐ(余白は見ない) | — |
 | P7 仮置き文言 | 可視 TEXT の characters(`P7_EXCLUDE_NAME` = `サンプル:` を除く) | `P7_PATTERN`(`[〇○◯]{2,}`、`〇`+年/月/日/時/号/地区/市/町/村、**数字の直後でない単独の 0/０ + 年/月/日/時**、`0000`、`(仮)`、ダミー、サンプル、XXX、TODO)。加えて `P7_NAME_RULES`: 名前に 年/月/日/時/号 を含み文字が "0" だけのノード(「令和0年0月0日」を年・月・日の別ノードで持つテンプレ向け) | 一致あり | — | — |
 | P12 電話番号 | 役割 phone で characters(**改行・空白を除いた文字列**)に電話番号らしい数字列を含む TEXT。`SHEETS[SHEET].p12 === false`(A4_spot)なら検査せず Pass(message `対象外(A4_spot)`) | **最大の**電話番号の fontSize ÷ 本文(役割 body)セグメントの fontSize 中央値 = 倍率 | 倍率 < `PHONE_RATIO.fail`(2.0) | 倍率 < `PHONE_RATIO.warn`(3.0) | 電話番号が無い、本文が無い |
 
@@ -85,11 +85,12 @@
   - Error → `? 文字あふれ: 検査できませんでした(次回に再実行)`
   - P1 の Fail はそれ以外を読まずに「寸法が違うので複製からやり直し」を先に出す。`ignored_tight` は要約に出さない
 
-## 7. 既知の限界(2026-09-28 時点)
+## 7. 既知の限界(2026-09-28 v6 時点)
 
 - P4 は単色の矩形背景だけ計算する。テンプレの「背景」グループにある波形 VECTOR が TEXT の下にあると Manual になる(現行表紙で対象の 1/3〜2/3)。B.1 で文字に座布団(矩形)を敷けば計算できる
 - P4 は `other` 役割(バッジ・無名テキスト・数字)を見ない
 - P6 の種別は `FRAME_KIND`(名前判定)に依存する。名前に 表紙/中面 が無いフレームは `cover` 扱い。面グループ幅からの自動判定は B.1 の命名確定後
+- P6 の対象外は祖先グループ名(`お問い合わせフッター`)で判定する。旧世代の複製のようにフッターが面グループに入っていないフレームでは対象外にならない
 - P6 は見開き内の折りをまたぐ文字を Warn にとどめる(現行テンプレの 2 面見開き設計を第1段で許容)。第2段でサービス紹介面を組み直すかを判断
 - P3-a は Figma がテキストを clip しない前提で「行が増えた/半行以上足りない」だけを見る。`hasMissingFont` の TEXT は計測できない(Manual)
 - P3-b は枠を bbox で見る(角丸の大きい枠・斜めの枠では甘い)。名前に 枠/パネル を含まない VECTOR の白パネル(例: 表紙の `装飾:背景(サービス紹介面)`)は枠にならない。隣接する文字同士の重なりは見ない。2〜5px の小さなはみ出しは字面のディセンダ分の可能性があり目視で確認する(`P3B_TOL_PX` で調整)
@@ -112,6 +113,7 @@
 // 書き込みは P3-a の一時 clone のみ(try/finally で必ず remove)。
 // ステータスは Pass / Fail / Warn / Manual / Error。Warn = 第2段の目標値に未達(入稿は止めない)。
 // 2026-09-28: 電話番号は改行・空白を除いて判定、P7 に「0年/0月/0日」、P6 は字面(absoluteRenderBounds)、P3-b 枠はみ出しを追加。
+// 2026-09-28: P6 で祖先が「お問い合わせフッター」の TEXT は対象外(Hiro 決定: 表4 フッターの折り線またぎは許容。docs/decisions.md)。
 
 const CONFIG = {
   PAGE_ID: '7:2',                    // 対象ページ(1呼び出しで切替は1回)
@@ -140,6 +142,7 @@ const CONFIG = {
   P6_MARGIN_MM: { fail: 5, warn: 8 },
   P6_SKIP_FOLDS: { x: [], y: [] },   // 検査しない折り線(設計座標px)
   P6_EXCLUDE_NAME: /^(ガイド:|装飾:)/,          // P6 で無視する TEXT 名
+  P6_EXEMPT_ANCESTOR: /お問い合わせフッター/,   // P6 の対象外: この名前の祖先(面グループ等)を持つ TEXT(表4 フッターの折り線またぎは許容、Hiro 決定 2026-09-28)。他のチェックには影響しない
   OVERFLOW_TOL_PX: 1,                // P3-a 高さ差の許容
   P3B_TOL_PX: 2,                     // P3-b 字面が枠を越えてよい量
   P3B_OVERLAP: 0.5,                  // P3-b 字面の 50% 以上が乗っている枠を「親の枠」候補にする
@@ -190,6 +193,7 @@ const SEV = { Fail: 3, Warn: 2, Manual: 1 };
 const nospace = s => (s || '').replace(/\s+/g, '');   // 改行・空白を除いた文字列(電話番号の照合用)
 const isPhoneText = n => CONFIG.ROLE_CHARS[0][1].test(nospace(n.characters));
 const detect = (name, patterns, fallback) => { for (const k in patterns) if (patterns[k].test(name)) return k; return fallback; };
+const hasAncestor = (n, root, re) => { let p = n.parent; while (p && p.id !== root.id) { if (re.test(p.name || '')) return true; p = p.parent; } return false; };
 
 function roleOf(node) {
   const name = node.name || '';
@@ -384,7 +388,7 @@ async function inspect(frame) {
   try {
     if (!sheet.folds || !fbb) checks.push(finish('P6', [], '折り線なしのシート'));
     else {
-      const items = [];
+      const items = []; const exempt = []; const exCount = { Fail: 0, Warn: 0 };
       const mFail = mmPx(CONFIG.P6_MARGIN_MM.fail), mWarn = mmPx(CONFIG.P6_MARGIN_MM.warn);
       const portrait = fbb.height >= fbb.width;
       const kinds = CONFIG.P6_FOLD_KINDS[kind] || CONFIG.P6_FOLD_KINDS.cover;
@@ -409,9 +413,14 @@ async function inspect(frame) {
           hits.push(`${f.axis}=${f.local}${f.kind === 'boundary' ? '面境界' : '見開き'}(${cross ? 'またぎ' : 'gap ' + round1(gap)})`);
           if (!sev || SEV[s] > SEV[sev]) sev = s;
         }
-        if (hits.length) { const p = toLocal(frame, b.x, b.y), q = toLocal(frame, b.x + b.width, b.y + b.height); items.push(item(n, sev, { role: meta.get(n.id).role, value: hits.join(' '), limit: `面境界: またぎ/<${mFail}px Fail, <${mWarn}px Warn。見開き: またぎ Warn`, at: `${Math.min(p.x, q.x)},${Math.min(p.y, q.y)} ${round1(b.width)}×${round1(b.height)}`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: sev === 'Fail' ? '折り線から離す/文言を短くする' : '第2段で見開きの組み直しを検討(入稿は可)' })); }
+        if (!hits.length) continue;
+        if (CONFIG.P6_EXEMPT_ANCESTOR && hasAncestor(n, frame, CONFIG.P6_EXEMPT_ANCESTOR)) { exCount[sev]++; if (exempt.length < 10) exempt.push({ node: n.id, name: cut(n.name, CONFIG.NAME_LEN), wouldBe: sev }); continue; }   // フッター(Hiro 決定)は対象外。本来の判定だけ数える
+        const p = toLocal(frame, b.x, b.y), q = toLocal(frame, b.x + b.width, b.y + b.height); items.push(item(n, sev, { role: meta.get(n.id).role, value: hits.join(' '), limit: `面境界: またぎ/<${mFail}px Fail, <${mWarn}px Warn。見開き: またぎ Warn`, at: `${Math.min(p.x, q.x)},${Math.min(p.y, q.y)} ${round1(b.width)}×${round1(b.height)}`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: sev === 'Fail' ? '折り線から離す/文言を短くする' : '第2段で見開きの組み直しを検討(入稿は可)' }));
       }
-      checks.push(finish('P6', items, `kind ${kind}, folds(local): ${folds.map(f => f.axis + '=' + f.local + ':' + f.kind).join(' ')}`));
+      const ex = exCount.Fail + exCount.Warn;
+      const check = finish('P6', items, `kind ${kind}, folds(local): ${folds.map(f => f.axis + '=' + f.local + ':' + f.kind).join(' ')}${ex ? `。対象外(フッター・Hiro 決定): ${ex} 件(Fail 相当 ${exCount.Fail} / Warn 相当 ${exCount.Warn})` : ''}`);
+      if (ex) check.exempt = exempt;
+      checks.push(check);
     }
   } catch (err) { checks.push(errCheck('P6', err)); }
 
