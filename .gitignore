@@ -1,7 +1,9 @@
 .DS_Store
-/dist/figma-pamphlet.skill
+/dist/*.skill
 /tmp/
 node_modules/
 *.log
 .env
 .venv/
+# 他ツールが自動生成する Codex 向けルール(CLAUDE.md と重複)
+/AGENTS.md
