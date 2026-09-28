@@ -21,6 +21,7 @@ Cicac 乗合タクシー(MITT)パンフレットを Figma MCP で作る Claude �
 ## リポジトリ構成
 
 - `skill/` — スキル本体(`SKILL.md`, `references/`, これから `scripts/`)。配布時に `scripts/package.sh` で `.skill` に固める
+- `skill-brief/` — 前段の依頼票スキル `pamphlet-brief`(仕様書 → 依頼票 JSON/Markdown)。配布は `scripts/package-brief.sh`
 - `docs/prep/` — Figma 実測(面表・TEXT・フォント・imageHash・色・物理サイズ)
 - `docs/plan/` — 計画書 v5.1 と履歴
 - `docs/briefs/` — タスク指示書、`docs/reports/` — 実行結果

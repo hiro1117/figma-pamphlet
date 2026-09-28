@@ -29,3 +29,4 @@
 
 ## 第2段(追加分)
 - [ ] MITT系テンプレの本文サイズ引き上げ(15px=7.5pt → 12pt相当)。P2 の系統別オーバーライドを撤廃
+- [~] 依頼票スキル `pamphlet-brief`(`skill-brief/`)を新設 2026-09-28: 仕様書・仕様整理書から figma-pamphlet の Step 1 と表紙の絵の材料(車両の分類・地域の地形と名所・利用者像・画像生成プロンプトの種)を `pamphlet-brief/1` の JSON + Markdown に整理。見本は坂出市 仕様整理書 第9版(`skill-brief/examples/`)。figma-pamphlet の Step 1 は依頼票があれば先に読む。配布は `scripts/package-brief.sh`。残: 別案件の仕様書で試す、車両(セダン・ジャンボ)の切り抜きをライブラリに追加するか決める

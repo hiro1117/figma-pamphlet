@@ -1,0 +1,215 @@
+{
+  "schema": "pamphlet-brief/1",
+  "meta": {
+    "case_name": "坂出市",
+    "created": "2026-09-28",
+    "revision": 1,
+    "sources": [
+      { "name": "坂出市デマンド交通システム(MITT)導入業務 仕様整理書", "version": "第9版", "date": "2026-09-26", "note": "市 9/24 訂正依頼(南エリア予約締切16時・東南/南の下り12:00発)を反映済み" }
+    ],
+    "conflicts": [
+      { "field": "service.areas[south].reservation_override", "values": [ { "value": "前日17時まで", "source": "第8版以前" }, { "value": "前日16時まで(7:30便)", "source": "第9版 §4・市 9/24 訂正" } ], "adopted": "前日16時まで(7:30便)", "reason": "市の訂正依頼を反映した最新版" },
+      { "field": "service.areas[tonan,south].timetable.inbound", "values": [ { "value": "12:30", "source": "第8版以前" }, { "value": "12:00", "source": "第9版 §4・市 9/24 訂正" } ], "adopted": "12:00", "reason": "市の訂正依頼を反映した最新版" },
+      { "field": "service.trial", "values": [ { "value": "関係者・限定利用者による試験運行", "source": "§9 表" }, { "value": "乗客なしの試験運行", "source": "§9 注記(8/31〜9/1 の調整で確定)" } ], "adopted": "乗客なしの試験運行", "reason": "表の後に確定した注記を優先" }
+    ]
+  },
+  "project": {
+    "municipality": { "value": "坂出市", "status": "確定", "source": "§2" },
+    "operators": { "value": ["琴参タクシー", "四国タクシー"], "status": "確定", "source": "§2 背景・§3", "note": "東北エリア=琴参タクシー、東南エリア=四国タクシー。南エリアの担当は資料に明記なし" },
+    "dispatch_center": { "value": "琴参共同無線配車センター", "status": "確定", "source": "§3", "note": "全エリアの電話予約を一括で受ける" },
+    "service_name": { "value": null, "status": "要確認", "source": null, "note": "資料は業務名「坂出市デマンド交通システム導入業務」と「デマンド型乗合タクシー」のみ。住民向けの呼び名(愛称)が無い。題字に要る" },
+    "purpose": { "value": "予約して乗る乗合タクシーに、LINE でも予約できる新しい仕組みと新しい予約電話番号が入ります", "status": "草案", "source": "§2 目的・§7 予約チャネル運用", "note": "運行自体は 2026-03-01 から代替運行中。パンフは『新しく始まる乗り物』ではなく『予約のしかたが新しくなる』案内になる" }
+  },
+  "deliverable": {
+    "kind": { "value": null, "status": "要確認", "source": "§7 住民周知の方針・§8", "note": "資料の言い方は「チラシ」「周知物(他自治体のチラシ・利用案内がベース)」。冊子(表紙+中面)か単票かは未定。来県時の打合せで内容確定の方針" },
+    "spot_table": { "value": null, "status": "要確認", "source": null, "note": "乗降場所の一覧が資料に無い" },
+    "split": { "value": null, "status": "要確認", "source": "§7", "note": "全エリアに配布。3エリアで時刻・区間が違うため、共通1種かエリア別かを決めたい" },
+    "distribution": { "value": "全エリアに配布。自治会などの要望に応じて個別に説明。一律の会場型説明会はしない", "status": "確定", "source": "§7 住民周知の方針" },
+    "schedule": { "value": "10月中旬ごろから周知開始", "status": "予定", "source": "§8 利用者向け周知の設計・§9", "note": "内容は来県時の打合せで確定(日程は前倒し調整中)" }
+  },
+  "service": {
+    "start_date": { "value": "2026-11-01", "status": "予定", "source": "§2・§9", "note": "CICAC 提案、市・運行事業者は概ね了承(§8)" },
+    "trial": { "value": "10月中旬〜下旬に乗客なしの試験運行", "status": "予定", "source": "§9 注記", "note": "住民は乗れないのでパンフには載せない想定" },
+    "registration": { "value": "10月中旬に利用者の事前登録を受付開始", "status": "予定", "source": "§9 表", "note": "登録の方法(LINE・電話・窓口)は資料に無い" },
+    "operating_days": { "value": "毎日", "status": "確定", "source": "§4" },
+    "closed_days": { "value": "12月31日〜1月3日", "status": "確定", "source": "§4" },
+    "areas": [
+      {
+        "id": "tohoku",
+        "name": { "value": "東北エリア", "status": "確定", "source": "§4" },
+        "districts": { "value": ["王越町", "大屋冨町", "青海町", "高屋町", "林田町(港・須賀・総社・大洲・片山・北庄司・立石)"], "status": "確定", "source": "§4 運行区域" },
+        "coverage": { "value": "区域内の指定乗降場所どうし", "status": "確定", "source": "§4 利用区間" },
+        "transfer": { "value": "ハローズ坂出林田店で路線バス王越線に乗り継いで坂出駅と行き来できる", "status": "確定", "source": "§4 利用区間" },
+        "destinations": { "value": ["ハローズ坂出林田店", "坂出駅(路線バス乗り継ぎ)"], "status": "確定", "source": "§4" },
+        "trips_per_day": { "value": "1日10便(上り5便・下り5便)", "status": "確定", "source": "§4" },
+        "timetable": {
+          "outbound": [ { "time": "7:55", "from": "東北エリア" }, { "time": "9:35", "from": "東北エリア" }, { "time": "12:55", "from": "東北エリア" }, { "time": "15:35", "from": "東北エリア" }, { "time": "17:00", "from": "東北エリア" } ],
+          "inbound": [ { "time": "8:40", "from": "ハローズ坂出林田店" }, { "time": "10:20", "from": "ハローズ坂出林田店" }, { "time": "13:40", "from": "ハローズ坂出林田店" }, { "time": "16:20", "from": "ハローズ坂出林田店" }, { "time": "17:45", "from": "ハローズ坂出林田店" } ],
+          "status": "確定", "source": "§4 時刻"
+        },
+        "capacity": { "value": "1便8名まで", "status": "確定", "source": "§4 車両・定員", "note": "9名以上で配車できる場合はセダン3台まで同時運行(最大12名)。満席時は次の便を案内(§6)" },
+        "vehicles": { "value": "セダンまたはジャンボタクシー", "status": "確定", "source": "§4" },
+        "reservation_override": { "phone_window": { "value": null, "status": "協議中", "source": "§4 ※・§8", "note": "現行は利用日の7日前〜前日16時" } }
+      },
+      {
+        "id": "tonan",
+        "name": { "value": "東南エリア", "status": "確定", "source": "§4" },
+        "districts": { "value": ["府中町", "西庄町", "加茂町", "神谷町", "林田町(上林田・中川原)"], "status": "確定", "source": "§4 運行区域" },
+        "coverage": { "value": "区域内どうし、区域内と区域外の指定乗降場所の間。区域外の乗降場所どうしは不可", "status": "確定", "source": "§4 利用区間" },
+        "transfer": { "value": null, "status": "確定", "source": "§4", "note": "乗り継ぎの記載なし" },
+        "destinations": { "value": ["坂出中心部"], "status": "確定", "source": "§4 時刻(下り 坂出中心部発)", "note": "区域外の指定乗降場所の名前は資料に無い" },
+        "trips_per_day": { "value": "1日10便(上り5便・下り5便)", "status": "確定", "source": "§4(8/14版で確定)" },
+        "timetable": {
+          "outbound": [ { "time": "7:30", "from": "東南エリア" }, { "time": "9:00", "from": "東南エリア" }, { "time": "10:00", "from": "東南エリア" }, { "time": "11:00", "from": "東南エリア" }, { "time": "15:00", "from": "東南エリア" } ],
+          "inbound": [ { "time": "10:00", "from": "坂出中心部" }, { "time": "12:00", "from": "坂出中心部" }, { "time": "14:00", "from": "坂出中心部" }, { "time": "16:00", "from": "坂出中心部" }, { "time": "18:15", "from": "坂出中心部" } ],
+          "status": "確定", "source": "§4 時刻(第9版で下り 12:00 に訂正)"
+        },
+        "capacity": { "value": "1便8名まで", "status": "確定", "source": "§4" },
+        "vehicles": { "value": "セダンまたはジャンボタクシー", "status": "確定", "source": "§4" },
+        "reservation_override": { "phone_window": { "value": null, "status": "協議中", "source": "§4 ※・§8", "note": "現行は利用日の7日前〜前日16時" } }
+      },
+      {
+        "id": "south",
+        "name": { "value": "南エリア", "status": "確定", "source": "§4" },
+        "districts": { "value": ["川津町", "大池町・小山町"], "status": "確定", "source": "§4 運行区域", "note": "資料の表記は「川津町、大池町・小山町」のまま" },
+        "coverage": { "value": "区域内どうし、区域内と区域外の指定乗降場所の間。区域外の乗降場所どうしは不可", "status": "確定", "source": "§4 利用区間" },
+        "transfer": { "value": null, "status": "確定", "source": "§4", "note": "乗り継ぎの記載なし" },
+        "destinations": { "value": ["坂出中心部"], "status": "確定", "source": "§4 時刻(下り 坂出中心部発)" },
+        "trips_per_day": { "value": "1日10便(上り5便・下り5便)", "status": "確定", "source": "§4" },
+        "timetable": {
+          "outbound": [ { "time": "7:30", "from": "南エリア" }, { "time": "9:00", "from": "南エリア" }, { "time": "10:00", "from": "南エリア" }, { "time": "11:00", "from": "南エリア" }, { "time": "15:00", "from": "南エリア" } ],
+          "inbound": [ { "time": "10:00", "from": "坂出中心部" }, { "time": "12:00", "from": "坂出中心部" }, { "time": "14:00", "from": "坂出中心部" }, { "time": "16:00", "from": "坂出中心部" }, { "time": "18:15", "from": "坂出中心部" } ],
+          "status": "確定", "source": "§4 時刻(第9版で下り 12:00 に訂正)"
+        },
+        "capacity": { "value": "1便8名まで", "status": "確定", "source": "§4" },
+        "vehicles": { "value": "セダンまたはジャンボタクシー", "status": "確定", "source": "§4" },
+        "reservation_override": { "phone_window": { "value": null, "status": "協議中", "source": "§4 ※・§8", "note": "現行は利用日の7日前〜1時間前(7:30便は前日16時まで。第9版で17時→16時に訂正)" } }
+      }
+    ],
+    "reservation": {
+      "phone": {
+        "number": { "value": "050-1792-2310", "status": "確定", "source": "§8 電話番号(050)切替", "note": "坂出市専用の予約番号" },
+        "hours": { "value": null, "status": "要確認", "source": null, "note": "配車センターの受付時間が資料に無い" },
+        "opens_on": { "value": "2026-10-01", "status": "確定", "source": "§8・§10(10月号市広報に掲載)", "note": "予約開始までは音声ガイダンスで案内。新番号で予約できるようになる日は資料で読み取れない" },
+        "window": { "value": null, "status": "協議中", "source": "§4 ※・§7・§8 予約締切の最終決定", "note": "軸は「電話: 前日まで」。エリアごとの現行値は areas[].reservation_override" },
+        "legacy_number": { "value": null, "status": "協議中", "source": "§8", "note": "既存番号からの移行(転送の有無)と、既存利用者の電話での再登録の運用を整理中" }
+      },
+      "line": {
+        "account_name": { "value": "らくらく配車", "status": "予定", "source": "§7 予約チャネル運用", "note": "LINE「らくらく配車」への誘導を検討(7/8 打合せ)。LINE 公式アカウントは9月中旬開通予定(§9)" },
+        "window": { "value": null, "status": "協議中", "source": "§4 ※・§7・§8", "note": "軸は「乗車1時間前まで」" },
+        "qr": { "value": "LINE の QR コードは市に共有済み", "status": "確定", "source": "§10 2026/8/19〜21" }
+      },
+      "app": { "value": null, "status": "確定", "source": null, "note": "LINE 以外のアプリの記載なし" },
+      "cancel": { "value": null, "status": "要確認", "source": null, "note": "キャンセルの締切と連絡先が資料に無い" }
+    },
+    "fare": {
+      "system": { "value": "ゾーン運賃(乗るゾーンと降りるゾーンで決まる)", "status": "確定", "source": "§4" },
+      "table": { "value": null, "status": "要確認", "source": null, "note": "金額が資料に無い" },
+      "categories": { "value": ["大人", "小児", "高齢者割引など"], "status": "確定", "source": "§4", "note": "システム側の区分は 大人・小児・障がい者・高齢者・坂出市民・その他(§6)。パンフに載せる区分と金額は要確認" },
+      "payment": { "value": "降りるときに支払う", "status": "確定", "source": "§4", "note": "支払い方法(現金・QR決済など)は資料に無い。QR 決済は連携の可否を確認中(§6)" },
+      "special": { "value": ["公共交通無料デー", "免許返納者向けプリペイドカード", "市民割引", "TicketQR"], "status": "要確認", "source": "§6(4)・§7", "note": "市の制度として名前が出ているだけ。パンフに載せるか・内容は未確認" }
+    },
+    "rules": [
+      { "value": "予約のない便は運行しない", "status": "確定", "source": "§4" },
+      { "value": "ほかの方と乗り合わせて運行する(1組でも運行)", "status": "確定", "source": "§6(1)" },
+      { "value": "東南・南エリア: 区域外の乗降場所どうしの移動はできない", "status": "確定", "source": "§4" },
+      { "value": "帰り(中心部→自宅付近)は、区域内なら指定の乗降場所以外で降りられる場合がある", "status": "予定", "source": "§4 ※", "note": "「認められる場合がある」の書き方。パンフに載せるかは要確認" },
+      { "value": "満席の便は予約できない(次の便を案内)", "status": "確定", "source": "§6(1)" }
+    ],
+    "stops": { "value": null, "status": "要確認", "source": null, "note": "指定乗降場所の名前・位置は資料に無い。「ハローズ坂出林田店」「坂出中心部」の記載のみ" }
+  },
+  "copy": {
+    "catch": { "value": "電話でもLINEでも。予約して乗れる乗合タクシー", "status": "草案", "source": null },
+    "lead": { "value": "坂出市の乗合タクシーは、11月から新しい予約の仕組みになります。いつもの電話予約に加えて、LINEでも予約できます。", "status": "草案", "source": "§2・§7", "note": "開始日が予定のため、確定後に日付を入れる" },
+    "scenes": [
+      { "title": { "value": "お買い物に", "status": "草案" }, "body": { "value": "スーパーまで乗り合わせで。帰りは荷物があっても家の近くまで。", "status": "草案", "note": "帰りの降車ルールが確定するまで『家の近くまで』は保留" } },
+      { "title": { "value": "通院に", "status": "草案" }, "body": { "value": "坂出の中心部まで、予約した時刻にお迎えに行きます。", "status": "草案" } },
+      { "title": { "value": "バスに乗り継いで", "status": "草案" }, "body": { "value": "東北エリアは林田のスーパーで路線バスに乗り継ぎ、坂出駅へ。", "status": "草案" } }
+    ],
+    "steps": [
+      { "title": { "value": "利用登録", "status": "草案" }, "body": { "value": "LINEで友だち追加、またはお電話で登録します。", "status": "草案", "note": "登録方法は要確認" } },
+      { "title": { "value": "予約", "status": "草案" }, "body": { "value": "乗りたい便と乗る場所・降りる場所を伝えます。", "status": "草案", "note": "締切が決まり次第追記" } },
+      { "title": { "value": "乗車", "status": "草案" }, "body": { "value": "予約した時刻に、指定の乗降場所でお待ちください。", "status": "草案" } },
+      { "title": { "value": "お支払い", "status": "草案" }, "body": { "value": "降りるときに運賃をお支払いください。", "status": "草案" } }
+    ],
+    "notes": [
+      { "value": "12月31日〜1月3日は運休します。", "status": "草案", "source": "§4" },
+      { "value": "予約のない便は運行しません。", "status": "草案", "source": "§4" },
+      { "value": "ほかのお客さまと乗り合わせることがあります。", "status": "草案", "source": "§6(1)" }
+    ],
+    "cta": { "value": "ご登録・ご予約は LINE またはお電話で", "status": "草案", "source": null },
+    "inner_title": { "value": "坂出市 乗降スポット", "status": "草案", "note": "エリア別に作るなら「東北エリア 乗降スポット」など" }
+  },
+  "assets": {
+    "logo_municipality": { "exists": null, "where": null, "status": "要確認" },
+    "logo_service": { "exists": null, "where": null, "status": "要確認", "note": "サービス名が決まっていない" },
+    "line_qr": { "exists": true, "where": "市に共有済みの LINE QR コード(社内に原本あり)", "status": "確定", "source": "§10 2026/8/19〜21" },
+    "map": { "exists": null, "where": null, "status": "要確認", "note": "乗降場所のピン入りの地図が要る" },
+    "photos": { "exists": null, "where": null, "status": "要確認" }
+  },
+  "brand": {
+    "color": { "value": null, "status": "要確認", "source": null },
+    "genai_allowed": { "value": null, "status": "要確認", "source": null, "note": "表紙の絵は生成AIで作る。市の決まりで使えないことがないか" }
+  },
+  "illustration": {
+    "vehicles": [
+      { "label_in_source": "セダンまたはジャンボタクシー", "class": "sedan", "seats": { "value": 4, "status": "推測", "note": "超過時に「セダン3台で最大12名」とあるので1台4名" }, "count": { "value": null, "status": "要確認" }, "operator": { "value": ["琴参タクシー", "四国タクシー"], "status": "確定", "source": "§2" }, "body_color": { "value": null, "status": "要確認" }, "roof_sign": { "value": null, "status": "要確認" }, "livery": { "value": null, "status": "要確認" }, "accessible": { "value": null, "status": "要確認" } },
+      { "label_in_source": "セダンまたはジャンボタクシー", "class": "jumbo", "seats": { "value": "1便8名まで", "status": "確定", "source": "§4" }, "count": { "value": null, "status": "要確認" }, "operator": { "value": ["琴参タクシー", "四国タクシー"], "status": "確定", "source": "§2" }, "body_color": { "value": null, "status": "要確認" }, "roof_sign": { "value": null, "status": "要確認" }, "livery": { "value": null, "status": "要確認" }, "accessible": { "value": null, "status": "要確認" } }
+    ],
+    "cover_pick": { "class": "jumbo", "status": "推測", "reason": "1便8名までの乗合で、何人かで乗る形がいちばん伝わる。ふだん走る車両が分かれば合わせる" },
+    "library_fit": { "status": "作り直しが要る", "note": "ライブラリ v0 の車両は白いミニバン型。セダン・ジャンボどちらでも形が違うので、デザイン担当に車両の切り抜きを1点依頼(作業は止めない)" },
+    "region": {
+      "terrain": [
+        { "value": "瀬戸内海沿いと五色台のふもと(海と山が近い)", "area": "tohoku", "status": "推測", "reason": "王越町・青海町は海沿いで五色台に接する" },
+        { "value": "綾川沿いの田園と府中湖", "area": "tonan", "status": "推測", "reason": "府中町に府中湖(府中ダム)がある" },
+        { "value": "田園とため池が点在する平野", "area": "south", "status": "推測", "reason": "讃岐平野の南部。川津町は飯野山のふもと" }
+      ],
+      "lifestyle": [
+        { "value": "スーパーへの買い物", "status": "確定", "source": "§4(ハローズ坂出林田店が発着点)" },
+        { "value": "坂出中心部への通院・用事", "status": "推測", "source": "§4(下りは坂出中心部発)" },
+        { "value": "路線バスに乗り継いで坂出駅へ", "status": "確定", "source": "§4 東北エリア" }
+      ],
+      "destinations": [
+        { "value": "ハローズ坂出林田店", "status": "確定", "source": "§4" },
+        { "value": "坂出中心部", "status": "確定", "source": "§4" },
+        { "value": "坂出駅(路線バス王越線で)", "status": "確定", "source": "§4" }
+      ],
+      "landmarks": [
+        { "name": "瀬戸大橋と島影", "kind": "橋・海", "area": "tohoku", "status": "推測", "reason": "坂出を代表する眺め。東北エリアの海沿いから見える", "caution": "橋の起点(番の州側)は運行区域の外" },
+        { "name": "五色台の山並み", "kind": "山", "area": "tohoku", "status": "推測", "reason": "王越町・青海町の背後の台地状の山", "caution": "高松市にもまたがる" },
+        { "name": "讃岐富士(飯野山)", "kind": "山", "area": "south", "status": "推測", "reason": "南エリア(川津町)から近く見える円すい形の山。形で分かる", "caution": "丸亀市との境にあり、丸亀の象徴としても使われる" },
+        { "name": "府中湖", "kind": "湖", "area": "tonan", "status": "推測", "reason": "東南エリア(府中町)の中にある" }
+      ],
+      "avoid": [
+        { "value": "ハローズの店舗・看板", "reason": "実在の店舗を描かない" },
+        { "value": "白峰寺など寺社を大きく", "reason": "宗教色を出さない" },
+        { "value": "桜", "reason": "配布が秋" }
+      ]
+    },
+    "riders": [
+      { "who": "70代の住民(女性)", "activity": "買い物袋を持って乗り込む", "where": "スーパー前の乗降場所", "status": "推測" },
+      { "who": "70代の住民(男性)", "activity": "電話で予約する", "where": "自宅", "status": "推測" }
+    ],
+    "season": { "value": "秋(10月中旬〜の配布)", "status": "予定", "source": "§8・§9" },
+    "prompt_seed": {
+      "vehicle": "乗合タクシーの車両1台。四角いワンボックス型で、平らな顔、高い屋根、横のスライドドア、窓が3列。日本仕様の右ハンドル・左側通行。斜め前(車の左前が見える向き)から見た全体像。車体は白、屋根に小さな行灯(文字なし)。ナンバープレートは無地。ロゴ・文字・電話番号・ラッピング模様なし。",
+      "region_motif": "坂出の瀬戸内海に架かる長い橋と島影のシルエット(海面の上に低く長く伸びる橋と、その向こうの小さな島々)。横長の帯に収まる1点。建物の看板・文字なし。",
+      "riders": "70代の住民が買い物袋を持って乗合タクシーに乗り込む。顔のある人物、杖・着物・白髪だけで高齢者を表さない。"
+    }
+  },
+  "open_questions": [
+    { "id": "Q1", "field": "project.service_name", "question": "表紙の題字にするサービス名(住民向けの呼び名)はありますか? なければ「坂出市乗合タクシー」のような言い方でよいですか?", "why": "表紙の題字", "blocking": true, "ask_to": "自治体" },
+    { "id": "Q2", "field": "deliverable.kind / deliverable.split", "question": "配るのは両面のチラシ1枚ですか、冊子(折りパンフ)ですか? また、3エリア共通の1種類にしますか、エリア別に作りますか?", "why": "作るものとテンプレートの選び方", "blocking": true, "ask_to": "社内" },
+    { "id": "Q3", "field": "service.reservation.phone.window / line.window", "question": "新しい仕組みでの予約締切は決まりましたか?(案: 電話は前日16時まで、LINE は乗車1時間前まで)", "why": "使い方 STEP と注意事項", "blocking": true, "ask_to": "自治体・運行事業者" },
+    { "id": "Q4", "field": "service.reservation.phone.hours / opens_on", "question": "050-1792-2310 の受付時間(曜日・時刻)と、この番号で予約できるようになる日を教えてください", "why": "表紙の電話番号の下の受付時間", "blocking": true, "ask_to": "社内" },
+    { "id": "Q5", "field": "service.fare.table / payment", "question": "ゾーンごとの運賃の金額表と、支払い方法(現金のみ/QR 決済も可)を教えてください", "why": "料金の欄", "blocking": true, "ask_to": "自治体" },
+    { "id": "Q6", "field": "service.stops / assets.map", "question": "3エリアの指定乗降場所の一覧と、場所の分かる地図はありますか?", "why": "乗降スポット表と地図", "blocking": true, "ask_to": "自治体" },
+    { "id": "Q7", "field": "brand.genai_allowed", "question": "表紙の絵は画像生成AIで作ったイラストです。市の決まりで使えないことはありませんか?", "why": "使えなければ別の作り方になる", "blocking": true, "ask_to": "自治体" },
+    { "id": "Q8", "field": "service.start_date", "question": "本運用の開始日は11月1日で確定ですか?", "why": "リード文の日付", "blocking": false, "ask_to": "自治体" },
+    { "id": "Q9", "field": "illustration.vehicles / cover_pick", "question": "ふだん走るのはセダンとジャンボタクシーのどちらが多いですか? 車体の色も教えてください", "why": "表紙の車の絵", "blocking": false, "ask_to": "運行事業者" },
+    { "id": "Q10", "field": "illustration.region.landmarks", "question": "表紙に入れる地域の景色は「瀬戸大橋と島影」でよいですか?(ほかの候補: 五色台の山並み・讃岐富士・府中湖)", "why": "表紙の地域の絵", "blocking": false, "ask_to": "社内" },
+    { "id": "Q11", "field": "assets.logo_municipality / brand.color", "question": "市のロゴを載せますか? 色の指定はありますか?", "why": "表紙のロゴと色", "blocking": false, "ask_to": "自治体" },
+    { "id": "Q12", "field": "service.fare.special / service.rules", "question": "無料デー・免許返納者向けの割引・帰りの自由降車は、パンフに載せますか?", "why": "注意事項と料金の欄", "blocking": false, "ask_to": "自治体" },
+    { "id": "Q13", "field": "service.reservation.phone.legacy_number", "question": "これまでの予約電話番号は、パンフでどう案内しますか?(載せない/「番号が変わりました」と書く)", "why": "電話の案内", "blocking": false, "ask_to": "自治体・運行事業者" }
+  ]
+}
