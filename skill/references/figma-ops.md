@@ -136,7 +136,7 @@ catch (e) { return { found: true, parseError: String(e).slice(0, 80) }; }
 - 版の比較は文字列の大小(`"2026-10" < "2026-11"`)。`skill_min_version` > スキル版 なら停止
 - `pipeline_off_hide` は `pipeline: off` のとき複製直後に非表示にする枠の名前(`#キービジュアル` `#地域モチーフ` `#人物` `#車両`)
 - `cover_preset`(現在 `K2B_panel`)と `presets.K2B_panel.by_family`(系統ごとの `#キービジュアル` `#地域モチーフ` `#車両` `#人物` ロゴの枠)は `place-images.js` が読む
-- 既知の注意: `templates` と `by_family` は表紙の id(2105:342 など)をキーにしている。表紙を差し替えると id が変わるので、**id ではなく中の `series`(aitoma / nachikatsuura / noboribetsu / mitt)で引く**(`place-images.js` はそうしている)
+- `templates` と `by_family` のキーは系統名(aitoma / nachikatsuura / noboribetsu / mitt。2026-09-28 に表紙 id から変更)。表紙の id は中の `id` / `template_id` にある。`by_family.<系統>.title` は題字の枠、`inner_title` は中面タイトル(あいとま 47:2)の枠
 
 ### 地域の絵のゲート(Step 1.5)
 
