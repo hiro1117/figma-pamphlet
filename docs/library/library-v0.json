@@ -449,7 +449,8 @@
       "background": "CROP。imageTransform を枠と画像の比率から計算(skill/references/template-and-assets.md)",
       "note": "2026-09-28 B.1 v2(Hiro 調整版)で更新。枠の座標は docs/prep/template-refit-inventory.json の k2b_panel_by_family"
     },
-    "note_v2": "検証グループ(2074:11 等)は旧 K2 枠のまま。B.1 v2 の枠での本組みは H(a) 再実行で行う(Figma には C からは書き込まない)"
+    "note_v2": "検証グループ(2074:11 等)は旧 K2 枠のまま。B.1 v2 の枠での本組みは H(a) 再実行で行う(Figma には C からは書き込まない)",
+    "_note": "検証グループ 2074:11 / 2079:8 / 2083:8 / 2088:10 は 2026-09-28 削除(版履歴「開発ページ整理前 2026-09-28」から復元可)"
   },
   "hero_frame_px_note": "B.1 v2(2026-09-28)で表紙面のヒーローは白パネル内・系統別サイズになった。hero_frame_px_by_family を使う。旧値 [580,711] のマスク(docs/library/masks/)は再生成が必要",
   "hero_frame_px_by_family": {

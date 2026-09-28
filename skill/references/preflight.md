@@ -5,7 +5,7 @@
 
 ## 1. 前提
 
-- Figma は複製ファイル `09Js7rndbabLAoCchqzX9j` だけ。テンプレート原本(ページ `テンプレート` 0:1)には走らせない(P3-a が一時 clone を書き込むため)。制作物・テスト・作業用ページで使う
+- Figma は複製ファイル `09Js7rndbabLAoCchqzX9j` だけ。テンプレート原本(ページ `テンプレート` 0:1)には走らせない(P3-a が一時 clone を書き込むため)。**制作物ページ(7:2)で実行する**。テンプレを検査したいときは制作物ページに clone して走らせ、終わったら clone を消す
 - 1 回の `use_figma` で扱うのは 1 ページ(`CONFIG.PAGE_ID`)。複数ページは呼び出しを分けて並列に投げる
 - シート種別 `CONFIG.SHEET`
   - `A3_booklet`: 1691×2392 または 2392×1691。k = 短辺 px ÷ 297 = 5.694 px/mm。折り線は長辺方向 2 本(1/3・2/3)+短辺方向 1 本(1/2)
@@ -53,7 +53,7 @@
 
 1. Figma の `figma-use` スキルを読む(use_figma の前に必ず)
 2. `skill/scripts/preflight.js` をそのまま `use_figma` の `code` に貼り、先頭 `CONFIG` の `PAGE_ID` / `FRAME_IDS` / `SHEET` だけ書き換える(必要なら `FRAME_KIND` `FAMILY` を明示)
-   - 制作物 `'7:2'`、テスト `'664:2'`。**表紙は 1 枚 / 呼び出し、中面は 2 枚まで**(返り値の上限 20KB は UTF-8 バイト換算。超えると items を 5 → 2 → 0 件に段階的に切り詰め、`note` を付ける。件数 fail/warn/manual は残る)
+   - 制作物 `'7:2'`。**表紙は 1 枚 / 呼び出し、中面は 2 枚まで**(返り値の上限 20KB は UTF-8 バイト換算。超えると items を 5 → 2 → 0 件に段階的に切り詰め、`note` を付ける。件数 fail/warn/manual は残る)
    - **スキル(SKILL.md Step 4)からの渡し方**: `SHEET` = 冊子 `'A3_booklet'` / 乗降スポット表 `'A4_spot'`、`FRAME_KIND` = 表紙 `'cover'` / 中面 `'inner'`、`FAMILY` = 系統選択から(あいとま系 `'aitoma'` / 那智勝浦系 `'nachikatsuura'` / 登別系 `'noboribetsu'` / MITT 系 `'MITT'`。系統別しきい値 `PT_BY_FAMILY` があるのは現在 MITT だけ)
 3. しきい値を変えるときも CONFIG だけを触る(`PT` `PT_BY_FAMILY` `CONTRAST` `P6_FOLD_KINDS` `P6_MARGIN_MM` `PHONE_RATIO` `TIGHT_BOX` など)
 4. 複数ページ・多数フレームは呼び出しを分けて同じメッセージで並列に投げる(ページ切替は 1 呼び出し 1 回)

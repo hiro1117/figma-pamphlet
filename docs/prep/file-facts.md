@@ -1,5 +1,7 @@
 # ファイル全体の事実(file-facts.md)
 
+> 注記: ページ「テスト_真四角町_20260914」(664:2)とその 4 フレーム(664:3 / 664:313 / 672:2 / 672:327)、作業用ページ「テンプレ改修_作業」(2053:2)、退避ページ「テンプレ旧_20260927」(2064:2)は 2026-09-28 削除(版履歴「開発ページ整理前 2026-09-28」から復元可)。以下の記述は当時の記録
+
 - fileKey: `09Js7rndbabLAoCchqzX9j`(本番 `5qm3YRTEUDdb9RxFUI7ECL` の複製)。`figma.root.name` = "Document"、`figma.editorType` = "figma"。
 - **`figma.root.documentColorProfile` = `SRGB`**。
 - 計測日: 2026-09-26。書き込みは一切行っていない(clone/rename/move/fill 変更なし。`get_screenshot` と read-only `use_figma` のみ)。

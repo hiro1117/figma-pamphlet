@@ -5,7 +5,7 @@ Cicac 乗合タクシー(MITT)パンフレットを Figma MCP で作る Claude �
 ## 絶対に守ること
 
 - Figma は **複製ファイル fileKey `09Js7rndbabLAoCchqzX9j` だけ**を操作する。本番 `5qm3YRTEUDdb9RxFUI7ECL` は読むのも避ける(URL・fileKey をコードや資料に書くときは複製の方)
-- 複製ファイル内でも、`テンプレート` ページ(0:1)の原本フレームと `参照` ページ(6:2)は直接編集しない。改修は作業用ページ(例: `テンプレ改修_作業`)に複製してから行い、検証後に差し替える
+- 複製ファイル内でも、`テンプレート` ページ(0:1)の原本フレームと `参照` ページ(6:2)は直接編集しない。改修が必要なときは、その都度作業用ページを作って複製してから行い、検証後に差し替える(作業用ページは用が済んだら消す。開発用ページは 2026-09-28 に整理済み、版履歴「開発ページ整理前 2026-09-28」)
 - `use_figma` を呼ぶ前に Figma の `figma-use` スキル(`skill://figma/figma-use/SKILL.md`)を読む。1呼び出しでページ切替は1回、返り値は 20KB 以内、`figma.root.findAll` は使わない、フォントは先に `loadFontAsync`、`setPluginData` と `FrameNode.description` への書き込みは不可
 - 一時的に作ったノード(計測用 clone など)は try/finally で必ず消す
 - 物理サイズは A3 シート・6面(1面 99×210mm)・k = 5.69 px/mm(`docs/prep/physical-size.md`)。しきい値は必ず k から計算し、旧計画の「A4 / k=8.05 / 34px」を使わない
