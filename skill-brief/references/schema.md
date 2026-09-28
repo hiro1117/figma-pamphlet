@@ -53,7 +53,7 @@ service
   reservation     → §4
   fare            → §5
   rules[]         Fact  利用のきまり(予約のない便は運行しない、区域外どうしは不可、帰りは指定場所以外で降りられる など)
-  stops           Fact  乗降場所の一覧 [{ area, name, note }]。無ければ value null・要確認
+  stops           Fact  乗降場所の一覧 [{ area, zone, name, lat, lng, note }]。zone は運賃のゾーン。座標は地図(マイマップ等)から。無ければ value null・要確認
 copy              → §6
 assets            → §7
 brand
@@ -103,7 +103,8 @@ cancel          Fact  キャンセルの締切と連絡先
 
 ```text
 system          Fact  方式(ゾーン運賃/定額/距離)
-table           Fact  金額表 [{ from_zone, to_zone, adult, child, note }]。無ければ要確認
+table           エリアごとの金額表 { <area id>: { zones[], rows: { <乗車ゾーン>: [降車ゾーン順の金額] } }, status, source }。無ければ要確認
+surcharge       Fact  追加運賃(自宅付近で降りる +200円 など)
 categories[]    Fact  区分(大人・小児・高齢者・障がい者・市民など)と割引
 payment         Fact  支払う時点(乗車時/降車時)と方法(現金・QR・回数券)
 special[]       Fact  無料デー・免許返納者向けなど(住民に関係するものだけ)
