@@ -4,6 +4,7 @@
 // 書き込みは P3-a の一時 clone のみ(try/finally で必ず remove)。
 // ステータスは Pass / Fail / Warn / Manual / Error。Warn = 第2段の目標値に未達(入稿は止めない)。
 // 2026-09-28: 電話番号は改行・空白を除いて判定、P7 に「0年/0月/0日」、P6 は字面(absoluteRenderBounds)、P3-b 枠はみ出しを追加。
+// 2026-09-28: P6 で祖先が「お問い合わせフッター」の TEXT は対象外(Hiro 決定: 表4 フッターの折り線またぎは許容。docs/decisions.md)。
 
 const CONFIG = {
   PAGE_ID: '7:2',                    // 対象ページ(1呼び出しで切替は1回)
@@ -32,6 +33,7 @@ const CONFIG = {
   P6_MARGIN_MM: { fail: 5, warn: 8 },
   P6_SKIP_FOLDS: { x: [], y: [] },   // 検査しない折り線(設計座標px)
   P6_EXCLUDE_NAME: /^(ガイド:|装飾:)/,          // P6 で無視する TEXT 名
+  P6_EXEMPT_ANCESTOR: /お問い合わせフッター/,   // P6 の対象外: この名前の祖先(面グループ等)を持つ TEXT(表4 フッターの折り線またぎは許容、Hiro 決定 2026-09-28)。他のチェックには影響しない
   OVERFLOW_TOL_PX: 1,                // P3-a 高さ差の許容
   P3B_TOL_PX: 2,                     // P3-b 字面が枠を越えてよい量
   P3B_OVERLAP: 0.5,                  // P3-b 字面の 50% 以上が乗っている枠を「親の枠」候補にする
@@ -82,6 +84,7 @@ const SEV = { Fail: 3, Warn: 2, Manual: 1 };
 const nospace = s => (s || '').replace(/\s+/g, '');   // 改行・空白を除いた文字列(電話番号の照合用)
 const isPhoneText = n => CONFIG.ROLE_CHARS[0][1].test(nospace(n.characters));
 const detect = (name, patterns, fallback) => { for (const k in patterns) if (patterns[k].test(name)) return k; return fallback; };
+const hasAncestor = (n, root, re) => { let p = n.parent; while (p && p.id !== root.id) { if (re.test(p.name || '')) return true; p = p.parent; } return false; };
 
 function roleOf(node) {
   const name = node.name || '';
@@ -276,7 +279,7 @@ async function inspect(frame) {
   try {
     if (!sheet.folds || !fbb) checks.push(finish('P6', [], '折り線なしのシート'));
     else {
-      const items = [];
+      const items = []; const exempt = []; const exCount = { Fail: 0, Warn: 0 };
       const mFail = mmPx(CONFIG.P6_MARGIN_MM.fail), mWarn = mmPx(CONFIG.P6_MARGIN_MM.warn);
       const portrait = fbb.height >= fbb.width;
       const kinds = CONFIG.P6_FOLD_KINDS[kind] || CONFIG.P6_FOLD_KINDS.cover;
@@ -301,9 +304,14 @@ async function inspect(frame) {
           hits.push(`${f.axis}=${f.local}${f.kind === 'boundary' ? '面境界' : '見開き'}(${cross ? 'またぎ' : 'gap ' + round1(gap)})`);
           if (!sev || SEV[s] > SEV[sev]) sev = s;
         }
-        if (hits.length) { const p = toLocal(frame, b.x, b.y), q = toLocal(frame, b.x + b.width, b.y + b.height); items.push(item(n, sev, { role: meta.get(n.id).role, value: hits.join(' '), limit: `面境界: またぎ/<${mFail}px Fail, <${mWarn}px Warn。見開き: またぎ Warn`, at: `${Math.min(p.x, q.x)},${Math.min(p.y, q.y)} ${round1(b.width)}×${round1(b.height)}`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: sev === 'Fail' ? '折り線から離す/文言を短くする' : '第2段で見開きの組み直しを検討(入稿は可)' })); }
+        if (!hits.length) continue;
+        if (CONFIG.P6_EXEMPT_ANCESTOR && hasAncestor(n, frame, CONFIG.P6_EXEMPT_ANCESTOR)) { exCount[sev]++; if (exempt.length < 10) exempt.push({ node: n.id, name: cut(n.name, CONFIG.NAME_LEN), wouldBe: sev }); continue; }   // フッター(Hiro 決定)は対象外。本来の判定だけ数える
+        const p = toLocal(frame, b.x, b.y), q = toLocal(frame, b.x + b.width, b.y + b.height); items.push(item(n, sev, { role: meta.get(n.id).role, value: hits.join(' '), limit: `面境界: またぎ/<${mFail}px Fail, <${mWarn}px Warn。見開き: またぎ Warn`, at: `${Math.min(p.x, q.x)},${Math.min(p.y, q.y)} ${round1(b.width)}×${round1(b.height)}`, chars: cut(n.characters, CONFIG.CHARS_LEN), fix: sev === 'Fail' ? '折り線から離す/文言を短くする' : '第2段で見開きの組み直しを検討(入稿は可)' }));
       }
-      checks.push(finish('P6', items, `kind ${kind}, folds(local): ${folds.map(f => f.axis + '=' + f.local + ':' + f.kind).join(' ')}`));
+      const ex = exCount.Fail + exCount.Warn;
+      const check = finish('P6', items, `kind ${kind}, folds(local): ${folds.map(f => f.axis + '=' + f.local + ':' + f.kind).join(' ')}${ex ? `。対象外(フッター・Hiro 決定): ${ex} 件(Fail 相当 ${exCount.Fail} / Warn 相当 ${exCount.Warn})` : ''}`);
+      if (ex) check.exempt = exempt;
+      checks.push(check);
     }
   } catch (err) { checks.push(errCheck('P6', err)); }
 
