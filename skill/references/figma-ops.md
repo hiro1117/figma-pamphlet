@@ -118,7 +118,7 @@ node.relativeTransform = mul(inv(parent.absoluteTransform), t);
 
 | 名前 | 置き場所 | 書く人 | 中身 |
 |---|---|---|---|
-| `#config` | `テンプレート`ページ直下(id 2057:2) | デザイン担当のみ(スキルは読むだけ) | `skill_min_version` / `pipeline`("on"/"off")/ 物理寸法 / K2 プリセットの枠座標 / `pipeline_off_hide` |
+| `#config` | `テンプレート`ページ直下(id 871:7151) | デザイン担当のみ(スキルは読むだけ) | `skill_min_version` / `pipeline`("on"/"off")/ 物理寸法 / K2 プリセットの枠座標 / `pipeline_off_hide` |
 | `#tone` | Step 1.7 はスタイルタイルの中 → Step 2 以降は**表紙フレームの直下**。素材ページの `ライブラリ/<系統>` にも原本がある | Step 1.7 | ライブラリの見た目の方針(tone/3)+ オペレータの選択(`meta.operator_choice`)+ 地域の絵の id(`meta.library.regional_motif_id`) |
 | `#state` | `#tone` と同じ場所 | 各 Step の終わり | 進み具合(下記) |
 
@@ -192,7 +192,7 @@ return { mutatedNodeIds: moved };
 
 ```js
 const C = {
-  PAGE_ID: '7:2', LIB_GROUP_ID: '2074:3', MOTIF_GROUP_ID: '2068:16',   // 制作物 / ライブラリ/<系統> / 案件/<案件名>
+  PAGE_ID: '7:2', LIB_GROUP_ID: '871:7122', MOTIF_GROUP_ID: '850:7095',   // 制作物 / ライブラリ/<系統> / 案件/<案件名>
   CASE: 'くらぶち', DATE: '20261001', OPTION: 1, REASON: 'うちの地域の人っぽい',   // REASON はオペレータの言葉のまま
   TITLE: 'くらぶち のりあいタクシー', SERVICE: 'のりあいタクシー', TITLE_PX: 60, PHONE: '0120-000-000',
   HERO: [488, 398],              // 系統のヒーロー枠(template-and-assets.md「表紙面の枠」。あいとま 488×398 / 那智勝浦 488×329 / 登別 488×354 / MITT 488×500)

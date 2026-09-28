@@ -10,10 +10,10 @@ const CONFIG = {
   FRAME_ID: '0:0',
   KIND: 'cover',                 // 'cover' なら表紙面の絵を入れる。'inner' は EXTRA と非表示だけ
   FAMILY: 'aitoma',              // aitoma | nachikatsuura | noboribetsu | mitt(#config の series と同じ表記)
-  CONFIG_NODE_ID: '2057:2',      // テンプレートページの #config
-  LIB_GROUP_ID: '2074:3',        // 素材ページ ライブラリ/<系統>
+  CONFIG_NODE_ID: '871:7151',      // テンプレートページの #config
+  LIB_GROUP_ID: '871:7122',        // 素材ページ ライブラリ/<系統>
   PERSON: '人物A',               // '人物A' | '人物B'
-  MOTIF_GROUP_ID: '2068:16',     // 素材ページ 案件/<案件名>(#地域モチーフ)。null なら地域の絵を入れない
+  MOTIF_GROUP_ID: '850:7095',     // 素材ページ 案件/<案件名>(#地域モチーフ)。null なら地域の絵を入れない
   CROP_FOCUS: { dx: 0, dy: 0 },  // 背景の切り抜き位置の平行移動(画像に対する割合。0 = 中央)
   EXTRA: [                       // 案件の画像: { src: 画像を持つノード id, slot: 置き場の名前, index: 同名の何番目か(省略 = 全部) }
     // { src: '71:41', slot: '#サービスロゴ置き場' },
