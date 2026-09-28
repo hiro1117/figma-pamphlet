@@ -135,7 +135,8 @@ catch (e) { return { found: true, parseError: String(e).slice(0, 80) }; }
 
 - 版の比較は文字列の大小(`"2026-10" < "2026-11"`)。`skill_min_version` > スキル版 なら停止
 - `pipeline_off_hide` は `pipeline: off` のとき複製直後に非表示にする枠の名前(`#キービジュアル` `#地域モチーフ` `#人物` `#車両`)
-- 既知の注意: 2026-09-27 時点の `#config` の `templates` と `presets.K2.vehicle.by_series` は旧 id(18:2 など)をキーにしている。**id ではなく系統名で引く**こと(スキルは現在これらを使わない)
+- `cover_preset`(現在 `K2B_panel`)と `presets.K2B_panel.by_family`(系統ごとの `#キービジュアル` `#地域モチーフ` `#車両` `#人物` ロゴの枠)は `place-images.js` が読む
+- 既知の注意: `templates` と `by_family` は表紙の id(2105:342 など)をキーにしている。表紙を差し替えると id が変わるので、**id ではなく中の `series`(aitoma / nachikatsuura / noboribetsu / mitt)で引く**(`place-images.js` はそうしている)
 
 ### 地域の絵のゲート(Step 1.5)
 
@@ -194,6 +195,7 @@ const C = {
   PAGE_ID: '7:2', LIB_GROUP_ID: '2074:3', MOTIF_GROUP_ID: '2068:16',   // 制作物 / ライブラリ/<系統> / 案件/<案件名>
   CASE: 'くらぶち', DATE: '20261001', OPTION: 1, REASON: 'うちの地域の人っぽい',   // REASON はオペレータの言葉のまま
   TITLE: 'くらぶち のりあいタクシー', SERVICE: 'のりあいタクシー', TITLE_PX: 60, PHONE: '0120-000-000',
+  HERO: [488, 398],              // 系統のヒーロー枠(template-and-assets.md「表紙面の枠」。あいとま 488×398 / 那智勝浦 488×329 / 登別 488×354 / MITT 488×500)
   DELETE_IDS: [],
 };
 const page = await figma.getNodeByIdAsync(C.PAGE_ID);
@@ -219,12 +221,12 @@ tile.name = `${C.CASE}_スタイルタイル_${C.DATE}`; tile.resize(1500, 760);
 tile.fills = [{type:'SOLID', color: hex('#FFFFFF')}];
 const rect = (name, x, y, w, h, fills) => { const r = figma.createRectangle(); tile.appendChild(r); r.name = name; r.resize(w, h); r.x = x; r.y = y; r.fills = fills; return r; };
 const txt = (s, size, font, color, x, y, w) => { const t = figma.createText(); tile.appendChild(t); t.fontName = font; t.fontSize = size; t.characters = s; t.fills = [{type:'SOLID', color: hex(color)}]; t.x = x; t.y = y; if (w) { t.textAutoResize = 'HEIGHT'; t.resize(w, t.height); } return t; };
-// (1) 表紙の絵の縮小(ヒーロー 580.7×711 の 1/2)。背面→前面: 背景 → 地域モチーフ → 車両 → 人物
-const s = 0.5, X = 40, Y = 40, HW = 580.7 * s, HH = 711 * s;
+// (1) 表紙の絵の縮小(系統のヒーロー枠の 0.6 倍)。背面→前面: 背景 → 地域モチーフ → 車両 → 人物(配置は template-and-assets.md「表紙の絵の配置規則」の縮小)
+const s = 0.6, X = 30, Y = 40, HW = C.HERO[0] * s, HH = C.HERO[1] * s;
 rect('見本:キービジュアル', X, Y, HW, HH, [{type:'IMAGE', scaleMode:'FILL', imageHash: bg.imageHash}]);
-if (motif) rect('見本:地域モチーフ', X, Y + HH * (tone.composition.hero.horizon_ratio || 0.6) - 170 * s * 0.7, HW, 170 * s, [{type:'IMAGE', scaleMode:'FIT', imageHash: img(motif).imageHash}]);
-if (vehicle) rect('見本:車両', X + HW - 300 * s - 2, Y + HH - 4 - 172 * s, 300 * s, 172 * s, [{type:'IMAGE', scaleMode:'FIT', imageHash: img(vehicle).imageHash}]);
-if (person) { const ph = 380 * s, pw = ph * person.width / person.height; rect('見本:人物', X + 7, Y + HH - 6 - ph, pw, ph, [{type:'IMAGE', scaleMode:'FIT', imageHash: img(person).imageHash}]); }
+if (motif) rect('見本:地域モチーフ', X, Y + HH - 143 * s - 40 * s, HW, 143 * s, [{type:'IMAGE', scaleMode:'FIT', imageHash: img(motif).imageHash}]);
+if (vehicle) rect('見本:車両', X + HW - 300 * s - 4 * s, Y + HH - 173 * s, 300 * s, 173 * s, [{type:'IMAGE', scaleMode:'FIT', imageHash: img(vehicle).imageHash}]);
+if (person) { const ph = Math.min(317, C.HERO[1] - 8) * s, pw = ph * person.width / person.height; rect('見本:人物', X + 14 * s, Y + HH - 4 * s - ph, pw, ph, [{type:'IMAGE', scaleMode:'FIT', imageHash: img(person).imageHash}]); }
 // (2) 色チップ(役割名はオペレータ向けの言葉)
 const roleLabel = { ground:'地の色', main:'メインの色', main_tint:'淡い色', panel:'パネル', ink:'文字', cta:'電話・申込の色', accent_decor:'差し色' };
 Object.entries(roleLabel).forEach(([k, lab], i) => {
@@ -264,5 +266,5 @@ return { createdNodeIds: [tile.id, tn.id, sn.id], tile: tile.id, headFallback, d
 ## 画像の切り抜き配置(`#キービジュアル` の CROP)
 
 - `imageTransform` は `scaleMode: 'CROP'` のときだけ効く。`FILL` / `FIT` では無視される
-- ライブラリの背景は K2 ヒーロー枠(580.7×711、比率 0.817)に近い 4:5 で作ってあるので、枠を満たす最小の拡大(ほぼ等倍)で上下を約2%切るだけになる。`crop_focus` の平行移動の実装は Step 3(【H の結果待ち】)
+- ヒーロー枠は系統ごとの横長(488×329〜500、B.1 v2)。**枠と画像の縦横比から計算する**(identity のままだと枠比率に引き伸ばされる)。枠比 rn = w/h、画像比 ri = iw/ih として、rn > ri なら `[[1,0,0],[0,f,(1−f)/2]]`(f = ri/rn、上下を切る)、rn < ri なら `[[f,0,(1−f)/2],[0,1,0]]`(f = rn/ri、左右を切る)。`crop_focus` は平行移動成分(`place-images.js` の `CROP_FOCUS`、0 = 中央)。縦長 2K 背景(1792×2400)をあいとまの枠に置くと f = 0.609・上下 19.6% ずつ切る、実効 531dpi(H(a) の手作業と一致)
 - 人物・車両・地域の絵は `scaleMode: 'FIT'`(切り抜かない)。配置規則は template-and-assets.md「表紙の絵の配置規則」
